@@ -242,8 +242,8 @@
           "description": "These methods are primarily chosen for their exceptional stability properties, particularly for stiff differential equations, often allowing much larger step sizes than explicit methods. However, each step involves solving a potentially complex algebraic equation, increasing the computational cost per step."
         }
       ],
-      "imageUrl": "/api/assets/demo/09f20f9f-3786-4d64-8146-ab9ea6d59b3e/diagram_scene_1.png",
-      "assetUrl": "/api/assets/demo/09f20f9f-3786-4d64-8146-ab9ea6d59b3e/diagram_scene_1.png"
+      "imageUrl": "/GamED-AI/acl-demo/assets/demo/09f20f9f-3786-4d64-8146-ab9ea6d59b3e/diagram_scene_1.png",
+      "assetUrl": "/GamED-AI/acl-demo/assets/demo/09f20f9f-3786-4d64-8146-ab9ea6d59b3e/diagram_scene_1.png"
     },
     "labels": [
       {

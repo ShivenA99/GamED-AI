@@ -1,8 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
+  trailingSlash: true,
+  basePath: '/GamED-AI',
+
   reactStrictMode: true,
-  // API calls are handled by Next.js API routes which proxy to the backend
-  // This allows us to add custom logic for status mapping, etc.
 
   // Webpack fallbacks for Pyodide (WASM Python runtime)
   webpack: (config, { isServer }) => {
@@ -17,9 +19,9 @@ const nextConfig = {
     return config;
   },
 
-  // Image optimization configuration
+  // Image optimization must be disabled for static export
   images: {
-    // Remote patterns for allowed image domains
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
@@ -33,23 +35,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: '**.googleusercontent.com',
       },
-      {
-        protocol: 'http',
-        hostname: 'localhost',
-      },
-      {
-        protocol: 'http',
-        hostname: '127.0.0.1',
-      },
     ],
-    // Allow SVG and other formats
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    // Device sizes for responsive images
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    // Formats to use
     formats: ['image/avif', 'image/webp'],
   },
 };

@@ -131,7 +131,7 @@
           "icon": "",
           "image_url": "",
           "image_description": "A flat educational illustration of a cell with a clearly defined, intact nuclear envelope in cool blue. Inside the nucleus, several distinct, X-shaped chromosomes in a warm orange are scattered. Outside the nucleus, two centrosomes are migrating towards opposite poles, with early mitotic spindle fibers in yellow beginning to radiate from them.",
-          "image": "/api/assets/demo/9822630f-1806-4b6b-a644-6a2711352fff/items/s1.png"
+          "image": "/GamED-AI/acl-demo/assets/demo/9822630f-1806-4b6b-a644-6a2711352fff/items/s1.png"
         },
         {
           "id": "s2",
@@ -140,7 +140,7 @@
           "icon": "",
           "image_url": "",
           "image_description": "A flat educational illustration of a cell where the nuclear envelope is shown as fragmented, disappearing pieces. The X-shaped orange chromosomes are now in the cytoplasm. Yellow spindle fibers, extending from centrosomes at opposite poles, are actively attaching to the central region (kinetochore) of each chromosome, creating a sense of dynamic movement.",
-          "image": "/api/assets/demo/9822630f-1806-4b6b-a644-6a2711352fff/items/s2.png"
+          "image": "/GamED-AI/acl-demo/assets/demo/9822630f-1806-4b6b-a644-6a2711352fff/items/s2.png"
         },
         {
           "id": "s3",
@@ -149,7 +149,7 @@
           "icon": "",
           "image_url": "",
           "image_description": "A flat educational illustration of a cell with no nuclear envelope. All the X-shaped orange chromosomes are perfectly aligned in a neat, vertical line down the center of the cell (the metaphase plate). A complete spindle apparatus is visible, with yellow spindle fibers extending from centrosomes at each pole and attached to every chromosome.",
-          "image": "/api/assets/demo/9822630f-1806-4b6b-a644-6a2711352fff/items/s3.png"
+          "image": "/GamED-AI/acl-demo/assets/demo/9822630f-1806-4b6b-a644-6a2711352fff/items/s3.png"
         },
         {
           "id": "s4",
@@ -158,7 +158,7 @@
           "icon": "",
           "image_url": "",
           "image_description": "A flat educational illustration of a cell that is visibly elongating. The sister chromatids have separated, and now individual, V-shaped chromosomes in orange are being pulled towards opposite poles of the cell by shortening yellow spindle fibers. There is a clear space forming in the middle of the cell between the two separating groups of chromosomes.",
-          "image": "/api/assets/demo/9822630f-1806-4b6b-a644-6a2711352fff/items/s4.png"
+          "image": "/GamED-AI/acl-demo/assets/demo/9822630f-1806-4b6b-a644-6a2711352fff/items/s4.png"
         },
         {
           "id": "s5",
@@ -167,7 +167,7 @@
           "icon": "",
           "image_url": "",
           "image_description": "A flat educational illustration of a cell with a cleavage furrow pinching inward, indicating the start of cytokinesis. At each pole, a new nuclear envelope is forming around a cluster of chromosomes, which are decondensing and becoming less distinct (more like tangled orange chromatin). The spindle fibers are disassembling and are mostly gone.",
-          "image": "/api/assets/demo/9822630f-1806-4b6b-a644-6a2711352fff/items/s5.png"
+          "image": "/GamED-AI/acl-demo/assets/demo/9822630f-1806-4b6b-a644-6a2711352fff/items/s5.png"
         }
       ],
       "correct_order": [

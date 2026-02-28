@@ -143,7 +143,7 @@
           "icon": "",
           "image_url": "",
           "image_description": "A vintage blueprint style illustration of the Spinning Jenny. The image shows a detailed schematic of a wooden frame with eight spindles in a row, connected by gears and a hand-cranked wheel. The style is reminiscent of an 18th-century engineering drawing with precise lines, annotations, and a sepia-toned, aged paper background.",
-          "image": "/api/assets/demo/ae6c3bf0-d98b-44a1-8cdf-40464049ebfb/items/spinning_jenny_1764.png"
+          "image": "/GamED-AI/acl-demo/assets/demo/ae6c3bf0-d98b-44a1-8cdf-40464049ebfb/items/spinning_jenny_1764.png"
         },
         {
           "id": "watt_steam_engine_1769",
@@ -152,7 +152,7 @@
           "icon": "",
           "image_url": "",
           "image_description": "A vintage blueprint style illustration of James Watt's improved steam engine. The schematic details the large piston, cylinder, and the separate condenser unit, connected by intricate pipes and valves. The drawing features cross-sections and callouts, rendered in white ink on a dark blue background, mimicking a classic engineering blueprint.",
-          "image": "/api/assets/demo/ae6c3bf0-d98b-44a1-8cdf-40464049ebfb/items/watt_steam_engine_1769.png"
+          "image": "/GamED-AI/acl-demo/assets/demo/ae6c3bf0-d98b-44a1-8cdf-40464049ebfb/items/watt_steam_engine_1769.png"
         },
         {
           "id": "power_loom_1785",
@@ -161,7 +161,7 @@
           "icon": "",
           "image_url": "",
           "image_description": "A vintage blueprint style illustration of the Power Loom. The diagram shows a complex, large wooden and iron machine with shuttles, heddles, and a system of gears and belts designed to be connected to a central power source. The illustration has an aged, hand-drawn quality with detailed annotations on a faded parchment background.",
-          "image": "/api/assets/demo/ae6c3bf0-d98b-44a1-8cdf-40464049ebfb/items/power_loom_1785.png"
+          "image": "/GamED-AI/acl-demo/assets/demo/ae6c3bf0-d98b-44a1-8cdf-40464049ebfb/items/power_loom_1785.png"
         },
         {
           "id": "cotton_gin_1794",
@@ -170,7 +170,7 @@
           "icon": "",
           "image_url": "",
           "image_description": "A vintage blueprint style illustration of the Cotton Gin. The image displays a cutaway view of a wooden box containing a drum with wire hooks or teeth that pull cotton fibers through a mesh. A hand crank is visible on the side. The style is that of a patent drawing from the late 18th century, with precise lines and labels on a sepia background.",
-          "image": "/api/assets/demo/ae6c3bf0-d98b-44a1-8cdf-40464049ebfb/items/cotton_gin_1794.png"
+          "image": "/GamED-AI/acl-demo/assets/demo/ae6c3bf0-d98b-44a1-8cdf-40464049ebfb/items/cotton_gin_1794.png"
         },
         {
           "id": "steam_locomotive_1804",
@@ -179,7 +179,7 @@
           "icon": "",
           "image_url": "",
           "image_description": "A vintage blueprint style illustration of an early steam locomotive, like Trevithick's 'Pen-y-Darren'. The schematic shows a large boiler, a tall smokestack, a single piston, and large flywheel connected to the wheels. The drawing has a mechanical, industrial feel with detailed cross-hatching and notes on a gray, textured paper.",
-          "image": "/api/assets/demo/ae6c3bf0-d98b-44a1-8cdf-40464049ebfb/items/steam_locomotive_1804.png"
+          "image": "/GamED-AI/acl-demo/assets/demo/ae6c3bf0-d98b-44a1-8cdf-40464049ebfb/items/steam_locomotive_1804.png"
         },
         {
           "id": "telegraph_1837",
@@ -188,7 +188,7 @@
           "icon": "",
           "image_url": "",
           "image_description": "A vintage blueprint style illustration of an early telegraph system. The schematic shows the sender's key, an electromagnet receiver that marks a paper tape, and the connecting wires. The drawing is intricate, with details of the electrical components, rendered in a classic 19th-century technical illustration style on a dark blue background.",
-          "image": "/api/assets/demo/ae6c3bf0-d98b-44a1-8cdf-40464049ebfb/items/telegraph_1837.png"
+          "image": "/GamED-AI/acl-demo/assets/demo/ae6c3bf0-d98b-44a1-8cdf-40464049ebfb/items/telegraph_1837.png"
         },
         {
           "id": "bessemer_process_1856",
@@ -197,7 +197,7 @@
           "icon": "",
           "image_url": "",
           "image_description": "A vintage blueprint style illustration of the Bessemer converter. The image shows a large, pear-shaped steel vessel, tilted to receive molten iron. Detailed diagrams show the tuyeres at the bottom for blowing air through the metal. The style is a mid-19th-century industrial schematic with precise lines, shading, and annotations on an aged paper background.",
-          "image": "/api/assets/demo/ae6c3bf0-d98b-44a1-8cdf-40464049ebfb/items/bessemer_process_1856.png"
+          "image": "/GamED-AI/acl-demo/assets/demo/ae6c3bf0-d98b-44a1-8cdf-40464049ebfb/items/bessemer_process_1856.png"
         }
       ],
       "correct_order": [
