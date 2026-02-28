@@ -678,7 +678,7 @@ function ArchitectureTab({ pipelineTab, setPipelineTab }: {
               <h3 className="font-bold text-gray-900 dark:text-gray-100 text-sm">Sequential Pipeline</h3>
             </div>
             <div className="flex flex-col items-center gap-1.5">
-              {['Input Analyzer', 'Game Designer', 'Content Generator', 'Asset Generator', 'Blueprint Assembler'].map((node, i) => (
+              {['Context Gathering', 'Concept Design', 'Game Plan', 'Scene Content', 'Asset Generation', 'Assembly'].map((node, i) => (
                 <React.Fragment key={node}>
                   {i > 0 && <span className="text-gray-300 text-xs">&darr;</span>}
                   <div className="w-full px-3 py-1.5 rounded-lg bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 text-center text-xs font-medium text-orange-700 dark:text-orange-300">
@@ -686,15 +686,12 @@ function ArchitectureTab({ pipelineTab, setPipelineTab }: {
                   </div>
                 </React.Fragment>
               ))}
-              <span className="text-gray-300 text-xs">&darr;</span>
-              <div className="w-full px-3 py-1.5 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-center text-xs font-medium text-red-600 dark:text-red-400">
-                Single Validator (end)
-              </div>
             </div>
-            <div className="mt-4 pt-3 border-t border-gray-100 dark:border-gray-800 space-y-1">
-              <p className="text-[11px] text-gray-500 dark:text-gray-400"><span className="font-semibold text-gray-700 dark:text-gray-300">Agents:</span> 5 sequential</p>
-              <p className="text-[11px] text-gray-500 dark:text-gray-400"><span className="font-semibold text-gray-700 dark:text-gray-300">Validation:</span> End-only</p>
-              <p className="text-[11px] text-gray-500 dark:text-gray-400"><span className="font-semibold text-gray-700 dark:text-gray-300">Error handling:</span> No retry</p>
+            <p className="text-[10px] text-orange-500 dark:text-orange-400 text-center mt-2 italic">No Quality Gates &mdash; errors propagate silently</p>
+            <div className="mt-3 pt-3 border-t border-gray-100 dark:border-gray-800 space-y-1">
+              <p className="text-[11px] text-gray-500 dark:text-gray-400"><span className="font-semibold text-gray-700 dark:text-gray-300">VPR:</span> 56.7%</p>
+              <p className="text-[11px] text-gray-500 dark:text-gray-400"><span className="font-semibold text-gray-700 dark:text-gray-300">Tokens:</span> ~45,200/game</p>
+              <p className="text-[11px] text-gray-500 dark:text-gray-400"><span className="font-semibold text-gray-700 dark:text-gray-300">Validation:</span> None between stages</p>
               <p className="text-[11px] text-gray-500 dark:text-gray-400"><span className="font-semibold text-gray-700 dark:text-gray-300">Parallelism:</span> None</p>
             </div>
           </div>
@@ -707,7 +704,7 @@ function ArchitectureTab({ pipelineTab, setPipelineTab }: {
             </div>
             <div className="flex flex-col items-center gap-1.5">
               <div className="w-full px-3 py-1.5 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 text-center text-xs font-medium text-blue-700 dark:text-blue-300">
-                ReAct Agent (single LLM)
+                Single ReAct Agent
               </div>
               <div className="relative w-full flex justify-center py-2">
                 <svg width="80" height="40" viewBox="0 0 80 40" className="text-blue-300">
@@ -717,7 +714,7 @@ function ArchitectureTab({ pipelineTab, setPipelineTab }: {
                 <span className="absolute top-1/2 -translate-y-1/2 right-2 text-[9px] text-blue-400 font-medium">Thought &rarr; Action &rarr; Observe</span>
               </div>
               <div className="w-full flex gap-1.5">
-                {['Design', 'Content', 'Assets', 'Assemble', 'Validate'].map(tool => (
+                {['Plan', 'Generate', 'Assets', 'Assemble'].map(tool => (
                   <div key={tool} className="flex-1 px-1 py-1 rounded bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 text-center text-[9px] font-medium text-blue-600 dark:text-blue-400">
                     {tool}
                   </div>
@@ -725,13 +722,14 @@ function ArchitectureTab({ pipelineTab, setPipelineTab }: {
               </div>
               <span className="text-gray-300 text-xs">&darr;</span>
               <div className="w-full px-3 py-1.5 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-center text-xs font-medium text-red-600 dark:text-red-400">
-                Self-Validation (LLM)
+                Self-Correction (LLM)
               </div>
             </div>
-            <div className="mt-4 pt-3 border-t border-gray-100 dark:border-gray-800 space-y-1">
-              <p className="text-[11px] text-gray-500 dark:text-gray-400"><span className="font-semibold text-gray-700 dark:text-gray-300">Agents:</span> 1 ReAct loop</p>
+            <p className="text-[10px] text-blue-500 dark:text-blue-400 text-center mt-2 italic">Token inflation from self-correction loops</p>
+            <div className="mt-3 pt-3 border-t border-gray-100 dark:border-gray-800 space-y-1">
+              <p className="text-[11px] text-gray-500 dark:text-gray-400"><span className="font-semibold text-gray-700 dark:text-gray-300">VPR:</span> 72.5%</p>
+              <p className="text-[11px] text-gray-500 dark:text-gray-400"><span className="font-semibold text-gray-700 dark:text-gray-300">Tokens:</span> ~73,500/game</p>
               <p className="text-[11px] text-gray-500 dark:text-gray-400"><span className="font-semibold text-gray-700 dark:text-gray-300">Validation:</span> LLM self-check</p>
-              <p className="text-[11px] text-gray-500 dark:text-gray-400"><span className="font-semibold text-gray-700 dark:text-gray-300">Error handling:</span> Retry via reasoning</p>
               <p className="text-[11px] text-gray-500 dark:text-gray-400"><span className="font-semibold text-gray-700 dark:text-gray-300">Parallelism:</span> None</p>
             </div>
           </div>
@@ -762,9 +760,9 @@ function ArchitectureTab({ pipelineTab, setPipelineTab }: {
               ))}
             </div>
             <div className="mt-4 pt-3 border-t border-gray-100 dark:border-gray-800 space-y-1">
-              <p className="text-[11px] text-gray-500 dark:text-gray-400"><span className="font-semibold text-gray-700 dark:text-gray-300">Agents:</span> 18 across 6 phases</p>
-              <p className="text-[11px] text-gray-500 dark:text-gray-400"><span className="font-semibold text-gray-700 dark:text-gray-300">Validation:</span> 4 deterministic QGs</p>
-              <p className="text-[11px] text-gray-500 dark:text-gray-400"><span className="font-semibold text-gray-700 dark:text-gray-300">Error handling:</span> Bounded retry per phase</p>
+              <p className="text-[11px] text-gray-500 dark:text-gray-400"><span className="font-semibold text-gray-700 dark:text-gray-300">VPR:</span> 90.0%</p>
+              <p className="text-[11px] text-gray-500 dark:text-gray-400"><span className="font-semibold text-gray-700 dark:text-gray-300">Tokens:</span> ~19,900/game ($0.48)</p>
+              <p className="text-[11px] text-gray-500 dark:text-gray-400"><span className="font-semibold text-gray-700 dark:text-gray-300">Validation:</span> 4 deterministic QGs (no LLM)</p>
               <p className="text-[11px] text-gray-500 dark:text-gray-400"><span className="font-semibold text-gray-700 dark:text-gray-300">Parallelism:</span> Send() API per scene</p>
             </div>
           </div>
