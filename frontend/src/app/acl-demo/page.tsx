@@ -7,6 +7,7 @@ import { ACL_GAMES, computeAggregateMetrics } from '@/data/acl-demo';
 import { DOMAIN_LABELS, DOMAIN_ICONS, DOMAIN_COLORS, MECHANIC_LABELS } from '@/data/acl-demo/types';
 import type { Domain } from '@/data/acl-demo/types';
 import V4PipelineDAG from '@/components/V4PipelineDAG';
+import { ThemeToggle } from '@/components/ui/ThemeToggle';
 
 type Tab = 'home' | 'tryit' | 'video' | 'setup' | 'architecture';
 
@@ -74,6 +75,7 @@ export default function ACLDemoLandingPage() {
               >
                 Paper
               </a>
+              <ThemeToggle />
             </div>
           </div>
           {/* Tab bar */}

@@ -8,6 +8,7 @@ import ACLGameCard from '@/components/acl-demo/ACLGameCard';
 import FilterBar, { Filters } from '@/components/acl-demo/FilterBar';
 import MetricsDashboard from '@/components/acl-demo/MetricsDashboard';
 import type { Domain, EducationLevel } from '@/data/acl-demo/types';
+import { ThemeToggle } from '@/components/ui/ThemeToggle';
 
 export default function LibraryClient() {
   const searchParams = useSearchParams();
@@ -69,6 +70,7 @@ export default function LibraryClient() {
             >
               {showMetrics ? 'Hide' : 'Show'} Metrics
             </button>
+            <ThemeToggle />
           </div>
         </div>
       </nav>

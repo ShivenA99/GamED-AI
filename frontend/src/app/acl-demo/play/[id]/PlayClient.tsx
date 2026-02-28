@@ -13,6 +13,7 @@ import {
 } from '@/data/acl-demo/types';
 import type { ACLGameEntry } from '@/data/acl-demo/types';
 import ModeToggle from '@/components/templates/AlgorithmGame/components/ModeToggle';
+import { ThemeToggle } from '@/components/ui/ThemeToggle';
 
 // Lazy load game components
 const InteractiveDiagramGame = dynamic(
@@ -115,7 +116,10 @@ export default function PlayClient({ id }: { id: string }) {
               {game.title}
             </span>
           </div>
-          <ModeToggle mode={mode} onToggle={(m) => { setMode(m); setGameComplete(false); }} disabled={gameStarted && !gameComplete} />
+          <div className="flex items-center gap-3">
+            <ModeToggle mode={mode} onToggle={(m) => { setMode(m); setGameComplete(false); }} disabled={gameStarted && !gameComplete} />
+            <ThemeToggle />
+          </div>
         </div>
       </div>
 
