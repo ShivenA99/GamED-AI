@@ -31,8 +31,6 @@ GamED.AI is a hierarchical multi-agent framework that automatically transforms e
 
 Browse 50 pre-generated games at: **https://ShivenA99.github.io/GamED-AI/**
 
-No installation required — the demo is a fully static site.
-
 ## Repository Structure
 
 ```
