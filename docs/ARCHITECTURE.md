@@ -9,6 +9,26 @@
 
 ---
 
+## Architectural Evolution
+
+The current DAG architecture supersedes two prior designs:
+
+**Sequential Pipeline** — A linear chain of agents where each stage passes output directly to the next without intermediate validation. The absence of Quality Gates allows structural errors to propagate silently across stages, compounding into invalid blueprints. Achieves 56.7% VPR at ~45,200 tokens/game.
+
+**ReAct Agent** — A single ReAct agent with self-correction loops handles planning, generation, and validation within one cognitive loop. While self-correction improves over the Sequential Pipeline, it produces token inflation driven by exemplar-query similarity rather than genuine error recovery, and conflates generation with validation in the same reasoning trace. Achieves 72.5% VPR at ~73,500 tokens/game.
+
+**Hierarchical DAG (current)** — Separates planning, generation, and validation into six deterministic phases, each bounded by a Quality Gate. Phase boundaries eliminate self-correction loops that inflate tokens and accumulate errors. Achieves 90.0% VPR at ~19,900 tokens/game ($0.48/game).
+
+| Architecture | VPR | Tokens/Game |
+|-------------|-----|-------------|
+| Sequential Pipeline | 56.7% | ~45,200 |
+| ReAct Agent | 72.5% | ~73,500 |
+| **Hierarchical DAG** | **90.0%** | **~19,900** |
+
+Architecture explains 87% of token consumption variance (η² = 0.87, F(2, 597) = 1,996, p < 0.001). The 73% token reduction from ReAct to DAG is structural: phase boundaries eliminate self-correction loops that inflate tokens and accumulate errors. The VPR gain of 17.5 percentage points over ReAct is confirmed significant (χ²(2, N=600) = 57.0, p < 0.001, Cramér's V = 0.31).
+
+---
+
 ## DAG Pipeline Architecture
 
 The system is a hierarchical DAG in LangGraph with six phases, each an independent sub-graph with typed I/O and a Quality Gate at its boundary. No agent in phase N receives input from phase N+1; no gate can be bypassed; invalid states cannot propagate.
@@ -48,7 +68,7 @@ Input Question
 │  ┌────────────┐  ┌────────────────┐  ┌────────────────────┐ │
 │  │Content     │  │Scene Content   │  │ QG3: Content       │ │
 │  │Dispatch    │─▶│Generator ×N    │─▶│ Validator (FOL)    │ │
-│  │(router)    │  │(parallel LLM)  │  │ re-Send failed ≤1  │ │
+│  │(router)    │  │(parallel LLM)  │  │ re-Send failed ≤2  │ │
 │  └────────────┘  └────────────────┘  └────────────────────┘ │
 └────────────────────┬────────────────────────────────────────┘
                      ▼
@@ -85,36 +105,49 @@ Outputs are merged before Phase 1, ensuring concept design operates on verified 
 
 ### Phase 1: Concept Design
 
-The **Game Concept Designer** (ReAct agent) resolves input against a Bloom's-to-mechanic constraint table encoding valid competency evidence. The result is a Game Blueprint specifying learning objective, Bloom's level, template family, and mechanic contract.
+Template selection is a **constrained inference**: the **Game Concept Designer** (ReAct agent) resolves input against a Bloom's-to-mechanic constraint table encoding valid competency evidence. The result is a **Game Blueprint** — a validated Pydantic document specifying learning objective, Bloom's level, template family, and mechanic contract — produced before content generation begins and certified by QG1. Each contract defines the interaction primitive, content types, valid Bloom's range, and completion conditions.
 
 **QG1** validates: scenes ≤ 6, all game types supported, required fields present. Retry ≤ 2.
 
 ### Phase 2: Game Plan (Deterministic)
 
-The **Game Plan Builder** assigns scene IDs, computes scores from per-game-type contracts, determines asset needs, and builds the transition graph. No LLM inference.
+The **Game Plan Builder** assigns scene IDs, computes scores from per-game-type Score Contracts, determines asset needs, and builds the transition graph. No LLM inference.
 
-**QG2** validates: unique scene IDs, valid transitions, score totals match. Retry ≤ 2.
+**QG2** validates the full Game Plan against Score Contracts per game type: unique scene IDs, valid transitions, score totals match. Retry ≤ 2.
 
 ### Phase 3: Scene Content (Parallel)
 
-**Content Dispatch** creates N `Send()` calls, one per scene. **Scene Content Generators** (LLM, parallel) produce game-type-specific content. **Content Merge** deduplicates by scene_id.
+**Content Dispatch** creates N `Send()` calls, one per scene. **Scene Content Generators** (LLM, parallel) produce game-type-specific content including interaction specifications (drag targets, click regions, sequence orders), instructional text (directions, hints, per-element feedback), and visual asset specifications. **Content Merge** deduplicates by scene_id.
 
 **QG3** applies FOL-based Bloom's alignment predicates:
 - `bloom(g) = bloom(b)` — generated Bloom's level matches blueprint
-- `op_count(g) ≥ τ` — sufficient interaction operations for the mechanic contract
+- `op_count(g) ≥ τ_contract` — sufficient interaction operations for the mechanic contract
 - `feedback ⊨ Bloom's` — per-element feedback entails the target Bloom's level
 
-All validation is deterministic with no LLM inference. Failed scenes trigger a bounded re-Send (max 1).
+All validation is deterministic with no LLM inference, ensuring constant cost and formal verifiability. Failed scenes trigger a bounded re-Send (max 2).
 
 ### Phase 4: Assets (Parallel)
 
-**Asset Dispatch** filters scenes needing visual assets. **Asset Workers** (parallel) perform image search, quality filtering, and fallback generation. Failed assets trigger re-Send (max 1).
+**Asset Dispatch** filters scenes needing visual assets. **Asset Workers** (parallel) produce visual assets (SVG diagrams or text-synthesised visuals). Failed assets trigger re-Send (max 1).
 
 ### Phase 5: Assembly (Deterministic)
 
-The **Blueprint Assembler** combines game plan + content + assets into the final blueprint. **QG4** performs final consistency check with `is_degraded` flag tracking. No LLM inference.
+The **Blueprint Assembler** instantiates the selected template as a React component and injects validated content — the same orchestration layer produces all 15 mechanics through component swapping, not code regeneration. **QG4** performs final blueprint validation with `is_degraded` flag tracking. No LLM inference. Inter-agent communication achieves 98.3% Pydantic schema compliance.
 
 Output: Verified JSON Blueprint (`generation_complete = true`).
+
+---
+
+## Quality Gates
+
+| Gate | Phase Boundary | Validation Type | Key Checks |
+|------|---------------|-----------------|------------|
+| QG1 | Concept → Plan | Deterministic | Scene count, game type support, required fields |
+| QG2 | Plan → Content | Deterministic | Unique scene IDs, valid transitions, Score Contract totals |
+| QG3 | Content → Assets | FOL predicates | Bloom's alignment, operation counts, feedback entailment |
+| QG4 | Assembly → Output | Deterministic | Schema compliance, is_degraded flag, template completeness |
+
+All Quality Gates execute without LLM inference — constant cost and formal verifiability.
 
 ---
 
@@ -125,7 +158,7 @@ Two template families with 15 interaction mechanics:
 ### Interactive Diagram Games (10 mechanics)
 Operate on spatial and relational content targeting visual and conceptual reasoning.
 
-| Mechanic | Bloom's Range | Description |
+| Mechanic | Bloom's Level | Description |
 |----------|--------------|-------------|
 | Drag & Drop | Understand | Place labels onto diagram zones |
 | Click to Identify | Remember | Click correct elements when described |
@@ -139,9 +172,9 @@ Operate on spatial and relational content targeting visual and conceptual reason
 | Hierarchical | Analyze | Navigate multi-level taxonomies |
 
 ### Interactive Algorithm Games (5 mechanics)
-Operate on procedural content targeting applying, analyzing, and creating objectives.
+Operate on procedural content targeting applying, analyzing, and creating objectives, grounded in algorithm visualization research and debugging-first pedagogy.
 
-| Mechanic | Bloom's Range | Description |
+| Mechanic | Bloom's Level | Description |
 |----------|--------------|-------------|
 | State Tracer | Apply | Predict data structure state after each algorithm step |
 | Bug Hunter | Analyze | Identify bugs in algorithm implementations |
@@ -151,32 +184,19 @@ Operate on procedural content targeting applying, analyzing, and creating object
 
 ---
 
-## Scene Composition
+## Scene and Mechanic Composition
 
 Templates span three structural configurations resolved automatically from Bloom's level and content complexity:
 
 - **Single-scene, single-mechanic** — One interaction type, one content context (~35% of library)
-- **Single-scene, multi-mechanic** — 2–3 interaction types within one content frame (~40%)
-- **Multi-scene, multi-mechanic** — 2–4 causally connected scenes with monotonically increasing Bloom's levels (~25%). Bounded by cognitive load constraints (≤4 scenes, ≤3 mechanics/scene).
-
----
-
-## Quality Gates
-
-| Gate | Phase Boundary | Validation Type | Key Checks |
-|------|---------------|-----------------|------------|
-| QG1 | Concept → Plan | Deterministic | Scene count, game type support, required fields |
-| QG2 | Plan → Content | Deterministic | Unique scene IDs, valid transitions, score contract totals |
-| QG3 | Content → Assets | FOL predicates | Bloom's alignment, operation counts, feedback entailment |
-| QG4 | Assembly → Output | Deterministic | Schema compliance, is_degraded flag, template completeness |
-
-All Quality Gates execute without LLM inference — constant cost and formal verifiability.
+- **Single-scene, multi-mechanic** — 2–3 interaction types within one content frame, validated through a state machine ensuring compatible I/O schemas (~40%)
+- **Multi-scene, multi-mechanic** — 2–4 causally connected scenes with monotonically increasing Bloom's levels, bounded by cognitive load constraints (≤4 scenes, ≤3 mechanics/scene) (~25%)
 
 ---
 
 ## Modular Game Engine
 
-The frontend implements a plugin architecture: each of the 15 mechanics is a self-contained React component registered by contract type.
+The frontend implements a plugin architecture: each of the 15 mechanics is a self-contained React component registered by contract type, enabling extension through registration without modifying orchestration layers.
 
 ```
 Blueprint JSON
@@ -199,6 +219,8 @@ Interaction Primitives
   └── SVG Canvas (polygons, paths, zones)
 ```
 
+Both template families share interaction primitives built on dnd-kit with custom collision detection and keyboard/touch support.
+
 ---
 
 ## Pipeline Observability
@@ -208,28 +230,12 @@ The system includes a real-time observability dashboard with three view modes:
 - **DAG Graph** — ReactFlow with execution-state highlighting
 - **Cluster View** — Grouped by phase
 
-Per-agent token and cost analytics show stage-level consumption with USD breakdown. A ReAct trace viewer displays the Thought → Action → Observation chain for tool-calling agents.
+Per-agent token and cost analytics show stage-level consumption with USD breakdown. A ReAct trace viewer displays the Thought → Action → Observation chain for tool-calling agents, and a stage inspector exposes inputs, outputs, and tool call history at every phase.
 
 ---
 
 ## Model Configuration
 
-The orchestration layer is model-agnostic. A declarative preset system enables per-agent model selection:
-- **Closed-source**: GPT-4, Gemini
-- **Open-source**: Llama 3, Mistral, Qwen
+The orchestration layer is model-agnostic. A declarative preset system enables per-agent model selection across closed-source APIs (GPT-4, Gemini) and open-source models (Llama 3, Mistral, Qwen) without pipeline modification.
 
-Default evaluation configuration: GPT-4-turbo (temp 0.3, seed 42) for planning/validation; Gemini 1.5 Pro (temp 0.4) for asset generation.
-
----
-
-## Architectural Evolution
-
-The DAG architecture supersedes two prior designs:
-
-| Architecture | VPR | Tokens/Game | Cost/Game |
-|-------------|-----|-------------|-----------|
-| Sequential Pipeline | 56.7% | ~45,200 | $1.20 |
-| ReAct Agent | 72.5% | ~67,300 | $2.85 |
-| **Hierarchical DAG** | **90.0%** | **~19,900** | **$0.48** |
-
-Architecture explains 87% of token consumption variance (η² = 0.87). The 73% token reduction from ReAct to DAG is structural: phase boundaries eliminate self-correction loops that inflate tokens and accumulate errors.
+Default evaluation configuration: GPT-4-turbo-2024-04-09 (temp 0.3, seed 42) for planning/validation; gemini-1.5-pro-001 (temp 0.4) for asset generation. All runs logged via LangSmith with per-call granularity.

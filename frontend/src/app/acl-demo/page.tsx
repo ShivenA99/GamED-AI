@@ -449,8 +449,7 @@ function TryItTab({ metrics, mechanicCount }: {
    ═══════════════════════════════════════════════════════════════ */
 
 function VideoTab() {
-  // TODO: Replace VIDEO_ID with the actual YouTube video ID
-  const VIDEO_ID = 'YOUR_VIDEO_ID';
+  const VIDEO_ID = '3aMklNAMysM';
 
   return (
     <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
