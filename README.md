@@ -1,6 +1,6 @@
 <p align="center">
   <b>GamED.AI</b><br>
-  <i>Automated Educational Game Generation via Hierarchical Multi-Agent AI</i>
+  <i>A Hierarchical Multi-Agent Framework for Automated Educational Game Generation</i>
 </p>
 
 <p align="center">
@@ -19,7 +19,7 @@ GamED.AI is a hierarchical multi-agent framework that automatically transforms e
 ```bibtex
 @inproceedings{agarwal-etal-2026-gamedai,
     title = "{GamED.AI}: A Hierarchical Multi-Agent Framework for Automated Educational Game Generation",
-    author = "Agarwal, Shiven and Sarkar, Ashish",
+    author = "Agarwal, Shiven and Shah, Yash and Shekhar, Ashish Raj and Bordoloi, Priyanuj and De, Sandipan and Gupta, Vivek",
     booktitle = "Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics: System Demonstrations",
     month = aug,
     year = "2026",
@@ -51,8 +51,7 @@ GamED-AI/
 │   │   └── data/acl-demo/      # Pre-generated game data (50 games)
 │   └── public/acl-demo/        # Static assets for demo games
 └── docs/
-    ├── ARCHITECTURE.md         # Full pipeline diagrams and agent table
-    └── demo_video_script_final.md
+    └── ARCHITECTURE.md         # Full pipeline diagrams and agent table
 ```
 
 ---
@@ -137,22 +136,24 @@ The demo includes 50 pre-generated games spanning:
 | Linguistics | Sentence parts, Sentence building, Word types | Language families, Morphemes, Phonology, Semantic roles | Language acquisition, Phonological processes, Syntax trees |
 | Mathematics | Geometry, Linear equations, Number types | Calculus, Function types, Integration, Matrix ops | Numerical methods, Proof strategy, Vector spaces |
 
-Mechanics covered: drag-and-drop, click-to-identify, trace-path, sequencing, sorting, memory-match, branching-scenario, compare-contrast, description-matching, state-tracer, bug-hunter, algorithm-builder, complexity-analyzer, constraint-puzzle, and interactive diagram.
+Mechanics covered: drag-and-drop, click-to-identify, trace-path, sequencing, sorting, memory-match, branching-scenario, compare-contrast, description-matching, state-tracer, bug-hunter, algorithm-builder, complexity-analyzer, constraint-puzzle, and hierarchical.
 
 ---
 
 ## 6. Architecture Overview
 
-The GamED.AI pipeline is a directed acyclic graph (DAG) of 59+ specialized agents organized into 6 phases with 4 Quality Gates:
+The GamED.AI pipeline is a hierarchical DAG in LangGraph with six phases, each an independent sub-graph with typed I/O and a Quality Gate at its boundary:
 
-1. **Phase 1 — Game Design** (`game_designer_v3`): Selects mechanic type, difficulty, and educational objectives using ReAct reasoning over the question domain.
-2. **Phase 2 — Scene Architecture** (`scene_architect_v3`): Decomposes the game into scenes and tasks; generates mechanic-specific content schemas.
-3. **Phase 3 — Interaction Design** (`interaction_designer_v3`): Enriches each scene with interaction logic, scoring rules, and feedback.
-4. **Phase 4 — Asset Generation** (`asset_generator_v3`): Produces diagram images, zone coordinates, and icon assets in parallel.
-5. **Phase 5 — Blueprint Assembly** (`blueprint_assembler_v3`): Assembles all outputs into a validated frontend-ready JSON blueprint.
-6. **Quality Gates**: Validators at phases 1-3 enforce schema correctness with retry loops before proceeding.
+1. **Phase 0 — Context Gathering**: Parallel input analysis and domain knowledge retrieval grounded in curated sources.
+2. **Phase 1 — Concept Design**: ReAct agent resolves input against a Bloom's-to-mechanic constraint table to produce a game concept with learning objective, template family, and mechanic contract.
+3. **Phase 2 — Game Plan** (deterministic, no LLM): Assigns scene IDs, computes score contracts, determines asset needs, builds transition graph.
+4. **Phase 3 — Scene Content** (parallel): N parallel `Send()` calls generate game-type-specific content per scene. FOL-based Bloom's alignment predicates at QG3.
+5. **Phase 4 — Assets** (parallel): M parallel workers perform image search, quality filtering, and fallback generation.
+6. **Phase 5 — Assembly** (deterministic, no LLM): Combines game plan + content + assets into a verified JSON blueprint.
 
-See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for full pipeline diagrams, the complete 59+ agent table, and state field reference.
+Four Quality Gates (QG1–QG4) execute without LLM inference, providing constant cost and formal verifiability. The architecture achieves 90% validation pass rate with 73% token reduction over ReAct baselines ($0.48/game, ~19,900 tokens).
+
+See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for full pipeline diagrams, phase details, and game template reference.
 
 ---
 
@@ -160,4 +161,4 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for full pipeline diagrams, the
 
 MIT License — see [LICENSE](LICENSE) for details.
 
-Copyright 2026 Shiven Agarwal
+Copyright 2026 Shiven Agarwal, Yash Shah, Ashish Raj Shekhar, Priyanuj Bordoloi, Sandipan De, Vivek Gupta

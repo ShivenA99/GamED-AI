@@ -1,421 +1,235 @@
-# Architecture
+# GamED.AI Architecture
 
-Comprehensive architecture reference for GamED.AI v2.
+## Design Principles
+
+1. **Pedagogical primacy** — Every game is bound to a Bloom's level before generation; mechanic selection follows learning objectives.
+2. **Deterministic validation** — Every generative step is gated by a deterministic validator; LLM outputs are proposals subject to structural verification.
+3. **Structure over retry** — Typed schemas and phase boundaries prevent errors rather than catching them downstream.
+4. **Modularity** — New templates are registered via contract definition without modifying orchestration.
 
 ---
 
-## Pipeline Flow Overview
+## DAG Pipeline Architecture
+
+The system is a hierarchical DAG in LangGraph with six phases, each an independent sub-graph with typed I/O and a Quality Gate at its boundary. No agent in phase N receives input from phase N+1; no gate can be bypassed; invalid states cannot propagate.
 
 ```
-Question → InputEnhancer → DomainKnowledgeRetriever → Router
-                                                        ↓
-                                            ┌───────────┴───────────┐
-                                      LABEL_DIAGRAM           PHET_SIMULATION / Other
-                                            ↓                        ↓
-                                  DiagramImageRetriever        PhET Agent Cluster
-                                            ↓                  (selector → planner →
-                                  ImageLabelClassifier          designer → blueprint →
-                                            ↓                   bridge config)
-                                  ┌─────────┴─────────┐
-                                LABELED           UNLABELED
-                                  ↓                   ↓
-                      QwenAnnotationDetector   DirectStructureLocator
-                      (labels + leader lines)  (Qwen VL fast path)
-                                  ↓                   │
-                      QwenLabelRemover                │
-                      (inpainting)                     │
-                                  ↓                   │
-                      QwenSamZoneDetector              │
-                      (SAM3 + endpoints)               │
-                                  ↓                   ↓
-                                  └─────────┬─────────┘
-                                            ↓
-                              GamePlanner → InteractionDesigner
-                                            ↓
-                              ┌─────────────┴──────────────┐
-                         Single-Scene               Multi-Scene
-                              ↓                         ↓
-                      SceneGenerator           MultiSceneOrchestrator
-                      (3-stage)                SceneSequencer
-                              ↓                         ↓
-                  ┌───────────┼───────────┐           (per scene)
-                  ↓           ↓           ↓
-              Stage1      Stage2      Stage3
-            Structure     Assets    Interactions
-                              ↓
-                  ┌───────────┴───────────┐
-              Workflow Mode          Legacy Mode
-                  ↓                       ↓
-          AssetPlanner            BlueprintGenerator
-          AssetGeneratorOrch      BlueprintValidator (retry 3x)
-          AssetValidator                  ↓
-                  ↓               DiagramSpecGenerator
-          BlueprintGenerator      DiagramSpecValidator (retry 3x)
-          BlueprintValidator              ↓
-                  ↓               DiagramSvgGenerator
-                OUTPUT                    ↓
-                                      OUTPUT
+Input Question
+     │
+     ▼
+┌─────────────────────────────────────────────────────────────┐
+│  Phase 0: Context Gathering                                 │
+│  ┌──────────────┐  ┌──────────────────────────┐             │
+│  │Input Analyzer │  │Domain Knowledge Retriever│  (parallel) │
+│  └──────┬───────┘  └────────────┬─────────────┘             │
+│         └──────────┬────────────┘                           │
+│                    ▼                                        │
+│              Phase 0 Merge                                  │
+└────────────────────┬────────────────────────────────────────┘
+                     ▼
+┌─────────────────────────────────────────────────────────────┐
+│  Phase 1: Concept Design                                    │
+│  ┌───────────────────────┐    ┌──────────────────┐          │
+│  │Game Concept Designer  │───▶│ QG1: Concept     │          │
+│  │(ReAct, Bloom's table) │◀───│ Validator        │ retry ≤2 │
+│  └───────────────────────┘    └──────────────────┘          │
+└────────────────────┬────────────────────────────────────────┘
+                     ▼
+┌─────────────────────────────────────────────────────────────┐
+│  Phase 2: Game Plan (deterministic, no LLM)                 │
+│  ┌──────────────────┐    ┌──────────────────────┐           │
+│  │Game Plan Builder  │───▶│ QG2: Plan Validator  │           │
+│  │(score contracts)  │◀───│                      │ retry ≤2  │
+│  └──────────────────┘    └──────────────────────┘           │
+└────────────────────┬────────────────────────────────────────┘
+                     ▼
+┌─────────────────────────────────────────────────────────────┐
+│  Phase 3: Scene Content (parallel Send)                     │
+│  ┌────────────┐  ┌────────────────┐  ┌────────────────────┐ │
+│  │Content     │  │Scene Content   │  │ QG3: Content       │ │
+│  │Dispatch    │─▶│Generator ×N    │─▶│ Validator (FOL)    │ │
+│  │(router)    │  │(parallel LLM)  │  │ re-Send failed ≤1  │ │
+│  └────────────┘  └────────────────┘  └────────────────────┘ │
+└────────────────────┬────────────────────────────────────────┘
+                     ▼
+┌─────────────────────────────────────────────────────────────┐
+│  Phase 4: Assets (parallel Send)                            │
+│  ┌────────────┐  ┌────────────────┐                         │
+│  │Asset       │  │Asset Worker ×M │                         │
+│  │Dispatch    │─▶│(search/gen)    │  re-Send failed ≤1      │
+│  └────────────┘  └────────────────┘                         │
+└────────────────────┬────────────────────────────────────────┘
+                     ▼
+┌─────────────────────────────────────────────────────────────┐
+│  Phase 5: Assembly (deterministic, no LLM)                  │
+│  ┌────────────────────┐    ┌──────────────────────┐         │
+│  │Blueprint Assembler  │───▶│ QG4: Blueprint      │         │
+│  │                     │    │ Validator            │         │
+│  └────────────────────┘    └──────────────────────┘         │
+└────────────────────┬────────────────────────────────────────┘
+                     ▼
+            Verified JSON Blueprint
 ```
 
 ---
 
-## Conditional Routing Logic
+## Phase Details
 
-### Template Selection (Router)
-The `router` agent classifies the question and selects a template. Key routing functions in `graph.py`:
-- `should_use_preset_pipeline()` — checks `_pipeline_preset` for non-default presets
-- `should_use_advanced_preset()` — routes to advanced_label_diagram preset
-- `requires_phet_simulation()` — routes to PhET agent cluster
-- `is_stub_template()` — handles unsupported template types
+### Phase 0: Context Gathering
 
-### Labeled vs Unlabeled Diagrams
-`ImageLabelClassifier` (EasyOCR + Qwen VL) sets `image_classification`:
-- **LABELED** → QwenAnnotationDetector → QwenLabelRemover → QwenSamZoneDetector
-- **UNLABELED** → DirectStructureLocator (fast path, bypasses inpainting)
+Two parallel LLM nodes:
+- **Input Analyzer** — Parses subject domain, target audience, and difficulty level from the natural language question.
+- **Domain Knowledge Retriever** — Grounds generation in curated sources (textbooks, curriculum standards, domain ontologies).
 
-### Multi-Scene Detection
-`GamePlanner` populates `scene_breakdown` when multi-mechanic games are needed:
-- `should_use_scene_sequencer()` — checks if `scene_breakdown` has multiple scenes
-- `should_use_multi_scene_orchestrator()` — routes to per-scene image/zone orchestration
+Outputs are merged before Phase 1, ensuring concept design operates on verified domain context rather than open-ended generation.
 
-### Workflow Mode
-`check_workflow_mode()` inspects `workflow_execution_plan`:
-- **Workflow mode** → AssetPlanner → AssetGeneratorOrchestrator → AssetValidator
-- **Legacy mode** → direct BlueprintGenerator path
+### Phase 1: Concept Design
 
-### Post-Blueprint Routing (Phase 6)
-`check_post_blueprint_needs()` inspects state flags:
-- `_needs_diagram_spec` → DiagramSpecGenerator path
-- `_needs_asset_generation` → Asset generation path
-- `_skip_asset_pipeline` → Skip to output
+The **Game Concept Designer** (ReAct agent) resolves input against a Bloom's-to-mechanic constraint table encoding valid competency evidence. The result is a Game Blueprint specifying learning objective, Bloom's level, template family, and mechanic contract.
 
----
+**QG1** validates: scenes ≤ 6, all game types supported, required fields present. Retry ≤ 2.
 
-## Pipeline Presets
+### Phase 2: Game Plan (Deterministic)
 
-### Default (`default`)
-Main `create_game_generation_graph()` — 59+ agents, full conditional routing. Image classification + SAM segmentation baseline.
+The **Game Plan Builder** assigns scene IDs, computes scores from per-game-type contracts, determines asset needs, and builds the transition graph. No LLM inference.
 
-### Hierarchical (`label_diagram_hierarchical`)
-`create_preset1_agentic_sequential_graph()` — 8 agents + 12 tools. AI diagram generation via Gemini + Gemini zone detection. Replaces image search with generation.
+**QG2** validates: unique scene IDs, valid transitions, score totals match. Retry ≤ 2.
 
-### Advanced (`advanced_label_diagram`)
-Full agentic flow with `game_designer`, `diagram_analyzer`, `diagram_type_classifier`. Adds design trace metadata and richer interaction patterns.
+### Phase 3: Scene Content (Parallel)
 
-### HAD (`had`)
-`create_had_graph()` — Hierarchical Agentic DAG with 4 clusters:
+**Content Dispatch** creates N `Send()` calls, one per scene. **Scene Content Generators** (LLM, parallel) produce game-type-specific content. **Content Merge** deduplicates by scene_id.
 
-| Cluster | Role | Key Agents/Tools |
-|---------|------|-----------------|
-| 1. RESEARCH | Input processing | input_enhancer, domain_knowledge_retriever (shared) |
-| 2. VISION | Zone detection | zone_planner (Gemini vision, polygon zones, multi-scene) |
-| 3. DESIGN | Game design | game_orchestrator OR game_designer (HAD v3 unified) |
-| 4. OUTPUT | Blueprint + validation | output_orchestrator (retry loop) |
+**QG3** applies FOL-based Bloom's alignment predicates:
+- `bloom(g) = bloom(b)` — generated Bloom's level matches blueprint
+- `op_count(g) ≥ τ` — sufficient interaction operations for the mechanic contract
+- `feedback ⊨ Bloom's` — per-element feedback entails the target Bloom's level
 
-HAD support modules:
-- `zone_collision_resolver` — resolves overlapping zones
-- `spatial_validator` — validates spatial constraints
-- `temporal_resolver` — Petri Net-inspired temporal constraint resolution
-- `react_loop` — ReAct reasoning loop for tool-using agents
+All validation is deterministic with no LLM inference. Failed scenes trigger a bounded re-Send (max 1).
+
+### Phase 4: Assets (Parallel)
+
+**Asset Dispatch** filters scenes needing visual assets. **Asset Workers** (parallel) perform image search, quality filtering, and fallback generation. Failed assets trigger re-Send (max 1).
+
+### Phase 5: Assembly (Deterministic)
+
+The **Blueprint Assembler** combines game plan + content + assets into the final blueprint. **QG4** performs final consistency check with `is_degraded` flag tracking. No LLM inference.
+
+Output: Verified JSON Blueprint (`generation_complete = true`).
 
 ---
 
-## Workflow System
+## Game Template Architecture
 
-**Location:** `backend/app/agents/workflows/`
+Two template families with 15 interaction mechanics:
 
-### MechanicTypes (10)
-`drag_drop`, `trace_path`, `sequencing`, `sorting`, `memory_match`, `comparison`, `branching_scenario`, `click_to_identify`, `reveal`, `hotspot`
+### Interactive Diagram Games (10 mechanics)
+Operate on spatial and relational content targeting visual and conceptual reasoning.
 
-### WorkflowTypes (7)
-`labeling_diagram`, `trace_path`, `sequence_items`, `comparison_diagrams`, `sorting`, `memory_match`, `branching_scenario`
+| Mechanic | Bloom's Range | Description |
+|----------|--------------|-------------|
+| Drag & Drop | Understand | Place labels onto diagram zones |
+| Click to Identify | Remember | Click correct elements when described |
+| Trace Path | Apply | Draw paths connecting waypoints in sequence |
+| Description Matching | Understand | Match descriptions to diagram elements |
+| Sequencing | Apply | Order items in correct sequence |
+| Sorting | Analyze | Categorize items into groups |
+| Memory Match | Remember | Match pairs by flipping cards |
+| Branching Scenario | Evaluate | Make decisions at branch points |
+| Compare/Contrast | Evaluate | Categorize attributes across subjects |
+| Hierarchical | Analyze | Navigate multi-level taxonomies |
 
-### Workflow Implementations
-- `labeling_diagram_workflow.py` — Diagram retrieval and zone detection
-- `trace_path_workflow.py` — Path tracing from zones
-- `base.py` — BaseWorkflow abstract class
+### Interactive Algorithm Games (5 mechanics)
+Operate on procedural content targeting applying, analyzing, and creating objectives.
 
-The workflow system is activated when `workflow_execution_plan` is non-empty, triggered by the AssetPlanner based on `scene_breakdown` mechanics.
-
----
-
-## Entity Registry
-
-**State field:** `entity_registry`
-
-Tracks zones, assets, and interactions with cross-references:
-- Zones have IDs, coordinates, labels
-- Assets reference their parent zones
-- Interactions reference participating entities
-
-Used by AssetGeneratorOrchestrator and BlueprintGenerator for consistent entity tracking across the pipeline.
-
----
-
-## Tool Framework
-
-**Location:** `backend/app/tools/`
-
-| Module | Purpose |
-|--------|---------|
-| `registry.py` | Tool registration and lookup |
-| `blueprint_tools.py` | Blueprint generation and validation tools |
-| `game_design_tools.py` | Game mechanics and interaction design tools |
-| `vision_tools.py` | Image analysis, zone detection, segmentation tools |
-| `research_tools.py` | Web search, domain knowledge tools |
-| `render_tools.py` | SVG rendering, diagram generation tools |
-
-Used primarily by HAD and Advanced preset agents that use ReAct-style tool calling.
+| Mechanic | Bloom's Range | Description |
+|----------|--------------|-------------|
+| State Tracer | Apply | Predict data structure state after each algorithm step |
+| Bug Hunter | Analyze | Identify bugs in algorithm implementations |
+| Algorithm Builder | Create | Construct algorithms from code blocks |
+| Complexity Analyzer | Analyze | Determine time/space complexity of algorithms |
+| Constraint Puzzle | Create | Solve optimization problems under constraints |
 
 ---
 
-## Complete Agent Table
+## Scene Composition
 
-### Input Processing (Phase 1)
+Templates span three structural configurations resolved automatically from Bloom's level and content complexity:
 
-| Agent | Purpose | Models/Tools |
-|-------|---------|-------------|
-| `input_enhancer` | Extract Bloom's level, subject, difficulty, enrich question | LLM |
-| `domain_knowledge_retriever` | Web search for canonical labels, hierarchical relationships | Serper API |
-| `diagram_type_classifier` | Classify diagram type (anatomical, circuit, etc.) | LLM |
-
-### Routing (Phase 2)
-
-| Agent | Purpose | Models/Tools |
-|-------|---------|-------------|
-| `router` | Select game template based on question type | LLM |
-| `phet_simulation_selector` | Select appropriate PhET simulation | LLM + PhET catalog |
-
-### Image Pipeline (Phase 3)
-
-| Agent | Purpose | Models/Tools |
-|-------|---------|-------------|
-| `diagram_image_retriever` | Find diagram images from web | Serper Image Search |
-| `image_label_classifier` | Classify diagram as labeled/unlabeled | EasyOCR + Qwen VL |
-| `qwen_annotation_detector` | Detect text labels and leader lines | Qwen2.5-VL |
-| `qwen_label_remover` | Remove detected annotations via inpainting | OpenCV/LaMa |
-| `qwen_sam_zone_detector` | Create zones at leader line endpoints | SAM3 + Qwen VL |
-| `direct_structure_locator` | Locate structures in unlabeled diagrams (fast path) | Qwen VL |
-| `combined_label_detector` | Combined label detection pipeline | EasyOCR + Qwen VL |
-| `smart_zone_detector` | Intelligent zone detection with fallbacks | SAM3 + Qwen VL |
-| `smart_inpainter` | Smart inpainting with quality checks | LaMa + OpenCV |
-| `qwen_zone_detector` | Zone detection via Qwen VL | Qwen2.5-VL |
-| `diagram_image_generator` | Generate diagrams via AI (preset 1) | Gemini |
-| `gemini_zone_detector` | Zone detection via Gemini vision | Gemini |
-| `gemini_sam3_zone_detector` | SAM3-guided zone detection with Gemini | SAM3 + Gemini |
-| `image_agent` | General image processing agent | Various |
-| `multi_scene_image_orchestrator` | Orchestrate per-scene image processing | Orchestrator |
-
-### Design (Phase 4)
-
-| Agent | Purpose | Models/Tools |
-|-------|---------|-------------|
-| `game_planner` | Plan game mechanics, objectives, scene breakdown | LLM |
-| `game_designer` | Full game design (advanced/HAD presets) | LLM + tools |
-| `interaction_designer` | Design interaction patterns and behaviors | LLM |
-| `interaction_validator` | Validate interaction designs | Rule-based + LLM |
-| `research_agent` | Research domain content for game design | Serper + LLM |
-| `diagram_analyzer` | Analyze diagram structure (advanced preset) | LLM + vision |
-
-### Scene Generation (Phase 5)
-
-| Agent | Purpose | Models/Tools |
-|-------|---------|-------------|
-| `scene_generator` | Legacy single-scene generation | LLM |
-| `scene_stage1_structure` | Define scene layout and regions | LLM |
-| `scene_stage2_assets` | Populate regions with visual assets | LLM |
-| `scene_stage3_interactions` | Define behaviors and interactions | LLM |
-| `scene_sequencer` | Sequence multi-scene progression | LLM |
-| `multi_scene_orchestrator` | Orchestrate multi-scene generation | Orchestrator |
-| `story_generator` | Generate narrative elements | LLM |
-
-### Asset Pipeline
-
-| Agent | Purpose | Models/Tools |
-|-------|---------|-------------|
-| `asset_planner` | Plan asset requirements from scene data | LLM |
-| `asset_generator_orchestrator` | Orchestrate asset generation (workflow/legacy) | Orchestrator |
-| `asset_validator` | Validate generated assets | Rule-based |
-
-### Blueprint & Output (Phase 6)
-
-| Agent | Purpose | Models/Tools |
-|-------|---------|-------------|
-| `blueprint_generator` | Generate game blueprint JSON | LLM |
-| `playability_validator` | Validate blueprint playability | Rule-based + LLM |
-| `diagram_spec_generator` | Generate SVG diagram specifications | LLM |
-| `diagram_svg_generator` | Render final SVG from specs | SVG renderer |
-| `output_renderer` | Final output assembly | Renderer |
-
-### PhET Agents
-
-| Agent | Purpose | Models/Tools |
-|-------|---------|-------------|
-| `phet_game_planner` | Plan PhET-based game | LLM + PhET catalog |
-| `phet_assessment_designer` | Design PhET assessment questions | LLM |
-| `phet_blueprint_generator` | Generate PhET game blueprint | LLM |
-| `phet_bridge_config_generator` | Generate PhET bridge configuration | LLM |
-
-### HAD Agents
-
-| Agent | Purpose | Models/Tools |
-|-------|---------|-------------|
-| `zone_planner` | Vision-based zone detection (HAD) | Gemini Vision |
-| `game_orchestrator` | Sequential game design (HAD) | LLM + tools |
-| `output_orchestrator` | Blueprint + validation (HAD) | LLM + tools |
-| `zone_collision_resolver` | Resolve overlapping zones | Algorithmic |
-| `spatial_validator` | Validate spatial constraints | Algorithmic |
-| `temporal_resolver` | Resolve temporal constraints | Petri Net |
-
-### ReAct & Agentic
-
-| Agent | Purpose | Models/Tools |
-|-------|---------|-------------|
-| `react_base` | Base ReAct loop implementation | LLM + tools |
-| `agentic_wrapper` | Wrapper for agentic tool-using agents | LLM + tool registry |
-
-### Decision Nodes
-
-| Node | Purpose |
-|------|---------|
-| `check_routing_confidence_node` | Route based on confidence threshold |
-| `check_agentic_design_node` | Route to agentic design flow |
-| `check_template_status` | Check template completeness |
-| `check_post_blueprint_needs` | Route post-blueprint (diagram spec, assets, skip) |
-| `check_diagram_spec_route` | Route diagram spec validation |
-| `check_workflow_mode` | Route workflow vs legacy mode |
-| `check_legacy_diagram_image` | Check legacy diagram image availability |
-| `human_review` | Human-in-the-loop review point |
+- **Single-scene, single-mechanic** — One interaction type, one content context (~35% of library)
+- **Single-scene, multi-mechanic** — 2–3 interaction types within one content frame (~40%)
+- **Multi-scene, multi-mechanic** — 2–4 causally connected scenes with monotonically increasing Bloom's levels (~25%). Bounded by cognitive load constraints (≤4 scenes, ≤3 mechanics/scene).
 
 ---
 
-## AgentState Fields Reference
+## Quality Gates
 
-### Core Input
-- `question_id`, `question_text`, `question_options`
+| Gate | Phase Boundary | Validation Type | Key Checks |
+|------|---------------|-----------------|------------|
+| QG1 | Concept → Plan | Deterministic | Scene count, game type support, required fields |
+| QG2 | Plan → Content | Deterministic | Unique scene IDs, valid transitions, score contract totals |
+| QG3 | Content → Assets | FOL predicates | Bloom's alignment, operation counts, feedback entailment |
+| QG4 | Assembly → Output | Deterministic | Schema compliance, is_degraded flag, template completeness |
 
-### Enhanced Input
-- `pedagogical_context` — Bloom's level, subject, difficulty, enriched question
-
-### Routing
-- `template_selection`, `routing_confidence`, `routing_requires_human_review`
-
-### Domain Knowledge
-- `domain_knowledge` — canonical labels, hierarchical relationships, sequence flow data
-
-### Diagram Pipeline
-- `diagram_image`, `sam3_prompts`, `diagram_segments`, `diagram_zones`, `diagram_labels`
-- `zone_groups`, `cleaned_image_path`, `removed_labels`, `generated_diagram_path`
-- `annotation_elements`, `image_classification`
-
-### Image Search Retry
-- `retry_image_search`, `image_search_attempts`, `max_image_attempts`
-
-### Generation Artifacts
-- `game_plan`, `scene_data`, `story_data`, `blueprint`, `generated_code`
-- `asset_urls`, `diagram_svg`, `diagram_spec`
-
-### Hierarchical Scene Generation
-- `scene_structure`, `scene_assets`, `scene_interactions`
-
-### Multi-Scene Support
-- `needs_multi_scene`, `num_scenes`, `scene_progression_type`, `scene_breakdown`
-- `game_sequence`, `scene_diagrams`, `scene_zones`, `scene_labels`
-- `scene_images`, `scene_zone_groups`, `current_scene_number`
-
-### HAD v3 Fields
-- `zone_collision_metadata`, `query_intent`, `suggested_reveal_order`
-- `temporal_constraints`, `motion_paths`
-
-### Agentic/Advanced Preset Fields
-- `diagram_type`, `diagram_type_config`, `diagram_analysis`, `game_design`
-- `interaction_designs`, `interaction_design`, `interaction_validation`
-- `design_metadata`, `design_trace`
-
-### Asset Pipeline
-- `planned_assets`, `generated_assets`, `asset_validation`
-
-### Entity Registry
-- `entity_registry` — zones, assets, interactions with cross-references
-
-### Workflow Execution
-- `workflow_execution_plan`, `workflow_generated_assets`
-
-### Runtime Context
-- `_pipeline_preset`, `_ai_images_generated`
-
-### Validation State
-- `validation_results`, `current_validation_errors`
-
-### Retry Management
-- `retry_counts`, `max_retries`
-
-### Human-in-the-Loop
-- `pending_human_review`, `human_feedback`, `human_review_completed`
-
-### Execution Tracking
-- `current_agent`, `agent_history`, `started_at`, `last_updated_at`
-
-### Observability
-- `_run_id`, `_stage_order`
-
-### Routing Flags (Phase 6)
-- `_needs_diagram_spec`, `_needs_asset_generation`, `_skip_asset_pipeline`
-
-### Final Output
-- `final_visualization_id`, `generation_complete`, `error_message`, `output_metadata`
+All Quality Gates execute without LLM inference — constant cost and formal verifiability.
 
 ---
 
-## Service Integrations
+## Modular Game Engine
 
-| Service | File | Purpose |
-|---------|------|---------|
-| `llm_service` | LLM provider abstraction (Groq, OpenAI, Anthropic, Gemini) |
-| `qwen_vl_service` | Qwen2.5-VL vision-language model |
-| `gemini_service` | Google Gemini API |
-| `gemini_diagram_service` | Gemini-based diagram generation |
-| `claude_diagram_service` | Claude-based diagram generation |
-| `image_retrieval` | Web image search via Serper |
-| `inpainting_service` | Image inpainting orchestration |
-| `lama_inpainting_service` | LaMa inpainting model |
-| `stable_diffusion_inpainting` | Stable Diffusion inpainting |
-| `sam3_mlx_service` | SAM3 on Apple Silicon (MLX) |
-| `sam3_zone_service` | SAM3 zone detection |
-| `mlx_sam3_segmentation` | MLX-accelerated SAM3 segmentation |
-| `segmentation` | General segmentation service |
-| `vlm_service` | Vision-language model abstraction |
-| `web_search` | Web search via Serper |
-| `clip_filtering_service` | CLIP-based image filtering |
-| `clip_labeling_service` | CLIP-based image labeling |
-| `line_detection_service` | Leader line detection |
-| `json_repair` | JSON output repair for LLM responses |
-| `media_generation_service` | Media asset generation |
-| `mlx_generation_service` | MLX-accelerated generation |
-| `nanobanana_service` | NanoBanana service integration |
-| `sam_guided_detection_service` | SAM-guided detection |
+The frontend implements a plugin architecture: each of the 15 mechanics is a self-contained React component registered by contract type.
+
+```
+Blueprint JSON
+     ↓
+Template Router
+  ├── Interactive Diagram (10 mechanics)
+  └── Interactive Algorithm (5 mechanics)
+     ↓
+Mechanic Registry
+     ↓
+Component Dispatch → Self-contained React component
+     ↓
+State Management
+  ├── Diagram Games: Zustand store (multi-mechanic coordination)
+  └── Algorithm Games: Localised reducer hooks (step-through)
+     ↓
+Interaction Primitives
+  ├── dnd-kit (drag, collision detection, keyboard/touch)
+  ├── Framer Motion (animations)
+  └── SVG Canvas (polygons, paths, zones)
+```
 
 ---
 
-## Frontend Components
+## Pipeline Observability
 
-### Game Templates
-- `LabelDiagramGame/` — Full label-the-diagram game with drag-and-drop, accessibility, animations, commands, events, persistence
-- `PhetSimulationGame/` — PhET simulation wrapper
+The system includes a real-time observability dashboard with three view modes:
+- **Timeline** — Sequential execution trace
+- **DAG Graph** — ReactFlow with execution-state highlighting
+- **Cluster View** — Grouped by phase
 
-### Pipeline Observability UI
-- `PipelineView.tsx` — Main pipeline DAG visualization
-- `LivePipelineView.tsx` — Real-time pipeline streaming
-- `StagePanel.tsx` — Agent output rendering
-- `AgentNode.tsx` — Individual agent node component
-- `TimelineView.tsx` — Timeline visualization
-- `TokenChart.tsx` — Token usage charts
-- `CostBreakdown.tsx` — Cost analysis
-- `LiveTokenCounter.tsx` — Real-time token counter
-- `ReActTraceViewer.tsx` — ReAct reasoning trace
-- `ToolCallHistory.tsx` — Tool call log
-- `RetryHistory.tsx` — Retry attempt history
-- `ClusterView.tsx` — HAD cluster visualization
-- `SubTaskPanel.tsx` — Sub-task details
-- `ZoneOverlay.tsx` — Zone visualization overlay
-- `LiveReasoningPanel.tsx` — Live reasoning display
+Per-agent token and cost analytics show stage-level consumption with USD breakdown. A ReAct trace viewer displays the Thought → Action → Observation chain for tool-calling agents.
+
+---
+
+## Model Configuration
+
+The orchestration layer is model-agnostic. A declarative preset system enables per-agent model selection:
+- **Closed-source**: GPT-4, Gemini
+- **Open-source**: Llama 3, Mistral, Qwen
+
+Default evaluation configuration: GPT-4-turbo (temp 0.3, seed 42) for planning/validation; Gemini 1.5 Pro (temp 0.4) for asset generation.
+
+---
+
+## Architectural Evolution
+
+The DAG architecture supersedes two prior designs:
+
+| Architecture | VPR | Tokens/Game | Cost/Game |
+|-------------|-----|-------------|-----------|
+| Sequential Pipeline | 56.7% | ~45,200 | $1.20 |
+| ReAct Agent | 72.5% | ~67,300 | $2.85 |
+| **Hierarchical DAG** | **90.0%** | **~19,900** | **$0.48** |
+
+Architecture explains 87% of token consumption variance (η² = 0.87). The 73% token reduction from ReAct to DAG is structural: phase boundaries eliminate self-correction loops that inflate tokens and accumulate errors.
