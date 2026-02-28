@@ -1,0 +1,1119 @@
+{
+  "id": "cs-undergrad-binary-search-bug-hunter",
+  "title": "Find the Bug in Binary Search",
+  "question": "Create an algorithm game where students find bugs in a binary search implementation. The code contains common errors: wrong midpoint calculation (overflow), incorrect boundary updates, off-by-one errors, and wrong comparison operators.",
+  "domain": "cs",
+  "educationLevel": "undergraduate",
+  "gameType": "algorithm",
+  "mechanic": "bug_hunter",
+  "bloomsLevel": "Analyze",
+  "pipelineMetrics": {
+    "runId": "2b44ec74-175a-490e-a14f-b2c285fa36a7",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 243.7,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T06:09:23.826556+00:00"
+  },
+  "blueprint": {
+    "templateType": "ALGORITHM_GAME",
+    "title": "Binary Search: The Bug Hunt",
+    "subject": "searching",
+    "difficulty": "intermediate",
+    "algorithmName": "Binary Search",
+    "algorithmCategory": "searching",
+    "narrativeIntro": "You're a junior detective assigned to the Digital Archive Division. A critical, sorted database is returning incorrect results. It's time to inspect the search code and find the bugs.",
+    "totalMaxScore": 2600,
+    "passThreshold": 0.6,
+    "learn_config": {
+      "auto_reveal_hint_tier_1_after_ms": 10000,
+      "hint_penalties": [
+        0,
+        0,
+        0
+      ],
+      "partial_credit_multiplier": 0.5,
+      "show_correct_answer_on_wrong": true,
+      "show_misconceptions_preemptively": true,
+      "scaffolding": {}
+    },
+    "test_config": {
+      "auto_reveal_hint_tier_1_after_ms": null,
+      "hint_penalties": [
+        0.1,
+        0.2,
+        0.3
+      ],
+      "partial_credit_multiplier": 0.0,
+      "show_correct_answer_on_wrong": false,
+      "show_misconceptions_preemptively": false,
+      "time_limit_seconds": null
+    },
+    "algorithmGameType": null,
+    "is_multi_scene": true,
+    "scenes": [
+      {
+        "scene_id": "scene_1",
+        "scene_number": 1,
+        "title": "Case File #1: The Perfect Trace",
+        "game_type": "state_tracer",
+        "difficulty": "beginner",
+        "learning_goal": "Understand the correct step-by-step execution of Binary Search by predicting the state of the `low`, `high`, and `mid` pointers.",
+        "max_score": 800,
+        "content": {
+          "algorithmName": "Binary Search",
+          "algorithmDescription": "Binary search is an efficient algorithm for finding an item from a sorted list. It works by repeatedly dividing the search interval in half.",
+          "narrativeIntro": "Welcome, Detective. Your mission is to find a target value in a sorted array using only Binary Search. Predict the state of the `low`, `high`, and `mid` pointers at each step to crack the case. Let's begin the trace.",
+          "code": "def binary_search(arr, target):\n    low = 0\n    high = len(arr) - 1\n\n    while low <= high:\n        mid = low + (high - low) // 2\n\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            low = mid + 1\n        else:\n            high = mid - 1\n    return -1",
+          "language": "python",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "codeLine": 2,
+              "description": "Initialize the `low` pointer to the start of the array.",
+              "variables": {
+                "arr": "[2, 5, 8, 12, 16, 23, 38, 56, 72, 91]",
+                "target": "23",
+                "low": "0"
+              },
+              "changedVariables": [
+                "low"
+              ],
+              "dataStructure": {
+                "type": "array",
+                "elements": [
+                  2,
+                  5,
+                  8,
+                  12,
+                  16,
+                  23,
+                  38,
+                  56,
+                  72,
+                  91
+                ],
+                "highlights": [
+                  {
+                    "index": 0,
+                    "label": "low",
+                    "color": "blue"
+                  }
+                ]
+              },
+              "prediction": null,
+              "explanation": "The search begins by defining the search space. `low` is set to the first index, 0.",
+              "hints": [
+                "This is the first step of the algorithm.",
+                "The `low` pointer always starts at the beginning of the search space.",
+                "The `low` pointer is initialized to index 0."
+              ]
+            },
+            {
+              "stepNumber": 2,
+              "codeLine": 3,
+              "description": "Initialize the `high` pointer to the end of the array.",
+              "variables": {
+                "arr": "[2, 5, 8, 12, 16, 23, 38, 56, 72, 91]",
+                "target": "23",
+                "low": "0",
+                "high": "9"
+              },
+              "changedVariables": [
+                "high"
+              ],
+              "dataStructure": {
+                "type": "array",
+                "elements": [
+                  2,
+                  5,
+                  8,
+                  12,
+                  16,
+                  23,
+                  38,
+                  56,
+                  72,
+                  91
+                ],
+                "highlights": [
+                  {
+                    "index": 0,
+                    "label": "low",
+                    "color": "blue"
+                  },
+                  {
+                    "index": 9,
+                    "label": "high",
+                    "color": "red"
+                  }
+                ]
+              },
+              "prediction": null,
+              "explanation": "The `high` pointer is set to the last index of the array, which is `len(arr) - 1`, or 9. The initial search space is now the entire array.",
+              "hints": [
+                "This step defines the upper bound of the search.",
+                "The `high` pointer is set to the last valid index.",
+                "The array has 10 elements, so the last index is 9."
+              ]
+            },
+            {
+              "stepNumber": 3,
+              "codeLine": 5,
+              "description": "Check if the search space is valid (`low <= high`).",
+              "variables": {
+                "arr": "[2, 5, 8, 12, 16, 23, 38, 56, 72, 91]",
+                "target": "23",
+                "low": "0",
+                "high": "9"
+              },
+              "changedVariables": [],
+              "dataStructure": {
+                "type": "array",
+                "elements": [
+                  2,
+                  5,
+                  8,
+                  12,
+                  16,
+                  23,
+                  38,
+                  56,
+                  72,
+                  91
+                ],
+                "highlights": [
+                  {
+                    "index": 0,
+                    "label": "low",
+                    "color": "blue"
+                  },
+                  {
+                    "index": 9,
+                    "label": "high",
+                    "color": "red"
+                  }
+                ]
+              },
+              "prediction": {
+                "type": "multiple_choice",
+                "prompt": "Is the condition `low <= high` true or false?",
+                "options": [
+                  {
+                    "id": "a",
+                    "label": "True"
+                  },
+                  {
+                    "id": "b",
+                    "label": "False"
+                  }
+                ],
+                "correctId": "a"
+              },
+              "explanation": "Since `low` (0) is less than or equal to `high` (9), the condition is true, and the loop begins. This means there are still elements to check.",
+              "hints": [
+                "Compare the current values of `low` and `high`.",
+                "Is 0 less than or equal to 9?",
+                "The loop continues as long as the search space has at least one element."
+              ]
+            },
+            {
+              "stepNumber": 4,
+              "codeLine": 6,
+              "description": "Calculate the middle index `mid`.",
+              "variables": {
+                "arr": "[2, 5, 8, 12, 16, 23, 38, 56, 72, 91]",
+                "target": "23",
+                "low": "0",
+                "high": "9",
+                "mid": "4"
+              },
+              "changedVariables": [
+                "mid"
+              ],
+              "dataStructure": {
+                "type": "array",
+                "elements": [
+                  2,
+                  5,
+                  8,
+                  12,
+                  16,
+                  23,
+                  38,
+                  56,
+                  72,
+                  91
+                ],
+                "highlights": [
+                  {
+                    "index": 0,
+                    "label": "low",
+                    "color": "blue"
+                  },
+                  {
+                    "index": 9,
+                    "label": "high",
+                    "color": "red"
+                  },
+                  {
+                    "index": 4,
+                    "label": "mid",
+                    "color": "green"
+                  }
+                ]
+              },
+              "prediction": {
+                "type": "value",
+                "prompt": "What is the value of `mid`?",
+                "correctValue": "4",
+                "acceptableValues": [
+                  "4"
+                ],
+                "placeholder": "Enter index"
+              },
+              "explanation": "`mid` is calculated as `low + (high - low) // 2`, which is `0 + (9 - 0) // 2 = 4`. This finds the floor of the middle index.",
+              "hints": [
+                "The formula is `low + (high - low) // 2`.",
+                "Calculate `(0 + 9) // 2`.",
+                "The result is 4.5, but integer division `//` rounds down to 4."
+              ]
+            },
+            {
+              "stepNumber": 5,
+              "codeLine": 10,
+              "description": "Compare `arr[mid]` with `target`. Since `arr[4]` (16) < `target` (23), we search the right half.",
+              "variables": {
+                "arr": "[2, 5, 8, 12, 16, 23, 38, 56, 72, 91]",
+                "target": "23",
+                "low": "0",
+                "high": "9",
+                "mid": "4"
+              },
+              "changedVariables": [],
+              "dataStructure": {
+                "type": "array",
+                "elements": [
+                  2,
+                  5,
+                  8,
+                  12,
+                  16,
+                  23,
+                  38,
+                  56,
+                  72,
+                  91
+                ],
+                "highlights": [
+                  {
+                    "index": 0,
+                    "label": "low",
+                    "color": "blue"
+                  },
+                  {
+                    "index": 9,
+                    "label": "high",
+                    "color": "red"
+                  },
+                  {
+                    "index": 4,
+                    "label": "mid",
+                    "color": "green"
+                  }
+                ]
+              },
+              "prediction": {
+                "type": "multiple_choice",
+                "prompt": "Which half of the array will be searched next?",
+                "options": [
+                  {
+                    "id": "a",
+                    "label": "Left half (indices < mid)"
+                  },
+                  {
+                    "id": "b",
+                    "label": "Right half (indices > mid)"
+                  },
+                  {
+                    "id": "c",
+                    "label": "The element is found"
+                  }
+                ],
+                "correctId": "b"
+              },
+              "explanation": "The value at `mid` (16) is less than the `target` (23). Since the array is sorted, the target must be in the right half of the current search space.",
+              "hints": [
+                "Compare `arr[mid]` to the `target`.",
+                "Is 16 less than, greater than, or equal to 23?",
+                "Since 16 < 23, we need to look at larger numbers, which are in the right half."
+              ]
+            },
+            {
+              "stepNumber": 6,
+              "codeLine": 11,
+              "description": "Update `low` to `mid + 1` to discard the left half.",
+              "variables": {
+                "arr": "[2, 5, 8, 12, 16, 23, 38, 56, 72, 91]",
+                "target": "23",
+                "low": "5",
+                "high": "9",
+                "mid": "4"
+              },
+              "changedVariables": [
+                "low"
+              ],
+              "dataStructure": {
+                "type": "array",
+                "elements": [
+                  2,
+                  5,
+                  8,
+                  12,
+                  16,
+                  23,
+                  38,
+                  56,
+                  72,
+                  91
+                ],
+                "highlights": [
+                  {
+                    "index": 5,
+                    "label": "low",
+                    "color": "blue"
+                  },
+                  {
+                    "index": 9,
+                    "label": "high",
+                    "color": "red"
+                  }
+                ]
+              },
+              "prediction": {
+                "type": "value",
+                "prompt": "What is the new value of `low`?",
+                "correctValue": "5",
+                "acceptableValues": [
+                  "5"
+                ],
+                "placeholder": "Enter index"
+              },
+              "explanation": "To search the right half, we move the `low` pointer to the element just after `mid`. The new `low` is `4 + 1 = 5`.",
+              "hints": [
+                "The `low` pointer is moved to narrow the search space.",
+                "The new search space starts just after the old `mid`.",
+                "`low` becomes `mid + 1`."
+              ]
+            },
+            {
+              "stepNumber": 7,
+              "codeLine": 5,
+              "description": "Check the loop condition again. `low` (5) is still <= `high` (9).",
+              "variables": {
+                "arr": "[2, 5, 8, 12, 16, 23, 38, 56, 72, 91]",
+                "target": "23",
+                "low": "5",
+                "high": "9",
+                "mid": "4"
+              },
+              "changedVariables": [],
+              "dataStructure": {
+                "type": "array",
+                "elements": [
+                  2,
+                  5,
+                  8,
+                  12,
+                  16,
+                  23,
+                  38,
+                  56,
+                  72,
+                  91
+                ],
+                "highlights": [
+                  {
+                    "index": 5,
+                    "label": "low",
+                    "color": "blue"
+                  },
+                  {
+                    "index": 9,
+                    "label": "high",
+                    "color": "red"
+                  }
+                ]
+              },
+              "prediction": null,
+              "explanation": "The condition `5 <= 9` is true, so the loop continues for another iteration with the new, smaller search space.",
+              "hints": [
+                "This is the start of the second loop iteration.",
+                "Compare the current `low` and `high` values.",
+                "Since `low` is not greater than `high`, the loop continues."
+              ]
+            },
+            {
+              "stepNumber": 8,
+              "codeLine": 6,
+              "description": "Recalculate `mid` for the new search space.",
+              "variables": {
+                "arr": "[2, 5, 8, 12, 16, 23, 38, 56, 72, 91]",
+                "target": "23",
+                "low": "5",
+                "high": "9",
+                "mid": "7"
+              },
+              "changedVariables": [
+                "mid"
+              ],
+              "dataStructure": {
+                "type": "array",
+                "elements": [
+                  2,
+                  5,
+                  8,
+                  12,
+                  16,
+                  23,
+                  38,
+                  56,
+                  72,
+                  91
+                ],
+                "highlights": [
+                  {
+                    "index": 5,
+                    "label": "low",
+                    "color": "blue"
+                  },
+                  {
+                    "index": 9,
+                    "label": "high",
+                    "color": "red"
+                  },
+                  {
+                    "index": 7,
+                    "label": "mid",
+                    "color": "green"
+                  }
+                ]
+              },
+              "prediction": {
+                "type": "value",
+                "prompt": "What is the new value of `mid`?",
+                "correctValue": "7",
+                "acceptableValues": [
+                  "7"
+                ],
+                "placeholder": "Enter index"
+              },
+              "explanation": "The new middle index is calculated as `5 + (9 - 5) // 2 = 5 + 4 // 2 = 7`.",
+              "hints": [
+                "Use the formula `low + (high - low) // 2` with the updated `low`.",
+                "Calculate `5 + (9 - 5) // 2`.",
+                "The result is `5 + 2 = 7`."
+              ]
+            }
+          ],
+          "scoringConfig": {
+            "basePoints": 100,
+            "streakThresholds": [
+              {
+                "min": 0,
+                "multiplier": 1
+              },
+              {
+                "min": 3,
+                "multiplier": 1.5
+              },
+              {
+                "min": 5,
+                "multiplier": 2
+              },
+              {
+                "min": 8,
+                "multiplier": 3
+              }
+            ],
+            "hintPenalties": [
+              0.1,
+              0.2,
+              0.3
+            ],
+            "perfectRunBonus": 0.2
+          }
+        },
+        "asset_url": null
+      },
+      {
+        "scene_id": "scene_2",
+        "scene_number": 2,
+        "title": "Case File #2: The Endless Loop",
+        "game_type": "bug_hunter",
+        "difficulty": "intermediate",
+        "learning_goal": "Identify and fix common off-by-one errors in boundary update logic that can cause infinite loops.",
+        "max_score": 600,
+        "content": {
+          "algorithmName": "Binary Search",
+          "algorithmDescription": "Binary search is an efficient algorithm for finding an item from a sorted list of items. It works by repeatedly dividing in half the portion of the list that could contain the item, until you've narrowed the possible locations to just one.",
+          "narrativeIntro": "Welcome back, Detective. We've got a tricky case on our hands. A search algorithm, designed for speed, is getting trapped in a time warp, running forever on certain inputs. We suspect an off-by-one error in its boundary logic. Find the bug before our program is stuck in the loop for good.",
+          "language": "python",
+          "rounds": [
+            {
+              "roundId": "round_1",
+              "title": "The Search That Never Ends",
+              "buggyCode": "def binary_search(arr, target):\n    low = 0\n    high = len(arr) - 1\n\n    while low <= high:\n        mid = low + (high - low) // 2\n\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            low = mid + 1\n        else:  # arr[mid] > target\n            high = mid\n    return -1\n",
+              "correctCode": "def binary_search(arr, target):\n    low = 0\n    high = len(arr) - 1\n\n    while low <= high:\n        mid = low + (high - low) // 2\n\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            low = mid + 1\n        else:  # arr[mid] > target\n            high = mid - 1\n    return -1\n",
+              "bugs": [
+                {
+                  "bugId": "bug_1",
+                  "bugLines": [
+                    13
+                  ],
+                  "buggyLinesText": [
+                    "high = mid"
+                  ],
+                  "correctLinesText": [
+                    "high = mid - 1"
+                  ],
+                  "bugType": "infinite_loop",
+                  "difficulty": 1,
+                  "explanation": "When `arr[mid]` is greater than the target, the search space should exclude `mid`. By setting `high = mid`, if `low` and `high` are adjacent, `mid` can equal `low`, and `high` won't change, causing an infinite loop.",
+                  "bugTypeExplanation": "An infinite loop occurs when a loop's terminating condition is never met. In search algorithms, this often happens if the search space is not correctly reduced in every iteration.",
+                  "fixOptions": [
+                    {
+                      "id": "fix_1",
+                      "codeText": "high = mid - 1",
+                      "isCorrect": true,
+                      "feedback": "Correct! This ensures the search space shrinks by excluding the middle element, preventing an infinite loop."
+                    },
+                    {
+                      "id": "fix_2",
+                      "codeText": "high = low",
+                      "isCorrect": false,
+                      "feedback": "This is incorrect. It prematurely collapses the search window, likely missing the target."
+                    },
+                    {
+                      "id": "fix_3",
+                      "codeText": "low = mid",
+                      "isCorrect": false,
+                      "feedback": "This updates the wrong pointer. The target is in the lower half, so `high` should be updated, not `low`."
+                    }
+                  ],
+                  "hints": [
+                    "Boundary update error",
+                    "Review the logic for when the middle element is larger than the target.",
+                    "The line updating the `high` pointer is not shrinking the search space correctly."
+                  ]
+                }
+              ],
+              "testCases": [
+                {
+                  "id": "test_1",
+                  "inputDescription": "arr = [10, 20, 30, 40, 50], target = 40",
+                  "expectedOutput": "3",
+                  "buggyOutput": "3",
+                  "exposedBugs": []
+                },
+                {
+                  "id": "test_2",
+                  "inputDescription": "arr = [10, 20, 30, 40, 50], target = 15",
+                  "expectedOutput": "-1",
+                  "buggyOutput": "Error: Timeout (Infinite Loop)",
+                  "exposedBugs": [
+                    "bug_1"
+                  ]
+                },
+                {
+                  "id": "test_3",
+                  "inputDescription": "arr = [5, 10], target = 4",
+                  "expectedOutput": "-1",
+                  "buggyOutput": "Error: Timeout (Infinite Loop)",
+                  "exposedBugs": [
+                    "bug_1"
+                  ]
+                }
+              ],
+              "redHerrings": [
+                {
+                  "lineNumber": 6,
+                  "feedback": "This method of calculating the midpoint, `low + (high - low) // 2`, is a robust way to prevent integer overflow on extremely large arrays. It is correct."
+                }
+              ]
+            },
+            {
+              "roundId": "round_2",
+              "title": "Closing In Too Soon",
+              "buggyCode": "def binary_search(arr, target):\n    low = 0\n    high = len(arr) - 1\n\n    while low < high:\n        mid = low + (high - low) // 2\n\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            high = mid - 1\n        else:  # arr[mid] > target\n            low = mid + 1\n    return -1\n",
+              "correctCode": "def binary_search(arr, target):\n    low = 0\n    high = len(arr) - 1\n\n    while low <= high:\n        mid = low + (high - low) // 2\n\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            low = mid + 1\n        else:  # arr[mid] > target\n            high = mid - 1\n    return -1\n",
+              "bugs": [
+                {
+                  "bugId": "bug_1",
+                  "bugLines": [
+                    5
+                  ],
+                  "buggyLinesText": [
+                    "while low < high:"
+                  ],
+                  "correctLinesText": [
+                    "while low <= high:"
+                  ],
+                  "bugType": "off_by_one",
+                  "difficulty": 2,
+                  "explanation": "The loop condition `low < high` terminates too early. When the search space narrows to a single element (`low == high`), the loop exits without checking that element, potentially missing the target.",
+                  "bugTypeExplanation": "Off-by-one errors often occur in loop conditions. Using `<` instead of `<=` can cause a loop to run one too few times, missing the final case.",
+                  "fixOptions": [
+                    {
+                      "id": "fix_1",
+                      "codeText": "while low <= high:",
+                      "isCorrect": true,
+                      "feedback": "Correct! This ensures the loop runs one last time when `low` equals `high`, allowing the final element to be checked."
+                    },
+                    {
+                      "id": "fix_2",
+                      "codeText": "while low != high:",
+                      "isCorrect": false,
+                      "feedback": "This is equivalent to `low < high` in this context and still fails to check the case where `low` and `high` meet on the target element."
+                    },
+                    {
+                      "id": "fix_3",
+                      "codeText": "while high > 0:",
+                      "isCorrect": false,
+                      "feedback": "This condition doesn't correctly track the search space defined by both `low` and `high`."
+                    }
+                  ],
+                  "hints": [
+                    "Loop termination condition",
+                    "Consider the case where the target is the last element to be checked.",
+                    "The `while` loop condition is incorrect."
+                  ]
+                },
+                {
+                  "bugId": "bug_2",
+                  "bugLines": [
+                    11
+                  ],
+                  "buggyLinesText": [
+                    "high = mid - 1"
+                  ],
+                  "correctLinesText": [
+                    "low = mid + 1"
+                  ],
+                  "bugType": "logic_error",
+                  "difficulty": 3,
+                  "explanation": "If `arr[mid]` is less than the target, the target must be in the right half of the array. The code incorrectly discards the right half by updating `high`, effectively searching the wrong part of the array.",
+                  "bugTypeExplanation": "A logic error means the code runs but produces the wrong result. Here, the logic for how to narrow the search space is flawed, leading the search astray.",
+                  "fixOptions": [
+                    {
+                      "id": "fix_1",
+                      "codeText": "low = mid + 1",
+                      "isCorrect": true,
+                      "feedback": "Correct! This properly moves the `low` pointer to search the upper half of the array where the target might be."
+                    },
+                    {
+                      "id": "fix_2",
+                      "codeText": "high = mid + 1",
+                      "isCorrect": false,
+                      "feedback": "This updates the wrong pointer. Also, `high` should be decreased, not increased."
+                    },
+                    {
+                      "id": "fix_3",
+                      "codeText": "low = mid",
+                      "isCorrect": false,
+                      "feedback": "This updates the correct pointer (`low`) but can lead to an infinite loop if the search space isn't reduced by at least one element."
+                    }
+                  ],
+                  "hints": [
+                    "Search space reduction",
+                    "When the middle element is smaller than the target, which half should you search next?",
+                    "The pointer update inside the `elif arr[mid] < target:` block is incorrect."
+                  ]
+                }
+              ],
+              "testCases": [
+                {
+                  "id": "test_1",
+                  "inputDescription": "arr = [10, 20, 30], target = 10",
+                  "expectedOutput": "0",
+                  "buggyOutput": "-1",
+                  "exposedBugs": [
+                    "bug_1"
+                  ]
+                },
+                {
+                  "id": "test_2",
+                  "inputDescription": "arr = [2, 5, 8, 12, 16], target = 16",
+                  "expectedOutput": "4",
+                  "buggyOutput": "-1",
+                  "exposedBugs": [
+                    "bug_2"
+                  ]
+                },
+                {
+                  "id": "test_3",
+                  "inputDescription": "arr = [2, 5, 8, 12, 16], target = 8",
+                  "expectedOutput": "2",
+                  "buggyOutput": "2",
+                  "exposedBugs": []
+                }
+              ],
+              "redHerrings": [
+                {
+                  "lineNumber": 14,
+                  "feedback": "Returning -1 is the standard way to signal that the target value was not found in the array. This line is correct."
+                }
+              ]
+            }
+          ],
+          "config": {
+            "revealSequentially": true,
+            "showTestOutput": true,
+            "showRunButton": true,
+            "fixMode": "multiple_choice",
+            "maxWrongLineClicks": 3,
+            "roundMode": true
+          }
+        },
+        "asset_url": null
+      },
+      {
+        "scene_id": "scene_3",
+        "scene_number": 3,
+        "title": "Case File #3: The Overflow Conspiracy",
+        "game_type": "bug_hunter",
+        "difficulty": "advanced",
+        "learning_goal": "Analyze and fix a subtle integer overflow bug in the midpoint calculation, a common issue in production code.",
+        "max_score": 600,
+        "content": {
+          "algorithmName": "Binary Search",
+          "algorithmDescription": "Binary search is an efficient algorithm for finding an item from a sorted list of items. It works by repeatedly dividing in half the portion of the list that could contain the item, until you've narrowed the possible locations to just one.",
+          "narrativeIntro": "Agent, we've intercepted a critical piece of code responsible for indexing a massive galactic database. Our intel suggests a saboteur has planted a 'time bomb' bug\u2014a subtle integer overflow that only triggers with huge datasets. Your mission is to find and defuse this 'Overflow Conspiracy' before the entire system collapses.",
+          "language": "python",
+          "rounds": [
+            {
+              "roundId": "round_1",
+              "title": "The Overflow Conspiracy",
+              "buggyCode": "def binary_search(arr, target):\n    low = 0\n    high = len(arr) - 1\n\n    while low < high: # Loop condition might be too strict\n        # This calculation can overflow in languages with fixed-size integers\n        mid = (low + high) // 2\n\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            low = mid + 1\n        else:\n            high = mid - 1\n    return -1\n",
+              "correctCode": "def binary_search(arr, target):\n    low = 0\n    high = len(arr) - 1\n\n    while low <= high:\n        mid = low + (high - low) // 2  # Integer division, avoids overflow\n\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            low = mid + 1\n        else:  # arr[mid] > target\n            high = mid - 1\n    return -1\n",
+              "bugs": [
+                {
+                  "bugId": "bug_1",
+                  "bugLines": [
+                    7
+                  ],
+                  "buggyLinesText": [
+                    "mid = (low + high) // 2"
+                  ],
+                  "correctLinesText": [
+                    "mid = low + (high - low) // 2"
+                  ],
+                  "bugType": "boundary_error",
+                  "difficulty": 2,
+                  "explanation": "The calculation `(low + high)` can exceed the maximum value for an integer if `low` and `high` are very large, causing an overflow. The fix `low + (high - low) // 2` is mathematically equivalent but avoids this overflow by first calculating the difference, which is always smaller.",
+                  "bugTypeExplanation": "A boundary error occurs when an algorithm handles the edges of a dataset incorrectly. This often involves off-by-one errors in loops, incorrect initialization, or, as seen here, integer overflow when dealing with very large numbers.",
+                  "fixOptions": [
+                    {
+                      "id": "fix_1",
+                      "codeText": "mid = low + (high - low) // 2",
+                      "isCorrect": true,
+                      "feedback": "Correct! This prevents potential integer overflow while being mathematically equivalent."
+                    },
+                    {
+                      "id": "fix_2",
+                      "codeText": "mid = (high - low) // 2",
+                      "isCorrect": false,
+                      "feedback": "This is incorrect. It calculates the midpoint of the range starting from zero, not from `low`."
+                    },
+                    {
+                      "id": "fix_3",
+                      "codeText": "mid = high - (high - low) // 2",
+                      "isCorrect": false,
+                      "feedback": "This is a plausible but incorrect variation that doesn't always calculate the true midpoint."
+                    }
+                  ],
+                  "hints": [
+                    "Think about very large numbers.",
+                    "The midpoint calculation is vulnerable.",
+                    "Line 7 can fail with large inputs."
+                  ]
+                },
+                {
+                  "bugId": "bug_2",
+                  "bugLines": [
+                    5
+                  ],
+                  "buggyLinesText": [
+                    "while low < high:"
+                  ],
+                  "correctLinesText": [
+                    "while low <= high:"
+                  ],
+                  "bugType": "off_by_one",
+                  "difficulty": 1,
+                  "explanation": "Using `low < high` causes the loop to terminate one step too early. If the target is the last element to be checked (when `low == high`), it will be missed. The condition must be `low <= high` to ensure the single-element case is handled.",
+                  "bugTypeExplanation": "Off-by-one errors are a common class of programming mistakes where a loop iterates one time too many or too few. They often stem from using the wrong comparison operator (e.g., `<` instead of `<=`) in loop conditions.",
+                  "fixOptions": [
+                    {
+                      "id": "fix_1",
+                      "codeText": "while low <= high:",
+                      "isCorrect": true,
+                      "feedback": "Correct! This ensures the loop runs even when `low` and `high` point to the same last element."
+                    },
+                    {
+                      "id": "fix_2",
+                      "codeText": "while low != high:",
+                      "isCorrect": false,
+                      "feedback": "This is similar, but can lead to an infinite loop if `low` could become greater than `high` without ever being equal."
+                    },
+                    {
+                      "id": "fix_3",
+                      "codeText": "while high - low > 1:",
+                      "isCorrect": false,
+                      "feedback": "This condition is too strict and will stop the search when two or fewer elements are left."
+                    }
+                  ],
+                  "hints": [
+                    "Consider what happens with a single-element array.",
+                    "The loop's termination condition is faulty.",
+                    "Line 5 is the source of the error."
+                  ]
+                }
+              ],
+              "testCases": [
+                {
+                  "id": "test_1",
+                  "inputDescription": "A single-element array where the element is the target: `arr = [10], target = 10`",
+                  "expectedOutput": "0",
+                  "buggyOutput": "-1",
+                  "exposedBugs": [
+                    "bug_2"
+                  ]
+                },
+                {
+                  "id": "test_2",
+                  "inputDescription": "Target is the last element in a small array: `arr = [2, 5, 8], target = 8`",
+                  "expectedOutput": "2",
+                  "buggyOutput": "-1",
+                  "exposedBugs": [
+                    "bug_2"
+                  ]
+                },
+                {
+                  "id": "test_3",
+                  "inputDescription": "A very large array where `low` and `high` are large enough to cause overflow in a 32-bit system (e.g., `low=2_000_000_000`, `high=2_100_000_000`).",
+                  "expectedOutput": "A valid midpoint index (e.g., 2050000000).",
+                  "buggyOutput": "An incorrect negative number due to integer overflow (simulated), which would cause a crash.",
+                  "exposedBugs": [
+                    "bug_1"
+                  ]
+                }
+              ],
+              "redHerrings": [
+                {
+                  "lineNumber": 3,
+                  "feedback": "This line is correct. The `high` pointer must be initialized to the last valid index of the array, which is `len(arr) - 1`."
+                },
+                {
+                  "lineNumber": 12,
+                  "feedback": "This boundary update is correct. If `arr[mid]` is smaller than the target, we know the target must be in the upper half, so we can safely exclude `mid` by setting the new `low` to `mid + 1`."
+                }
+              ]
+            }
+          ],
+          "config": {
+            "revealSequentially": true,
+            "showTestOutput": true,
+            "showRunButton": true,
+            "fixMode": "multiple_choice",
+            "maxWrongLineClicks": 3,
+            "roundMode": true
+          }
+        },
+        "asset_url": null
+      },
+      {
+        "scene_id": "scene_4",
+        "scene_number": 4,
+        "title": "Case File #4: The Faulty Comparison",
+        "game_type": "bug_hunter",
+        "difficulty": "advanced",
+        "learning_goal": "Identify and correct improper comparison operators that lead to incorrect search results.",
+        "max_score": 600,
+        "content": {
+          "algorithmName": "Binary Search",
+          "algorithmDescription": "A fast search algorithm that finds the position of a target value within a sorted array by repeatedly dividing the search interval in half.",
+          "narrativeIntro": "Agent, we've intercepted a faulty search algorithm. It's supposed to zero in on targets in a sorted list, but its internal compass is broken. It keeps looking in the wrong direction. Your mission is to recalibrate its comparison logic and get it back on track.",
+          "language": "python",
+          "rounds": [
+            {
+              "roundId": "round_1",
+              "title": "The Case of the Inverted Logic",
+              "buggyCode": "def binary_search(arr, target):\n    low = 0\n    high = len(arr) - 1\n\n    while low <= high:\n        mid = low + (high - low) // 2\n\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            high = mid - 1\n        else: # arr[mid] > target\n            low = mid + 1\n            \n    return -1",
+              "correctCode": "def binary_search(arr, target):\n    low = 0\n    high = len(arr) - 1\n\n    while low <= high:\n        mid = low + (high - low) // 2\n\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            low = mid + 1\n        else: # arr[mid] > target\n            high = mid - 1\n            \n    return -1",
+              "bugs": [
+                {
+                  "bugId": "bug_1",
+                  "bugLines": [
+                    11
+                  ],
+                  "buggyLinesText": [
+                    "high = mid - 1"
+                  ],
+                  "correctLinesText": [
+                    "low = mid + 1"
+                  ],
+                  "bugType": "wrong_comparison_operator",
+                  "difficulty": 2,
+                  "explanation": "When the middle element is less than the target, the target must be in the right half of the search space. The code incorrectly discards this half by moving the 'high' boundary. The fix is to move the 'low' boundary up to search the correct half.",
+                  "bugTypeExplanation": "A wrong comparison operator bug occurs when the logic for narrowing the search space is incorrect, often inverted. This causes the algorithm to look in the wrong direction, discarding the part of the array that actually contains the target.",
+                  "fixOptions": [
+                    {
+                      "id": "fix_1",
+                      "codeText": "low = mid + 1",
+                      "isCorrect": true,
+                      "feedback": "Correct! This properly narrows the search to the upper half of the array where the target might be."
+                    },
+                    {
+                      "id": "fix_2",
+                      "codeText": "high = mid",
+                      "isCorrect": false,
+                      "feedback": "Incorrect. This could lead to an infinite loop if the search space doesn't shrink, and it still looks in the wrong half of the array."
+                    },
+                    {
+                      "id": "fix_3",
+                      "codeText": "low = high",
+                      "isCorrect": false,
+                      "feedback": "Incorrect. This would prematurely end the search by collapsing the search space."
+                    }
+                  ],
+                  "hints": [
+                    "Logic Error",
+                    "Review how the search space is updated when the target is greater than the middle element.",
+                    "Check line 11. If `arr[mid]` is smaller than `target`, should you be changing `high` or `low`?"
+                  ]
+                },
+                {
+                  "bugId": "bug_2",
+                  "bugLines": [
+                    13
+                  ],
+                  "buggyLinesText": [
+                    "low = mid + 1"
+                  ],
+                  "correctLinesText": [
+                    "high = mid - 1"
+                  ],
+                  "bugType": "wrong_comparison_operator",
+                  "difficulty": 2,
+                  "explanation": "When the middle element is greater than the target, the target must be in the left half of the search space. The code incorrectly discards this half by moving the 'low' boundary. The fix is to move the 'high' boundary down to search the correct half.",
+                  "bugTypeExplanation": "A wrong comparison operator bug occurs when the logic for narrowing the search space is incorrect, often inverted. This causes the algorithm to look in the wrong direction, discarding the part of the array that actually contains the target.",
+                  "fixOptions": [
+                    {
+                      "id": "fix_1",
+                      "codeText": "high = mid - 1",
+                      "isCorrect": true,
+                      "feedback": "Correct! This properly narrows the search to the lower half of the array where the target might be."
+                    },
+                    {
+                      "id": "fix_2",
+                      "codeText": "low = mid",
+                      "isCorrect": false,
+                      "feedback": "Incorrect. This could cause an infinite loop and still searches the wrong half of the array."
+                    },
+                    {
+                      "id": "fix_3",
+                      "codeText": "high = low",
+                      "isCorrect": false,
+                      "feedback": "Incorrect. This would prematurely end the search by collapsing the search space."
+                    }
+                  ],
+                  "hints": [
+                    "Logic Error",
+                    "Review how the search space is updated when the target is less than the middle element.",
+                    "Check line 13. If `arr[mid]` is larger than `target`, should you be changing `low` or `high`?"
+                  ]
+                }
+              ],
+              "testCases": [
+                {
+                  "id": "test_1",
+                  "inputDescription": "arr = [2, 5, 8, 12, 16, 23, 38, 56, 72, 91], target = 72",
+                  "expectedOutput": "8",
+                  "buggyOutput": "-1",
+                  "exposedBugs": [
+                    "bug_1"
+                  ]
+                },
+                {
+                  "id": "test_2",
+                  "inputDescription": "arr = [2, 5, 8, 12, 16, 23, 38, 56, 72, 91], target = 5",
+                  "expectedOutput": "1",
+                  "buggyOutput": "-1",
+                  "exposedBugs": [
+                    "bug_2"
+                  ]
+                },
+                {
+                  "id": "test_3",
+                  "inputDescription": "arr = [10, 20, 30, 40, 50], target = 30",
+                  "expectedOutput": "2",
+                  "buggyOutput": "2",
+                  "exposedBugs": []
+                }
+              ],
+              "redHerrings": [
+                {
+                  "lineNumber": 6,
+                  "feedback": "This line correctly calculates the midpoint. Using `low + (high - low) // 2` is a robust way to prevent potential integer overflow that could happen with `(low + high) // 2` on extremely large arrays."
+                },
+                {
+                  "lineNumber": 5,
+                  "feedback": "This loop condition is correct. Using `<=` ensures that the algorithm checks the final element when the search space has been narrowed to a single item (when `low == high`)."
+                }
+              ]
+            }
+          ],
+          "config": {
+            "revealSequentially": true,
+            "showTestOutput": true,
+            "showRunButton": true,
+            "fixMode": "multiple_choice",
+            "maxWrongLineClicks": 3,
+            "roundMode": true
+          }
+        },
+        "asset_url": null
+      }
+    ],
+    "scene_transitions": [
+      {
+        "from_scene": "scene_1",
+        "to_scene": "scene_2",
+        "trigger": "completion"
+      },
+      {
+        "from_scene": "scene_2",
+        "to_scene": "scene_3",
+        "trigger": "completion"
+      },
+      {
+        "from_scene": "scene_3",
+        "to_scene": "scene_4",
+        "trigger": "completion"
+      }
+    ],
+    "scene_assets": {
+      "scene_1": {
+        "scene_id": "scene_1",
+        "status": "skipped",
+        "image_url": "",
+        "asset_type": "algorithm_illustration"
+      }
+    },
+    "is_degraded": false,
+    "generation_complete": true
+  }
+}

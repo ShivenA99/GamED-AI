@@ -1,0 +1,49 @@
+export interface ParameterPlaygroundBlueprint {
+  templateType: "PARAMETER_PLAYGROUND";
+  title: string;
+  narrativeIntro: string;
+  parameters: Array<{
+    id: string;
+    label: string;
+    type: "slider" | "input" | "dropdown";
+    min?: number;
+    max?: number;
+    defaultValue: number | string;
+    unit?: string;
+  }>;
+  visualization: {
+    type: "chart" | "graph" | "diagram" | "simulation";
+    assetPrompt?: string;
+    assetUrl?: string;
+    // Enhanced fields for algorithm visualization
+    algorithmType?: "binary_search" | "binary_search_rotated" | "sorting" | "graph" | "custom";
+    array?: number[];  // For array-based algorithms
+    target?: number;   // For search algorithms
+    code?: string;     // Algorithm code for display
+    steps?: Array<{    // Pre-computed algorithm steps (optional)
+      stepNumber: number;
+      left?: number;
+      right?: number;
+      mid?: number;
+      comparison?: string;
+      decision?: string;
+      explanation?: string;
+      variables?: Record<string, any>;
+      highlightIndices?: number[];
+      sortedRanges?: Array<{ start: number; end: number }>;
+    }>;
+  };
+  tasks: Array<{
+    id: string;
+    type: "parameter_adjustment" | "prediction";
+    questionText: string;
+    targetValues?: Record<string, number | string>;
+    requiredToProceed: boolean;
+  }>;
+  animationCues: {
+    parameterChange: string;
+    visualizationUpdate: string;
+    targetReached?: string;
+  };
+}
+

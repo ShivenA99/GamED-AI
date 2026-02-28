@@ -1,0 +1,16 @@
+# Alternative requirements if pydantic installation fails
+# Use this if you encounter Rust compilation errors
+# Install Rust first: https://rustup.rs/ or use this file
+
+fastapi>=0.104.1
+uvicorn[standard]>=0.24.0
+python-multipart>=0.0.6
+pydantic>=2.9.0
+openai>=1.3.5
+anthropic>=0.7.7
+python-docx>=1.1.0
+pypdf>=3.0.0
+aiofiles>=23.2.1
+python-jose[cryptography]>=3.3.0
+python-dotenv>=1.0.0
+

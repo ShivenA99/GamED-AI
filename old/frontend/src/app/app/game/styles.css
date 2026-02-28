@@ -1,0 +1,12 @@
+/* Global styles for embedded visualizations */
+.visualization-container {
+  width: 100%;
+  min-height: 500px;
+}
+
+.visualization-container iframe {
+  width: 100%;
+  min-height: 500px;
+  border: none;
+}
+

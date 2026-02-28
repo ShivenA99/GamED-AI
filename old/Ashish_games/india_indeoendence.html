@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>India Independence Timeline</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+
+        h1 {
+            text-align: center;
+            color: #1e3c72;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.2em;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe6cc 100%);
+            border-left: 4px solid #ff9933;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+
+        .flag-container {
+            background: #f0f4f8;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 400px;
+            position: relative;
+            border: 3px solid #ddd;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .flag {
+            width: 600px;
+            height: 400px;
+            border: 4px solid #333;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* British Flag - Simple Union Jack */
+        .union-jack {
+            width: 100%;
+            height: 100%;
+            background: #012169;
+            position: relative;
+        }
+
+        .white-cross-v {
+            position: absolute;
+            width: 20%;
+            height: 100%;
+            background: white;
+            left: 40%;
+            top: 0;
+        }
+
+        .white-cross-h {
+            position: absolute;
+            width: 100%;
+            height: 20%;
+            background: white;
+            left: 0;
+            top: 40%;
+        }
+
+        .red-cross-v {
+            position: absolute;
+            width: 10%;
+            height: 100%;
+            background: #C8102E;
+            left: 45%;
+            top: 0;
+            z-index: 2;
+        }
+
+        .red-cross-h {
+            position: absolute;
+            width: 100%;
+            height: 10%;
+            background: #C8102E;
+            left: 0;
+            top: 45%;
+            z-index: 2;
+        }
+
+        .diagonal-white-1 {
+            position: absolute;
+            width: 150%;
+            height: 30%;
+            background: white;
+            left: -25%;
+            top: 35%;
+            transform: rotate(30deg);
+            transform-origin: center;
+        }
+
+        .diagonal-white-2 {
+            position: absolute;
+            width: 150%;
+            height: 30%;
+            background: white;
+            left: -25%;
+            top: 35%;
+            transform: rotate(-30deg);
+            transform-origin: center;
+        }
+
+        .diagonal-red-1 {
+            position: absolute;
+            width: 150%;
+            height: 15%;
+            background: #C8102E;
+            left: -25%;
+            top: 42.5%;
+            transform: rotate(30deg);
+            transform-origin: center;
+            z-index: 1;
+        }
+
+        .diagonal-red-2 {
+            position: absolute;
+            width: 150%;
+            height: 15%;
+            background: #C8102E;
+            left: -25%;
+            top: 42.5%;
+            transform: rotate(-30deg);
+            transform-origin: center;
+            z-index: 1;
+        }
+
+        /* Indian Flag */
+        .indian-flag {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .saffron {
+            flex: 1;
+            background: #FF9933;
+        }
+
+        .white {
+            flex: 1;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .green {
+            flex: 1;
+            background: #138808;
+        }
+
+        .ashoka-chakra {
+            width: 100px;
+            height: 100px;
+            position: relative;
+        }
+
+        .chakra-circle {
+            width: 100%;
+            height: 100%;
+            border: 4px solid #000080;
+            border-radius: 50%;
+            position: relative;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .chakra-spoke {
+            position: absolute;
+            width: 3px;
+            height: 50%;
+            background: #000080;
+            left: 50%;
+            top: 0;
+            transform-origin: bottom center;
+            margin-left: -1.5px;
+        }
+
+        .chakra-center {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: #000080;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+
+        .timeline-area {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            border: 3px solid #667eea;
+        }
+
+        .year-display {
+            text-align: center;
+            font-size: 3.5em;
+            font-weight: bold;
+            color: #1e3c72;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .slider-container {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .slider {
+            width: 100%;
+            height: 15px;
+            border-radius: 8px;
+            background: linear-gradient(to right, 
+                #C8102E 0%, 
+                #C8102E 48%, 
+                #FFD700 48%,
+                #FFD700 52%,
+                #FF9933 52%, 
+                #138808 100%);
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: white;
+            border: 5px solid #1e3c72;
+            cursor: grab;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            transition: all 0.2s ease;
+        }
+
+        .slider::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+            border-color: #667eea;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+        }
+
+        .slider::-webkit-slider-thumb:active {
+            cursor: grabbing;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: white;
+            border: 5px solid #1e3c72;
+            cursor: grab;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        }
+
+        .year-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #666;
+        }
+
+        .milestone {
+            text-align: center;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        .milestone.british {
+            background: #C8102E;
+            color: white;
+        }
+
+        .milestone.independent {
+            background: #138808;
+            color: white;
+        }
+
+        .milestone.modern {
+            background: #667eea;
+            color: white;
+        }
+
+        .info-panel {
+            margin-top: 30px;
+            padding: 25px;
+            background: white;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .info-panel h3 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .info-panel p {
+            line-height: 1.8;
+            color: #555;
+            font-size: 1.05em;
+        }
+
+        .celebration {
+            position: absolute;
+            top: 20px;
+            font-size: 4em;
+            animation: bounce 1s ease infinite;
+            display: none;
+            z-index: 100;
+        }
+
+        .celebration.left {
+            left: 20px;
+        }
+
+        .celebration.right {
+            right: 20px;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-30px) scale(1.2); }
+        }
+
+        .challenge-area {
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-radius: 15px;
+            border: 3px solid #4caf50;
+        }
+
+        .challenge-area h3 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .question {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .answer-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .answer-btn {
+            flex: 1;
+            min-width: 180px;
+            padding: 15px 25px;
+            border: 3px solid #667eea;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            color: #667eea;
+        }
+
+        .answer-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            background: #667eea;
+            color: white;
+        }
+
+        .feedback {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: none;
+            font-size: 1.05em;
+        }
+
+        .feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 3px solid #c3e6cb;
+            display: block;
+        }
+
+        .feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 3px solid #f5c6cb;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🇮🇳 India Independence Timeline</h1>
+        <p class="subtitle">Explore India's journey from British rule to independence</p>
+
+        <div class="info-box">
+            <strong>🎯 Learning Goal:</strong> Understand the historical transition of India from British colonial rule to an independent nation on August 15, 1947.
+        </div>
+
+        <div class="flag-container">
+            <div class="celebration left" id="celebrationLeft">🎉</div>
+            <div class="celebration right" id="celebrationRight">🎊</div>
+            <div class="flag" id="flagDisplay"></div>
+        </div>
+
+        <div class="timeline-area">
+            <div class="year-display" id="yearDisplay">1930</div>
+            <div class="slider-container">
+                <input type="range" min="1900" max="1970" value="1930" class="slider" id="yearSlider">
+                <div class="year-labels">
+                    <div class="milestone british">1900<br>British Raj</div>
+                    <div class="milestone independent">1947<br>⭐ Independence</div>
+                    <div class="milestone modern">1970<br>Modern India</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-panel" id="infoPanel">
+            <h3>Colonial Period (Before 1947)</h3>
+            <p>India was under British colonial rule. The British Raj controlled the Indian subcontinent, and the Union Jack flag represented British authority over the region.</p>
+        </div>
+
+        <div class="challenge-area">
+            <h3>🎯 Knowledge Check</h3>
+            <div class="question">
+                <strong>Question:</strong> On what date did India gain independence from British rule?
+            </div>
+            <div class="answer-buttons">
+                <button class="answer-btn" onclick="checkAnswer('1945')">August 15, 1945</button>
+                <button class="answer-btn" onclick="checkAnswer('1947')">August 15, 1947</button>
+                <button class="answer-btn" onclick="checkAnswer('1950')">January 26, 1950</button>
+            </div>
+            <div class="feedback" id="feedback"></div>
+        </div>
+    </div>
+
+    <script>
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.getElementById('yearSlider');
+            const yearDisplay = document.getElementById('yearDisplay');
+            const flagDisplay = document.getElementById('flagDisplay');
+            const infoPanel = document.getElementById('infoPanel');
+            const celebrationLeft = document.getElementById('celebrationLeft');
+            const celebrationRight = document.getElementById('celebrationRight');
+
+            // Check if all elements exist
+            if (!slider || !yearDisplay || !flagDisplay || !infoPanel) {
+                console.error('Required elements not found!');
+                return;
+            }
+
+            function createBritishFlag() {
+                return `
+                    <div class="union-jack">
+                        <div class="diagonal-white-1"></div>
+                        <div class="diagonal-white-2"></div>
+                        <div class="diagonal-red-1"></div>
+                        <div class="diagonal-red-2"></div>
+                        <div class="white-cross-v"></div>
+                        <div class="white-cross-h"></div>
+                        <div class="red-cross-v"></div>
+                        <div class="red-cross-h"></div>
+                    </div>
+                `;
+            }
+
+            function createIndianFlag() {
+                let spokesHTML = '';
+                for (let i = 0; i < 24; i++) {
+                    const rotation = i * 15;
+                    spokesHTML += `<div class="chakra-spoke" style="transform: rotate(${rotation}deg);"></div>`;
+                }
+
+                return `
+                    <div class="indian-flag">
+                        <div class="saffron"></div>
+                        <div class="white">
+                            <div class="ashoka-chakra">
+                                <div class="chakra-circle">
+                                    ${spokesHTML}
+                                    <div class="chakra-center"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="green"></div>
+                    </div>
+                `;
+            }
+
+            function updateTimeline(year) {
+                if (!yearDisplay || !flagDisplay || !infoPanel) return;
+                
+                yearDisplay.textContent = year;
+
+                if (year < 1947) {
+                    flagDisplay.innerHTML = createBritishFlag();
+                    infoPanel.innerHTML = `
+                        <h3>🏴 Colonial Period (${year})</h3>
+                        <p>India was under British colonial rule during this period. The British Empire controlled vast territories across the Indian subcontinent. The Indian independence movement was gaining momentum, with leaders like Mahatma Gandhi leading non-violent resistance campaigns against British rule.</p>
+                    `;
+                    if (celebrationLeft) celebrationLeft.style.display = 'none';
+                    if (celebrationRight) celebrationRight.style.display = 'none';
+                } else if (year === 1947) {
+                    flagDisplay.innerHTML = createIndianFlag();
+                    infoPanel.innerHTML = `
+                        <h3>🎉 INDEPENDENCE DAY - August 15, 1947</h3>
+                        <p><strong>Historic Moment!</strong> India gained independence from British rule on August 15, 1947. The tricolor flag was adopted with deep symbolism: <strong>Saffron</strong> represents courage and sacrifice, <strong>White</strong> represents peace and truth, and <strong>Green</strong> represents prosperity and faith. The Ashoka Chakra in the center has 24 spokes representing the eternal wheel of law and dharma.</p>
+                    `;
+                    if (celebrationLeft) celebrationLeft.style.display = 'block';
+                    if (celebrationRight) celebrationRight.style.display = 'block';
+                } else {
+                    flagDisplay.innerHTML = createIndianFlag();
+                    infoPanel.innerHTML = `
+                        <h3>🇮🇳 Independent India (${year})</h3>
+                        <p>India is now a sovereign, democratic republic. The Constitution of India came into effect on January 26, 1950, making India a republic. The nation has grown into the world's largest democracy, with a rich cultural heritage, diverse population, and a rapidly developing economy on the global stage.</p>
+                    `;
+                    if (celebrationLeft) celebrationLeft.style.display = 'none';
+                    if (celebrationRight) celebrationRight.style.display = 'none';
+                }
+            }
+
+            // Add event listener for slider
+            slider.addEventListener('input', (e) => {
+                const year = parseInt(e.target.value);
+                updateTimeline(year);
+            });
+
+            // Also listen for change event (for better compatibility)
+            slider.addEventListener('change', (e) => {
+                const year = parseInt(e.target.value);
+                updateTimeline(year);
+            });
+
+            // Make checkAnswer available globally
+            window.checkAnswer = function(year) {
+                const feedback = document.getElementById('feedback');
+                if (!feedback) return;
+                
+                if (year === '1947') {
+                    feedback.className = 'feedback correct';
+                    feedback.innerHTML = '✅ <strong>Absolutely Correct!</strong> India gained independence on <strong>August 15, 1947</strong>. This historic day marked the end of nearly 200 years of British colonial rule. Jawaharlal Nehru became the first Prime Minister of independent India and delivered his famous "Tryst with Destiny" speech at midnight on August 14-15, 1947. Move the slider to 1947 to see the celebration! 🎉';
+                    
+                    slider.value = 1947;
+                    updateTimeline(1947);
+                } else if (year === '1950') {
+                    feedback.className = 'feedback incorrect';
+                    feedback.innerHTML = '❌ <strong>Not quite right!</strong> While January 26, 1950 is an important date (it\'s when India became a Republic and the Constitution came into effect), India actually gained <strong>independence from British rule on August 15, 1947</strong>. Try moving the slider to see the exact moment the flag changed!';
+                } else {
+                    feedback.className = 'feedback incorrect';
+                    feedback.innerHTML = '❌ <strong>Incorrect!</strong> India gained independence on <strong>August 15, 1947</strong>, not 1945. While World War II ended in 1945, India\'s independence came two years later after intense negotiations. Drag the slider to 1947 to witness the historic transformation! 🇮🇳';
+                }
+            };
+
+            // Initialize with default year
+            updateTimeline(1930);
+        });
+
+        // Fallback: if DOMContentLoaded already fired, run immediately
+        if (document.readyState === 'loading') {
+            // DOMContentLoaded has not fired yet
+        } else {
+            // DOMContentLoaded has already fired, run immediately
+            const event = new Event('DOMContentLoaded');
+            document.dispatchEvent(event);
+        }
+    </script>
+</body>
+</html>

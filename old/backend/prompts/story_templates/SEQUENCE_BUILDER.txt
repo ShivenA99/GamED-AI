@@ -1,0 +1,13 @@
+### Template Context: SEQUENCE_BUILDER
+
+The resulting visualization will be implemented as:
+- Drag-and-drop interface to arrange steps in correct order.
+- Steps are represented as cards that can be reordered.
+- Correct ordering is validated on submission.
+
+When generating story_context, visual_metaphor, visual_elements, question_flow, and animation_cues:
+- Emphasize ordered steps, processes, or sequences.
+- Visual elements should represent discrete steps that have a natural order.
+- Questions should involve ordering or sequencing tasks.
+- Animation cues should show step transitions and correct/incorrect placement.
+

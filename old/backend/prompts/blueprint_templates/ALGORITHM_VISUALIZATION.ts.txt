@@ -1,0 +1,159 @@
+export interface AlgorithmVisualizationBlueprint {
+  templateType: "PARAMETER_PLAYGROUND";
+  title: string;
+  narrativeIntro: string;
+  parameters: Array<{
+    id: string;
+    label: string;
+    type: "slider" | "input" | "dropdown" | "array_editor" | "toggle";
+    min?: number;
+    max?: number;
+    step?: number;
+    defaultValue: number | string | boolean | number[];
+    unit?: string;
+    description?: string;
+    options?: string[] | number[];
+  }>;
+  visualization: {
+    type: "chart" | "graph" | "diagram" | "simulation";
+    assetPrompt?: string;
+    assetUrl?: string;
+    // Enhanced fields for algorithm visualization
+    algorithmType?: "binary_search" | "binary_search_rotated" | "cycle_detection" | "two_pointer" | "sliding_window" | "sorting" | "graph_traversal" | "tree_traversal" | "dynamic_programming" | "backtracking" | "greedy" | "divide_conquer" | "custom";
+    // Tree traversal specific fields
+    traversalType?: "inorder" | "preorder" | "postorder" | "level_order";
+    // Animation speeds for different traversal options (in milliseconds per node)
+    // Used when question asks which traversal is best - correct answer gets fastest speed
+    traversalAnimationSpeeds?: {
+      inorder?: number;      // Default: 600ms (slower for incorrect)
+      preorder?: number;     // Default: 300ms (fastest for correct)
+      postorder?: number;    // Default: 900ms (slower for incorrect)
+      level_order?: number;  // Default: 1200ms (slowest for incorrect)
+    };
+    // Data structures
+    array?: number[];              // For array-based algorithms
+    matrix?: number[][];           // For 2D grid problems
+    linkedListNodes?: number[];    // For linked list problems
+    treeNodes?: Array<{            // For tree problems
+      id: number | string;
+      value: any;
+      left?: number | string;
+      right?: number | string;
+      parent?: number | string;
+    }>;
+    graphNodes?: Array<{           // For graph problems
+      id: number | string;
+      value?: any;
+      edges: Array<{
+        to: number | string;
+        weight?: number;
+        directed?: boolean;
+      }>;
+    }>;
+    target?: number | string;      // For search algorithms
+    // Algorithm code for display
+    code?: string;
+    codeLanguage?: "javascript" | "typescript" | "python" | "java" | "cpp" | "pseudocode";
+    // Pre-computed algorithm steps (optional - can compute on-the-fly instead)
+    steps?: Array<{
+      stepNumber: number;
+      description?: string;
+      // Algorithm-specific fields
+      left?: number;               // For binary search
+      right?: number;
+      mid?: number;
+      slow?: number;                // For cycle detection / two pointers
+      fast?: number;
+      i?: number;                   // For loops/iterations
+      j?: number;
+      current?: any;                // Current element/node
+      next?: any;
+      // Comparisons and decisions
+      comparison?: string;
+      decision?: string;
+      explanation?: string;
+      // State tracking
+      variables?: Record<string, any>;
+      // Visual highlighting
+      highlightIndices?: number[];
+      highlightNodes?: (string | number)[];
+      highlightColor?: string;
+      // Algorithm-specific state
+      sortedRanges?: Array<{ start: number; end: number }>;
+      visited?: (string | number)[];
+      queue?: (string | number)[];
+      stack?: (string | number)[];
+      path?: (string | number)[];
+      dpTable?: any[][];
+      cycleDetected?: boolean;
+      targetFound?: boolean;
+      windowStart?: number;         // For sliding window
+      windowEnd?: number;
+      [key: string]: any;            // Additional custom fields
+    }>;
+  };
+  tasks: Array<{
+    id: string;
+    type: "parameter_adjustment" | "prediction" | "multiple_choice" | "interactive_selection" | "ordering" | "fill_blank";
+    questionText: string;
+    // For parameter_adjustment tasks
+    targetValues?: Record<string, number | string>;
+    tolerance?: number;
+    // For prediction tasks
+    predictionPrompt?: string;
+    predictionType?: "value" | "position" | "outcome" | "step";
+    // For multiple_choice tasks
+    options?: Array<{
+      value: string;
+      label: string;
+      visual?: string;
+      // For tree traversal questions: each option can trigger different traversal animation
+      traversalType?: "inorder" | "preorder" | "postorder" | "level_order";
+      animationSpeed?: number;  // Milliseconds per node for this option's animation
+    }>;
+    // For interactive_selection tasks
+    selectableElements?: string[];
+    minSelections?: number;
+    maxSelections?: number;
+    // Answer validation
+    correctAnswer: string | number | boolean | any[];
+    // Feedback
+    correctFeedback?: string;
+    incorrectFeedback?: string;
+    hint?: string;
+    explanation?: string;
+    // Flow control
+    requiredToProceed: boolean;
+    showAfterStep?: number;
+    unlockNext?: string;
+  }>;
+  animationCues: {
+    parameterChange: string;
+    visualizationUpdate: string;
+    // Algorithm-specific animation cues
+    stepComplete?: string;
+    comparisonMade?: string;
+    swapOccurs?: string;
+    targetFound?: string;
+    cycleDetected?: string;
+    pathFound?: string;
+    windowExpands?: string;
+    windowContracts?: string;
+    pointerMove?: string;
+    slowPointerMove?: string;
+    fastPointerMove?: string;
+    nodeVisited?: string;
+    solutionFound?: string;
+    // Tree traversal specific animation cues
+    traversalStart?: string;
+    traversalNodeHighlight?: string;
+    traversalPathTrail?: string;
+    traversalComplete?: string;
+    inorderTraversal?: string;
+    preorderTraversal?: string;
+    postorderTraversal?: string;
+    levelOrderTraversal?: string;
+    [key: string]: string | undefined;
+  };
+}
+

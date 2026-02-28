@@ -1,0 +1,238 @@
+{
+  "id": "bio-undergrad-organelles-click-identify",
+  "title": "Identify Organelles from Descriptions",
+  "question": "Create an interactive diagram game where undergraduate biology students identify cell organelles (mitochondria, rough ER, smooth ER, Golgi apparatus, lysosomes, peroxisomes) from electron micrograph descriptions of their structure and function.",
+  "domain": "biology",
+  "educationLevel": "undergraduate",
+  "gameType": "interactive_diagram",
+  "mechanic": "click_to_identify",
+  "bloomsLevel": "Apply",
+  "pipelineMetrics": {
+    "runId": "95620aae-7dc1-4da3-945a-6bd0bd447ffa",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 70.0,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T05:18:05.031862+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "Micrograph Mysteries: Organelle Unveiled",
+    "subject": "Biology",
+    "difficulty": "advanced",
+    "narrativeIntro": "Welcome, aspiring cell biologist! Your mission is to navigate the intricate world within a eukaryotic cell. Using your knowledge of electron micrograph features, you'll identify key organelles and match them with their unique structural and functional descriptions. Prepare to delve deep into the cellular machinery!",
+    "narrativeTheme": "Cellular Exploration & Discovery",
+    "completionMessage": "Congratulations, Cell Explorer! You've successfully identified and understood the vital roles of these complex organelles, demonstrating a keen eye for detail and a strong grasp of cellular biology.",
+    "estimatedDurationMinutes": 10,
+    "diagram": {
+      "assetPrompt": "A highly detailed, high-contrast electron micrograph of a eukaryotic cell, clearly showcasing the intricate internal structures of various organelles. The image must distinctly feature mitochondria with visible cristae, rough endoplasmic reticulum studded with ribosomes, smooth endoplasmic reticulum as a network of tubules, a prominent Golgi apparatus with flattened cisternae, dense lysosomes, and smaller peroxisomes, all in their typical cellular context and clearly distinguishable for identification.",
+      "zones": [
+        {
+          "id": "zone_s1_mitochondrion",
+          "label": "Mitochondrion",
+          "points": [],
+          "description": "This organelle is primarily responsible for generating the majority of the cell's supply of adenosine triphosphate (ATP), used as a source of chemical energy, through the process of cellular respiration. It is often referred to as the 'powerhouse' of the cell due to its critical role in energy production."
+        },
+        {
+          "id": "zone_s1_rough_endoplasmic_reticulum",
+          "label": "Rough Endoplasmic Reticulum",
+          "points": [],
+          "description": "This extensive network of interconnected membranes, characterized by the presence of ribosomes on its surface, is crucial for the synthesis, folding, modification, and transport of proteins destined for secretion, insertion into membranes, or delivery to other organelles within the endomembrane system."
+        },
+        {
+          "id": "zone_s1_smooth_endoplasmic_reticulum",
+          "label": "Smooth Endoplasmic Reticulum",
+          "points": [],
+          "description": "This network of interconnected tubules and sacs, lacking ribosomes on its surface, plays diverse roles including lipid synthesis (e.g., phospholipids, steroids), detoxification of drugs and poisons, and storage and release of calcium ions, which are vital for various cellular processes."
+        },
+        {
+          "id": "zone_s1_golgi_apparatus",
+          "label": "Golgi Apparatus",
+          "points": [],
+          "description": "Composed of flattened membranous sacs called cisternae, this organelle functions as a major sorting, modifying, and packaging center for proteins and lipids synthesized in the ER. It processes materials for secretion or delivery to other destinations within the cell, often adding carbohydrate tags."
+        },
+        {
+          "id": "zone_s1_lysosome",
+          "label": "Lysosome",
+          "points": [],
+          "description": "These membrane-bound sacs contain a variety of hydrolytic enzymes that function optimally in an acidic environment. Their primary role is to break down waste materials, cellular debris, and foreign invaders (like bacteria), acting as the cell's recycling and waste disposal unit."
+        },
+        {
+          "id": "zone_s1_peroxisome",
+          "label": "Peroxisome",
+          "points": [],
+          "description": "These small, spherical organelles are involved in various metabolic reactions, including the breakdown of very long-chain fatty acids and amino acids. They generate hydrogen peroxide as a byproduct, which they then convert to water and oxygen using the enzyme catalase, thereby detoxifying harmful substances."
+        }
+      ]
+    },
+    "labels": [
+      {
+        "id": "label_s1_0",
+        "text": "Mitochondrion",
+        "correctZoneId": "zone_s1_mitochondrion"
+      },
+      {
+        "id": "label_s1_1",
+        "text": "Rough Endoplasmic Reticulum",
+        "correctZoneId": "zone_s1_rough_endoplasmic_reticulum"
+      },
+      {
+        "id": "label_s1_2",
+        "text": "Smooth Endoplasmic Reticulum",
+        "correctZoneId": "zone_s1_smooth_endoplasmic_reticulum"
+      },
+      {
+        "id": "label_s1_3",
+        "text": "Golgi Apparatus",
+        "correctZoneId": "zone_s1_golgi_apparatus"
+      },
+      {
+        "id": "label_s1_4",
+        "text": "Lysosome",
+        "correctZoneId": "zone_s1_lysosome"
+      },
+      {
+        "id": "label_s1_5",
+        "text": "Peroxisome",
+        "correctZoneId": "zone_s1_peroxisome"
+      }
+    ],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "Drag and drop the correct name onto each identified organelle in the electron micrograph."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 60,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! That's the correct placement for this organelle.",
+          "on_incorrect": "Not quite. Take another look at the micrograph characteristics of the organelle and try placing it in a different zone.",
+          "on_completion": "Fantastic work! You've successfully identified and labeled all the key organelles in this electron micrograph.",
+          "misconceptions": [
+            {
+              "trigger_label": "s1_m0_Rough Endoplasmic Reticulum_to_Smooth Endoplasmic Reticulum_zone",
+              "message": "Remember, Rough ER is studded with ribosomes for protein synthesis, while Smooth ER is involved in lipid synthesis and detoxification. Look closely at the presence or absence of ribosomes.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "s1_m0_Smooth Endoplasmic Reticulum_to_Rough Endoplasmic Reticulum_zone",
+              "message": "Remember, Rough ER is studded with ribosomes for protein synthesis, while Smooth ER is involved in lipid synthesis and detoxification. Look closely at the presence or absence of ribosomes.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "s1_m0_Lysosome_to_Peroxisome_zone",
+              "message": "While both are involved in degradation, lysosomes break down cellular waste with hydrolytic enzymes, and peroxisomes detoxify substances and metabolize fatty acids with oxidative enzymes. Their internal structures can differ subtly.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "s1_m0_Peroxisome_to_Lysosome_zone",
+              "message": "While both are involved in degradation, lysosomes break down cellular waste with hydrolytic enzymes, and peroxisomes detoxify substances and metabolize fatty acids with oxidative enzymes. Their internal structures can differ subtly.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "s1_m0_Golgi Apparatus_to_ER_zone",
+              "message": "The Golgi apparatus has a distinct stack of flattened sacs (cisternae) and is crucial for modifying, sorting, and packaging proteins and lipids, not just simple packaging. Re-examine its unique structure.",
+              "severity": "low"
+            },
+            {
+              "trigger_label": "s1_m0_Nucleus_placed_in_valid_zone",
+              "message": "The Nucleus is a prominent organelle, but it's not one of the specific structures we're focusing on for detailed analysis in this task. Focus on the other organelles.",
+              "severity": "low"
+            },
+            {
+              "trigger_label": "s1_m0_Ribosome_placed_in_valid_zone",
+              "message": "Ribosomes are crucial for protein synthesis, but they are components often found on the Rough ER or free in the cytoplasm, not typically labeled as a distinct, large organelle zone in this context.",
+              "severity": "low"
+            }
+          ]
+        }
+      },
+      {
+        "type": "description_matching",
+        "config": {
+          "instruction_text": "Now that you've labeled the organelles, match each detailed description to its correct organelle on the electron micrograph, focusing on its unique structure and function."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 15,
+          "max_score": 90,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Spot on! That description accurately matches the function of this organelle.",
+          "on_incorrect": "Not quite. Re-evaluate the key functions described. Which organelle is primarily responsible for the processes mentioned?",
+          "on_completion": "Excellent job! You've successfully matched all the organelles with their correct descriptions, demonstrating a strong understanding of their functions.",
+          "misconceptions": [
+            {
+              "trigger_label": "s1_m1_Rough Endoplasmic Reticulum_description_to_Smooth Endoplasmic Reticulum",
+              "message": "Misconception: All endoplasmic reticulum (ER) is functionally identical. Correction: Rough ER is involved in protein synthesis and modification due to ribosomes, while smooth ER is involved in lipid synthesis, detoxification, and calcium storage.",
+              "severity": "high"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [
+      {
+        "from": "drag_drop",
+        "to": "description_matching",
+        "trigger": "all_zones_labeled",
+        "animation": "fade"
+      }
+    ],
+    "interactionMode": "drag_drop",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 10,
+      "max_score": 150
+    },
+    "totalMaxScore": 150,
+    "generation_complete": true,
+    "dragDropConfig": {
+      "leader_line_style": "none",
+      "tray_position": "bottom",
+      "placement_animation": "spring",
+      "show_distractors": false,
+      "tray_layout": "horizontal",
+      "pin_marker_shape": "circle",
+      "leader_line_animate": true,
+      "max_attempts": 3,
+      "interaction_mode": "drag_drop",
+      "shuffle_labels": true,
+      "zone_idle_animation": "pulse",
+      "label_style": "text",
+      "zone_hover_effect": "highlight",
+      "feedback_timing": "deferred",
+      "label_anchor_side": "auto",
+      "leader_line_color": "",
+      "incorrect_animation": "shake"
+    },
+    "descriptionMatchingConfig": {
+      "descriptions": {
+        "zone_s1_mitochondrion": "This organelle is primarily responsible for generating the majority of the cell's supply of adenosine triphosphate (ATP), used as a source of chemical energy, through the process of cellular respiration. It is often referred to as the 'powerhouse' of the cell due to its critical role in energy production.",
+        "zone_s1_rough_endoplasmic_reticulum": "This extensive network of interconnected membranes, characterized by the presence of ribosomes on its surface, is crucial for the synthesis, folding, modification, and transport of proteins destined for secretion, insertion into membranes, or delivery to other organelles within the endomembrane system.",
+        "zone_s1_smooth_endoplasmic_reticulum": "This network of interconnected tubules and sacs, lacking ribosomes on its surface, plays diverse roles including lipid synthesis (e.g., phospholipids, steroids), detoxification of drugs and poisons, and storage and release of calcium ions, which are vital for various cellular processes.",
+        "zone_s1_golgi_apparatus": "Composed of flattened membranous sacs called cisternae, this organelle functions as a major sorting, modifying, and packaging center for proteins and lipids synthesized in the ER. It processes materials for secretion or delivery to other destinations within the cell, often adding carbohydrate tags.",
+        "zone_s1_lysosome": "These membrane-bound sacs contain a variety of hydrolytic enzymes that function optimally in an acidic environment. Their primary role is to break down waste materials, cellular debris, and foreign invaders (like bacteria), acting as the cell's recycling and waste disposal unit.",
+        "zone_s1_peroxisome": "These small, spherical organelles are involved in various metabolic reactions, including the breakdown of very long-chain fatty acids and amino acids. They generate hydrogen peroxide as a byproduct, which they then convert to water and oxygen using the enzyme catalase, thereby detoxifying harmful substances."
+      },
+      "mode": "click_zone",
+      "distractor_descriptions": [],
+      "show_connecting_lines": true,
+      "defer_evaluation": false,
+      "description_panel_position": "right"
+    }
+  }
+}

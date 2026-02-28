@@ -1,0 +1,26 @@
+{
+  "templateType": "BEFORE_AFTER_TRANSFORMER",
+  "description": "Compare before and after states with transformation steps.",
+  "domains": ["programming", "mathematics", "science", "transformations", "processes"],
+  "blueprintSchema": {
+    "requiredFields": [
+      "templateType",
+      "title",
+      "narrativeIntro",
+      "beforeState",
+      "afterState",
+      "transformations",
+      "tasks"
+    ]
+  },
+  "htmlContract": {
+    "requiredIds": ["gameRoot", "beforePanel", "afterPanel", "transformationsPanel", "submitBtn", "feedbackArea"],
+    "requiredClasses": ["state-display", "transformation-step", "step-correct", "step-incorrect"],
+    "interactionNotes": [
+      "Before and after states are displayed side-by-side.",
+      "Transformation steps are selectable/orderable.",
+      "Correct transformation sequence is validated."
+    ]
+  }
+}
+

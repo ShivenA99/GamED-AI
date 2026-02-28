@@ -1,0 +1,13 @@
+### Template Context: PROBABILITY_LAB
+
+The resulting visualization will be implemented as:
+- Interactive probability experiments and simulations.
+- Experiments are runnable simulations.
+- Results are visualized in charts or graphs.
+
+When generating story_context, visual_metaphor, visual_elements, question_flow, and animation_cues:
+- Focus on probability, statistics, and experimental outcomes.
+- Visual elements should represent experiments, parameters, and results.
+- Questions should involve predicting probabilities or understanding outcomes.
+- Animation cues should show experiment runs, result updates, and statistical visualization.
+

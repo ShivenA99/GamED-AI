@@ -1,0 +1,152 @@
+{
+  "id": "math-k12-linear-equation-sequencing",
+  "title": "Order Steps to Solve a Linear Equation",
+  "question": "Create an interactive diagram game where students arrange the steps to solve 3x + 7 = 22 in correct order: identify the equation, subtract 7 from both sides, simplify to 3x = 15, divide both sides by 3, solution x = 5, verify by substitution.",
+  "domain": "mathematics",
+  "educationLevel": "k12",
+  "gameType": "interactive_diagram",
+  "mechanic": "sequencing",
+  "bloomsLevel": "Understand",
+  "pipelineMetrics": {
+    "runId": "3eeeb011-96b5-48aa-ae14-29012c064dc2",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 63.9,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T06:01:27.293531+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "Equation Solver: Step-by-Step",
+    "subject": "Mathematics",
+    "difficulty": "intermediate",
+    "narrativeIntro": "Welcome, aspiring mathematician! Your mission is to guide our equation, 3x + 7 = 22, through the correct sequence of operations to find its solution. Each step is crucial for maintaining balance and reaching the correct answer. Arrange the steps in the logical order to successfully solve the equation and verify your result!",
+    "narrativeTheme": "Mathematical Journey",
+    "completionMessage": "Excellent work! You've successfully navigated the steps to solve and verify the linear equation. Your understanding of inverse operations and the properties of equality is strong!",
+    "estimatedDurationMinutes": 7,
+    "diagram": {
+      "assetPrompt": "",
+      "zones": []
+    },
+    "labels": [],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "sequencing",
+        "config": {
+          "instruction_text": "The equation 3x + 7 = 22 awaits its solution. Drag and drop the steps into the correct order to solve it, applying inverse operations to isolate 'x'."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 15,
+          "max_score": 90,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "That's the correct step for this position! You're building the solution perfectly.",
+          "on_incorrect": "This step isn't quite right for this position. Consider what operation should come next to isolate the variable, or what operation would undo the previous one.",
+          "on_completion": "Fantastic! You've successfully sequenced all the steps to solve the equation 3x + 7 = 22!",
+          "misconceptions": [
+            {
+              "trigger_label": "one_side_operation",
+              "message": "Any operation performed on one side of an equation must also be performed on the other side to keep the equation true and balanced.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "incorrect_inverse_operation",
+              "message": "To undo an operation, its exact inverse must be used (e.g., subtraction undoes addition, division undoes multiplication).",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "coefficient_constant_confusion",
+              "message": "A coefficient is multiplied by the variable, so division is used to undo it; a constant is added or subtracted.",
+              "severity": "medium"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [],
+    "interactionMode": "sequencing",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 15,
+      "max_score": 90
+    },
+    "totalMaxScore": 90,
+    "generation_complete": true,
+    "sequenceConfig": {
+      "items": [
+        {
+          "id": "s1",
+          "content": "Start with the given equation: 3x + 7 = 22",
+          "explanation": "The first step is always to clearly identify the problem you need to solve.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        },
+        {
+          "id": "s2",
+          "content": "Subtract 7 from both sides of the equation.",
+          "explanation": "To begin isolating the variable term (3x), apply the inverse operation of addition. Subtracting 7 from both sides keeps the equation balanced.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        },
+        {
+          "id": "s3",
+          "content": "Simplify the equation to 3x = 15.",
+          "explanation": "After performing the subtraction on both sides, the equation becomes simpler, bringing us one step closer to finding 'x'.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        },
+        {
+          "id": "s4",
+          "content": "Divide both sides by 3.",
+          "explanation": "To isolate 'x' completely, apply the inverse operation of multiplication. Dividing both sides by the coefficient of 'x' maintains the balance.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        },
+        {
+          "id": "s5",
+          "content": "State the final solution: x = 5.",
+          "explanation": "Performing the division reveals the final value for the variable 'x'.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        },
+        {
+          "id": "s6",
+          "content": "Verify the solution: 3(5) + 7 = 22.",
+          "explanation": "To ensure accuracy, substitute the solution (x=5) back into the original equation. Since 15 + 7 = 22, the solution is correct.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        }
+      ],
+      "correct_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6"
+      ],
+      "sequence_type": "ordered",
+      "layout_mode": "vertical_list",
+      "interaction_pattern": "drag_reorder",
+      "card_type": "text_only",
+      "connector_style": "arrow",
+      "show_position_numbers": false,
+      "allow_partial_credit": true
+    }
+  }
+}

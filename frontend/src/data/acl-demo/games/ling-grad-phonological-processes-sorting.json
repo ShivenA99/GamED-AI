@@ -1,0 +1,283 @@
+{
+  "id": "ling-grad-phonological-processes-sorting",
+  "title": "Classify Phonological Processes",
+  "question": "Create an interactive diagram game where graduate students sort phonological processes into categories: assimilation (nasal place assimilation, voicing assimilation, palatalization), dissimilation (Grassmann's Law, liquid dissimilation), deletion (cluster reduction, final consonant deletion, syncope), insertion (epenthesis, prothesis), and metathesis (segment reordering), with cross-linguistic examples from English, Spanish, Japanese, and Arabic.",
+  "domain": "linguistics",
+  "educationLevel": "graduate",
+  "gameType": "interactive_diagram",
+  "mechanic": "sorting_categories",
+  "bloomsLevel": "Analyze",
+  "pipelineMetrics": {
+    "runId": "ff31bf7d-64df-4732-b5ba-6e99d793dac2",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 123.7,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T09:44:47.733444+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "Phonology Uncovered: Cross-Linguistic Processes",
+    "subject": "Linguistics",
+    "difficulty": "advanced",
+    "narrativeIntro": "Welcome, graduate linguist! Your mission is to navigate the complex world of phonological processes. You'll categorize systematic sound changes and identify their manifestations across diverse languages, from English to Arabic. Prepare to synthesize your knowledge and uncover the hidden rules that shape human speech.",
+    "narrativeTheme": "Linguistic Expedition: Decoding Sound Changes",
+    "completionMessage": "Congratulations, Master Linguist! You have successfully categorized and exemplified a wide array of phonological processes, demonstrating a profound understanding of cross-linguistic sound changes. Your expertise is invaluable!",
+    "estimatedDurationMinutes": 12,
+    "diagram": {
+      "assetPrompt": "",
+      "zones": []
+    },
+    "labels": [],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "sorting_categories",
+        "config": {
+          "instruction_text": "Begin your linguistic expedition by sorting each phonological process and its sub-type into its correct overarching category. Carefully analyze the defining characteristics of each process to accurately map them to their linguistic territory."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 110,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! You've correctly placed this process into its category. Keep up the precise analysis!",
+          "on_incorrect": "Not quite. Take another look at the phonetic changes involved. Does this process make sounds more similar, less similar, or is it a different kind of modification? Consider the core definition of each category.",
+          "on_completion": "Fantastic work! You've successfully categorized all the phonological processes. Your understanding of these systematic sound changes is strong!",
+          "misconceptions": [
+            {
+              "trigger_label": "confusing_subtypes_or_miscategorizing",
+              "message": "Each phonological process and its sub-types have distinct phonetic triggers and outcomes; careful analysis of the specific articulatory or acoustic changes is required for accurate categorization.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "difficulty_unfamiliar_contexts",
+              "message": "To accurately identify processes, analyze phonetic transcriptions and compare forms (e.g., underlying vs. surface) to deduce the underlying process, rather than relying solely on examples from your native language.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "processes_are_random",
+              "message": "Remember, phonological processes are systematic, predictable changes that occur regularly in specific phonetic environments within a language, reflecting underlying phonological rules, not random errors.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "memory_match",
+        "config": {
+          "instruction_text": "Flip cards to match each phonological process with its concrete cross-linguistic example. Analyze the phonetic changes carefully!"
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 15,
+          "max_score": 105,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! You've successfully matched a phonological process with its cross-linguistic example.",
+          "on_incorrect": "Not quite a match. Keep exploring the cards to find the correct pairs!",
+          "on_completion": "Fantastic work! You've successfully identified and recalled all the cross-linguistic examples for various phonological processes.",
+          "misconceptions": [
+            {
+              "trigger_label": "confusion_subtypes_miscategorization",
+              "message": "Each phonological process and its sub-types have distinct phonetic triggers and outcomes; careful analysis of the specific articulatory or acoustic changes is required for accurate categorization.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "difficulty_unfamiliar_contexts",
+              "message": "Students must analyze phonetic transcriptions and compare forms (e.g., underlying vs. surface) to deduce the underlying process, rather than relying solely on examples from their native language.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "random_vs_systematic",
+              "message": "Phonological processes are systematic, predictable changes that occur regularly in specific phonetic environments within a language, reflecting underlying phonological rules.",
+              "severity": "medium"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [],
+    "interactionMode": "sorting_categories",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 10,
+      "max_score": 215
+    },
+    "totalMaxScore": 215,
+    "generation_complete": true,
+    "sortingConfig": {
+      "categories": [
+        {
+          "id": "cat1",
+          "label": "Assimilation",
+          "color": "#006D77",
+          "description": "A process where one sound becomes more like a nearby sound in terms of features like place of articulation or voicing."
+        },
+        {
+          "id": "cat2",
+          "label": "Dissimilation",
+          "color": "#2D6A4F",
+          "description": "A process where two similar or identical sounds in a word become less alike to ease pronunciation."
+        },
+        {
+          "id": "cat3",
+          "label": "Deletion",
+          "color": "#582F0E",
+          "description": "A process where a sound or syllable is removed from a word, often to simplify consonant clusters or word endings."
+        },
+        {
+          "id": "cat4",
+          "label": "Insertion",
+          "color": "#B58300",
+          "description": "A process where an extra sound is added to a word, typically between other sounds to make it easier to pronounce."
+        },
+        {
+          "id": "cat5",
+          "label": "Metathesis",
+          "color": "#E9C46A",
+          "description": "A process where two sounds or syllables within a word switch their positions."
+        }
+      ],
+      "items": [
+        {
+          "id": "i1",
+          "content": "Nasal Place Assimilation",
+          "correctCategoryId": "cat1",
+          "correct_category_ids": [],
+          "explanation": "This is a type of assimilation where a nasal consonant adopts the place of articulation of a following consonant (e.g., 'in-possible' becomes 'impossible').",
+          "description": "",
+          "difficulty": "medium",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i2",
+          "content": "Voicing Assimilation",
+          "correctCategoryId": "cat1",
+          "correct_category_ids": [],
+          "explanation": "This is a type of assimilation where a sound's voicing feature changes to match a neighboring sound (e.g., the 's' in 'dogs' is pronounced /z/ to match the voiced /g/).",
+          "description": "",
+          "difficulty": "medium",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i3",
+          "content": "Palatalization",
+          "correctCategoryId": "cat1",
+          "correct_category_ids": [],
+          "explanation": "A form of assimilation where a consonant's place of articulation moves towards the hard palate, often influenced by a following front vowel or glide like /j/.",
+          "description": "",
+          "difficulty": "hard",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i4",
+          "content": "Grassmann's Law",
+          "correctCategoryId": "cat2",
+          "correct_category_ids": [],
+          "explanation": "This historical law describes a dissimilation process in Greek and Sanskrit where if an aspirated consonant is followed by another in the next syllable, the first one loses its aspiration.",
+          "description": "",
+          "difficulty": "hard",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i5",
+          "content": "Liquid Dissimilation",
+          "correctCategoryId": "cat2",
+          "correct_category_ids": [],
+          "explanation": "This is a type of dissimilation where one of two liquid sounds (/l/ or /r/) in a word changes to avoid repetition (e.g., Latin 'peregrinus' becomes French 'p\u00e8lerin').",
+          "description": "",
+          "difficulty": "medium",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i6",
+          "content": "Cluster Reduction",
+          "correctCategoryId": "cat3",
+          "correct_category_ids": [],
+          "explanation": "This is a form of deletion where one or more consonants are removed from a consonant cluster to simplify it (e.g., a child saying 'pane' for 'plane').",
+          "description": "",
+          "difficulty": "medium",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i7",
+          "content": "Final Consonant Deletion",
+          "correctCategoryId": "cat3",
+          "correct_category_ids": [],
+          "explanation": "This is a deletion process, common in child language development, where the final consonant of a word is omitted (e.g., saying 'ca' for 'cat').",
+          "description": "",
+          "difficulty": "medium",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i8",
+          "content": "Epenthesis",
+          "correctCategoryId": "cat4",
+          "correct_category_ids": [],
+          "explanation": "Epenthesis is the general term for the insertion of a sound into a word. It's the overarching category for processes like Vowel Insertion.",
+          "description": "",
+          "difficulty": "easy",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i9",
+          "content": "Vowel Insertion",
+          "correctCategoryId": "cat4",
+          "correct_category_ids": [],
+          "explanation": "This is a type of insertion where a vowel is added between two consonants to break up a cluster (e.g., pronouncing 'athlete' as 'ath-a-lete').",
+          "description": "",
+          "difficulty": "medium",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i10",
+          "content": "Syllable Metathesis",
+          "correctCategoryId": "cat5",
+          "correct_category_ids": [],
+          "explanation": "This is a type of metathesis where entire syllables swap places within a word (e.g., a child saying 'aminal' for 'animal').",
+          "description": "",
+          "difficulty": "medium",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i11",
+          "content": "Consonant Metathesis",
+          "correctCategoryId": "cat5",
+          "correct_category_ids": [],
+          "explanation": "This is a type of metathesis where two consonants switch places (e.g., Old English 'brid' becoming modern 'bird').",
+          "description": "",
+          "difficulty": "medium",
+          "image": "",
+          "image_description": ""
+        }
+      ],
+      "sort_mode": "column",
+      "item_card_type": "text_only",
+      "container_style": "bucket",
+      "submit_mode": "immediate_feedback",
+      "allow_multi_category": false,
+      "show_category_hints": false,
+      "allow_partial_credit": true
+    }
+  }
+}

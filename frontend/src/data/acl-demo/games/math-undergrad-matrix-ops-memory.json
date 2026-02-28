@@ -1,0 +1,707 @@
+{
+  "id": "math-undergrad-matrix-ops-memory",
+  "title": "Match Matrix Operations to Properties",
+  "question": "Create an interactive diagram game where students match matrix operations (transpose, inverse, determinant, eigenvalues, trace, rank) to their key properties and computational rules.",
+  "domain": "mathematics",
+  "educationLevel": "undergraduate",
+  "gameType": "interactive_diagram",
+  "mechanic": "memory_match",
+  "bloomsLevel": "Apply",
+  "pipelineMetrics": {
+    "runId": "29b097ca-4d7b-400f-aa22-77979031204d",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 276.4,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T06:10:21.635676+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "Matrix Operations Master",
+    "subject": "Linear Algebra",
+    "difficulty": "advanced",
+    "narrativeIntro": "Welcome, aspiring Matrix Master! Your mission is to navigate the complex world of matrix operations, understanding their unique properties and computational secrets. Prove your expertise by correctly identifying, defining, and applying these fundamental concepts.",
+    "narrativeTheme": "Linear Algebra Lab",
+    "completionMessage": "Congratulations, Matrix Master! You've successfully deciphered the intricacies of matrix operations, demonstrating a deep understanding of their properties and computational rules.",
+    "estimatedDurationMinutes": 15,
+    "diagram": {
+      "assetPrompt": "A conceptual, clean scientific diagram depicting six distinct, clearly delineated zones, each representing a primary matrix operation. The zones are arranged in a logical, perhaps circular or grid-like pattern around a central abstract matrix symbol. Each zone should be visually distinct but stylistically cohesive, ready to receive labels or descriptions. The overall style is minimalist and educational, suitable for a digital interface.",
+      "zones": [
+        {
+          "id": "zone_matrix_transpose",
+          "label": "Matrix Transpose",
+          "points": [
+            [
+              39.3,
+              26.3
+            ],
+            [
+              32.1,
+              24.1
+            ],
+            [
+              23.6,
+              26.3
+            ],
+            [
+              23.1,
+              33.8
+            ],
+            [
+              23.4,
+              38.3
+            ],
+            [
+              24.7,
+              42.0
+            ],
+            [
+              29.1,
+              48.8
+            ],
+            [
+              29.6,
+              49.1
+            ],
+            [
+              40.4,
+              42.7
+            ]
+          ],
+          "x": 29.5,
+          "y": 36.8,
+          "radius": 14.4,
+          "shape": "polygon",
+          "center": {
+            "x": 29.5,
+            "y": 36.8
+          },
+          "description": "Reorients a matrix by swapping its rows and columns, effectively changing its structural perspective or alignment."
+        },
+        {
+          "id": "zone_matrix_inverse",
+          "label": "Matrix Inverse",
+          "points": [
+            [
+              61.1,
+              26.3
+            ],
+            [
+              60.2,
+              36.5
+            ],
+            [
+              60.1,
+              42.4
+            ],
+            [
+              65.6,
+              45.9
+            ],
+            [
+              71.1,
+              48.8
+            ],
+            [
+              75.9,
+              41.4
+            ],
+            [
+              78.7,
+              34.5
+            ],
+            [
+              78.5,
+              33.6
+            ],
+            [
+              72.6,
+              23.0
+            ]
+          ],
+          "x": 69.3,
+          "y": 36.9,
+          "radius": 14.3,
+          "shape": "polygon",
+          "center": {
+            "x": 69.3,
+            "y": 36.9
+          },
+          "description": "Serves to 'undo' the linear transformation represented by a square matrix, allowing for the reversal of operations or the solution of linear systems."
+        },
+        {
+          "id": "zone_determinant",
+          "label": "Determinant",
+          "points": [
+            [
+              29.3,
+              51.4
+            ],
+            [
+              22.0,
+              63.2
+            ],
+            [
+              23.6,
+              67.6
+            ],
+            [
+              24.9,
+              68.5
+            ],
+            [
+              26.1,
+              70.8
+            ],
+            [
+              27.9,
+              77.1
+            ],
+            [
+              28.6,
+              77.8
+            ],
+            [
+              39.4,
+              74.0
+            ],
+            [
+              40.5,
+              57.8
+            ]
+          ],
+          "x": 29.1,
+          "y": 67.6,
+          "radius": 16.2,
+          "shape": "polygon",
+          "center": {
+            "x": 29.1,
+            "y": 67.6
+          },
+          "description": "A scalar value that reveals crucial properties of a square matrix, such as its invertibility and the scaling factor of the linear transformation it represents."
+        },
+        {
+          "id": "zone_eigenvalues",
+          "label": "Eigenvalues",
+          "points": [
+            [
+              71.2,
+              51.2
+            ],
+            [
+              60.1,
+              57.8
+            ],
+            [
+              61.0,
+              73.7
+            ],
+            [
+              69.1,
+              76.6
+            ],
+            [
+              77.3,
+              74.0
+            ],
+            [
+              77.8,
+              66.6
+            ],
+            [
+              77.4,
+              62.3
+            ],
+            [
+              75.9,
+              58.6
+            ]
+          ],
+          "x": 71.2,
+          "y": 65.1,
+          "radius": 13.9,
+          "shape": "polygon",
+          "center": {
+            "x": 71.2,
+            "y": 65.1
+          },
+          "description": "Scalar values that represent the factors by which corresponding eigenvectors are scaled during a linear transformation, revealing the fundamental directions of stretching or shrinking."
+        },
+        {
+          "id": "zone_trace",
+          "label": "Trace",
+          "points": [
+            [
+              50.1,
+              65.0
+            ],
+            [
+              41.0,
+              75.0
+            ],
+            [
+              42.7,
+              82.6
+            ],
+            [
+              43.8,
+              84.4
+            ],
+            [
+              45.5,
+              90.2
+            ],
+            [
+              49.0,
+              89.7
+            ],
+            [
+              55.0,
+              90.2
+            ],
+            [
+              57.8,
+              82.5
+            ],
+            [
+              59.5,
+              74.5
+            ]
+          ],
+          "x": 49.4,
+          "y": 81.6,
+          "radius": 16.6,
+          "shape": "polygon",
+          "center": {
+            "x": 49.4,
+            "y": 81.6
+          },
+          "description": "The sum of the elements on the main diagonal of a square matrix, providing a scalar invariant useful in characterizing matrix properties and transformations."
+        },
+        {
+          "id": "zone_matrix_rank",
+          "label": "Matrix Rank",
+          "points": [
+            [
+              54.1,
+              10.5
+            ],
+            [
+              52.2,
+              10.5
+            ],
+            [
+              51.9,
+              12.2
+            ],
+            [
+              48.7,
+              12.4
+            ],
+            [
+              48.1,
+              10.5
+            ],
+            [
+              46.0,
+              10.6
+            ],
+            [
+              43.6,
+              15.3
+            ],
+            [
+              44.5,
+              16.4
+            ],
+            [
+              43.3,
+              20.6
+            ],
+            [
+              42.0,
+              20.6
+            ],
+            [
+              40.7,
+              25.1
+            ],
+            [
+              43.5,
+              28.5
+            ],
+            [
+              44.6,
+              27.4
+            ],
+            [
+              47.3,
+              30.2
+            ],
+            [
+              46.9,
+              31.9
+            ],
+            [
+              50.1,
+              35.3
+            ],
+            [
+              53.5,
+              31.9
+            ],
+            [
+              53.0,
+              30.7
+            ],
+            [
+              55.7,
+              27.5
+            ],
+            [
+              56.8,
+              28.5
+            ],
+            [
+              59.6,
+              25.6
+            ],
+            [
+              58.4,
+              20.8
+            ],
+            [
+              57.0,
+              20.5
+            ],
+            [
+              55.9,
+              16.6
+            ],
+            [
+              56.8,
+              15.0
+            ]
+          ],
+          "x": 50.2,
+          "y": 21.4,
+          "radius": 13.9,
+          "shape": "polygon",
+          "center": {
+            "x": 50.2,
+            "y": 21.4
+          },
+          "description": "Indicates the maximum number of linearly independent rows or columns in a matrix, defining the dimension of the vector space spanned by its columns or rows."
+        }
+      ],
+      "imageUrl": "/api/assets/demo/29b097ca-4d7b-400f-aa22-77979031204d/diagram_scene_1.png",
+      "assetUrl": "/api/assets/demo/29b097ca-4d7b-400f-aa22-77979031204d/diagram_scene_1.png"
+    },
+    "labels": [
+      {
+        "id": "label_s1_0",
+        "text": "Matrix Transpose",
+        "correctZoneId": "zone_matrix_transpose"
+      },
+      {
+        "id": "label_s1_1",
+        "text": "Matrix Inverse",
+        "correctZoneId": "zone_matrix_inverse"
+      },
+      {
+        "id": "label_s1_2",
+        "text": "Determinant",
+        "correctZoneId": "zone_determinant"
+      },
+      {
+        "id": "label_s1_3",
+        "text": "Eigenvalues",
+        "correctZoneId": "zone_eigenvalues"
+      },
+      {
+        "id": "label_s1_4",
+        "text": "Trace",
+        "correctZoneId": "zone_trace"
+      },
+      {
+        "id": "label_s1_5",
+        "text": "Matrix Rank",
+        "correctZoneId": "zone_matrix_rank"
+      }
+    ],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "Identify the core matrix operations. Drag each operation's name to its corresponding zone on the diagram."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 60,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! That's the correct placement for this matrix operation.",
+          "on_incorrect": "Not quite. Revisit the definition and try placing this label in a different zone.",
+          "on_completion": "Fantastic! You've successfully identified and placed all the basic matrix operations.",
+          "misconceptions": [
+            {
+              "trigger_label": "Matrix Inverse",
+              "message": "Remember, the transpose flips rows and columns; the inverse is a matrix that, when multiplied, yields the identity matrix (only for square, non-singular matrices).",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "Determinant",
+              "message": "Operations like determinant, inverse, and eigenvalues are strictly defined only for square matrices, and sometimes require additional conditions (e.g., non-singularity for inverse).",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "Eigenvalues",
+              "message": "Eigenvectors are special vectors whose direction is unchanged by a linear transformation, and eigenvalues are the scaling factors for these vectors.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "Matrix Rank",
+              "message": "The rank is the dimension of the column space (or row space), which is the maximum number of linearly independent column (or row) vectors, often found after row reduction.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "description_matching",
+        "config": {
+          "instruction_text": "Now that you've identified each matrix operation, match its fundamental description to the correct zone on the diagram."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 60,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Spot on! That description perfectly matches the matrix operation.",
+          "on_incorrect": "Not quite the right fit. Carefully reread the description and the operation's definition to find the best match.",
+          "on_completion": "Outstanding! You've accurately matched all the matrix operation descriptions.",
+          "misconceptions": [
+            {
+              "trigger_label": "Matrix Inverse",
+              "message": "The transpose flips rows and columns; the inverse is a matrix that, when multiplied, yields the identity matrix (only for square, non-singular matrices).",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "Determinant",
+              "message": "Operations like determinant, inverse, and eigenvalues are strictly defined only for square matrices, and sometimes require additional conditions (e.g., non-singularity for inverse).",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "Eigenvalues",
+              "message": "Eigenvectors are special vectors whose direction is unchanged by a linear transformation, and eigenvalues are the scaling factors for these vectors.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "Matrix Rank",
+              "message": "The rank is the dimension of the column space (or row space), which is the maximum number of linearly independent column (or row) vectors, often found after row reduction.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "Drag and drop each property description to its corresponding matrix operation zone on the interactive diagram."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 60,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! That's the correct association for this property/rule.",
+          "on_incorrect": "Not quite. Review the definitions and try to place the label in the correct zone.",
+          "on_completion": "Fantastic job! You've successfully categorized all the properties and rules for this set.",
+          "misconceptions": [
+            {
+              "trigger_label": "Matrix Inverse",
+              "message": "Remember, the transpose flips rows and columns; the inverse is a matrix that, when multiplied, yields the identity matrix (only for square, non-singular matrices).",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "Matrix Transpose",
+              "message": "Remember, the transpose flips rows and columns; the inverse is a matrix that, when multiplied, yields the identity matrix (only for square, non-singular matrices).",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "Determinant",
+              "message": "Be careful! Operations like determinant, inverse, and eigenvalues are strictly defined only for square matrices, and sometimes require additional conditions.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "Eigenvalues",
+              "message": "Eigenvectors are special vectors whose direction is unchanged by a linear transformation, and eigenvalues are the scaling factors for these vectors. It's more than just a number!",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "Matrix Rank",
+              "message": "The rank is the dimension of the column space (or row space), which is the maximum number of linearly independent column (or row) vectors, often found after row reduction.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "Now that you've identified the properties, drag and drop each computational rule to its correct matrix operation zone on the diagram."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 60,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Spot on! You've correctly identified this property/rule.",
+          "on_incorrect": "That's not the right fit. Take another look at the characteristics and try again.",
+          "on_completion": "Outstanding work! You've mastered the associations for these matrix operations.",
+          "misconceptions": [
+            {
+              "trigger_label": "Matrix Inverse",
+              "message": "Remember, the transpose flips rows and columns; the inverse is a matrix that, when multiplied, yields the identity matrix (only for square, non-singular matrices).",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "Matrix Transpose",
+              "message": "Remember, the transpose flips rows and columns; the inverse is a matrix that, when multiplied, yields the identity matrix (only for square, non-singular matrices).",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "Determinant",
+              "message": "Be careful! Operations like determinant, inverse, and eigenvalues are strictly defined only for square matrices, and sometimes require additional conditions.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "Eigenvalues",
+              "message": "Eigenvectors are special vectors whose direction is unchanged by a linear transformation, and eigenvalues are the scaling factors for these vectors. It's more than just a number!",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "Matrix Rank",
+              "message": "The rank is the dimension of the column space (or row space), which is the maximum number of linearly independent column (or row) vectors, often found after row reduction.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "branching_scenario",
+        "config": {
+          "instruction_text": "You've entered the Misconception Matrix! Analyze each scenario, identify the common error, and choose the correct explanation to proceed. Your goal is to navigate through these challenges without falling for the traps."
+        },
+        "scoring": {
+          "strategy": "weighted",
+          "points_per_correct": 20,
+          "max_score": 60,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! Your understanding of matrix operations is precise. Let's move on to the next challenge.",
+          "on_incorrect": "Not quite. That path leads to a common misunderstanding. Re-evaluate the scenario and consider the specific conditions or properties required for that matrix operation.",
+          "on_completion": "You've successfully navigated the misconceptions! By carefully analyzing each scenario, you've demonstrated a strong grasp of matrix operation principles and their correct application.",
+          "misconceptions": [
+            {
+              "trigger_label": "misconception_inverse_transpose",
+              "message": "It seems you might be confusing the matrix inverse with the transpose. Remember: The transpose flips rows and columns; the inverse is a matrix that, when multiplied, yields the identity matrix (only for square, non-singular matrices).",
+              "severity": "high"
+            },
+            {
+              "trigger_label": "misconception_matrix_size_type",
+              "message": "It's important to remember that not all matrix operations apply universally. Operations like determinant, inverse, and eigenvalues are strictly defined only for square matrices, and sometimes require additional conditions (e.g., non-singularity for inverse).",
+              "severity": "high"
+            },
+            {
+              "trigger_label": "misconception_eigen_geometric",
+              "message": "While eigenvalues and eigenvectors are computational, their true power lies in their geometric meaning. Eigenvectors are special vectors whose direction is unchanged by a linear transformation, and eigenvalues are the scaling factors for these vectors.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misconception_matrix_rank",
+              "message": "The rank of a matrix is more than just counting non-zero rows or columns. The rank is the dimension of the column space (or row space), which is the maximum number of linearly independent column (or row) vectors, often found after row reduction.",
+              "severity": "medium"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [
+      {
+        "from": "drag_drop",
+        "to": "description_matching",
+        "trigger": "all_zones_labeled",
+        "animation": "fade"
+      },
+      {
+        "from": "drag_drop",
+        "to": "drag_drop",
+        "trigger": "all_zones_labeled",
+        "animation": "fade"
+      }
+    ],
+    "interactionMode": "drag_drop",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 10,
+      "max_score": 300
+    },
+    "totalMaxScore": 300,
+    "generation_complete": true,
+    "dragDropConfig": {
+      "leader_line_style": "none",
+      "tray_position": "bottom",
+      "placement_animation": "spring",
+      "show_distractors": false,
+      "incorrect_animation": "shake",
+      "interaction_mode": "drag_drop",
+      "zone_hover_effect": "highlight",
+      "pin_marker_shape": "circle",
+      "label_style": "text",
+      "zone_idle_animation": "pulse",
+      "max_attempts": 3,
+      "tray_layout": "horizontal",
+      "shuffle_labels": true,
+      "label_anchor_side": "auto",
+      "leader_line_color": "",
+      "feedback_timing": "deferred",
+      "leader_line_animate": true
+    },
+    "descriptionMatchingConfig": {
+      "descriptions": {
+        "zone_matrix_transpose": "Reorients a matrix by swapping its rows and columns, effectively changing its structural perspective or alignment.",
+        "zone_matrix_inverse": "Serves to 'undo' the linear transformation represented by a square matrix, allowing for the reversal of operations or the solution of linear systems.",
+        "zone_determinant": "A scalar value that reveals crucial properties of a square matrix, such as its invertibility and the scaling factor of the linear transformation it represents.",
+        "zone_eigenvalues": "Scalar values that represent the factors by which corresponding eigenvectors are scaled during a linear transformation, revealing the fundamental directions of stretching or shrinking.",
+        "zone_trace": "The sum of the elements on the main diagonal of a square matrix, providing a scalar invariant useful in characterizing matrix properties and transformations.",
+        "zone_matrix_rank": "Indicates the maximum number of linearly independent rows or columns in a matrix, defining the dimension of the vector space spanned by its columns or rows."
+      },
+      "mode": "click_zone",
+      "distractor_descriptions": [
+        "A scalar value representing the product of all elements in the first row.",
+        "An operation that always converts a matrix into a diagonal form.",
+        "The process of finding the average value of all elements within a matrix."
+      ],
+      "show_connecting_lines": true,
+      "defer_evaluation": false,
+      "description_panel_position": "right"
+    }
+  }
+}

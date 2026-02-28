@@ -1,0 +1,177 @@
+{
+  "id": "bio-grad-evolution-mechanisms-compare",
+  "title": "Compare Mechanisms of Evolution",
+  "question": "Create an interactive diagram game where graduate students compare and contrast the four mechanisms of evolution: natural selection (differential survival based on fitness), genetic drift (random changes in small populations), gene flow (migration between populations), and mutation (new alleles arising) across categories including effect on allele frequency, role of population size, directionality, and real-world examples.",
+  "domain": "biology",
+  "educationLevel": "graduate",
+  "gameType": "interactive_diagram",
+  "mechanic": "compare_contrast",
+  "bloomsLevel": "Analyze",
+  "pipelineMetrics": {
+    "runId": "200d2906-14f4-4a0b-ba14-1581e54b0223",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 91.4,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T08:50:28.921554+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "Evolutionary Mechanisms: A Comparative Challenge",
+    "subject": "Evolutionary Biology",
+    "difficulty": "advanced",
+    "narrativeIntro": "Welcome, aspiring evolutionary biologist! Your mission is to unravel the intricate processes that drive life's diversity. This challenge will test your understanding of the four fundamental mechanisms of evolution: Natural Selection, Genetic Drift, Gene Flow, and Mutation. Prepare to compare, contrast, and apply your knowledge to real-world scenarios.",
+    "narrativeTheme": "Evolutionary Investigator",
+    "completionMessage": "Congratulations, Evolutionary Investigator! You have successfully navigated the complexities of evolutionary mechanisms, demonstrating a deep understanding of how life changes over generations. Your insights will contribute to a greater understanding of biodiversity!",
+    "estimatedDurationMinutes": 12,
+    "diagram": {
+      "assetPrompt": "",
+      "zones": []
+    },
+    "labels": [],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "memory_match",
+        "config": {
+          "instruction_text": "As an Evolutionary Investigator, your first task is to solidify your understanding of core concepts. Flip cards to match each key evolutionary term with its correct definition."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 80,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! You've found a matching pair.",
+          "on_incorrect": "Not quite a match. Keep exploring the cards, you'll get it!",
+          "on_completion": "Fantastic work! You've successfully matched all the pairs and mastered the core concepts of evolution!",
+          "misconceptions": [
+            {
+              "trigger_label": "misconception_directed_evolution",
+              "message": "Remember, evolution, particularly genetic drift and mutation, is largely random, and natural selection acts on existing variation without foresight or a predetermined 'perfect' outcome.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misconception_individual_evolution",
+              "message": "It's important to distinguish: evolution occurs at the population level over generations as allele frequencies change, not within an individual organism, which can only acclimate or develop.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misconception_only_natural_selection",
+              "message": "While powerful, natural selection is one of four primary mechanisms; genetic drift, gene flow, and mutation also drive significant evolutionary change.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misconception_drift_maladaptive",
+              "message": "Genetic drift is random and can lead to the fixation or loss of alleles regardless of their adaptive value; it doesn't inherently lead to 'bad' outcomes, just non-adaptive ones.",
+              "severity": "medium"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [],
+    "interactionMode": "memory_match",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 10,
+      "max_score": 80
+    },
+    "totalMaxScore": 80,
+    "generation_complete": true,
+    "memoryMatchConfig": {
+      "pairs": [
+        {
+          "id": "p1",
+          "front": "Natural Selection",
+          "back": "The process by which organisms better adapted to their environment tend to survive and produce more offspring.",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "Natural Selection is the differential survival and reproduction of individuals due to differences in phenotype.",
+          "category": "Mechanisms of Evolution"
+        },
+        {
+          "id": "p2",
+          "front": "Genetic Drift",
+          "back": "Random fluctuations in allele frequencies in a population, especially pronounced in small populations.",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "Genetic Drift is a change in allele frequencies due to random chance, not selection.",
+          "category": "Mechanisms of Evolution"
+        },
+        {
+          "id": "p3",
+          "front": "Gene Flow",
+          "back": "The transfer of genetic material from one population to another, typically through migration and interbreeding.",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "Gene Flow introduces new alleles into a population or changes existing allele frequencies through migration.",
+          "category": "Mechanisms of Evolution"
+        },
+        {
+          "id": "p4",
+          "front": "Mutation",
+          "back": "A permanent alteration in the DNA sequence of an organism, serving as the ultimate source of new genetic variation.",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "Mutations are the raw material for evolution, creating new alleles.",
+          "category": "Mechanisms of Evolution"
+        },
+        {
+          "id": "p5",
+          "front": "Allele Frequency",
+          "back": "The proportion of a specific allele within a population's gene pool.",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "Allele Frequency quantifies how common a particular allele is in a population.",
+          "category": "Alleles"
+        },
+        {
+          "id": "p6",
+          "front": "Population Size",
+          "back": "The total number of individuals in a population, which influences the impact of genetic drift and other evolutionary forces.",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "Population Size is critical because smaller populations are more susceptible to random changes like genetic drift.",
+          "category": "Population"
+        },
+        {
+          "id": "p7",
+          "front": "Directionality",
+          "back": "The concept that evolution can proceed in a consistent direction over time, often driven by persistent selective pressures.",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "Directionality implies a sustained trend in evolutionary change, often due to consistent environmental pressures.",
+          "category": "Directionality"
+        },
+        {
+          "id": "p8",
+          "front": "Fitness",
+          "back": "A measure of an organism's reproductive success and its ability to pass on its genes to the next generation.",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "Evolutionary Fitness is about an organism's contribution to the gene pool of the next generation.",
+          "category": "Fitness"
+        }
+      ],
+      "game_variant": "classic",
+      "gridSize": [
+        4,
+        4
+      ],
+      "match_type": "term_to_definition",
+      "card_back_style": "question_mark",
+      "matched_card_behavior": "fade",
+      "show_explanation_on_match": true,
+      "flip_duration_ms": 400,
+      "show_attempts_counter": true
+    }
+  }
+}

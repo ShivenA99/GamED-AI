@@ -1,0 +1,154 @@
+{
+  "id": "math-undergrad-calculus-description-matching",
+  "title": "Match Calculus Theorems to Statements",
+  "question": "Create an interactive diagram game where students match calculus theorems (Mean Value Theorem, Intermediate Value Theorem, Fundamental Theorem of Calculus, L'Hopital's Rule, Taylor's Theorem, Rolle's Theorem) to their formal mathematical statements.",
+  "domain": "mathematics",
+  "educationLevel": "undergraduate",
+  "gameType": "interactive_diagram",
+  "mechanic": "description_matching",
+  "bloomsLevel": "Apply",
+  "pipelineMetrics": {
+    "runId": "37c94854-479e-4582-ab0f-33de3c2737ff",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 61.8,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T06:05:45.193824+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "Calculus Theorem Challenge: Statement Recall",
+    "subject": "Calculus",
+    "difficulty": "intermediate",
+    "narrativeIntro": "Welcome, aspiring mathematician! The foundational theorems of calculus are powerful tools, but recalling their precise statements can be tricky. Your mission is to correctly match each theorem to its formal definition.",
+    "narrativeTheme": "Mathematical Discovery",
+    "completionMessage": "Excellent work! You've successfully navigated the landscape of calculus theorems, demonstrating a strong grasp of their formal statements and underlying principles.",
+    "estimatedDurationMinutes": 8,
+    "diagram": {
+      "assetPrompt": "",
+      "zones": []
+    },
+    "labels": [],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "memory_match",
+        "config": {
+          "instruction_text": "Flip cards to match each calculus theorem with its precise formal statement. Pay close attention to the specific conditions and conclusions for each theorem to avoid common pitfalls."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 15,
+          "max_score": 90,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! You've correctly matched the theorem with its formal statement.",
+          "on_incorrect": "Not quite the right pair. Keep exploring the cards \u2013 pay close attention to the conditions and conclusions of each theorem!",
+          "on_completion": "Fantastic work! You've successfully recalled and matched all the key calculus theorem statements.",
+          "misconceptions": [
+            {
+              "trigger_label": "confuse_rolle_mvt",
+              "message": "Students often confuse the conditions or conclusions of similar theorems, such as Rolle's Theorem and the Mean Value Theorem. Remember, Rolle's Theorem is a specific case of the Mean Value Theorem where the function values at the endpoints are equal, leading to a derivative of zero at some point.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "incorrect_lhopital",
+              "message": "Applying L'Hopital's Rule incorrectly when the limit is not an indeterminate form is a common mistake. L'Hopital's Rule can only be applied when the limit results in an indeterminate form (0/0 or \u221e/\u221e); otherwise, direct substitution or other limit techniques should be used.",
+              "severity": "high"
+            },
+            {
+              "trigger_label": "prerequisite_misunderstanding",
+              "message": "Misunderstanding the role of continuity and differentiability as prerequisites for many theorems can lead to errors. Theorems like MVT, IVT, and Rolle's Theorem explicitly require continuity on a closed interval and/or differentiability on an open interval for their conclusions to hold.",
+              "severity": "medium"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [],
+    "interactionMode": "memory_match",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 15,
+      "max_score": 90
+    },
+    "totalMaxScore": 90,
+    "generation_complete": true,
+    "memoryMatchConfig": {
+      "pairs": [
+        {
+          "id": "p1",
+          "front": "Mean Value Theorem",
+          "back": "If $f$ is continuous on the closed interval $[a, b]$ and differentiable on the open interval $(a, b)$, then there exists at least one number $c$ in $(a, b)$ such that $f'(c) = \\frac{f(b) - f(a)}{b - a}$.",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "The Mean Value Theorem relates the average rate of change of a function over an interval to its instantaneous rate of change at some point within that interval.",
+          "category": ""
+        },
+        {
+          "id": "p2",
+          "front": "Intermediate Value Theorem",
+          "back": "If $f$ is continuous on the closed interval $[a, b]$ and $k$ is any number between $f(a)$ and $f(b)$, then there exists at least one number $c$ in $[a, b]$ such that $f(c) = k$.",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "The Intermediate Value Theorem guarantees that a continuous function takes on every intermediate value between its values at the endpoints of an interval.",
+          "category": ""
+        },
+        {
+          "id": "p3",
+          "front": "Fundamental Theorem of Calculus",
+          "back": "If $f$ is continuous on $[a, b]$ and $F$ is any antiderivative of $f$ on $[a, b]$, then $\\int_a^b f(x) \\, dx = F(b) - F(a)$.",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "This part of the Fundamental Theorem of Calculus establishes the connection between differentiation and integration, providing a method for evaluating definite integrals.",
+          "category": ""
+        },
+        {
+          "id": "p4",
+          "front": "L'Hopital's Rule",
+          "back": "Suppose $\\lim_{x \\to c} f(x) = 0$ and $\\lim_{x \\to c} g(x) = 0$, or $\\lim_{x \\to c} f(x) = \\pm\\infty$ and $\\lim_{x \\to c} g(x) = \\pm\\infty$. If $f$ and $g$ are differentiable near $c$ and $g'(x) \\neq 0$, then $\\lim_{x \\to c} \\frac{f(x)}{g(x)} = \\lim_{x \\to c} \\frac{f'(x)}{g'(x)}$, provided the latter limit exists.",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "L'Hopital's Rule provides a method for evaluating limits of indeterminate forms ($0/0$ or $\\infty/\\infty$) by taking the derivatives of the numerator and denominator.",
+          "category": ""
+        },
+        {
+          "id": "p5",
+          "front": "Taylor's Theorem",
+          "back": "If a function $f$ has $n+1$ derivatives on an interval $I$ containing $a$, then for any $x$ in $I$, $f(x) = \\sum_{k=0}^n \\frac{f^{(k)}(a)}{k!}(x-a)^k + R_n(x)$, where the remainder term $R_n(x) = \\frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1}$ for some $c$ between $x$ and $a$.",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "Taylor's Theorem provides a polynomial approximation of a function, along with a formula for the remainder (error) of that approximation.",
+          "category": ""
+        },
+        {
+          "id": "p6",
+          "front": "Rolle's Theorem",
+          "back": "If $f$ is continuous on the closed interval $[a, b]$, differentiable on the open interval $(a, b)$, and $f(a) = f(b)$, then there exists at least one number $c$ in $(a, b)$ such that $f'(c) = 0$.",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "Rolle's Theorem states that if a differentiable function has the same value at two distinct points, then it must have at least one stationary point (where the derivative is zero) between them. It is a special case of the Mean Value Theorem.",
+          "category": ""
+        }
+      ],
+      "game_variant": "classic",
+      "gridSize": [
+        3,
+        4
+      ],
+      "match_type": "term_to_definition",
+      "card_back_style": "question_mark",
+      "matched_card_behavior": "fade",
+      "show_explanation_on_match": true,
+      "flip_duration_ms": 400,
+      "show_attempts_counter": true
+    }
+  }
+}

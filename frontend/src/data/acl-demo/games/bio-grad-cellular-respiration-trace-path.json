@@ -1,0 +1,370 @@
+{
+  "id": "bio-grad-cellular-respiration-trace-path",
+  "title": "Trace Cellular Respiration Pathways",
+  "question": "Create an interactive diagram game where graduate students trace glucose through the three stages of cellular respiration: glycolysis in the cytoplasm (glucose to pyruvate, 2 ATP), the Krebs cycle in the mitochondrial matrix (acetyl-CoA oxidation, 2 ATP, NADH, FADH2), and the electron transport chain on the inner mitochondrial membrane (oxidative phosphorylation, 34 ATP), tracking energy carriers and ATP yield at each stage.",
+  "domain": "biology",
+  "educationLevel": "graduate",
+  "gameType": "interactive_diagram",
+  "mechanic": "trace_path",
+  "bloomsLevel": "Evaluate",
+  "pipelineMetrics": {
+    "runId": "0c667e26-e982-41ab-99c2-c6a3ac673d6a",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 177.5,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T08:53:26.377186+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "Cellular Respiration: The Energy Nexus",
+    "subject": "Biology",
+    "difficulty": "advanced",
+    "narrativeIntro": "Welcome, biochemist! Your mission is to navigate the intricate pathways of cellular respiration, tracing glucose's transformation into the vital energy currency, ATP. Prepare to explore the cellular compartments, identify key molecules, and understand the energy yields at each critical stage. Your comprehensive understanding will be key to unlocking the secrets of cellular energy production.",
+    "narrativeTheme": "Metabolic Journey",
+    "completionMessage": "Congratulations! You have successfully mastered the complex journey of cellular respiration, demonstrating a profound understanding of its stages, locations, and energy dynamics. Your insights are a valuable contribution to biological discoveries!",
+    "estimatedDurationMinutes": 15,
+    "diagram": {
+      "assetPrompt": "A detailed scientific diagram of a eukaryotic cell, prominently featuring a large, clearly defined cytoplasm and an adjacent mitochondrion. Arrows should indicate glucose entering the cytoplasm and pyruvate exiting the cytoplasm towards the mitochondrion. The cytoplasm should have distinct, interactive zones for labeling.",
+      "zones": [
+        {
+          "id": "zone_cytoplasm",
+          "label": "Cytoplasm",
+          "points": [
+            [
+              91.1,
+              41.7
+            ],
+            [
+              82.4,
+              30.3
+            ],
+            [
+              82.8,
+              22.6
+            ],
+            [
+              67.0,
+              31.2
+            ],
+            [
+              39.7,
+              30.7
+            ],
+            [
+              47.3,
+              41.1
+            ],
+            [
+              36.1,
+              30.3
+            ],
+            [
+              1.1,
+              37.2
+            ],
+            [
+              0.0,
+              73.8
+            ],
+            [
+              49.7,
+              60.6
+            ],
+            [
+              71.0,
+              67.2
+            ],
+            [
+              83.9,
+              78.7
+            ],
+            [
+              83.3,
+              70.7
+            ],
+            [
+              91.1,
+              59.5
+            ]
+          ],
+          "x": 59.0,
+          "y": 48.3,
+          "radius": 64.3,
+          "shape": "polygon",
+          "center": {
+            "x": 59.0,
+            "y": 48.3
+          },
+          "hierarchyLevel": 1,
+          "childZoneIds": [
+            "zone_glycolysis"
+          ]
+        },
+        {
+          "id": "zone_glucose",
+          "label": "Glucose",
+          "points": [
+            [
+              2.0,
+              7.3
+            ],
+            [
+              16.4,
+              7.3
+            ],
+            [
+              16.4,
+              23.6
+            ],
+            [
+              2.0,
+              23.6
+            ]
+          ],
+          "x": 9.2,
+          "y": 15.5,
+          "width": 14.3,
+          "height": 16.3,
+          "shape": "rect",
+          "hierarchyLevel": 1
+        },
+        {
+          "id": "zone_pyruvate",
+          "label": "Pyruvate",
+          "x": -9.1,
+          "y": 50.7,
+          "shape": "circle",
+          "hierarchyLevel": 1,
+          "radius": 3,
+          "zone_type": "point"
+        },
+        {
+          "id": "zone_glycolysis",
+          "label": "Glycolysis",
+          "points": [
+            [
+              16.8,
+              19.4
+            ],
+            [
+              47.7,
+              19.4
+            ],
+            [
+              47.7,
+              41.2
+            ],
+            [
+              16.8,
+              41.2
+            ]
+          ],
+          "x": 32.2,
+          "y": 30.3,
+          "width": 30.9,
+          "height": 21.8,
+          "shape": "rect",
+          "description": "The metabolic pathway occurring in the cytoplasm that breaks down glucose into two molecules of pyruvate, initiating energy extraction.",
+          "hierarchyLevel": 2,
+          "parentZoneId": "zone_cytoplasm"
+        },
+        {
+          "id": "zone_atp",
+          "label": "ATP",
+          "x": -5.5,
+          "y": 50.7,
+          "shape": "circle",
+          "description": "The cell's primary energy currency, with a net of two molecules produced during glycolysis to fuel cellular processes.",
+          "hierarchyLevel": 1,
+          "radius": 3,
+          "zone_type": "point"
+        },
+        {
+          "id": "zone_nadh",
+          "label": "NADH",
+          "x": -1.9,
+          "y": 50.7,
+          "shape": "circle",
+          "description": "An electron carrier molecule produced during glycolysis, responsible for transporting high-energy electrons to the electron transport chain.",
+          "hierarchyLevel": 1,
+          "radius": 3,
+          "zone_type": "point"
+        }
+      ],
+      "imageUrl": "/api/assets/demo/0c667e26-e982-41ab-99c2-c6a3ac673d6a/diagram_scene_1.png",
+      "assetUrl": "/api/assets/demo/0c667e26-e982-41ab-99c2-c6a3ac673d6a/diagram_scene_1.png"
+    },
+    "labels": [
+      {
+        "id": "label_s1_0",
+        "text": "Cytoplasm",
+        "correctZoneId": "zone_cytoplasm"
+      },
+      {
+        "id": "label_s1_1",
+        "text": "Glucose",
+        "correctZoneId": "zone_glucose"
+      },
+      {
+        "id": "label_s1_2",
+        "text": "Pyruvate",
+        "correctZoneId": "zone_pyruvate"
+      },
+      {
+        "id": "label_s1_3",
+        "text": "Glycolysis",
+        "correctZoneId": "zone_glycolysis"
+      },
+      {
+        "id": "label_s1_4",
+        "text": "ATP",
+        "correctZoneId": "zone_atp"
+      },
+      {
+        "id": "label_s1_5",
+        "text": "NADH",
+        "correctZoneId": "zone_nadh"
+      }
+    ],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "Our journey begins in the bustling cytoplasm. Drag and drop the labels to identify the location of glycolysis and its primary input and output molecules."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 30,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! You've correctly identified this component or location.",
+          "on_incorrect": "Not quite. Remember where glycolysis specifically takes place or what its key players are. Give it another try!",
+          "on_completion": "Fantastic! You've accurately identified the key location, initial reactant, and primary product of glycolysis. Ready to learn more about them?",
+          "misconceptions": [
+            {
+              "trigger_label": "distractor_Mitochondrion_placed_in_Cytoplasm_zone",
+              "message": "Hold on! While much of cellular respiration happens in the mitochondria, glycolysis, the very first stage, actually occurs in the cytoplasm. Only the Krebs cycle and electron transport chain take place in the mitochondria.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "description_matching",
+        "config": {
+          "instruction_text": "Now that you've identified the key players and location, match each description to the correct metabolic process or molecule on the diagram, focusing on its function and yield."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 30,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Spot on! That's the correct description for this term.",
+          "on_incorrect": "Take another look. Consider the specific role and characteristics of each term in glycolysis. What makes it unique?",
+          "on_completion": "Outstanding work! You've successfully matched all the descriptions, demonstrating a strong grasp of glycolysis's key elements.",
+          "misconceptions": [
+            {
+              "trigger_label": "incorrect_match_ATP_description",
+              "message": "Careful there! While ATP is crucial, only small amounts are produced via substrate-level phosphorylation in glycolysis and the Krebs cycle. The vast majority is generated through oxidative phosphorylation in the electron transport chain.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "incorrect_match_NADH_description",
+              "message": "Remember, oxygen is only directly consumed as the final electron acceptor in the electron transport chain. Glycolysis and the Krebs cycle do not directly use oxygen.",
+              "severity": "medium"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [
+      {
+        "from": "drag_drop",
+        "to": "description_matching",
+        "trigger": "all_zones_labeled",
+        "animation": "fade"
+      }
+    ],
+    "interactionMode": "drag_drop",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 10,
+      "max_score": 60
+    },
+    "totalMaxScore": 60,
+    "generation_complete": true,
+    "dragDropConfig": {
+      "leader_line_style": "none",
+      "tray_position": "bottom",
+      "placement_animation": "spring",
+      "show_distractors": false,
+      "zone_idle_animation": "pulse",
+      "max_attempts": 3,
+      "pin_marker_shape": "circle",
+      "leader_line_animate": true,
+      "interaction_mode": "drag_drop",
+      "zone_hover_effect": "highlight",
+      "tray_layout": "horizontal",
+      "leader_line_color": "",
+      "label_anchor_side": "auto",
+      "label_style": "text",
+      "incorrect_animation": "shake",
+      "feedback_timing": "immediate",
+      "shuffle_labels": true
+    },
+    "descriptionMatchingConfig": {
+      "descriptions": {
+        "zone_glycolysis": "The metabolic pathway occurring in the cytoplasm that breaks down glucose into two molecules of pyruvate, initiating energy extraction.",
+        "zone_atp": "The cell's primary energy currency, with a net of two molecules produced during glycolysis to fuel cellular processes.",
+        "zone_nadh": "An electron carrier molecule produced during glycolysis, responsible for transporting high-energy electrons to the electron transport chain."
+      },
+      "mode": "click_zone",
+      "distractor_descriptions": [
+        "A molecule that directly enters the Krebs Cycle after glycolysis.",
+        "The final product of cellular respiration, yielding the most energy."
+      ],
+      "show_connecting_lines": true,
+      "defer_evaluation": false,
+      "description_panel_position": "right"
+    },
+    "zoneGroups": [
+      {
+        "id": "group_zone_cytoplasm",
+        "parentZoneId": "zone_cytoplasm",
+        "childZoneIds": [
+          "zone_glycolysis"
+        ],
+        "revealTrigger": "complete_parent",
+        "label": "Cytoplasm"
+      }
+    ],
+    "temporalConstraints": [
+      {
+        "constraint_type": "after",
+        "zone_a": "zone_glycolysis",
+        "zone_b": "zone_cytoplasm",
+        "description": "Zone zone_glycolysis visible after zone_cytoplasm is labeled"
+      }
+    ],
+    "revealOrder": [
+      "zone_glucose",
+      "zone_cytoplasm",
+      "zone_glycolysis",
+      "zone_pyruvate",
+      "zone_atp",
+      "zone_nadh"
+    ]
+  }
+}

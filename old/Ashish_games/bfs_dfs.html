@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BFS Adventure Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .game-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .graph-area {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border: 3px solid #4ecdc4;
+        }
+
+        .graph-title {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #4ecdc4;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .graph-container {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            min-height: 400px;
+            position: relative;
+            border: 2px solid #ddd;
+        }
+
+        .node {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+
+        .node:hover {
+            transform: scale(1.1);
+        }
+
+        .node.visited {
+            background: linear-gradient(135deg, #4ecdc4, #44a3a0);
+            animation: pulse 0.5s ease;
+        }
+
+        .node.current {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            transform: scale(1.2);
+            box-shadow: 0 0 20px rgba(240, 147, 251, 0.6);
+        }
+
+        .node.start {
+            border: 4px solid #ffd700;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        .edge {
+            position: absolute;
+            height: 3px;
+            background: #ddd;
+            transform-origin: left center;
+            z-index: 1;
+        }
+
+        .edge.active {
+            background: #4ecdc4;
+            height: 4px;
+        }
+
+        .queue-area {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border: 3px solid #ff6b6b;
+        }
+
+        .queue-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #ff6b6b;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .queue-viz {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            min-height: 150px;
+            margin-bottom: 20px;
+            border: 2px dashed #ff6b6b;
+        }
+
+        .queue-label {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .queue-items {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            min-height: 50px;
+            align-items: center;
+        }
+
+        .queue-item {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .visited-list {
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 2px solid #4caf50;
+        }
+
+        .visited-items {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .visited-item {
+            background: #4caf50;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            flex: 1;
+            min-width: 120px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .step-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .auto-btn {
+            background: linear-gradient(135deg, #4ecdc4, #44a3a0);
+        }
+
+        .reset-btn {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+        }
+
+        .new-graph-btn {
+            background: linear-gradient(135deg, #fa709a, #fee140);
+        }
+
+        button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .challenge-area {
+            margin-top: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border: 3px solid #667eea;
+        }
+
+        .challenge-title {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .challenge-question {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+
+        .answer-section {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            min-width: 300px;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 12px 30px;
+            min-width: 150px;
+        }
+
+        .feedback {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: none;
+        }
+
+        .feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+            display: block;
+        }
+
+        .feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #f5c6cb;
+            display: block;
+        }
+
+        .legend {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .legend-box {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+
+        .legend-unvisited {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .legend-current {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+        }
+
+        .legend-visited {
+            background: linear-gradient(135deg, #4ecdc4, #44a3a0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🗺️ BFS Adventure Game</h1>
+        <p class="subtitle">Master Breadth-First Search through interactive graph exploration</p>
+
+        <div class="info-box">
+            <strong>📚 Learning Goal:</strong> Understand how Breadth-First Search (BFS) uses a Queue (FIFO) to traverse graphs level by level, visiting all neighbors before moving deeper.
+        </div>
+
+        <div class="game-layout">
+            <div class="graph-area">
+                <div class="graph-title">🌐 Graph Explorer</div>
+                <div class="graph-container" id="graphContainer"></div>
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-box legend-unvisited"></div>
+                        <span>Unvisited</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-box legend-current"></div>
+                        <span>Current</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-box legend-visited"></div>
+                        <span>Visited</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="queue-area">
+                <div class="queue-title">📋 BFS Queue (FIFO)</div>
+                <div class="queue-viz">
+                    <div class="queue-label">Queue Contents:</div>
+                    <div class="queue-items" id="queueItems"></div>
+                </div>
+                <div class="visited-list">
+                    <div class="queue-label" style="color: #4caf50;">✅ Visited Order:</div>
+                    <div class="visited-items" id="visitedItems"></div>
+                </div>
+                <div class="controls">
+                    <button class="step-btn" id="stepBtn" onclick="bfsStep()">Next Step</button>
+                    <button class="auto-btn" id="autoBtn" onclick="autoRun()">Auto Run</button>
+                    <button class="reset-btn" onclick="resetBFS()">Reset</button>
+                    <button class="new-graph-btn" onclick="generateNewGraph()">New Graph</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="challenge-area">
+            <div class="challenge-title">🎯 Challenge: Predict the BFS Order!</div>
+            <div class="challenge-question" id="challengeQuestion">
+                <strong>Question:</strong> Starting from node <span id="startNode" style="color: #667eea; font-weight: bold;">A</span>, 
+                what order will BFS visit all the nodes?<br><br>
+                <em>Hint: BFS uses a Queue (FIFO) - it visits all neighbors at the current level before going deeper!</em>
+            </div>
+            <div class="answer-section">
+                <label style="font-weight: bold;">Your Answer:</label>
+                <input type="text" id="bfsAnswer" placeholder="Enter nodes in order (e.g., A,B,C,D,E,F)">
+                <button class="submit-btn" onclick="checkAnswer()">Submit Answer</button>
+            </div>
+            <div class="feedback" id="feedback"></div>
+        </div>
+    </div>
+
+    <script>
+        let graph = {};
+        let nodePositions = {};
+        let queue = [];
+        let visited = [];
+        let currentNode = null;
+        let isRunning = false;
+        let startNode = 'A';
+        let expectedOrder = [];
+
+        function generateNewGraph() {
+            const nodes = ['A', 'B', 'C', 'D', 'E', 'F'];
+            graph = {};
+            nodePositions = {};
+            
+            // Create a connected graph
+            nodes.forEach(node => {
+                graph[node] = [];
+            });
+
+            // Generate random edges ensuring connectivity
+            // First create a spanning tree
+            for (let i = 1; i < nodes.length; i++) {
+                const parent = nodes[Math.floor(Math.random() * i)];
+                const child = nodes[i];
+                if (!graph[parent].includes(child)) {
+                    graph[parent].push(child);
+                }
+                if (!graph[child].includes(parent)) {
+                    graph[child].push(parent);
+                }
+            }
+
+            // Add some additional random edges
+            const numExtraEdges = 2 + Math.floor(Math.random() * 3);
+            for (let i = 0; i < numExtraEdges; i++) {
+                const node1 = nodes[Math.floor(Math.random() * nodes.length)];
+                const node2 = nodes[Math.floor(Math.random() * nodes.length)];
+                if (node1 !== node2 && !graph[node1].includes(node2)) {
+                    graph[node1].push(node2);
+                    graph[node2].push(node1);
+                }
+            }
+
+            // Position nodes in a circle
+            const centerX = 250;
+            const centerY = 200;
+            const radius = 150;
+            nodes.forEach((node, i) => {
+                const angle = (i / nodes.length) * 2 * Math.PI - Math.PI / 2;
+                nodePositions[node] = {
+                    x: centerX + radius * Math.cos(angle),
+                    y: centerY + radius * Math.sin(angle)
+                };
+            });
+
+            startNode = 'A';
+            document.getElementById('startNode').textContent = startNode;
+
+            // Calculate expected BFS order
+            expectedOrder = calculateBFS(startNode);
+
+            renderGraph();
+            resetBFS();
+            document.getElementById('bfsAnswer').value = '';
+            document.getElementById('feedback').style.display = 'none';
+        }
+
+        function calculateBFS(start) {
+            const order = [];
+            const visited = new Set();
+            const queue = [start];
+            visited.add(start);
+
+            while (queue.length > 0) {
+                const node = queue.shift();
+                order.push(node);
+                
+                const neighbors = [...graph[node]].sort();
+                neighbors.forEach(neighbor => {
+                    if (!visited.has(neighbor)) {
+                        visited.add(neighbor);
+                        queue.push(neighbor);
+                    }
+                });
+            }
+            return order;
+        }
+
+        function renderGraph() {
+            const container = document.getElementById('graphContainer');
+            container.innerHTML = '';
+
+            // Draw edges first
+            Object.keys(graph).forEach(node => {
+                graph[node].forEach(neighbor => {
+                    if (node < neighbor) { // Draw each edge only once
+                        const edge = document.createElement('div');
+                        edge.className = 'edge';
+                        
+                        const pos1 = nodePositions[node];
+                        const pos2 = nodePositions[neighbor];
+                        
+                        const dx = pos2.x - pos1.x;
+                        const dy = pos2.y - pos1.y;
+                        const length = Math.sqrt(dx * dx + dy * dy);
+                        const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+                        
+                        edge.style.width = length + 'px';
+                        edge.style.left = (pos1.x + 30) + 'px';
+                        edge.style.top = (pos1.y + 30) + 'px';
+                        edge.style.transform = `rotate(${angle}deg)`;
+                        
+                        container.appendChild(edge);
+                    }
+                });
+            });
+
+            // Draw nodes
+            Object.keys(nodePositions).forEach(node => {
+                const nodeDiv = document.createElement('div');
+                nodeDiv.className = 'node';
+                nodeDiv.textContent = node;
+                nodeDiv.style.left = nodePositions[node].x + 'px';
+                nodeDiv.style.top = nodePositions[node].y + 'px';
+                nodeDiv.id = 'node-' + node;
+                
+                if (node === startNode) {
+                    nodeDiv.classList.add('start');
+                }
+                
+                container.appendChild(nodeDiv);
+            });
+        }
+
+        function resetBFS() {
+            visited = [];
+            queue = [startNode];
+            currentNode = null;
+            isRunning = false;
+            
+            document.querySelectorAll('.node').forEach(node => {
+                node.classList.remove('visited', 'current');
+            });
+            
+            updateQueueDisplay();
+            updateVisitedDisplay();
+            
+            document.getElementById('stepBtn').disabled = false;
+            document.getElementById('autoBtn').disabled = false;
+        }
+
+        function bfsStep() {
+            if (queue.length === 0) {
+                document.getElementById('stepBtn').disabled = true;
+                document.getElementById('autoBtn').disabled = true;
+                return;
+            }
+
+            currentNode = queue.shift();
+            visited.push(currentNode);
+
+            // Update node visualization
+            const nodeDiv = document.getElementById('node-' + currentNode);
+            nodeDiv.classList.remove('current');
+            nodeDiv.classList.add('visited');
+
+            // Add unvisited neighbors to queue
+            const neighbors = [...graph[currentNode]].sort();
+            neighbors.forEach(neighbor => {
+                if (!visited.includes(neighbor) && !queue.includes(neighbor)) {
+                    queue.push(neighbor);
+                    const neighborDiv = document.getElementById('node-' + neighbor);
+                    neighborDiv.classList.add('current');
+                }
+            });
+
+            updateQueueDisplay();
+            updateVisitedDisplay();
+
+            if (queue.length === 0) {
+                document.getElementById('stepBtn').disabled = true;
+                document.getElementById('autoBtn').disabled = true;
+            }
+        }
+
+        function updateQueueDisplay() {
+            const container = document.getElementById('queueItems');
+            container.innerHTML = '';
+            
+            queue.forEach(node => {
+                const item = document.createElement('div');
+                item.className = 'queue-item';
+                item.textContent = node;
+                container.appendChild(item);
+            });
+        }
+
+        function updateVisitedDisplay() {
+            const container = document.getElementById('visitedItems');
+            container.innerHTML = '';
+            
+            visited.forEach(node => {
+                const item = document.createElement('div');
+                item.className = 'visited-item';
+                item.textContent = node;
+                container.appendChild(item);
+            });
+        }
+
+        function autoRun() {
+            if (isRunning) return;
+            isRunning = true;
+            document.getElementById('autoBtn').disabled = true;
+            document.getElementById('stepBtn').disabled = true;
+            
+            const interval = setInterval(() => {
+                if (queue.length === 0) {
+                    clearInterval(interval);
+                    isRunning = false;
+                    return;
+                }
+                bfsStep();
+            }, 800);
+        }
+
+        function checkAnswer() {
+            const answer = document.getElementById('bfsAnswer').value
+                .trim()
+                .toUpperCase()
+                .replace(/\s/g, '')
+                .replace(/,/g, '');
+            
+            const expected = expectedOrder.join('');
+            const feedback = document.getElementById('feedback');
+
+            if (answer === expected) {
+                feedback.className = 'feedback correct';
+                feedback.style.display = 'block';
+                feedback.innerHTML = '✅ <strong>Perfect!</strong> You correctly predicted the BFS traversal order!<br><br>' +
+                    `<strong>Correct Order:</strong> ${expectedOrder.join(' → ')}<br><br>` +
+                    'You understand that BFS uses a Queue (FIFO) to visit nodes level by level!';
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.style.display = 'block';
+                feedback.innerHTML = '❌ <strong>Not quite right.</strong> Let\'s review:<br><br>' +
+                    `<strong>Your Answer:</strong> ${answer || 'empty'}<br>` +
+                    `<strong>Correct Order:</strong> ${expectedOrder.join(' → ')}<br><br>` +
+                    '<strong>Remember:</strong> BFS uses a Queue (FIFO):<br>' +
+                    '1. Start at the initial node<br>' +
+                    '2. Visit all neighbors at current level<br>' +
+                    '3. Then move to the next level<br>' +
+                    '4. Process nodes in the order they were added to the queue!<br><br>' +
+                    'Try using the "Next Step" button to visualize the process!';
+            }
+        }
+
+        // Initialize
+        generateNewGraph();
+    </script>
+</body>
+</html>

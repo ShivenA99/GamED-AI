@@ -1,0 +1,29 @@
+export interface BucketSortBlueprint {
+  templateType: "BUCKET_SORT";
+  title: string;
+  narrativeIntro: string;
+  buckets: Array<{
+    id: string;
+    label: string;
+    description?: string;
+  }>;
+  items: Array<{
+    id: string;
+    text: string;
+    correctBucketId: string;
+    description?: string;
+  }>;
+  tasks: Array<{
+    id: string;
+    type: "bucket_sort";
+    questionText: string;
+    requiredToProceed: boolean;
+  }>;
+  animationCues: {
+    itemDrag: string;
+    correctDrop: string;
+    incorrectDrop: string;
+    bucketFull?: string;
+  };
+}
+

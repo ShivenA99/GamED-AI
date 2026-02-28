@@ -1,0 +1,342 @@
+{
+  "id": "ling-k12-word-types-sorting",
+  "title": "Sort Words into Parts of Speech",
+  "question": "Create an interactive diagram game where students sort words into grammatical categories: nouns (dog, happiness, city), verbs (run, think, become), adjectives (blue, tall, happy), and adverbs (quickly, very, always).",
+  "domain": "linguistics",
+  "educationLevel": "k12",
+  "gameType": "interactive_diagram",
+  "mechanic": "sorting_categories",
+  "bloomsLevel": "Understand",
+  "pipelineMetrics": {
+    "runId": "c20191fe-c002-4063-aae2-5863d439a432",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 75.6,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T05:55:05.570289+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "Grammar Guru: Parts of Speech Sorter",
+    "subject": "English Language Arts (Grammar)",
+    "difficulty": "advanced",
+    "narrativeIntro": "Welcome, aspiring linguist! Your mission in the Linguistic Lab is to accurately classify words into their fundamental grammatical categories. Precision is key to mastering the building blocks of language!",
+    "narrativeTheme": "Linguistic Lab",
+    "completionMessage": "Excellent work, Grammar Guru! You've successfully categorized all the words, demonstrating a strong understanding of parts of speech.",
+    "estimatedDurationMinutes": 10,
+    "diagram": {
+      "assetPrompt": "",
+      "zones": []
+    },
+    "labels": [],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "sorting_categories",
+        "config": {
+          "instruction_text": "Drag each 'Word Item' from the 'Words Pool' into its correct grammatical 'Category Zone' (Noun, Verb, Adjective, or Adverb). Pay attention to how words function in different contexts."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 5,
+          "max_score": 100,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! You've correctly identified the part of speech for this word.",
+          "on_incorrect": "Not quite. Remember the definition for this category. Think about how the word functions in a sentence.",
+          "on_completion": "Fantastic work! You've successfully categorized all the words. Your understanding of parts of speech is strong!",
+          "misconceptions": [
+            {
+              "trigger_label": "misconception_context_dependency",
+              "message": "Many words can function as different parts of speech depending on how they are used in a sentence (e.g., 'run' can be a verb or a noun). Always consider the word's role in a sentence.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misconception_ly_rule_and_description",
+              "message": "While many adverbs end in '-ly', some adjectives also do (e.g., 'friendly'), and some adverbs do not (e.g., 'very'). Similarly, some words describing nouns can be used adverbially in other contexts. Focus on the word's function.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misconception_abstract_nouns",
+              "message": "Nouns include both concrete entities (people, places, tangible things) and abstract concepts (ideas, qualities, feelings). Don't forget abstract nouns!",
+              "severity": "medium"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [],
+    "interactionMode": "sorting_categories",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 5,
+      "max_score": 100
+    },
+    "totalMaxScore": 100,
+    "generation_complete": true,
+    "sortingConfig": {
+      "categories": [
+        {
+          "id": "cat1",
+          "label": "Noun",
+          "color": "#4A90E2",
+          "description": "A person, place, thing, or idea."
+        },
+        {
+          "id": "cat2",
+          "label": "Verb",
+          "color": "#50E3C2",
+          "description": "An action or state of being."
+        },
+        {
+          "id": "cat3",
+          "label": "Adjective",
+          "color": "#F8E71C",
+          "description": "Describes or modifies a noun."
+        },
+        {
+          "id": "cat4",
+          "label": "Adverb",
+          "color": "#D0021B",
+          "description": "Describes or modifies a verb, adjective, or another adverb."
+        }
+      ],
+      "items": [
+        {
+          "id": "i1",
+          "content": "river",
+          "correctCategoryId": "cat1",
+          "correct_category_ids": [],
+          "explanation": "'River' is a noun because it is a place/thing.",
+          "description": "",
+          "difficulty": "easy",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i2",
+          "content": "jump",
+          "correctCategoryId": "cat2",
+          "correct_category_ids": [],
+          "explanation": "'Jump' is a verb because it describes an action.",
+          "description": "",
+          "difficulty": "easy",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i3",
+          "content": "happy",
+          "correctCategoryId": "cat3",
+          "correct_category_ids": [],
+          "explanation": "'Happy' is an adjective because it describes a noun (e.g., a happy person).",
+          "description": "",
+          "difficulty": "easy",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i4",
+          "content": "quickly",
+          "correctCategoryId": "cat4",
+          "correct_category_ids": [],
+          "explanation": "'Quickly' is an adverb because it describes how a verb is done (e.g., he ran quickly).",
+          "description": "",
+          "difficulty": "easy",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i5",
+          "content": "idea",
+          "correctCategoryId": "cat1",
+          "correct_category_ids": [],
+          "explanation": "'Idea' is a noun because it is a concept or thought, which is a 'thing'.",
+          "description": "",
+          "difficulty": "easy",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i6",
+          "content": "analyze",
+          "correctCategoryId": "cat2",
+          "correct_category_ids": [],
+          "explanation": "'Analyze' is a verb because it is an action you can perform.",
+          "description": "",
+          "difficulty": "medium",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i7",
+          "content": "enormous",
+          "correctCategoryId": "cat3",
+          "correct_category_ids": [],
+          "explanation": "'Enormous' is an adjective because it describes the size of a noun (e.g., an enormous whale).",
+          "description": "",
+          "difficulty": "medium",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i8",
+          "content": "often",
+          "correctCategoryId": "cat4",
+          "correct_category_ids": [],
+          "explanation": "'Often' is an adverb because it describes the frequency of a verb (e.g., we often go there).",
+          "description": "",
+          "difficulty": "medium",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i9",
+          "content": "happiness",
+          "correctCategoryId": "cat1",
+          "correct_category_ids": [],
+          "explanation": "'Happiness' is an abstract noun; it is the name of a feeling or state.",
+          "description": "",
+          "difficulty": "medium",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i10",
+          "content": "is",
+          "correctCategoryId": "cat2",
+          "correct_category_ids": [],
+          "explanation": "'Is' is a verb that describes a state of being.",
+          "description": "",
+          "difficulty": "medium",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i11",
+          "content": "friendly",
+          "correctCategoryId": "cat3",
+          "correct_category_ids": [],
+          "explanation": "Though it ends in '-ly', 'friendly' is an adjective because it describes a noun (e.g., a friendly dog).",
+          "description": "",
+          "difficulty": "hard",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i12",
+          "content": "very",
+          "correctCategoryId": "cat4",
+          "correct_category_ids": [],
+          "explanation": "'Very' is an adverb because it modifies an adjective (very tall) or another adverb (very quickly).",
+          "description": "",
+          "difficulty": "medium",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i13",
+          "content": "run",
+          "correctCategoryId": "cat1",
+          "correct_category_ids": [],
+          "explanation": "In this context, 'run' is a thing (an act of running), making it a noun.",
+          "description": "As in: 'She went for a long run.'",
+          "difficulty": "hard",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i14",
+          "content": "fast",
+          "correctCategoryId": "cat2",
+          "correct_category_ids": [],
+          "explanation": "Here, 'fast' is an action (to abstain from food), making it a verb.",
+          "description": "As in: 'They fast during Ramadan.'",
+          "difficulty": "hard",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i15",
+          "content": "fast",
+          "correctCategoryId": "cat3",
+          "correct_category_ids": [],
+          "explanation": "In this sentence, 'fast' describes the noun 'car', making it an adjective.",
+          "description": "As in: 'He drives a fast car.'",
+          "difficulty": "hard",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i16",
+          "content": "fast",
+          "correctCategoryId": "cat4",
+          "correct_category_ids": [],
+          "explanation": "Here, 'fast' describes how she runs (it modifies the verb 'run'), making it an adverb.",
+          "description": "As in: 'She runs fast.'",
+          "difficulty": "hard",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i17",
+          "content": "scientist",
+          "correctCategoryId": "cat1",
+          "correct_category_ids": [],
+          "explanation": "'Scientist' is a noun because it is a person.",
+          "description": "",
+          "difficulty": "easy",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i18",
+          "content": "think",
+          "correctCategoryId": "cat2",
+          "correct_category_ids": [],
+          "explanation": "'Think' is a verb because it is a mental action.",
+          "description": "",
+          "difficulty": "easy",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i19",
+          "content": "blue",
+          "correctCategoryId": "cat3",
+          "correct_category_ids": [],
+          "explanation": "'Blue' is an adjective because it describes a noun (e.g., the blue sky).",
+          "description": "",
+          "difficulty": "easy",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i20",
+          "content": "carefully",
+          "correctCategoryId": "cat4",
+          "correct_category_ids": [],
+          "explanation": "'Carefully' is an adverb because it describes how an action is performed (e.g., she listened carefully).",
+          "description": "",
+          "difficulty": "easy",
+          "image": "",
+          "image_description": ""
+        }
+      ],
+      "sort_mode": "column",
+      "item_card_type": "text_only",
+      "container_style": "bucket",
+      "submit_mode": "immediate_feedback",
+      "allow_multi_category": false,
+      "show_category_hints": false,
+      "allow_partial_credit": true
+    }
+  }
+}

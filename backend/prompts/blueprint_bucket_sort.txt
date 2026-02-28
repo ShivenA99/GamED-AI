@@ -1,0 +1,388 @@
+## BUCKET_SORT Blueprint Generation
+
+You are an expert educational game blueprint designer. Generate a complete, valid BUCKET_SORT blueprint that teaches concepts through drag-and-drop categorization.
+
+### Template Purpose
+The BUCKET_SORT creates drag-and-drop interfaces where learners categorize items into appropriate buckets/categories. This template is ideal for:
+- Classification tasks (e.g., sorting organisms by kingdom)
+- Data type recognition (e.g., sorting variables by type)
+- Property-based grouping (e.g., metals vs non-metals)
+- Concept categorization (e.g., renewable vs non-renewable energy)
+- Grammar classification (e.g., parts of speech)
+- Historical era sorting (e.g., inventions by century)
+
+### Cognitive Alignment by Bloom's Level
+- **Remember Level**: Recall category membership (familiar items)
+- **Understand Level**: Explain why items belong in categories (descriptive feedback)
+- **Apply Level**: Categorize new/unfamiliar items (novel examples)
+- **Analyze Level**: Identify items that could fit multiple categories (edge cases)
+
+### Required Schema (ALL FIELDS MUST BE PRESENT)
+
+```typescript
+{{
+    "templateType": "BUCKET_SORT",  // MUST be exactly this
+    "title": string,                 // Engaging, descriptive title
+    "narrativeIntro": string,        // 2-4 sentences setting the scene
+    "buckets": Array<{{
+        "id": string,           // Descriptive ID like "bucket_mammals"
+        "label": string,        // Display name for the bucket
+        "description"?: string, // Hover tooltip explaining the category
+        "color"?: string,       // Visual distinguisher (hex or color name)
+        "capacity"?: number     // Optional max items (for challenge)
+    }}>,
+    "items": Array<{{
+        "id": string,              // Descriptive ID like "item_whale"
+        "text": string,            // Display text
+        "correctBucketId": string, // Which bucket this belongs in
+        "description"?: string,    // Why it belongs there (for feedback)
+        "difficulty"?: "easy" | "medium" | "hard"  // For adaptive hints
+    }}>,
+    "tasks": Array<{{
+        "id": string,
+        "type": "bucket_sort" | "identify_pattern" | "find_outlier",
+        "questionText": string,
+        "requiredToProceed": boolean
+    }}>,
+    "animationCues": {{
+        "itemDrag": string,       // Visual cue when dragging
+        "correctDrop": string,    // Feedback for correct placement
+        "incorrectDrop": string,  // Feedback for wrong placement
+        "bucketFull"?: string,    // When bucket reaches capacity
+        "allSorted"?: string      // Celebration when complete
+    }},
+    "hints": Array<{{
+        "itemId": string,
+        "hintText": string
+    }}>,
+    "feedbackMessages": {{
+        "perfect": string,
+        "good": string,
+        "retry": string
+    }},
+    "scoring"?: {{
+        "pointsPerCorrect": number,
+        "penaltyPerIncorrect": number,
+        "bonusForNoMistakes": number
+    }}
+}}
+```
+
+### EXAMPLE 1: Data Types in Programming (Computer Science)
+
+```json
+{{
+    "templateType": "BUCKET_SORT",
+    "title": "Data Type Detective",
+    "narrativeIntro": "The Code City database has been scrambled! As the lead data architect, you must sort these values back into their correct data type containers. One wrong classification could crash the entire system!",
+    "buckets": [
+        {{
+            "id": "bucket_integer",
+            "label": "Integer (int)",
+            "description": "Whole numbers without decimal points, positive or negative",
+            "color": "#4A90D9"
+        }},
+        {{
+            "id": "bucket_float",
+            "label": "Float (decimal)",
+            "description": "Numbers with decimal points, including scientific notation",
+            "color": "#7ED321"
+        }},
+        {{
+            "id": "bucket_string",
+            "label": "String (text)",
+            "description": "Text values, including numbers in quotes",
+            "color": "#F5A623"
+        }},
+        {{
+            "id": "bucket_boolean",
+            "label": "Boolean (true/false)",
+            "description": "Logical values that can only be true or false",
+            "color": "#BD10E0"
+        }}
+    ],
+    "items": [
+        {{
+            "id": "item_42",
+            "text": "42",
+            "correctBucketId": "bucket_integer",
+            "description": "A whole number with no decimal point is an integer",
+            "difficulty": "easy"
+        }},
+        {{
+            "id": "item_3_14",
+            "text": "3.14159",
+            "correctBucketId": "bucket_float",
+            "description": "Numbers with decimal points are floating-point numbers",
+            "difficulty": "easy"
+        }},
+        {{
+            "id": "item_hello",
+            "text": "\"Hello World\"",
+            "correctBucketId": "bucket_string",
+            "description": "Text enclosed in quotes is always a string",
+            "difficulty": "easy"
+        }},
+        {{
+            "id": "item_true",
+            "text": "true",
+            "correctBucketId": "bucket_boolean",
+            "description": "The keyword 'true' is a boolean value",
+            "difficulty": "easy"
+        }},
+        {{
+            "id": "item_negative",
+            "text": "-273",
+            "correctBucketId": "bucket_integer",
+            "description": "Negative whole numbers are still integers",
+            "difficulty": "medium"
+        }},
+        {{
+            "id": "item_scientific",
+            "text": "6.022e23",
+            "correctBucketId": "bucket_float",
+            "description": "Scientific notation represents floating-point numbers",
+            "difficulty": "hard"
+        }},
+        {{
+            "id": "item_string_number",
+            "text": "\"123\"",
+            "correctBucketId": "bucket_string",
+            "description": "Numbers in quotes are strings, not numeric types!",
+            "difficulty": "hard"
+        }},
+        {{
+            "id": "item_false",
+            "text": "false",
+            "correctBucketId": "bucket_boolean",
+            "description": "The keyword 'false' is a boolean value",
+            "difficulty": "easy"
+        }},
+        {{
+            "id": "item_zero_float",
+            "text": "0.0",
+            "correctBucketId": "bucket_float",
+            "description": "Even 0.0 is a float because it has a decimal point",
+            "difficulty": "medium"
+        }},
+        {{
+            "id": "item_empty_string",
+            "text": "\"\"",
+            "correctBucketId": "bucket_string",
+            "description": "An empty string is still a string type",
+            "difficulty": "medium"
+        }}
+    ],
+    "tasks": [
+        {{
+            "id": "task_sort_all",
+            "type": "bucket_sort",
+            "questionText": "Drag each value into its correct data type bucket. Watch out for tricky cases like numbers in quotes!",
+            "requiredToProceed": true
+        }},
+        {{
+            "id": "task_identify_pattern",
+            "type": "identify_pattern",
+            "questionText": "What's the key difference between 42 and \"42\"?",
+            "requiredToProceed": false
+        }}
+    ],
+    "animationCues": {{
+        "itemDrag": "Value card lifts with code bracket cursor, syntax highlighting glow",
+        "correctDrop": "Green checkmark compiles, card snaps into bucket with satisfying 'click'",
+        "incorrectDrop": "Red error message flashes, 'TypeError' sound, card bounces back",
+        "allSorted": "Database restored animation, all buckets glow green, 'Compilation Successful!' banner"
+    }},
+    "hints": [
+        {{
+            "itemId": "item_string_number",
+            "hintText": "Look carefully at the quotes. What do quotes always indicate in programming?"
+        }},
+        {{
+            "itemId": "item_scientific",
+            "hintText": "Scientific notation (e.g., 6.022e23) is how computers represent very large or small decimal numbers."
+        }}
+    ],
+    "feedbackMessages": {{
+        "perfect": "Outstanding! You have a solid grasp of data types. Remember: quotes make it a string, decimals make it a float, and true/false are booleans!",
+        "good": "Great work! Most items are correct. The tricky ones usually involve quotes or scientific notation.",
+        "retry": "Keep practicing! Focus on: Does it have quotes? Does it have a decimal? Is it true/false?"
+    }},
+    "scoring": {{
+        "pointsPerCorrect": 10,
+        "penaltyPerIncorrect": -5,
+        "bonusForNoMistakes": 50
+    }}
+}}
+```
+
+### EXAMPLE 2: Periodic Table Categories (Chemistry)
+
+```json
+{{
+    "templateType": "BUCKET_SORT",
+    "title": "Element Expedition",
+    "narrativeIntro": "Professor Mendeleev's element cards have been scattered by a lab explosion! Help restore order by sorting each element into its correct category on the periodic table. The fate of chemistry class depends on you!",
+    "buckets": [
+        {{
+            "id": "bucket_alkali_metals",
+            "label": "Alkali Metals",
+            "description": "Group 1 elements (except hydrogen). Highly reactive, soft, conduct electricity.",
+            "color": "#FF6B6B"
+        }},
+        {{
+            "id": "bucket_noble_gases",
+            "label": "Noble Gases",
+            "description": "Group 18 elements. Very stable, don't easily form compounds.",
+            "color": "#9B59B6"
+        }},
+        {{
+            "id": "bucket_halogens",
+            "label": "Halogens",
+            "description": "Group 17 elements. Highly reactive non-metals, form salts with metals.",
+            "color": "#3498DB"
+        }},
+        {{
+            "id": "bucket_transition_metals",
+            "label": "Transition Metals",
+            "description": "Groups 3-12. Form colorful compounds, multiple oxidation states.",
+            "color": "#F39C12"
+        }}
+    ],
+    "items": [
+        {{
+            "id": "item_sodium",
+            "text": "Na (Sodium)",
+            "correctBucketId": "bucket_alkali_metals",
+            "description": "Sodium is in Group 1, making it an alkali metal. It reacts vigorously with water!",
+            "difficulty": "easy"
+        }},
+        {{
+            "id": "item_helium",
+            "text": "He (Helium)",
+            "correctBucketId": "bucket_noble_gases",
+            "description": "Helium is in Group 18 with a full outer shell, making it unreactive.",
+            "difficulty": "easy"
+        }},
+        {{
+            "id": "item_chlorine",
+            "text": "Cl (Chlorine)",
+            "correctBucketId": "bucket_halogens",
+            "description": "Chlorine is in Group 17. It readily gains one electron to complete its outer shell.",
+            "difficulty": "easy"
+        }},
+        {{
+            "id": "item_iron",
+            "text": "Fe (Iron)",
+            "correctBucketId": "bucket_transition_metals",
+            "description": "Iron is in Group 8, a transition metal known for forming rust (iron oxide).",
+            "difficulty": "easy"
+        }},
+        {{
+            "id": "item_potassium",
+            "text": "K (Potassium)",
+            "correctBucketId": "bucket_alkali_metals",
+            "description": "Potassium is in Group 1. It's even more reactive than sodium with water!",
+            "difficulty": "medium"
+        }},
+        {{
+            "id": "item_argon",
+            "text": "Ar (Argon)",
+            "correctBucketId": "bucket_noble_gases",
+            "description": "Argon makes up about 1% of Earth's atmosphere and is completely inert.",
+            "difficulty": "medium"
+        }},
+        {{
+            "id": "item_bromine",
+            "text": "Br (Bromine)",
+            "correctBucketId": "bucket_halogens",
+            "description": "Bromine is the only non-metal that's liquid at room temperature.",
+            "difficulty": "medium"
+        }},
+        {{
+            "id": "item_copper",
+            "text": "Cu (Copper)",
+            "correctBucketId": "bucket_transition_metals",
+            "description": "Copper is a transition metal prized for its electrical conductivity.",
+            "difficulty": "easy"
+        }},
+        {{
+            "id": "item_lithium",
+            "text": "Li (Lithium)",
+            "correctBucketId": "bucket_alkali_metals",
+            "description": "Lithium is the lightest metal, used in rechargeable batteries.",
+            "difficulty": "medium"
+        }},
+        {{
+            "id": "item_iodine",
+            "text": "I (Iodine)",
+            "correctBucketId": "bucket_halogens",
+            "description": "Iodine is a halogen that forms purple vapor when heated.",
+            "difficulty": "hard"
+        }}
+    ],
+    "tasks": [
+        {{
+            "id": "task_sort_elements",
+            "type": "bucket_sort",
+            "questionText": "Sort each element into its correct periodic table category. Think about each element's group number and properties!",
+            "requiredToProceed": true
+        }}
+    ],
+    "animationCues": {{
+        "itemDrag": "Element card glows with atomic orbital animation, electron cloud follows cursor",
+        "correctDrop": "Element locks into place with atomic bond animation, periodic glow",
+        "incorrectDrop": "Card shakes with electron repulsion effect, 'wrong orbital' warning",
+        "allSorted": "Periodic table materializes, all elements shine in their group colors, chemistry achievement unlocked"
+    }},
+    "hints": [
+        {{
+            "itemId": "item_lithium",
+            "hintText": "Look at which column lithium is in on the periodic table. Column 1 elements share similar properties."
+        }},
+        {{
+            "itemId": "item_iodine",
+            "hintText": "Iodine ends in '-ine' like chlorine and bromine. What do these elements have in common?"
+        }}
+    ],
+    "feedbackMessages": {{
+        "perfect": "Excellent! You've mastered periodic table categories. Remember: Group number often determines an element's category and reactivity!",
+        "good": "Well done! You understand most element categories. Review the tricky ones by looking at their position on the periodic table.",
+        "retry": "Keep practicing! Tip: Alkali metals are in column 1, noble gases in column 18, halogens in column 17, and transition metals in the middle."
+    }}
+}}
+```
+
+### COMMON MISTAKES TO AVOID
+
+1. **Ambiguous categories**: Buckets should have clear, non-overlapping definitions
+
+2. **Missing correctBucketId**: Every item MUST have a valid bucket reference
+
+3. **Unbalanced difficulty**: Include a mix of easy, medium, and hard items
+
+4. **No descriptive feedback**: Each item should explain WHY it belongs in its bucket
+
+5. **Too few items**: Aim for 8-15 items for meaningful practice
+
+6. **Too many buckets**: 3-5 buckets maximum to avoid confusion
+
+7. **Missing bucket descriptions**: Hover tooltips help learners understand categories
+
+8. **No outliers/edge cases**: For higher Bloom's levels, include tricky items
+
+### GENERATION CHECKLIST
+
+Before returning your blueprint, verify:
+- [ ] templateType is exactly "BUCKET_SORT"
+- [ ] title is engaging and descriptive
+- [ ] narrativeIntro sets context (2-4 sentences)
+- [ ] 3-5 buckets with unique IDs, labels, and descriptions
+- [ ] 8-15 items with valid correctBucketId references
+- [ ] Each item has description explaining category membership
+- [ ] At least one task with type "bucket_sort"
+- [ ] All 4 animationCues are present and descriptive
+- [ ] Mix of difficulty levels (easy/medium/hard)
+- [ ] Content matches the pedagogical context (Bloom's level, subject)
+
+Respond with ONLY the valid JSON blueprint, no explanation.

@@ -1,0 +1,34 @@
+export interface GraphSketcherBlueprint {
+  templateType: "GRAPH_SKETCHER";
+  title: string;
+  narrativeIntro: string;
+  graph: {
+    nodes: Array<{
+      id: string;
+      label: string;
+      x?: number; // 0–1, optional initial position
+      y?: number; // 0–1, optional initial position
+      required?: boolean; // Must be included in solution
+    }>;
+    edges: Array<{
+      id: string;
+      fromNodeId: string;
+      toNodeId: string;
+      required?: boolean; // Must be included in solution
+      label?: string;
+    }>;
+  };
+  tasks: Array<{
+    id: string;
+    type: "graph_construction" | "graph_analysis";
+    questionText: string;
+    requiredToProceed: boolean;
+  }>;
+  animationCues: {
+    nodeCreate: string;
+    edgeCreate: string;
+    graphValid: string;
+    graphInvalid?: string;
+  };
+}
+

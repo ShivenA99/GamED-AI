@@ -1,0 +1,898 @@
+{
+  "id": "ling-grad-syntax-trees-compare",
+  "title": "Compare Syntax Trees Across Theories",
+  "question": "Create an interactive diagram game where graduate students compare syntactic representations across theoretical frameworks: Government & Binding (X-bar theory), Minimalist Program (Merge), Head-Driven Phrase Structure Grammar, and Lexical-Functional Grammar for the same sentence.",
+  "domain": "linguistics",
+  "educationLevel": "graduate",
+  "gameType": "interactive_diagram",
+  "mechanic": "compare_contrast",
+  "bloomsLevel": "Evaluate",
+  "pipelineMetrics": {
+    "runId": "0f0622e2-8670-45d4-81c0-702590374242",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 401.7,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T06:22:44.408532+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "Syntactic Architect: Frameworks Compared",
+    "subject": "Linguistics (Theoretical Syntax)",
+    "difficulty": "advanced",
+    "narrativeIntro": "Welcome, graduate student, to the Syntactic Architect's workshop! Your mission is to dissect and reconstruct the same sentence across four foundational syntactic theories: Government & Binding, Minimalist Program, HPSG, and LFG. By understanding their unique blueprints, you'll master the art of comparative syntactic analysis. Let's begin with 'The student quickly read the book.'",
+    "narrativeTheme": "Linguistic Expedition",
+    "completionMessage": "Congratulations, Syntactic Architect! You have successfully navigated the complex landscapes of theoretical syntax, demonstrating a profound understanding of how different frameworks represent the same linguistic reality. Your ability to compare, contrast, and synthesize these theories is truly exceptional.",
+    "estimatedDurationMinutes": 15,
+    "diagram": {
+      "assetPrompt": "A simplified, yet structurally accurate, X-bar tree diagram for the sentence 'The student quickly read the book.'. The diagram should clearly show hierarchical branching, with nodes representing syntactic categories (e.g., NP, VP, CP, DP, AdvP) and lexical items (N, V, D, Adv). Specific areas corresponding to XP, X-bar, X, Specifier, Complement, and Adjunct positions should be visually distinct and clearly delineated as interactive zones, ready for labeling and description matching. The sentence itself should be visibly integrated at the terminal nodes.",
+      "zones": [
+        {
+          "id": "zone_sentence",
+          "label": "Sentence",
+          "points": [
+            [
+              35.9,
+              2.6
+            ],
+            [
+              40.1,
+              2.6
+            ],
+            [
+              40.1,
+              6.2
+            ],
+            [
+              35.9,
+              6.2
+            ]
+          ],
+          "x": 38.0,
+          "y": 4.4,
+          "width": 4.3,
+          "height": 3.6,
+          "shape": "rect",
+          "hierarchyLevel": 1,
+          "childZoneIds": [
+            "zone_phrase"
+          ]
+        },
+        {
+          "id": "zone_phrase",
+          "label": "Phrase",
+          "points": [
+            [
+              89.5,
+              74.6
+            ],
+            [
+              93.9,
+              74.6
+            ],
+            [
+              93.9,
+              80.2
+            ],
+            [
+              89.5,
+              80.2
+            ]
+          ],
+          "x": 91.7,
+          "y": 77.4,
+          "width": 4.3,
+          "height": 5.6,
+          "shape": "rect",
+          "hierarchyLevel": 2,
+          "parentZoneId": "zone_sentence",
+          "childZoneIds": [
+            "zone_constituent",
+            "zone_node"
+          ]
+        },
+        {
+          "id": "zone_word",
+          "label": "Word",
+          "points": [
+            [
+              87.4,
+              91.5
+            ],
+            [
+              96.0,
+              91.5
+            ],
+            [
+              96.0,
+              95.5
+            ],
+            [
+              87.4,
+              95.5
+            ]
+          ],
+          "x": 91.7,
+          "y": 93.5,
+          "width": 8.6,
+          "height": 3.9,
+          "shape": "rect",
+          "hierarchyLevel": 4,
+          "parentZoneId": "zone_node"
+        },
+        {
+          "id": "zone_constituent",
+          "label": "Constituent",
+          "points": [
+            [
+              89.5,
+              74.6
+            ],
+            [
+              93.9,
+              74.6
+            ],
+            [
+              93.9,
+              80.2
+            ],
+            [
+              89.5,
+              80.2
+            ]
+          ],
+          "x": 91.7,
+          "y": 77.4,
+          "width": 4.3,
+          "height": 5.6,
+          "shape": "rect",
+          "hierarchyLevel": 3,
+          "parentZoneId": "zone_phrase",
+          "childZoneIds": [
+            "zone_word",
+            "zone_node"
+          ]
+        },
+        {
+          "id": "zone_node",
+          "label": "Node",
+          "points": [
+            [
+              89.5,
+              74.6
+            ],
+            [
+              93.9,
+              74.6
+            ],
+            [
+              93.9,
+              80.2
+            ],
+            [
+              89.5,
+              80.2
+            ]
+          ],
+          "x": 91.7,
+          "y": 77.4,
+          "width": 4.3,
+          "height": 5.6,
+          "shape": "rect",
+          "hierarchyLevel": 3,
+          "parentZoneId": "zone_constituent",
+          "childZoneIds": [
+            "zone_word"
+          ]
+        },
+        {
+          "id": "zone_xp_(maximal_projection)",
+          "label": "XP (Maximal Projection)",
+          "points": [
+            [
+              89.5,
+              74.6
+            ],
+            [
+              93.9,
+              74.6
+            ],
+            [
+              93.9,
+              80.2
+            ],
+            [
+              89.5,
+              80.2
+            ]
+          ],
+          "x": 91.7,
+          "y": 77.4,
+          "width": 4.3,
+          "height": 5.6,
+          "shape": "rect",
+          "description": "This constituent represents the highest level of a phrase, acting as a complete syntactic unit that can fulfill a specific grammatical function (e.g., subject, object) within a sentence. It projects all the properties of its head.",
+          "hierarchyLevel": 1,
+          "childZoneIds": [
+            "zone_specifier",
+            "zone_x_bar_(intermediate_projection)"
+          ]
+        },
+        {
+          "id": "zone_x_bar_(intermediate_projection)",
+          "label": "X-bar (Intermediate Projection)",
+          "points": [
+            [
+              63.7,
+              62.8
+            ],
+            [
+              63.7,
+              70.4
+            ],
+            [
+              63.6,
+              70.5
+            ],
+            [
+              63.7,
+              73.3
+            ],
+            [
+              63.9,
+              73.4
+            ],
+            [
+              66.0,
+              73.4
+            ],
+            [
+              66.0,
+              73.3
+            ],
+            [
+              66.2,
+              73.4
+            ],
+            [
+              68.1,
+              73.4
+            ],
+            [
+              68.2,
+              73.3
+            ],
+            [
+              68.4,
+              73.4
+            ],
+            [
+              70.4,
+              73.4
+            ],
+            [
+              70.6,
+              73.1
+            ],
+            [
+              70.6,
+              62.6
+            ],
+            [
+              65.9,
+              62.6
+            ],
+            [
+              65.8,
+              62.7
+            ],
+            [
+              63.9,
+              62.6
+            ]
+          ],
+          "x": 66.4,
+          "y": 69.9,
+          "radius": 8.4,
+          "shape": "polygon",
+          "center": {
+            "x": 66.4,
+            "y": 69.9
+          },
+          "description": "This node serves as an intermediate structural level between the head and the maximal projection. It provides a recursive position for adjunct attachment and is the constituent from which the specifier projects, allowing for phrase expansion.",
+          "hierarchyLevel": 2,
+          "parentZoneId": "zone_xp_(maximal_projection)",
+          "childZoneIds": [
+            "zone_x_(head)",
+            "zone_complement",
+            "zone_adjunct"
+          ]
+        },
+        {
+          "id": "zone_x_(head)",
+          "label": "X (Head)",
+          "points": [
+            [
+              89.2,
+              84.6
+            ],
+            [
+              96.2,
+              84.6
+            ],
+            [
+              96.2,
+              95.6
+            ],
+            [
+              89.2,
+              95.6
+            ]
+          ],
+          "x": 92.7,
+          "y": 90.1,
+          "width": 7.1,
+          "height": 11.0,
+          "shape": "rect",
+          "description": "This is the central, obligatory lexical item of a phrase that determines the category and core properties of the entire phrase. It projects its features and subcategorization requirements upwards through the X-bar levels.",
+          "hierarchyLevel": 3,
+          "parentZoneId": "zone_x_bar_(intermediate_projection)"
+        },
+        {
+          "id": "zone_specifier",
+          "label": "Specifier",
+          "points": [
+            [
+              24.0,
+              39.0
+            ],
+            [
+              24.0,
+              45.9
+            ],
+            [
+              35.1,
+              45.9
+            ],
+            [
+              35.1,
+              38.9
+            ],
+            [
+              31.3,
+              38.9
+            ],
+            [
+              30.7,
+              39.6
+            ],
+            [
+              30.2,
+              39.4
+            ],
+            [
+              29.1,
+              39.6
+            ],
+            [
+              28.5,
+              38.9
+            ]
+          ],
+          "x": 29.8,
+          "y": 40.7,
+          "radius": 7.8,
+          "shape": "polygon",
+          "center": {
+            "x": 29.8,
+            "y": 40.7
+          },
+          "description": "This position within an XP typically modifies or provides additional information about the head, often marking agreement or introducing a subject-like element. It is sister to X-bar and daughter to XP.",
+          "hierarchyLevel": 2,
+          "parentZoneId": "zone_xp_(maximal_projection)"
+        },
+        {
+          "id": "zone_complement",
+          "label": "Complement",
+          "points": [
+            [
+              81.6,
+              61.6
+            ],
+            [
+              86.4,
+              61.6
+            ],
+            [
+              86.4,
+              67.4
+            ],
+            [
+              81.6,
+              67.4
+            ]
+          ],
+          "x": 84.0,
+          "y": 64.5,
+          "width": 4.8,
+          "height": 5.8,
+          "shape": "rect",
+          "description": "This element is an argument required by the head to complete its meaning or satisfy its subcategorization requirements. It is sister to the head (X) and daughter to X-bar, providing essential information for the head's semantic interpretation.",
+          "hierarchyLevel": 3,
+          "parentZoneId": "zone_x_bar_(intermediate_projection)"
+        },
+        {
+          "id": "zone_adjunct",
+          "label": "Adjunct",
+          "points": [
+            [
+              89.4,
+              68.9
+            ],
+            [
+              89.1,
+              68.5
+            ],
+            [
+              86.1,
+              68.9
+            ],
+            [
+              85.2,
+              68.4
+            ],
+            [
+              81.2,
+              68.9
+            ],
+            [
+              80.4,
+              68.5
+            ],
+            [
+              78.1,
+              68.6
+            ],
+            [
+              78.1,
+              72.0
+            ],
+            [
+              76.5,
+              73.8
+            ],
+            [
+              77.6,
+              73.3
+            ],
+            [
+              78.3,
+              76.3
+            ],
+            [
+              88.9,
+              76.3
+            ],
+            [
+              89.4,
+              73.7
+            ],
+            [
+              89.4,
+              72.5
+            ],
+            [
+              89.0,
+              71.6
+            ],
+            [
+              89.4,
+              70.7
+            ]
+          ],
+          "x": 84.1,
+          "y": 71.3,
+          "radius": 8.0,
+          "shape": "polygon",
+          "center": {
+            "x": 84.1,
+            "y": 71.3
+          },
+          "description": "This is an optional modifier that provides additional, non-essential information about the head or phrase. It can attach at various X-bar levels, adding descriptive detail without being subcategorized for by the head.",
+          "hierarchyLevel": 3,
+          "parentZoneId": "zone_x_bar_(intermediate_projection)"
+        }
+      ],
+      "imageUrl": "/api/assets/demo/0f0622e2-8670-45d4-81c0-702590374242/diagram_scene_1.png",
+      "assetUrl": "/api/assets/demo/0f0622e2-8670-45d4-81c0-702590374242/diagram_scene_1.png"
+    },
+    "labels": [
+      {
+        "id": "label_s1_0",
+        "text": "Sentence",
+        "correctZoneId": "zone_sentence"
+      },
+      {
+        "id": "label_s1_1",
+        "text": "Phrase",
+        "correctZoneId": "zone_phrase"
+      },
+      {
+        "id": "label_s1_2",
+        "text": "Word",
+        "correctZoneId": "zone_word"
+      },
+      {
+        "id": "label_s1_3",
+        "text": "Constituent",
+        "correctZoneId": "zone_constituent"
+      },
+      {
+        "id": "label_s1_4",
+        "text": "Node",
+        "correctZoneId": "zone_node"
+      },
+      {
+        "id": "label_s1_5",
+        "text": "XP (Maximal Projection)",
+        "correctZoneId": "zone_xp_(maximal_projection)"
+      },
+      {
+        "id": "label_s1_6",
+        "text": "X-bar (Intermediate Projection)",
+        "correctZoneId": "zone_x_bar_(intermediate_projection)"
+      },
+      {
+        "id": "label_s1_7",
+        "text": "X (Head)",
+        "correctZoneId": "zone_x_(head)"
+      },
+      {
+        "id": "label_s1_8",
+        "text": "Specifier",
+        "correctZoneId": "zone_specifier"
+      },
+      {
+        "id": "label_s1_9",
+        "text": "Complement",
+        "correctZoneId": "zone_complement"
+      },
+      {
+        "id": "label_s1_10",
+        "text": "Adjunct",
+        "correctZoneId": "zone_adjunct"
+      }
+    ],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "First, let's analyze 'The student quickly read the book.' through the lens of Government & Binding theory, specifically X-bar theory. Drag and drop the labels to identify the key structural positions and projections within this X-bar tree diagram."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 70,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! You've correctly identified this component of the X-bar structure.",
+          "on_incorrect": "Not quite. Re-examine the role of this constituent within the X-bar schema. Remember its position relative to the head and other projections.",
+          "on_completion": "Fantastic! You've successfully labeled all the core components of the X-bar tree diagram. Now, let's deepen our understanding by matching their descriptions.",
+          "misconceptions": [
+            {
+              "trigger_label": "X (Head)_placed_in_XP",
+              "message": "The head (X) is the core lexical item, while XP is the entire phrase it projects. Consider where the head sits within the full projection.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "Specifier_placed_in_Complement",
+              "message": "Specifiers typically appear to the left of X-bar, providing additional information about the head, while Complements are selected by the head and complete its meaning, usually to the right.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "Adjunct_placed_in_Complement",
+              "message": "Adjuncts are optional modifiers that attach to X-bar, whereas Complements are obligatory arguments selected by the head. Think about what the head 'needs' versus what it can 'have'.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "X-bar_placed_in_XP",
+              "message": "X-bar is an intermediate projection, linking the head to the maximal projection (XP). XP is the highest level, representing the complete phrase.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "description_matching",
+        "config": {
+          "instruction_text": "Now that you've labeled the components of the X-bar tree, match each descriptive card to its corresponding structural position on the diagram, explaining its functional role within the Government & Binding framework."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 60,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "That's a perfect match! You've accurately described this X-bar component.",
+          "on_incorrect": "Not quite. Revisit the definition of both the term and the description. What is the primary function or structural position of each?",
+          "on_completion": "Outstanding! You've successfully matched all the descriptions to their corresponding X-bar components, demonstrating a strong grasp of their roles.",
+          "misconceptions": [
+            {
+              "trigger_label": "XP (Maximal Projection)_matched_X (Head)_description",
+              "message": "Remember, XP is the complete phrase, the highest projection, while X is the single lexical item that forms the core of that phrase. They are distinct levels of projection.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "Specifier_matched_Complement_description",
+              "message": "Specifiers modify the head and are typically external to the X-bar, while Complements are arguments selected by the head, completing its meaning within the X-bar.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "Adjunct_matched_Complement_description",
+              "message": "Adjuncts are optional modifiers, often recursive, that attach to X-bar. Complements are obligatory arguments, selected by the head, and are not recursive in the same way. Consider their optionality and selection properties.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "X-bar (Intermediate Projection)_matched_XP (Maximal Projection)_description",
+              "message": "X-bar is an intermediate node, while XP is the maximal projection, the full phrase. X-bar allows for the attachment of adjuncts before the phrase is complete.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "Drag and drop the labels onto the corresponding parts of the Minimalist tree diagram to identify key structural elements and operations like Merge, Phases, and traces of movement."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 60,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! That's the correct placement for this concept in a Minimalist Program derivation.",
+          "on_incorrect": "Not quite. Consider the definition and role of this concept in sentence construction. Where would it best fit?",
+          "on_completion": "Fantastic! You've correctly identified and placed all the key components of a Minimalist Program derivation.",
+          "misconceptions": [
+            {
+              "trigger_label": "misplaced_movement_concept",
+              "message": "Remember, 'Trace' and 'Movement Arrow' specifically denote the displacement of a constituent from one position to another. How does this differ from the initial combination of elements?",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "confused_derivation_step",
+              "message": "Consider the sequence of operations: 'Merge' combines elements to form larger structures, while a 'Phase' defines a complete syntactic domain that becomes inaccessible for further operations from outside. Which one is about combining, and which is about packaging?",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "trace_path",
+        "config": {
+          "instruction_text": "Now that you've labeled the key elements, trace the derivation of the sentence 'The student quickly read the book.' by clicking on the elements in the order they are merged and moved, starting from the lexical items and building up to the complete sentence."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 60,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Correct! That's the next logical step in the derivation path.",
+          "on_incorrect": "Not quite. Think about the fundamental order of operations in Minimalist Program. What happens immediately after combining words, or after forming a phrase?",
+          "on_completion": "Outstanding! You've successfully traced the full derivation path, demonstrating a strong understanding of Merge and Move operations.",
+          "misconceptions": [
+            {
+              "trigger_label": "incorrect_initial_order",
+              "message": "Remember, individual 'Words' are the fundamental building blocks. What operation immediately combines them to start forming larger structures?",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "missed_movement_step",
+              "message": "Consider if any elements need to move within the structure to satisfy syntactic requirements. Where would 'Movement' or 'Trace' fit in that process?",
+              "severity": "medium"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [
+      {
+        "from": "drag_drop",
+        "to": "description_matching",
+        "trigger": "all_zones_labeled",
+        "animation": "fade"
+      },
+      {
+        "from": "drag_drop",
+        "to": "trace_path",
+        "trigger": "all_zones_labeled",
+        "animation": "fade"
+      }
+    ],
+    "interactionMode": "drag_drop",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 10,
+      "max_score": 250
+    },
+    "totalMaxScore": 250,
+    "generation_complete": true,
+    "dragDropConfig": {
+      "leader_line_style": "none",
+      "tray_position": "bottom",
+      "placement_animation": "spring",
+      "show_distractors": false,
+      "zone_hover_effect": "highlight",
+      "leader_line_animate": true,
+      "tray_layout": "horizontal",
+      "shuffle_labels": true,
+      "pin_marker_shape": "circle",
+      "label_style": "text",
+      "interaction_mode": "drag_drop",
+      "leader_line_color": "",
+      "zone_idle_animation": "pulse",
+      "max_attempts": 3,
+      "incorrect_animation": "shake",
+      "feedback_timing": "deferred",
+      "label_anchor_side": "auto"
+    },
+    "descriptionMatchingConfig": {
+      "descriptions": {
+        "zone_xp_(maximal_projection)": "This constituent represents the highest level of a phrase, acting as a complete syntactic unit that can fulfill a specific grammatical function (e.g., subject, object) within a sentence. It projects all the properties of its head.",
+        "zone_x_bar_(intermediate_projection)": "This node serves as an intermediate structural level between the head and the maximal projection. It provides a recursive position for adjunct attachment and is the constituent from which the specifier projects, allowing for phrase expansion.",
+        "zone_x_(head)": "This is the central, obligatory lexical item of a phrase that determines the category and core properties of the entire phrase. It projects its features and subcategorization requirements upwards through the X-bar levels.",
+        "zone_specifier": "This position within an XP typically modifies or provides additional information about the head, often marking agreement or introducing a subject-like element. It is sister to X-bar and daughter to XP.",
+        "zone_complement": "This element is an argument required by the head to complete its meaning or satisfy its subcategorization requirements. It is sister to the head (X) and daughter to X-bar, providing essential information for the head's semantic interpretation.",
+        "zone_adjunct": "This is an optional modifier that provides additional, non-essential information about the head or phrase. It can attach at various X-bar levels, adding descriptive detail without being subcategorized for by the head."
+      },
+      "mode": "click_zone",
+      "distractor_descriptions": [],
+      "show_connecting_lines": true,
+      "defer_evaluation": false,
+      "description_panel_position": "right"
+    },
+    "zoneGroups": [
+      {
+        "id": "group_zone_sentence",
+        "parentZoneId": "zone_sentence",
+        "childZoneIds": [
+          "zone_phrase"
+        ],
+        "revealTrigger": "complete_parent",
+        "label": "Sentence"
+      },
+      {
+        "id": "group_zone_phrase",
+        "parentZoneId": "zone_phrase",
+        "childZoneIds": [
+          "zone_constituent",
+          "zone_node"
+        ],
+        "revealTrigger": "complete_parent",
+        "label": "Phrase"
+      },
+      {
+        "id": "group_zone_constituent",
+        "parentZoneId": "zone_constituent",
+        "childZoneIds": [
+          "zone_word",
+          "zone_node"
+        ],
+        "revealTrigger": "complete_parent",
+        "label": "Constituent"
+      },
+      {
+        "id": "group_zone_node",
+        "parentZoneId": "zone_node",
+        "childZoneIds": [
+          "zone_word"
+        ],
+        "revealTrigger": "complete_parent",
+        "label": "Node"
+      },
+      {
+        "id": "group_zone_xp_(maximal_projection)",
+        "parentZoneId": "zone_xp_(maximal_projection)",
+        "childZoneIds": [
+          "zone_specifier",
+          "zone_x_bar_(intermediate_projection)"
+        ],
+        "revealTrigger": "complete_parent",
+        "label": "XP (Maximal Projection)"
+      },
+      {
+        "id": "group_zone_x_bar_(intermediate_projection)",
+        "parentZoneId": "zone_x_bar_(intermediate_projection)",
+        "childZoneIds": [
+          "zone_x_(head)",
+          "zone_complement",
+          "zone_adjunct"
+        ],
+        "revealTrigger": "complete_parent",
+        "label": "X-bar (Intermediate Projection)"
+      }
+    ],
+    "temporalConstraints": [
+      {
+        "constraint_type": "after",
+        "zone_a": "zone_phrase",
+        "zone_b": "zone_sentence",
+        "description": "Zone zone_phrase visible after zone_sentence is labeled"
+      },
+      {
+        "constraint_type": "after",
+        "zone_a": "zone_constituent",
+        "zone_b": "zone_phrase",
+        "description": "Zone zone_constituent visible after zone_phrase is labeled"
+      },
+      {
+        "constraint_type": "after",
+        "zone_a": "zone_node",
+        "zone_b": "zone_constituent",
+        "description": "Zone zone_node visible after zone_constituent is labeled"
+      },
+      {
+        "constraint_type": "after",
+        "zone_a": "zone_word",
+        "zone_b": "zone_node",
+        "description": "Zone zone_word visible after zone_node is labeled"
+      },
+      {
+        "constraint_type": "after",
+        "zone_a": "zone_specifier",
+        "zone_b": "zone_xp_(maximal_projection)",
+        "description": "Zone zone_specifier visible after zone_xp_(maximal_projection) is labeled"
+      },
+      {
+        "constraint_type": "after",
+        "zone_a": "zone_x_bar_(intermediate_projection)",
+        "zone_b": "zone_xp_(maximal_projection)",
+        "description": "Zone zone_x_bar_(intermediate_projection) visible after zone_xp_(maximal_projection) is labeled"
+      },
+      {
+        "constraint_type": "after",
+        "zone_a": "zone_x_(head)",
+        "zone_b": "zone_x_bar_(intermediate_projection)",
+        "description": "Zone zone_x_(head) visible after zone_x_bar_(intermediate_projection) is labeled"
+      },
+      {
+        "constraint_type": "after",
+        "zone_a": "zone_complement",
+        "zone_b": "zone_x_bar_(intermediate_projection)",
+        "description": "Zone zone_complement visible after zone_x_bar_(intermediate_projection) is labeled"
+      },
+      {
+        "constraint_type": "after",
+        "zone_a": "zone_adjunct",
+        "zone_b": "zone_x_bar_(intermediate_projection)",
+        "description": "Zone zone_adjunct visible after zone_x_bar_(intermediate_projection) is labeled"
+      }
+    ],
+    "revealOrder": [
+      "zone_sentence",
+      "zone_xp_(maximal_projection)",
+      "zone_phrase",
+      "zone_specifier",
+      "zone_x_bar_(intermediate_projection)",
+      "zone_adjunct",
+      "zone_complement",
+      "zone_constituent",
+      "zone_node",
+      "zone_x_(head)",
+      "zone_word"
+    ]
+  }
+}

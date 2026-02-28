@@ -1,0 +1,613 @@
+{
+  "id": "bio-k12-food-chains-sorting",
+  "title": "Sort Organisms by Trophic Level",
+  "question": "Create an interactive diagram game where students sort organisms into their correct trophic levels in a food chain: producers (grass, algae, oak tree), primary consumers (rabbit, grasshopper, zooplankton), secondary consumers (frog, snake, small fish), tertiary consumers (hawk, eagle, shark), and decomposers (mushroom, bacteria, earthworm).",
+  "domain": "biology",
+  "educationLevel": "k12",
+  "gameType": "interactive_diagram",
+  "mechanic": "sorting_categories",
+  "bloomsLevel": "Understand",
+  "pipelineMetrics": {
+    "runId": "bb17c647-c8ef-4da9-8799-777b0fab0acd",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 127.8,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T08:45:15.242389+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "Ecosystem Architect: Trophic Levels Challenge",
+    "subject": "Biology",
+    "difficulty": "advanced",
+    "narrativeIntro": "Welcome, aspiring ecologist! Your mission is to construct a thriving ecosystem by correctly placing organisms into their vital trophic levels. Understand how energy flows and nutrients cycle to sustain life, and then articulate the unique role of each level.",
+    "narrativeTheme": "Ecosystem Construction & Energy Flow",
+    "completionMessage": "Congratulations, Ecosystem Architect! You've successfully built and understood the intricate web of life, demonstrating a deep grasp of trophic levels and energy flow. Your ecosystem is balanced and ready to thrive!",
+    "estimatedDurationMinutes": 10,
+    "diagram": {
+      "assetPrompt": "An abstract, clean educational diagram depicting a vertical ecological energy pyramid or food chain, clearly segmented into five distinct horizontal levels. The bottom-most and widest level is labeled 'Producers'. Above it, successively narrower levels are labeled 'Primary Consumers', 'Secondary Consumers', and 'Tertiary Consumers'. A separate, but visually integrated, section or loop should represent 'Decomposers', showing their role in nutrient cycling, perhaps as an arrow returning from all levels to the 'Producers' base or a side column. Each level must be clearly delineated as a distinct zone for interaction.",
+      "zones": [
+        {
+          "id": "zone_producers",
+          "label": "Producers",
+          "points": [
+            [
+              17.7,
+              88.5
+            ],
+            [
+              81.4,
+              88.7
+            ],
+            [
+              81.5,
+              88.3
+            ],
+            [
+              76.9,
+              77.5
+            ],
+            [
+              76.2,
+              76.5
+            ],
+            [
+              75.8,
+              75.1
+            ],
+            [
+              73.7,
+              70.9
+            ],
+            [
+              69.1,
+              70.9
+            ],
+            [
+              68.4,
+              71.3
+            ],
+            [
+              64.4,
+              70.9
+            ],
+            [
+              63.7,
+              71.5
+            ],
+            [
+              63.3,
+              71.2
+            ],
+            [
+              60.8,
+              71.3
+            ],
+            [
+              60.1,
+              70.9
+            ],
+            [
+              39.9,
+              71.2
+            ],
+            [
+              35.4,
+              70.8
+            ],
+            [
+              30.7,
+              71.3
+            ],
+            [
+              29.3,
+              70.9
+            ],
+            [
+              25.1,
+              71.2
+            ],
+            [
+              23.7,
+              74.1
+            ],
+            [
+              23.3,
+              75.7
+            ],
+            [
+              20.8,
+              80.8
+            ]
+          ],
+          "x": 52.8,
+          "y": 75.0,
+          "radius": 37.6,
+          "shape": "polygon",
+          "center": {
+            "x": 52.8,
+            "y": 75.0
+          },
+          "description": "These organisms form the foundational energy source for nearly all ecosystems by converting sunlight into usable chemical energy through photosynthesis, making organic matter available to other life forms."
+        },
+        {
+          "id": "zone_primary_consumers",
+          "label": "Primary Consumers",
+          "points": [
+            [
+              25.4,
+              70.3
+            ],
+            [
+              39.7,
+              70.6
+            ],
+            [
+              41.4,
+              70.3
+            ],
+            [
+              39.9,
+              69.0
+            ],
+            [
+              41.9,
+              68.9
+            ],
+            [
+              42.2,
+              70.4
+            ],
+            [
+              49.7,
+              70.6
+            ],
+            [
+              50.2,
+              68.6
+            ],
+            [
+              51.5,
+              69.0
+            ],
+            [
+              51.9,
+              70.6
+            ],
+            [
+              55.0,
+              70.6
+            ],
+            [
+              54.7,
+              68.9
+            ],
+            [
+              55.6,
+              68.6
+            ],
+            [
+              55.7,
+              70.3
+            ],
+            [
+              65.2,
+              68.5
+            ],
+            [
+              67.2,
+              70.3
+            ],
+            [
+              73.7,
+              70.3
+            ],
+            [
+              65.8,
+              52.4
+            ],
+            [
+              40.0,
+              53.2
+            ],
+            [
+              38.1,
+              52.3
+            ],
+            [
+              32.8,
+              52.7
+            ]
+          ],
+          "x": 49.4,
+          "y": 66.5,
+          "radius": 24.6,
+          "shape": "polygon",
+          "center": {
+            "x": 49.4,
+            "y": 66.5
+          },
+          "description": "Comprising herbivores, this level directly consumes producers, acting as the crucial link that transfers the energy stored in plants and algae up to the next trophic levels."
+        },
+        {
+          "id": "zone_secondary_consumers",
+          "label": "Secondary Consumers",
+          "points": [
+            [
+              33.1,
+              51.9
+            ],
+            [
+              40.9,
+              51.3
+            ],
+            [
+              46.7,
+              52.2
+            ],
+            [
+              53.0,
+              51.3
+            ],
+            [
+              56.4,
+              52.2
+            ],
+            [
+              59.5,
+              48.6
+            ],
+            [
+              62.2,
+              48.8
+            ],
+            [
+              62.7,
+              47.9
+            ],
+            [
+              62.8,
+              49.3
+            ],
+            [
+              61.7,
+              49.4
+            ],
+            [
+              62.1,
+              51.2
+            ],
+            [
+              61.0,
+              49.5
+            ],
+            [
+              60.4,
+              51.7
+            ],
+            [
+              65.5,
+              51.5
+            ],
+            [
+              64.1,
+              48.4
+            ],
+            [
+              63.5,
+              48.7
+            ],
+            [
+              63.3,
+              45.9
+            ],
+            [
+              60.6,
+              39.7
+            ],
+            [
+              59.2,
+              39.0
+            ],
+            [
+              58.7,
+              36.0
+            ],
+            [
+              39.7,
+              36.3
+            ]
+          ],
+          "x": 57.0,
+          "y": 47.7,
+          "radius": 24.3,
+          "shape": "polygon",
+          "center": {
+            "x": 57.0,
+            "y": 47.7
+          },
+          "description": "This level consists of carnivores or omnivores that obtain energy by preying on primary consumers, facilitating the flow of energy from herbivores further up the food chain."
+        },
+        {
+          "id": "zone_tertiary_consumers",
+          "label": "Tertiary Consumers",
+          "points": [
+            [
+              36.2,
+              10.1
+            ],
+            [
+              35.3,
+              12.4
+            ],
+            [
+              36.3,
+              14.9
+            ],
+            [
+              34.6,
+              15.0
+            ],
+            [
+              36.9,
+              18.5
+            ],
+            [
+              36.0,
+              19.2
+            ],
+            [
+              43.8,
+              25.8
+            ],
+            [
+              43.1,
+              27.7
+            ],
+            [
+              40.7,
+              27.9
+            ],
+            [
+              42.2,
+              30.3
+            ],
+            [
+              40.1,
+              35.8
+            ],
+            [
+              58.8,
+              35.9
+            ],
+            [
+              53.0,
+              21.6
+            ],
+            [
+              59.9,
+              11.5
+            ],
+            [
+              56.4,
+              12.2
+            ],
+            [
+              51.9,
+              18.9
+            ],
+            [
+              49.1,
+              13.1
+            ],
+            [
+              45.9,
+              19.4
+            ],
+            [
+              40.9,
+              14.6
+            ],
+            [
+              37.6,
+              9.1
+            ],
+            [
+              37.0,
+              11.5
+            ]
+          ],
+          "x": 43.6,
+          "y": 19.3,
+          "radius": 22.5,
+          "shape": "polygon",
+          "center": {
+            "x": 43.6,
+            "y": 19.3
+          },
+          "description": "Occupying the top of many food chains, these organisms are typically carnivores that feed on secondary consumers, playing a vital role in controlling populations at lower trophic levels."
+        },
+        {
+          "id": "zone_decomposers",
+          "label": "Decomposers",
+          "points": [
+            [
+              61.0,
+              35.5
+            ],
+            [
+              85.5,
+              35.5
+            ],
+            [
+              85.5,
+              85.9
+            ],
+            [
+              61.0,
+              85.9
+            ]
+          ],
+          "x": 73.3,
+          "y": 60.7,
+          "width": 24.5,
+          "height": 50.4,
+          "shape": "rect",
+          "description": "Essential for nutrient cycling, these organisms break down dead organic material from all trophic levels, returning vital nutrients to the soil and water for producers to reuse."
+        }
+      ],
+      "imageUrl": "/api/assets/demo/bb17c647-c8ef-4da9-8799-777b0fab0acd/diagram_scene_1.png",
+      "assetUrl": "/api/assets/demo/bb17c647-c8ef-4da9-8799-777b0fab0acd/diagram_scene_1.png"
+    },
+    "labels": [
+      {
+        "id": "label_s1_0",
+        "text": "Producers",
+        "correctZoneId": "zone_producers"
+      },
+      {
+        "id": "label_s1_1",
+        "text": "Primary Consumers",
+        "correctZoneId": "zone_primary_consumers"
+      },
+      {
+        "id": "label_s1_2",
+        "text": "Secondary Consumers",
+        "correctZoneId": "zone_secondary_consumers"
+      },
+      {
+        "id": "label_s1_3",
+        "text": "Tertiary Consumers",
+        "correctZoneId": "zone_tertiary_consumers"
+      },
+      {
+        "id": "label_s1_4",
+        "text": "Decomposers",
+        "correctZoneId": "zone_decomposers"
+      }
+    ],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "Drag each organism to its correct trophic level on the food chain diagram. Pay close attention to what each organism eats or how it obtains energy."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 150,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! That's the correct trophic level.",
+          "on_incorrect": "Not quite. Consider what kind of organisms belong to this trophic level and their primary food source. Try again.",
+          "on_completion": "Fantastic! You've successfully identified all the key trophic levels in an ecosystem.",
+          "misconceptions": [
+            {
+              "trigger_label": "incorrect_placement_Decomposers",
+              "message": "Remember, decomposers are vital for nutrient cycling, breaking down dead organic material and returning essential nutrients to the soil, which producers then use. They're much more than just 'cleaners'!",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "confusion_SecondaryTertiary",
+              "message": "An organism's trophic level is determined by what it eats, not just its size or predatory nature. A large predator eating primary consumers is a secondary consumer, while one eating secondary consumers is a tertiary consumer.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "description_matching",
+        "config": {
+          "instruction_text": "Now that you've classified the organisms, match each trophic level on the diagram to its essential ecological function. Think about the 'why' behind its role in the ecosystem."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 15,
+          "max_score": 75,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Perfect match! That description accurately defines the role of this trophic level.",
+          "on_incorrect": "Hmm, that description doesn't quite fit. Reread the description and think about the unique functional role of each trophic level. What does it *do* in the ecosystem?",
+          "on_completion": "Outstanding! You've demonstrated a strong understanding of the functional roles of each trophic level.",
+          "misconceptions": [
+            {
+              "trigger_label": "mismatch_Decomposers_description",
+              "message": "Decomposers are vital for nutrient cycling, breaking down dead organic material and returning essential nutrients to the soil, which producers then use. Their role is foundational for ecosystem health.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "mismatch_trophic_level_flexibility",
+              "message": "It's important to remember that many organisms, especially in complex food webs, can occupy multiple trophic levels depending on their varied diet. Trophic levels aren't always fixed!",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "mismatch_predator_trophic_level",
+              "message": "An organism's trophic level is determined by what it eats, not just its size or predatory nature; a large predator eating primary consumers is a secondary consumer, while one eating secondary consumers is a tertiary consumer.",
+              "severity": "medium"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [
+      {
+        "from": "drag_drop",
+        "to": "description_matching",
+        "trigger": "all_zones_labeled",
+        "animation": "fade"
+      }
+    ],
+    "interactionMode": "drag_drop",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 10,
+      "max_score": 225
+    },
+    "totalMaxScore": 225,
+    "generation_complete": true,
+    "dragDropConfig": {
+      "leader_line_style": "none",
+      "tray_position": "bottom",
+      "placement_animation": "spring",
+      "show_distractors": false,
+      "zone_idle_animation": "pulse",
+      "max_attempts": 3,
+      "pin_marker_shape": "circle",
+      "leader_line_animate": true,
+      "interaction_mode": "drag_drop",
+      "zone_hover_effect": "highlight",
+      "tray_layout": "horizontal",
+      "leader_line_color": "",
+      "label_anchor_side": "auto",
+      "label_style": "text_with_icon",
+      "incorrect_animation": "shake",
+      "feedback_timing": "immediate",
+      "shuffle_labels": true
+    },
+    "descriptionMatchingConfig": {
+      "descriptions": {
+        "zone_producers": "These organisms form the foundational energy source for nearly all ecosystems by converting sunlight into usable chemical energy through photosynthesis, making organic matter available to other life forms.",
+        "zone_primary_consumers": "Comprising herbivores, this level directly consumes producers, acting as the crucial link that transfers the energy stored in plants and algae up to the next trophic levels.",
+        "zone_secondary_consumers": "This level consists of carnivores or omnivores that obtain energy by preying on primary consumers, facilitating the flow of energy from herbivores further up the food chain.",
+        "zone_tertiary_consumers": "Occupying the top of many food chains, these organisms are typically carnivores that feed on secondary consumers, playing a vital role in controlling populations at lower trophic levels.",
+        "zone_decomposers": "Essential for nutrient cycling, these organisms break down dead organic material from all trophic levels, returning vital nutrients to the soil and water for producers to reuse."
+      },
+      "mode": "click_zone",
+      "distractor_descriptions": [
+        "Organisms that primarily consume inorganic compounds for energy."
+      ],
+      "show_connecting_lines": true,
+      "defer_evaluation": false,
+      "description_panel_position": "right"
+    }
+  }
+}

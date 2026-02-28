@@ -1,0 +1,193 @@
+{
+  "id": "cs-undergrad-algorithm-complexity-sorting",
+  "title": "Classify Algorithms by Time Complexity",
+  "question": "Create an interactive diagram game where students sort algorithms into complexity categories: O(n) group (linear search, counting sort), O(n log n) group (merge sort, heap sort), O(n^2) group (bubble sort, insertion sort, selection sort).",
+  "domain": "cs",
+  "educationLevel": "undergraduate",
+  "gameType": "interactive_diagram",
+  "mechanic": "sorting_categories",
+  "bloomsLevel": "Apply",
+  "pipelineMetrics": {
+    "runId": "01ea54c1-eac7-4a67-a3bb-b12beeef8553",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 74.2,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T06:05:20.111377+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "Algorithm Complexity Analyzer",
+    "subject": "Computer Science",
+    "difficulty": "advanced",
+    "narrativeIntro": "Welcome, aspiring algorithm architect! In this lab, your task is to efficiently categorize various algorithms based on their time complexity. Understanding Big O notation is crucial for designing scalable and performant software. Your mission is to sort each algorithm into its correct complexity group: O(n), O(n log n), or O(n^2).",
+    "narrativeTheme": "Code Optimization Lab",
+    "completionMessage": "Excellent work! You've successfully classified the algorithms by their time complexity, demonstrating a strong grasp of Big O notation and its implications for algorithm efficiency. This skill is fundamental to designing optimized software solutions.",
+    "estimatedDurationMinutes": 7,
+    "diagram": {
+      "assetPrompt": "",
+      "zones": []
+    },
+    "labels": [],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "sorting_categories",
+        "config": {
+          "instruction_text": "Welcome to the Code Optimization Lab! Your mission is to master algorithm efficiency. Drag each algorithm to its corresponding Big O time complexity category. Pay close attention to how each algorithm's performance scales with input size, focusing on its asymptotic growth rate."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 15,
+          "max_score": 105,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! You've accurately classified this algorithm's complexity as {category_label}.",
+          "on_incorrect": "Not quite. This algorithm doesn't fit into {category_label}. Re-evaluate how its operations scale with increasing input size. Does it grow linearly, log-linearly, or quadratically?",
+          "on_completion": "Outstanding! You've successfully classified all algorithms by their Big O complexity. This shows a strong grasp of how algorithms scale!",
+          "misconceptions": [
+            {
+              "trigger_label": "exact_runtime_misconception",
+              "message": "Big O notation describes the asymptotic upper bound on the growth rate of an algorithm's runtime or space requirements as the input size approaches infinity, not its exact runtime or performance for small inputs.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "always_slower_misconception",
+              "message": "While O(n log n) generally grows slower than O(n^2) for large 'n', for small input sizes, an O(n^2) algorithm with a very small constant factor might outperform an O(n log n) algorithm with a large constant factor.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "identical_performance_misconception",
+              "message": "Algorithms within the same Big O category (e.g., O(n^2) for bubble sort, insertion sort, selection sort) can still have different constant factors, best-case/worst-case scenarios, and practical performance due to implementation details or specific data distributions.",
+              "severity": "medium"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [],
+    "interactionMode": "sorting_categories",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 15,
+      "max_score": 105
+    },
+    "totalMaxScore": 105,
+    "generation_complete": true,
+    "sortingConfig": {
+      "categories": [
+        {
+          "id": "cat1",
+          "label": "O(n)",
+          "color": "#5DA5DA",
+          "description": "Linear Time: The algorithm's execution time grows linearly with the input size. Doubling the input size roughly doubles the run time."
+        },
+        {
+          "id": "cat2",
+          "label": "O(n log n)",
+          "color": "#4A90D9",
+          "description": "Log-linear Time: This complexity is common for efficient sorting algorithms. It scales better than quadratic time but worse than linear time."
+        },
+        {
+          "id": "cat3",
+          "label": "O(n^2)",
+          "color": "#607D8B",
+          "description": "Quadratic Time: The execution time is proportional to the square of the input size. These algorithms become very slow as the input size grows."
+        }
+      ],
+      "items": [
+        {
+          "id": "i1",
+          "content": "Linear Search",
+          "correctCategoryId": "cat1",
+          "correct_category_ids": [],
+          "explanation": "Correct! Linear search checks each element of the input list once, so its runtime grows linearly with the size of the list (n).",
+          "description": "",
+          "difficulty": "easy",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i2",
+          "content": "Counting Sort",
+          "correctCategoryId": "cat1",
+          "correct_category_ids": [],
+          "explanation": "Exactly! Counting sort operates by counting occurrences of each element, which involves a few linear passes over the data, resulting in O(n+k) time, which is linear.",
+          "description": "",
+          "difficulty": "hard",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i3",
+          "content": "Merge Sort",
+          "correctCategoryId": "cat2",
+          "correct_category_ids": [],
+          "explanation": "Perfect! Merge sort is a 'divide and conquer' algorithm. It divides the list logarithmically (log n) and then merges sublists in linear time (n), resulting in O(n log n) complexity.",
+          "description": "",
+          "difficulty": "medium",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i4",
+          "content": "Heap Sort",
+          "correctCategoryId": "cat2",
+          "correct_category_ids": [],
+          "explanation": "That's right! Heap sort builds a heap in O(n) and then extracts the max element n times. Each extraction takes O(log n), leading to an overall O(n log n) complexity.",
+          "description": "",
+          "difficulty": "hard",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i5",
+          "content": "Bubble Sort",
+          "correctCategoryId": "cat3",
+          "correct_category_ids": [],
+          "explanation": "Correct. Bubble sort's nested loops compare every element with every other element in the worst case, leading to a runtime that grows quadratically with the input size (n * n).",
+          "description": "",
+          "difficulty": "easy",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i6",
+          "content": "Insertion Sort",
+          "correctCategoryId": "cat3",
+          "correct_category_ids": [],
+          "explanation": "Yes! In the worst-case scenario (a reverse-sorted list), insertion sort requires a pass for each of the n elements, and each pass may shift up to n elements, resulting in O(n^2) complexity.",
+          "description": "",
+          "difficulty": "medium",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i7",
+          "content": "Selection Sort",
+          "correctCategoryId": "cat3",
+          "correct_category_ids": [],
+          "explanation": "Excellent! Selection sort iterates through the list to find the minimum element (n operations) and does this for each of the n positions, resulting in nested loops and O(n^2) complexity.",
+          "description": "",
+          "difficulty": "medium",
+          "image": "",
+          "image_description": ""
+        }
+      ],
+      "sort_mode": "bucket",
+      "item_card_type": "text_only",
+      "container_style": "bucket",
+      "submit_mode": "immediate_feedback",
+      "allow_multi_category": false,
+      "show_category_hints": false,
+      "allow_partial_credit": true
+    }
+  }
+}

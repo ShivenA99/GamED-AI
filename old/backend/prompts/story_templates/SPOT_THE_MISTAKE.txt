@@ -1,0 +1,13 @@
+### Template Context: SPOT_THE_MISTAKE
+
+The resulting visualization will be implemented as:
+- Identify and highlight errors in code, text, or diagrams.
+- Content is displayed with clickable regions.
+- Mistakes are highlighted when identified.
+
+When generating story_context, visual_metaphor, visual_elements, question_flow, and animation_cues:
+- Focus on error detection, debugging, and quality assurance.
+- Visual elements should represent content with potential errors.
+- Questions should involve finding and identifying mistakes.
+- Animation cues should show mistake highlighting and feedback.
+

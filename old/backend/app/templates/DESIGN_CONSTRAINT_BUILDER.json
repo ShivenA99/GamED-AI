@@ -1,0 +1,25 @@
+{
+  "templateType": "DESIGN_CONSTRAINT_BUILDER",
+  "description": "Design solutions while respecting constraints and requirements.",
+  "domains": ["engineering", "design", "problem_solving", "constraints", "optimization"],
+  "blueprintSchema": {
+    "requiredFields": [
+      "templateType",
+      "title",
+      "narrativeIntro",
+      "constraints",
+      "designSpace",
+      "tasks"
+    ]
+  },
+  "htmlContract": {
+    "requiredIds": ["gameRoot", "constraintsPanel", "designCanvas", "submitBtn", "feedbackArea"],
+    "requiredClasses": ["constraint-item", "design-element", "constraint-violated", "constraint-satisfied"],
+    "interactionNotes": [
+      "Constraints are displayed as requirements.",
+      "Design elements are placed on canvas.",
+      "Violations are highlighted in real-time."
+    ]
+  }
+}
+

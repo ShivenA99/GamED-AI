@@ -1,0 +1,31 @@
+export interface MatrixMatchBlueprint {
+  templateType: "MATRIX_MATCH";
+  title: string;
+  narrativeIntro: string;
+  rows: Array<{
+    id: string;
+    label: string;
+  }>;
+  columns: Array<{
+    id: string;
+    label: string;
+  }>;
+  matches: Array<{
+    rowId: string;
+    columnId: string;
+    isCorrect: boolean;
+  }>;
+  tasks: Array<{
+    id: string;
+    type: "matrix_match";
+    questionText: string;
+    requiredToProceed: boolean;
+  }>;
+  animationCues: {
+    cellSelect: string;
+    matchFound: string;
+    mismatch: string;
+    matrixComplete?: string;
+  };
+}
+

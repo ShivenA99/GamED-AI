@@ -1,0 +1,473 @@
+{
+  "id": "hist-k12-american-revolution-sequencing",
+  "title": "Order Events of the American Revolution",
+  "question": "Create an interactive diagram game where students arrange major events of the American Revolution in chronological order: Stamp Act, Boston Tea Party, First Continental Congress, Battles of Lexington and Concord, Declaration of Independence, Battle of Yorktown, Treaty of Paris.",
+  "domain": "history",
+  "educationLevel": "k12",
+  "gameType": "interactive_diagram",
+  "mechanic": "sequencing",
+  "bloomsLevel": "Remember",
+  "pipelineMetrics": {
+    "runId": "10e868af-1a14-43c2-b99a-111d1923abd0",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 58.7,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T03:23:11.214571+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "Path to Independence: A Revolution Timeline",
+    "subject": "History",
+    "difficulty": "beginner",
+    "narrativeIntro": "The American Revolution was a series of pivotal moments that shaped the birth of a nation. First, arrange key events chronologically. Then, match each event to its significance. Finally, step into the shoes of a colonial leader and make the critical decisions that shaped independence!",
+    "narrativeTheme": "Historical Chronology",
+    "completionMessage": "Excellent work! You've mastered the chronology, significance, and strategic decisions of the American Revolution!",
+    "estimatedDurationMinutes": 10,
+    "diagram": {
+      "assetPrompt": "",
+      "zones": []
+    },
+    "labels": [],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "sequencing",
+        "config": {
+          "instruction_text": "Arrange the following pivotal events of the American Revolution in their correct chronological order, from the earliest to the latest. Drag and drop each event into its proper place on the timeline."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 70,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! This event is correctly placed in the sequence.",
+          "on_incorrect": "Not quite right. Consider what event might have happened directly before or after this one in the timeline.",
+          "on_completion": "Fantastic! You've accurately sequenced the major events. Now match each event to its historical significance!",
+          "misconceptions": [
+            {
+              "trigger_label": "declaration_ends_war",
+              "message": "The Declaration of Independence formally stated the colonies' intent to separate, but the war continued for several years after its signing, with major battles still to come.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "bostontp_first_protest",
+              "message": "The Stamp Act (1765) was an earlier and significant protest against direct taxation, preceding the Boston Tea Party (1773) which targeted the Tea Act.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "treatyofparis_starts_war",
+              "message": "The Treaty of Paris (1783) was the final peace agreement that officially ended the American Revolutionary War and recognized American independence.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "memory_match",
+        "config": {
+          "instruction_text": "Great job with the timeline! Now match each event to its historical significance by flipping cards to find matching pairs."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 15,
+          "max_score": 105,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Match found! You know your Revolutionary history!",
+          "on_incorrect": "Not a match — try to remember where each card is located.",
+          "on_completion": "Outstanding! Now step into the role of a colonial leader and make the decisions that shaped independence!",
+          "misconceptions": []
+        }
+      },
+      {
+        "type": "branching_scenario",
+        "config": {
+          "instruction_text": "You are a colonial leader guiding the American colonies through the Revolution. Make strategic decisions at each turning point. Choose wisely — wrong choices will send you back to reconsider!"
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 20,
+          "max_score": 100,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent strategic decision! History proved this was the right path.",
+          "on_incorrect": "That path would not have led to independence. Reconsider your options.",
+          "on_completion": "You've successfully guided the colonies from protest to nationhood!",
+          "misconceptions": []
+        }
+      }
+    ],
+    "modeTransitions": [
+      {
+        "from": "sequencing",
+        "to": "memory_match",
+        "trigger": "sequence_complete",
+        "animation": "fade"
+      },
+      {
+        "from": "memory_match",
+        "to": "branching_scenario",
+        "trigger": "memory_complete",
+        "animation": "fade"
+      }
+    ],
+    "interactionMode": "sequencing",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 10,
+      "max_score": 275
+    },
+    "totalMaxScore": 275,
+    "generation_complete": true,
+    "sequenceConfig": {
+      "items": [
+        {
+          "id": "s1",
+          "content": "Stamp Act",
+          "explanation": "Enacted in 1765, this was one of the first direct taxes imposed by Britain on the American colonies, sparking widespread protest and the cry of 'no taxation without representation'.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        },
+        {
+          "id": "s2",
+          "content": "Boston Tea Party",
+          "explanation": "In 1773, colonists, frustrated with the Tea Act, dumped British tea into Boston Harbor. This act of protest escalated tensions significantly.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        },
+        {
+          "id": "s3",
+          "content": "First Continental Congress",
+          "explanation": "Delegates from twelve of the thirteen colonies met in 1774 to organize colonial resistance to Parliament's Coercive Acts, which were passed in response to the Boston Tea Party.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        },
+        {
+          "id": "s4",
+          "content": "Battles of Lexington and Concord",
+          "explanation": "Occurring in 1775, these were the first military engagements of the Revolutionary War, often referred to as 'the shot heard round the world'.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        },
+        {
+          "id": "s5",
+          "content": "Declaration of Independence",
+          "explanation": "Adopted on July 4, 1776, this document formally announced the thirteen colonies' separation from Great Britain and articulated their philosophical justifications for independence.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        },
+        {
+          "id": "s6",
+          "content": "Battle of Yorktown",
+          "explanation": "This decisive victory for a combined American and French force in 1781 was the last major land battle, leading to the British surrender and negotiations to end the war.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        },
+        {
+          "id": "s7",
+          "content": "Treaty of Paris",
+          "explanation": "Signed in 1783, this treaty officially ended the American Revolutionary War and recognized the United States as an independent nation.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        }
+      ],
+      "correct_order": ["s1", "s2", "s3", "s4", "s5", "s6", "s7"],
+      "sequence_type": "ordered",
+      "layout_mode": "vertical_list",
+      "interaction_pattern": "drag_reorder",
+      "card_type": "text_only",
+      "connector_style": "arrow",
+      "show_position_numbers": false,
+      "allow_partial_credit": true
+    },
+    "memoryMatchConfig": {
+      "pairs": [
+        {
+          "id": "pair-stamp",
+          "front": "Stamp Act (1765)",
+          "back": "First direct tax on colonies — sparked 'no taxation without representation'",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "The Stamp Act required colonists to pay a tax on printed materials. It was the first internal tax levied directly on American colonists by the British Parliament.",
+          "category": "taxation"
+        },
+        {
+          "id": "pair-tea",
+          "front": "Boston Tea Party (1773)",
+          "back": "Colonists dumped 342 chests of British tea into Boston Harbor",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "In response to the Tea Act, members of the Sons of Liberty disguised as Mohawk Indians boarded three ships and destroyed the tea cargo as an act of political protest.",
+          "category": "protest"
+        },
+        {
+          "id": "pair-congress",
+          "front": "First Continental Congress (1774)",
+          "back": "12 colonies organized resistance to the Coercive (Intolerable) Acts",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "Meeting in Philadelphia, delegates from 12 colonies agreed to boycott British goods and petitioned King George III for redress of their grievances.",
+          "category": "political"
+        },
+        {
+          "id": "pair-lexington",
+          "front": "Lexington & Concord (1775)",
+          "back": "First military battles — 'the shot heard round the world'",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "British troops marched to confiscate colonial weapons stores. Minutemen confronted them, beginning the armed conflict of the Revolution.",
+          "category": "military"
+        },
+        {
+          "id": "pair-declaration",
+          "front": "Declaration of Independence (1776)",
+          "back": "Formally announced separation from Britain on July 4th",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "Drafted primarily by Thomas Jefferson, this document declared the colonies' independence and outlined the natural rights philosophy that justified revolution.",
+          "category": "political"
+        },
+        {
+          "id": "pair-yorktown",
+          "front": "Battle of Yorktown (1781)",
+          "back": "Decisive American-French victory that led to British surrender",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "General Washington, with French allies under Rochambeau and naval support from de Grasse, trapped Cornwallis's army, effectively ending major combat.",
+          "category": "military"
+        },
+        {
+          "id": "pair-paris",
+          "front": "Treaty of Paris (1783)",
+          "back": "Officially ended the war and recognized U.S. independence",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "Negotiated by Benjamin Franklin, John Adams, and John Jay, this treaty set boundaries for the new nation and ended hostilities between Britain and the United States.",
+          "category": "diplomacy"
+        }
+      ],
+      "gridSize": [4, 4],
+      "flipDurationMs": 400,
+      "showAttemptsCounter": true,
+      "instructions": "Match each event to its historical significance! Flip two cards at a time to find matching pairs. Try to remember card positions to minimize attempts.",
+      "game_variant": "classic",
+      "match_type": "term_to_definition",
+      "card_back_style": "gradient",
+      "matched_card_behavior": "checkmark",
+      "show_explanation_on_match": true
+    },
+    "branchingConfig": {
+      "nodes": [
+        {
+          "id": "node-taxation",
+          "question": "Britain has imposed the Stamp Act and other direct taxes on the colonies without colonial representation in Parliament. As a colonial leader, what strategy do you advocate?",
+          "narrative_text": "The year is 1765. Colonists are outraged by taxation without representation. You must decide the colonies' response.",
+          "node_type": "decision",
+          "options": [
+            {
+              "id": "opt-boycott",
+              "text": "Organize boycotts of British goods and coordinate protests through colonial assemblies",
+              "nextNodeId": "node-teaparty",
+              "isCorrect": true,
+              "quality": "optimal",
+              "points": 20,
+              "consequence": "Brilliant strategy! The colonial boycotts devastated British merchants and forced Parliament to repeal the Stamp Act. Organized, peaceful resistance built inter-colonial unity."
+            },
+            {
+              "id": "opt-accept",
+              "text": "Accept the taxes — Britain protected us in the French and Indian War, so we owe them",
+              "nextNodeId": "node-taxation",
+              "isCorrect": false,
+              "quality": "suboptimal",
+              "points": 0,
+              "consequence": "Accepting taxation without representation would set a dangerous precedent. The principle of self-governance is at stake — the colonies need to stand firm. Try again."
+            },
+            {
+              "id": "opt-attack",
+              "text": "Immediately take up arms against British soldiers stationed in the colonies",
+              "nextNodeId": "node-taxation",
+              "isCorrect": false,
+              "quality": "harmful",
+              "points": 0,
+              "consequence": "Premature violence without organization or public support would be crushed easily and discredit the colonial cause. The colonies need unity and strategy first. Try again."
+            }
+          ]
+        },
+        {
+          "id": "node-teaparty",
+          "question": "After the Boston Tea Party (1773), Britain has passed the Coercive Acts to punish Massachusetts — closing Boston Harbor and revoking self-governance. How should the other colonies respond?",
+          "narrative_text": "The Intolerable Acts threaten not just Massachusetts, but the rights of all colonies. Delegates look to you for leadership.",
+          "node_type": "decision",
+          "options": [
+            {
+              "id": "opt-congress",
+              "text": "Call a Continental Congress to coordinate a unified colonial response and mutual defense",
+              "nextNodeId": "node-war",
+              "isCorrect": true,
+              "quality": "optimal",
+              "points": 20,
+              "consequence": "Excellent! The First Continental Congress united 12 colonies in a coordinated boycott and petition to the King. Colonial solidarity showed Britain that punishing one colony threatened them all."
+            },
+            {
+              "id": "opt-abandon",
+              "text": "Let Massachusetts handle its own problems — the other colonies should stay out of it",
+              "nextNodeId": "node-teaparty",
+              "isCorrect": false,
+              "quality": "suboptimal",
+              "points": 0,
+              "consequence": "Abandoning Massachusetts would break colonial unity. If Britain can crush one colony's rights without opposition, no colony is safe. United action is essential. Try again."
+            },
+            {
+              "id": "opt-apologize",
+              "text": "Send an apology to King George III and offer to pay for the destroyed tea",
+              "nextNodeId": "node-teaparty",
+              "isCorrect": false,
+              "quality": "suboptimal",
+              "points": 0,
+              "consequence": "Apologizing would signal that Britain can punish entire colonies for acts of protest. The Coercive Acts went far beyond the tea — they revoked fundamental rights of self-governance. Try again."
+            }
+          ]
+        },
+        {
+          "id": "node-war",
+          "question": "Shots have been fired at Lexington and Concord (April 1775). The Second Continental Congress must decide the next step.",
+          "narrative_text": "British troops marched on colonial weapons stores and were met by Minutemen. Armed conflict has begun. Congress is in session.",
+          "node_type": "decision",
+          "options": [
+            {
+              "id": "opt-washington",
+              "text": "Appoint George Washington as Commander of the Continental Army and organize for sustained war",
+              "nextNodeId": "node-independence",
+              "isCorrect": true,
+              "quality": "optimal",
+              "points": 20,
+              "consequence": "Strategic choice! Washington's military experience and Virginia roots helped unite North and South. Creating a professional army showed Britain the colonies were serious about defending their rights."
+            },
+            {
+              "id": "opt-ceasefire",
+              "text": "Negotiate an immediate ceasefire and return to pre-war conditions",
+              "nextNodeId": "node-war",
+              "isCorrect": false,
+              "quality": "suboptimal",
+              "points": 0,
+              "consequence": "After Lexington and Concord, returning to the status quo is impossible. Britain views the colonies as rebels to be subdued. Without military organization, the colonies would be defenseless. Try again."
+            },
+            {
+              "id": "opt-rush",
+              "text": "Attack British-held Boston immediately with untrained militia",
+              "nextNodeId": "node-war",
+              "isCorrect": false,
+              "quality": "harmful",
+              "points": 0,
+              "consequence": "Rushing untrained militia against fortified British regulars would be disastrous. The colonial forces need professional organization, a chain of command, and strategic planning. Try again."
+            }
+          ]
+        },
+        {
+          "id": "node-independence",
+          "question": "Thomas Paine's 'Common Sense' is sweeping the colonies, arguing for complete independence. Should Congress formally declare independence from Britain?",
+          "narrative_text": "It is the summer of 1776. Public opinion is shifting toward independence. A committee including Thomas Jefferson has been asked to draft a declaration.",
+          "node_type": "decision",
+          "options": [
+            {
+              "id": "opt-declare",
+              "text": "Adopt a Declaration of Independence that articulates the colonies' right to self-governance",
+              "nextNodeId": "node-alliance",
+              "isCorrect": true,
+              "quality": "optimal",
+              "points": 20,
+              "consequence": "A pivotal decision! The Declaration of Independence gave the Revolution moral authority and clear purpose. It articulated universal principles of liberty and made the conflict a fight for self-governance, not just a tax dispute."
+            },
+            {
+              "id": "opt-loyalty",
+              "text": "Offer to remain loyal subjects if Parliament grants the colonies representation",
+              "nextNodeId": "node-independence",
+              "isCorrect": false,
+              "quality": "suboptimal",
+              "points": 0,
+              "consequence": "Parliament has repeatedly rejected colonial petitions and sent troops. King George III declared the colonies in rebellion. Negotiating loyalty now would be seen as weakness, not diplomacy. Try again."
+            },
+            {
+              "id": "opt-wait",
+              "text": "Wait for a major military victory before making any political declarations",
+              "nextNodeId": "node-independence",
+              "isCorrect": false,
+              "quality": "suboptimal",
+              "points": 0,
+              "consequence": "Waiting undermines the cause. A formal declaration is needed NOW to rally public support, recruit soldiers, and — crucially — attract foreign allies who won't support a rebellion without clear political legitimacy. Try again."
+            }
+          ]
+        },
+        {
+          "id": "node-alliance",
+          "question": "After the American victory at Saratoga (1777), European powers are taking notice. How should the colonies secure a decisive end to the war?",
+          "narrative_text": "The victory at Saratoga proved the Continental Army can defeat British forces. Benjamin Franklin is in Paris, courting French support.",
+          "node_type": "decision",
+          "options": [
+            {
+              "id": "opt-france",
+              "text": "Forge a formal military alliance with France, combining armies and navies for a decisive campaign",
+              "nextNodeId": "node-victory",
+              "isCorrect": true,
+              "quality": "optimal",
+              "points": 20,
+              "consequence": "The Franco-American alliance changed everything! French troops, ships, and supplies transformed the war. This alliance would prove decisive at Yorktown, trapping the British and ending the war."
+            },
+            {
+              "id": "opt-alone",
+              "text": "Continue fighting alone — foreign entanglements will compromise our sovereignty",
+              "nextNodeId": "node-alliance",
+              "isCorrect": false,
+              "quality": "suboptimal",
+              "points": 0,
+              "consequence": "Noble in principle, but impractical. The Continental Army is outnumbered, undersupplied, and lacks a navy. Without foreign support, Britain's superior resources would eventually prevail. Try again."
+            },
+            {
+              "id": "opt-negotiate",
+              "text": "Propose a negotiated peace that divides the colonies — independence for some, British rule for others",
+              "nextNodeId": "node-alliance",
+              "isCorrect": false,
+              "quality": "harmful",
+              "points": 0,
+              "consequence": "Splitting the colonies would destroy the unity that makes independence possible. A divided America would be vulnerable to future British aggression. The Declaration promised liberty for all colonies. Try again."
+            }
+          ]
+        },
+        {
+          "id": "node-victory",
+          "question": "",
+          "node_type": "ending",
+          "isEndNode": true,
+          "endMessage": "Victory at Yorktown! With French military support, the combined American and French forces trapped British General Cornwallis at Yorktown, Virginia in 1781. The British surrendered, and the Treaty of Paris (1783) officially recognized the United States as an independent nation. Your strategic decisions — from organized protest, to unified resistance, to military organization, formal independence, and international alliance — guided the colonies from subjects to citizens of a new republic!",
+          "ending_type": "good",
+          "options": []
+        }
+      ],
+      "startNodeId": "node-taxation",
+      "showPathTaken": true,
+      "allowBacktrack": true,
+      "showConsequences": true,
+      "multipleValidEndings": false,
+      "instructions": "You are a colonial leader guiding the American colonies through the Revolution. At each turning point, choose the best strategy. Wrong choices will explain why that path fails and return you to make a better decision.",
+      "narrative_structure": "foldback"
+    }
+  }
+}

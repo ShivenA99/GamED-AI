@@ -1,0 +1,749 @@
+{
+  "id": "ling-undergrad-morphemes-click-identify",
+  "title": "Identify Morphemes in Complex Words",
+  "question": "Create an interactive diagram game where students identify morphemes in complex words: 'unbreakable' (un-break-able), 'misunderstanding' (mis-understand-ing), 'reorganization' (re-organ-iz-ation), identifying prefixes, roots, and suffixes.",
+  "domain": "linguistics",
+  "educationLevel": "undergraduate",
+  "gameType": "interactive_diagram",
+  "mechanic": "click_to_identify",
+  "bloomsLevel": "Apply",
+  "pipelineMetrics": {
+    "runId": "b2dfac55-fde7-4e8f-a0e7-6b32e79ce626",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 255.7,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T07:02:18.442585+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "Morpheme Decoder Challenge",
+    "subject": "Linguistics",
+    "difficulty": "advanced",
+    "narrativeIntro": "Welcome, linguistic explorer! Your mission is to delve into the intricate structures of complex words, dissecting them into their fundamental building blocks: morphemes. Can you identify prefixes, roots, and suffixes to unlock their true meaning and structure?",
+    "narrativeTheme": "Linguistic Archaeology Lab",
+    "completionMessage": "Morpheme Master! You've successfully analyzed complex words and revealed their hidden structures. Your linguistic skills are sharp!",
+    "estimatedDurationMinutes": 12,
+    "diagram": {
+      "assetPrompt": "A stylized, segmented representation of the word 'unbreakable'. The word is visually broken into three distinct, clearly delineated zones: 'un-', 'break', and '-able'. Each segment is visually distinct but clearly part of the whole word, perhaps with subtle lines or color shifts indicating the boundaries. The overall style is clean and educational, suitable for a digital interface.",
+      "zones": [
+        {
+          "id": "zone_un_",
+          "label": "un-",
+          "points": [
+            [
+              34.0,
+              50.2
+            ],
+            [
+              30.2,
+              49.8
+            ],
+            [
+              29.2,
+              46.4
+            ],
+            [
+              27.4,
+              45.1
+            ],
+            [
+              24.4,
+              46.3
+            ],
+            [
+              23.8,
+              45.4
+            ],
+            [
+              17.9,
+              45.6
+            ],
+            [
+              17.9,
+              52.4
+            ],
+            [
+              16.5,
+              54.2
+            ],
+            [
+              15.4,
+              52.4
+            ],
+            [
+              15.3,
+              45.6
+            ],
+            [
+              12.3,
+              45.6
+            ],
+            [
+              12.4,
+              54.4
+            ],
+            [
+              14.2,
+              57.5
+            ],
+            [
+              16.0,
+              57.6
+            ],
+            [
+              17.8,
+              56.6
+            ],
+            [
+              18.5,
+              57.5
+            ],
+            [
+              24.4,
+              57.4
+            ],
+            [
+              24.4,
+              50.3
+            ],
+            [
+              25.4,
+              48.8
+            ],
+            [
+              26.9,
+              50.0
+            ],
+            [
+              27.0,
+              57.4
+            ],
+            [
+              29.7,
+              57.5
+            ],
+            [
+              29.9,
+              53.2
+            ],
+            [
+              33.9,
+              52.9
+            ]
+          ],
+          "x": 22.6,
+          "y": 51.6,
+          "radius": 11.9,
+          "shape": "polygon",
+          "center": {
+            "x": 22.6,
+            "y": 51.6
+          }
+        },
+        {
+          "id": "zone_break",
+          "label": "break",
+          "points": [
+            [
+              31.5,
+              41.4
+            ],
+            [
+              31.6,
+              49.5
+            ],
+            [
+              34.1,
+              50.9
+            ],
+            [
+              36.2,
+              49.7
+            ],
+            [
+              37.1,
+              51.0
+            ],
+            [
+              36.1,
+              54.3
+            ],
+            [
+              34.2,
+              52.4
+            ],
+            [
+              31.7,
+              53.0
+            ],
+            [
+              31.8,
+              57.5
+            ],
+            [
+              37.7,
+              57.5
+            ],
+            [
+              39.9,
+              54.6
+            ],
+            [
+              40.1,
+              57.4
+            ],
+            [
+              43.1,
+              57.5
+            ],
+            [
+              43.0,
+              51.5
+            ],
+            [
+              44.2,
+              50.1
+            ],
+            [
+              44.8,
+              54.6
+            ],
+            [
+              47.2,
+              57.5
+            ],
+            [
+              51.9,
+              55.8
+            ],
+            [
+              53.5,
+              57.5
+            ],
+            [
+              62.2,
+              57.5
+            ],
+            [
+              62.7,
+              53.6
+            ],
+            [
+              64.6,
+              57.3
+            ],
+            [
+              67.9,
+              57.4
+            ],
+            [
+              65.1,
+              51.6
+            ],
+            [
+              67.7,
+              46.6
+            ],
+            [
+              64.6,
+              46.4
+            ],
+            [
+              62.7,
+              49.4
+            ],
+            [
+              62.3,
+              41.3
+            ],
+            [
+              59.5,
+              41.4
+            ],
+            [
+              59.2,
+              48.6
+            ],
+            [
+              56.3,
+              46.2
+            ],
+            [
+              52.4,
+              47.6
+            ],
+            [
+              53.5,
+              50.0
+            ],
+            [
+              56.2,
+              50.0
+            ],
+            [
+              52.6,
+              52.0
+            ],
+            [
+              50.1,
+              46.5
+            ],
+            [
+              40.2,
+              46.4
+            ],
+            [
+              39.7,
+              48.7
+            ],
+            [
+              37.7,
+              46.3
+            ],
+            [
+              34.5,
+              46.6
+            ],
+            [
+              34.4,
+              41.3
+            ]
+          ],
+          "x": 47.7,
+          "y": 50.9,
+          "radius": 21.2,
+          "shape": "polygon",
+          "center": {
+            "x": 47.7,
+            "y": 50.9
+          }
+        },
+        {
+          "id": "zone__able",
+          "label": "-able",
+          "points": [
+            [
+              65.0,
+              44.1
+            ],
+            [
+              65.1,
+              46.3
+            ],
+            [
+              67.7,
+              46.6
+            ],
+            [
+              65.6,
+              50.7
+            ],
+            [
+              71.5,
+              51.3
+            ],
+            [
+              73.4,
+              55.3
+            ],
+            [
+              75.3,
+              57.4
+            ],
+            [
+              86.2,
+              57.6
+            ],
+            [
+              87.1,
+              57.1
+            ],
+            [
+              87.0,
+              53.8
+            ],
+            [
+              86.2,
+              53.1
+            ],
+            [
+              84.3,
+              53.8
+            ],
+            [
+              83.8,
+              50.8
+            ],
+            [
+              83.1,
+              50.8
+            ],
+            [
+              82.4,
+              52.4
+            ],
+            [
+              80.7,
+              52.3
+            ],
+            [
+              80.3,
+              50.8
+            ],
+            [
+              79.5,
+              50.9
+            ],
+            [
+              79.1,
+              52.1
+            ],
+            [
+              78.1,
+              51.7
+            ],
+            [
+              75.9,
+              46.8
+            ],
+            [
+              74.2,
+              44.8
+            ],
+            [
+              71.8,
+              43.9
+            ]
+          ],
+          "x": 77.5,
+          "y": 51.1,
+          "radius": 14.3,
+          "shape": "polygon",
+          "center": {
+            "x": 77.5,
+            "y": 51.1
+          }
+        }
+      ],
+      "imageUrl": "/api/assets/demo/b2dfac55-fde7-4e8f-a0e7-6b32e79ce626/diagram_scene_1.png",
+      "assetUrl": "/api/assets/demo/b2dfac55-fde7-4e8f-a0e7-6b32e79ce626/diagram_scene_1.png"
+    },
+    "labels": [
+      {
+        "id": "label_s1_0",
+        "text": "un-",
+        "correctZoneId": "zone_un_"
+      },
+      {
+        "id": "label_s1_1",
+        "text": "break",
+        "correctZoneId": "zone_break"
+      },
+      {
+        "id": "label_s1_2",
+        "text": "-able",
+        "correctZoneId": "zone__able"
+      }
+    ],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "Your first task in the Linguistic Archaeology Lab is to segment the complex word 'unbreakable'. Drag each morpheme into its correct zone on the diagram."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 30,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! You've correctly identified and placed this morpheme.",
+          "on_incorrect": "Not quite. Remember, morphemes are the smallest meaningful units. Consider what part of 'unbreakable' this piece represents and where it belongs.",
+          "on_completion": "Fantastic! You've successfully segmented 'unbreakable' into its core morphemes: 'un-', 'break', and '-able'.",
+          "misconceptions": [
+            {
+              "trigger_label": "s1_m0_incorrect_placement_or_distractor",
+              "message": "Morphemes are the smallest meaningful units. 'Unbreak' and 'breakable' are combinations, not single morphemes themselves. Focus on the individual building blocks. Remember, some morphemes are bound (prefixes/suffixes) and some are free (roots), and they don't always align with syllables.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "sorting_categories",
+        "config": {
+          "instruction_text": "Excellent work segmenting 'unbreakable'! Now, classify each of the morphemes you identified ('un-', 'break', '-able') into its correct morphological category: Prefix, Root, or Suffix."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 30,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Spot on! That's the correct classification for this morpheme.",
+          "on_incorrect": "Hold on. Think about the role this morpheme plays in a word. Does it come before, after, or form the core meaning? Review the definitions of Prefix, Root, and Suffix.",
+          "on_completion": "Outstanding! You've accurately classified each morpheme of 'unbreakable'. You clearly understand prefixes, roots, and suffixes!",
+          "misconceptions": [
+            {
+              "trigger_label": "s1_m1_un_misclassified",
+              "message": "Morphemes have a specific, rule-governed order. 'Un-' always comes at the beginning to modify meaning, making it a prefix. Prefixes are added to the beginning of a word.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "s1_m1_break_misclassified",
+              "message": "'Break' is the core meaning of the word 'unbreakable'. It can stand alone and forms the base, which is the definition of a root morpheme. Roots carry the primary meaning and can often stand alone as a word.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "s1_m1_able_misclassified",
+              "message": "Suffixes like '-able' are added to the end of a word to change its grammatical function or meaning. They don't come at the beginning or form the core meaning. Suffixes are added to the end of a word.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "Welcome, linguistic archaeologist! Your task is to reassemble the ancient word 'misunderstanding'. Drag each morpheme fragment ('mis-', 'understand', '-ing') to its correct segment on the weathered artifact."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 30,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! You've correctly identified and placed that morpheme.",
+          "on_incorrect": "Not quite. Remember, morphemes are the smallest meaningful units. Re-examine the word 'misunderstanding' and try placing it in a different segment.",
+          "on_completion": "Fantastic! You've successfully segmented 'misunderstanding' into its core morphemes: 'mis-', 'understand', and '-ing'.",
+          "misconceptions": [
+            {
+              "trigger_label": "un-",
+              "message": "Hold on! While 'un-' is a morpheme, it's not part of 'misunderstanding'. Focus on the specific parts that make up *this* word. Morphemes are the smallest meaningful units, and some are bound (prefixes/suffixes) while others are free (roots).",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "standing",
+              "message": "Careful! 'Standing' is a word, but it's not a distinct morpheme within 'misunderstanding'. The root here is 'understand'. Remember, morphemes don't always align with whole words or syllables.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "sorting_categories",
+        "config": {
+          "instruction_text": "Now that you've unearthed and segmented 'misunderstanding', it's time for classification. Sort each morpheme ('mis-', 'understand', '-ing') into its proper linguistic category: Prefix, Root, or Suffix, as if categorizing artifacts in the lab."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 30,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Spot on! That morpheme is correctly categorized.",
+          "on_incorrect": "Not quite. Think about where this morpheme typically appears in a word and how it functions. Does it come before, form the core, or come after the main meaning?",
+          "on_completion": "Brilliant work! You've accurately classified all the morphemes of 'misunderstanding' into their correct categories: prefix, root, and suffix.",
+          "misconceptions": [
+            {
+              "trigger_label": "mis- (placed in Root or Suffix)",
+              "message": "Careful there. 'Mis-' is a bound morpheme that attaches to the *beginning* of a word to change its meaning. This makes it a prefix, not a root or suffix. Morphemes have a specific, rule-governed order!",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "understand (placed in Prefix or Suffix)",
+              "message": "Not quite. 'Understand' carries the primary meaning of the word and can stand alone. This makes it the core, or root, of the word, not a prefix or suffix. Remember, roots are the foundation!",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "-ing (placed in Prefix or Root)",
+              "message": "Almost! '-ing' is a bound morpheme that attaches to the *end* of a word, often indicating a continuous action. This makes it a suffix, not a prefix or root. Remember, suffixes come last and modify the word's grammatical function!",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "Welcome, Linguist! Your first task in the Archaeology Lab is to segment 'reorganization'. Drag each morpheme fragment to its correct zone on the word display, uncovering its foundational units."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 40,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Great job! You've correctly placed that morpheme.",
+          "on_incorrect": "Not quite. Remember, prefixes come at the beginning, roots are the core, and suffixes come at the end. Try again!",
+          "on_completion": "Excellent! You've successfully segmented 'reorganization' into its morphemes.",
+          "misconceptions": [
+            {
+              "trigger_label": "m0_incorrect_order_placement",
+              "message": "Morphemes have a specific, rule-governed order (e.g., prefix-root-suffix) that affects meaning and grammatical function.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "m0_confused_morpheme_syllable",
+              "message": "Morphemes are the smallest meaningful units; some are bound (prefixes/suffixes) and some are free (roots), and they don't always align with syllables.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "sorting_categories",
+        "config": {
+          "instruction_text": "Now that you've successfully segmented 'reorganization' into its morphemes, proceed to classify each fragment. Drag 're-', 'organ', '-iz', and '-ation' into their correct linguistic categories: Prefix, Root, or Suffix."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 40,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Perfect! You've correctly classified that morpheme.",
+          "on_incorrect": "Not quite. Consider its position in the word and its function. Does it add meaning at the beginning, form the core, or modify meaning at the end?",
+          "on_completion": "Outstanding! You've accurately categorized all the morphemes of 'reorganization'.",
+          "misconceptions": [
+            {
+              "trigger_label": "m1_misclassified_type",
+              "message": "Morphemes are the smallest meaningful units; some are bound (prefixes/suffixes) and some are free (roots). Understanding their role helps classify them correctly.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "m1_confused_root_affix_role",
+              "message": "The root is the core meaning, while prefixes and suffixes modify that meaning by attaching to the beginning or end.",
+              "severity": "medium"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [
+      {
+        "from": "drag_drop",
+        "to": "sorting_categories",
+        "trigger": "all_zones_labeled",
+        "animation": "fade"
+      },
+      {
+        "from": "drag_drop",
+        "to": "sorting_categories",
+        "trigger": "all_zones_labeled",
+        "animation": "fade"
+      },
+      {
+        "from": "drag_drop",
+        "to": "sorting_categories",
+        "trigger": "all_zones_labeled",
+        "animation": "fade"
+      }
+    ],
+    "interactionMode": "drag_drop",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 10,
+      "max_score": 200
+    },
+    "totalMaxScore": 200,
+    "generation_complete": true,
+    "dragDropConfig": {
+      "leader_line_style": "none",
+      "tray_position": "bottom",
+      "placement_animation": "spring",
+      "show_distractors": false,
+      "feedback_timing": "immediate",
+      "pin_marker_shape": "circle",
+      "incorrect_animation": "shake",
+      "zone_hover_effect": "highlight",
+      "leader_line_color": "",
+      "leader_line_animate": true,
+      "shuffle_labels": true,
+      "label_style": "text",
+      "interaction_mode": "drag_drop",
+      "label_anchor_side": "auto",
+      "max_attempts": 3,
+      "zone_idle_animation": "pulse",
+      "tray_layout": "horizontal"
+    },
+    "sortingConfig": {
+      "categories": [
+        {
+          "id": "cat1",
+          "label": "Prefix",
+          "color": "#4A90D9",
+          "description": "A morpheme added to the beginning of a word to modify its meaning."
+        },
+        {
+          "id": "cat2",
+          "label": "Root",
+          "color": "#50C878",
+          "description": "The core morpheme of a word that carries the primary meaning. It can often stand alone as a word."
+        },
+        {
+          "id": "cat3",
+          "label": "Suffix",
+          "color": "#F39C12",
+          "description": "A morpheme added to the end of a word to change its meaning or grammatical function."
+        }
+      ],
+      "items": [
+        {
+          "id": "i1",
+          "content": "un-",
+          "correctCategoryId": "cat1",
+          "correct_category_ids": [],
+          "explanation": "Correct! 'un-' is a prefix that attaches to the beginning of a word to negate its meaning, as in 'unhappy' or 'unbreakable'. It is a bound morpheme.",
+          "description": "",
+          "difficulty": "easy",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i2",
+          "content": "break",
+          "correctCategoryId": "cat2",
+          "correct_category_ids": [],
+          "explanation": "Correct! 'break' is the root word. It is a free morpheme, meaning it can stand alone as a word and carries the core meaning of 'unbreakable'.",
+          "description": "",
+          "difficulty": "easy",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i3",
+          "content": "-able",
+          "correctCategoryId": "cat3",
+          "correct_category_ids": [],
+          "explanation": "Correct! '-able' is a suffix that attaches to the end of a word, often turning a verb into an adjective that means 'capable of being'. It is a bound morpheme.",
+          "description": "",
+          "difficulty": "easy",
+          "image": "",
+          "image_description": ""
+        }
+      ],
+      "sort_mode": "bucket",
+      "item_card_type": "text_only",
+      "container_style": "bucket",
+      "submit_mode": "immediate_feedback",
+      "allow_multi_category": false,
+      "show_category_hints": false,
+      "allow_partial_credit": true
+    }
+  }
+}

@@ -1,0 +1,33 @@
+export interface GeometryBuilderBlueprint {
+  templateType: "GEOMETRY_BUILDER";
+  title: string;
+  narrativeIntro: string;
+  shapes: Array<{
+    id: string;
+    type: "point" | "line" | "circle" | "polygon" | "angle";
+    required?: boolean; // Must be included in solution
+    properties?: Record<string, any>;
+  }>;
+  tools: Array<{
+    id: string;
+    label: string;
+    type: "ruler" | "compass" | "protractor" | "freehand";
+  }>;
+  tasks: Array<{
+    id: string;
+    type: "shape_construction" | "property_analysis";
+    questionText: string;
+    targetShape?: {
+      type: string;
+      properties: Record<string, any>;
+    };
+    requiredToProceed: boolean;
+  }>;
+  animationCues: {
+    toolUse: string;
+    shapeCreate: string;
+    constructionValid: string;
+    constructionInvalid?: string;
+  };
+}
+

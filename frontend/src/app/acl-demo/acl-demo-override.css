@@ -1,0 +1,6 @@
+/* Hide the global app header and footer when inside ACL demo pages */
+.acl-demo-root ~ footer[role="contentinfo"],
+body:has(.acl-demo-root) > header.canvas-nav,
+body:has(.acl-demo-root) > footer[role="contentinfo"] {
+  display: none;
+}

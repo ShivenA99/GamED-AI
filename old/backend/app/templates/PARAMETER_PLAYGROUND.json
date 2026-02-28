@@ -1,0 +1,25 @@
+{
+  "templateType": "PARAMETER_PLAYGROUND",
+  "description": "Interactive playground to adjust parameters and see results.",
+  "domains": ["programming", "mathematics", "physics", "simulations", "experiments"],
+  "blueprintSchema": {
+    "requiredFields": [
+      "templateType",
+      "title",
+      "narrativeIntro",
+      "parameters",
+      "visualization",
+      "tasks"
+    ]
+  },
+  "htmlContract": {
+    "requiredIds": ["gameRoot", "parametersPanel", "visualizationArea", "submitBtn", "feedbackArea"],
+    "requiredClasses": ["parameter-control", "slider", "visualization-canvas", "result-display"],
+    "interactionNotes": [
+      "Parameters are adjustable via sliders/inputs.",
+      "Visualization updates in real-time.",
+      "Submit validates final parameter values."
+    ]
+  }
+}
+

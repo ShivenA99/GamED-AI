@@ -1,0 +1,188 @@
+{
+  "id": "hist-grad-versailles-branching",
+  "title": "Counterfactual: What if Versailles Was Lenient?",
+  "question": "Create an interactive diagram game where graduate students explore counterfactual analysis: what if the Treaty of Versailles imposed lenient terms on Germany? Branch through economic recovery scenarios, political stability outcomes, and the likelihood of WWII.",
+  "domain": "history",
+  "educationLevel": "graduate",
+  "gameType": "interactive_diagram",
+  "mechanic": "branching_scenario",
+  "bloomsLevel": "Evaluate",
+  "pipelineMetrics": {
+    "runId": "3a5ba25a-4352-482f-b1a7-c5ce7dd8a722",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 123.7,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T05:30:26.121227+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "Versailles' Echoes: A Counterfactual History",
+    "subject": "History",
+    "difficulty": "advanced",
+    "narrativeIntro": "The Treaty of Versailles, a pivotal moment after WWI, shaped the 20th century. But what if history had taken a different turn? In this simulation, you will explore a critical 'what if': What if the Treaty of Versailles imposed lenient terms on Germany? Navigate through economic, political, and social pathways to uncover potential alternative futures.",
+    "narrativeTheme": "Historical Simulation & Analysis",
+    "completionMessage": "You have successfully navigated a complex counterfactual scenario, demonstrating a deep understanding of historical causality and contingency. Your analysis of alternative outcomes for the Treaty of Versailles provides valuable insight into the interconnectedness of historical events.",
+    "estimatedDurationMinutes": 15,
+    "diagram": {
+      "assetPrompt": "",
+      "zones": []
+    },
+    "labels": [],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "branching_scenario",
+        "config": {
+          "instruction_text": "Imagine a world where the Treaty of Versailles was significantly more lenient. Make choices at each historical juncture to explore how this fundamental change might alter the course of German, European, and global history, and observe the potential consequences."
+        },
+        "scoring": {
+          "strategy": "weighted",
+          "points_per_correct": 10,
+          "max_score": 70,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent choice! This decision aligns with a conciliatory approach, aiming to mitigate German resentment and foster long-term stability rather than punitive measures.",
+          "on_incorrect": "Not quite. While that option addresses a valid concern, a truly lenient treaty would prioritize reducing punitive measures and facilitating economic rehabilitation to prevent future grievances. Consider how this choice might impact Germany's ability to recover and integrate peacefully.",
+          "on_completion": "You've navigated a critical juncture in history. Your choices have shaped a divergent path for post-WWI Europe, exploring how different treaty terms could have altered the course of economic recovery, political stability, and the likelihood of future conflict. Reflect on the immediate and long-term consequences of your decisions.",
+          "misconceptions": [
+            {
+              "trigger_label": "sole_cause_wwii",
+              "message": "It's important to remember that while the Treaty of Versailles was a significant contributing factor, WWII resulted from a complex interplay of factors including the Great Depression, the rise of fascism/Nazism, appeasement policies, and failures of the League of Nations. A lenient treaty might address some grievances but not all underlying issues.",
+              "severity": "high"
+            },
+            {
+              "trigger_label": "history_predetermined",
+              "message": "Counterfactual analysis acknowledges that history happened a certain way but uses hypothetical alterations to better understand causality, contingency, and the relative importance of different factors, not to rewrite history as 'what should have been'. It's a tool for deeper historical understanding.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "leniency_guarantees_peace",
+              "message": "While lenient terms might have reduced some grievances, other factors like economic crises, ideological movements, and geopolitical ambitions could still have led to conflict or instability, albeit potentially different forms. Peace is a complex outcome of many interacting forces.",
+              "severity": "high"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [],
+    "interactionMode": "branching_scenario",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 10,
+      "max_score": 70
+    },
+    "totalMaxScore": 70,
+    "generation_complete": true,
+    "branchingConfig": {
+      "nodes": [
+        {
+          "id": "scene_1_n1",
+          "question": "The Allied powers, guided by a more conciliatory vision, draft a lenient Treaty of Versailles in 1919. What is the primary focus of this leniency?",
+          "description": "This single change creates a new timeline. Your choices will determine the fate of Germany and the world.",
+          "node_type": "decision",
+          "options": [
+            {
+              "id": "scene_1_o1",
+              "text": "Focus on Economic Stability: Drastically reduce reparations and allow Germany to retain key industrial territories.",
+              "nextNodeId": "scene_1_n2",
+              "isCorrect": true,
+              "consequence": "This prioritizes Germany's ability to rebuild its economy, hoping stability will foster peace.",
+              "points": 10,
+              "quality": null
+            },
+            {
+              "id": "scene_1_o2",
+              "text": "Focus on Political Integration: Allow immediate entry into the League of Nations and no harsh military restrictions.",
+              "nextNodeId": "scene_1_n3",
+              "isCorrect": false,
+              "consequence": "This prioritizes diplomatic inclusion but leaves the core economic grievances largely unaddressed.",
+              "points": 0,
+              "quality": null
+            }
+          ],
+          "isEndNode": false,
+          "endMessage": null,
+          "ending_type": null,
+          "narrative_text": "",
+          "image_description": ""
+        },
+        {
+          "id": "scene_1_n2",
+          "question": "Germany's economy recovers swiftly. The Weimar Republic is popular. But in 1929, the Great Depression strikes the globe. With a stable foundation, how does the German government respond?",
+          "description": "The economic shockwave tests the resilience of the young republic. Its response is critical.",
+          "node_type": "decision",
+          "options": [
+            {
+              "id": "scene_1_o3",
+              "text": "Use financial reserves for public works and social welfare to counter unemployment.",
+              "nextNodeId": "scene_1_n4",
+              "isCorrect": true,
+              "consequence": "This Keynesian approach aims to soften the depression's blow on the populace, strengthening faith in democracy.",
+              "points": 10,
+              "quality": null
+            },
+            {
+              "id": "scene_1_o4",
+              "text": "Adopt strict austerity measures to protect currency and balance the budget, fearing hyperinflation.",
+              "nextNodeId": "scene_1_n5",
+              "isCorrect": false,
+              "consequence": "This prioritizes fiscal conservatism over social stability, risking popular backlash and the rise of extremism.",
+              "points": 0,
+              "quality": null
+            }
+          ],
+          "isEndNode": false,
+          "endMessage": null,
+          "ending_type": null,
+          "narrative_text": "",
+          "image_description": ""
+        },
+        {
+          "id": "scene_1_n3",
+          "question": "Politically integrated but economically fragile, Germany is devastated by the Great Depression. A powerful, revanchist military-political bloc sees an opportunity. What is their primary goal?",
+          "description": "With a strong military and a weak economy, nationalist sentiment surges, seeking a target for the nation's frustrations.",
+          "node_type": "decision",
+          "options": [
+            {
+              "id": "scene_1_o5",
+              "text": "Use military strength to reclaim 'lost' territories via aggressive diplomacy and threats.",
+              "nextNodeId": "scene_1_n6",
+              "isCorrect": false,
+              "consequence": "This externalizes Germany's problems, risking early conflict with its neighbors.",
+              "points": 0,
+              "quality": null
+            },
+            {
+              "id": "scene_1_o6",
+              "text": "Establish an authoritarian government to 'restore order' and manage the crisis internally.",
+              "nextNodeId": "scene_1_n7",
+              "isCorrect": false,
+              "consequence": "This turns Germany inward, creating a repressive state but potentially avoiding immediate international conflict.",
+              "points": 0,
+              "quality": null
+            }
+          ],
+          "isEndNode": false,
+          "endMessage": null,
+          "ending_type": null,
+          "narrative_text": "",
+          "image_description": ""
+        }
+      ],
+      "startNodeId": "scene_1_n1",
+      "narrative_structure": "branching",
+      "show_path_taken": true,
+      "allow_backtrack": false,
+      "show_consequences": true,
+      "multiple_valid_endings": false
+    }
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "id": "math-k12-number-types-sorting",
+  "title": "Classify Numbers by Type",
+  "question": "Create an interactive diagram game where students sort numbers into mathematical categories: prime numbers (2, 3, 5, 7, 11, 13), composite numbers (4, 6, 8, 9, 10, 12), perfect squares (1, 4, 9, 16, 25, 36), and perfect cubes (1, 8, 27, 64), understanding number classification and properties.",
+  "domain": "mathematics",
+  "educationLevel": "k12",
+  "gameType": "interactive_diagram",
+  "mechanic": "sorting_categories",
+  "bloomsLevel": "Understand",
+  "pipelineMetrics": {
+    "runId": "d8dc38bd-e5b2-4a4b-b06f-da9d9c277675",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 100.9,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T09:09:28.746590+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "Number Navigator: Classify & Conquer",
+    "subject": "Mathematics",
+    "difficulty": "beginner",
+    "narrativeIntro": "Welcome, aspiring mathematician! Your mission is to navigate the world of numbers, classifying them by their unique properties. Can you sort them correctly and master their definitions?",
+    "narrativeTheme": "Mathematical Explorer",
+    "completionMessage": "Congratulations! You've successfully classified the numbers and mastered their properties. Your mathematical exploration was a success!",
+    "estimatedDurationMinutes": 12,
+    "diagram": {
+      "assetPrompt": "",
+      "zones": []
+    },
+    "labels": [],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "sorting_categories",
+        "config": {
+          "instruction_text": "A collection of numbers has appeared! Drag each number card into ALL the mathematical categories it belongs to. Remember, some numbers might fit into more than one group!"
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 170,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Correct!",
+          "on_incorrect": "Try again.",
+          "on_completion": "Well done!",
+          "misconceptions": []
+        }
+      },
+      {
+        "type": "memory_match",
+        "config": {
+          "instruction_text": "Flip cards to find matching pairs of number properties, their definitions, or common misconceptions with their correct explanations. Challenge your assumptions!"
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 70,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! You've found a matching pair.",
+          "on_incorrect": "Not quite, those don't match. Keep exploring the cards!",
+          "on_completion": "Fantastic! You've successfully matched all the number properties and definitions!",
+          "misconceptions": [
+            {
+              "trigger_label": "misconception_1_is_prime",
+              "message": "A prime number must have exactly two distinct positive divisors (1 and itself). The number 1 only has one divisor (1), so it is neither prime nor composite.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misconception_all_odd_are_prime",
+              "message": "While many prime numbers are odd, not all odd numbers are prime (e.g., 9, 15, 21 are odd but composite). The only even prime number is 2.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misconception_one_category_only",
+              "message": "Numbers can possess multiple properties and thus belong to several categories simultaneously (e.g., 4 is both a composite number and a perfect square; 1 is both a perfect square and a perfect cube).",
+              "severity": "medium"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [],
+    "interactionMode": "sorting_categories",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 10,
+      "max_score": 240
+    },
+    "totalMaxScore": 240,
+    "generation_complete": true,
+    "sortingConfig": {
+      "categories": [],
+      "items": []
+    }
+  }
+}

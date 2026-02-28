@@ -1,0 +1,25 @@
+{
+  "templateType": "CONCEPT_MAP_BUILDER",
+  "description": "Build concept maps by connecting related ideas.",
+  "domains": ["education", "knowledge_modeling", "relationships", "concepts", "mind_mapping"],
+  "blueprintSchema": {
+    "requiredFields": [
+      "templateType",
+      "title",
+      "narrativeIntro",
+      "concepts",
+      "connections",
+      "tasks"
+    ]
+  },
+  "htmlContract": {
+    "requiredIds": ["gameRoot", "conceptsPanel", "mapCanvas", "submitBtn", "feedbackArea"],
+    "requiredClasses": ["concept-node", "connection-line", "node-selected", "connection-valid"],
+    "interactionNotes": [
+      "Concepts are draggable nodes.",
+      "Connections are drawn between nodes.",
+      "Map structure is validated on submit."
+    ]
+  }
+}
+

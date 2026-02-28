@@ -1,0 +1,13 @@
+### Template Context: VECTOR_SANDBOX
+
+The resulting visualization will be implemented as:
+- Interactive vector manipulation and visualization.
+- Vectors are draggable and resizable.
+- Operations can be applied to vectors.
+
+When generating story_context, visual_metaphor, visual_elements, question_flow, and animation_cues:
+- Focus on vector mathematics, physics, and spatial relationships.
+- Visual elements should represent vectors as arrows with magnitude and direction.
+- Questions should involve vector operations or understanding vector properties.
+- Animation cues should show vector manipulation and operation results.
+

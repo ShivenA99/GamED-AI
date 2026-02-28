@@ -1,0 +1,25 @@
+{
+  "templateType": "VECTOR_SANDBOX",
+  "description": "Interactive vector manipulation and visualization.",
+  "domains": ["mathematics", "physics", "linear_algebra", "geometry", "mechanics"],
+  "blueprintSchema": {
+    "requiredFields": [
+      "templateType",
+      "title",
+      "narrativeIntro",
+      "vectors",
+      "operations",
+      "tasks"
+    ]
+  },
+  "htmlContract": {
+    "requiredIds": ["gameRoot", "vectorCanvas", "controlsPanel", "submitBtn", "feedbackArea"],
+    "requiredClasses": ["vector-arrow", "vector-handle", "operation-button", "result-display"],
+    "interactionNotes": [
+      "Vectors are draggable and resizable.",
+      "Operations can be applied to vectors.",
+      "Results are visualized in real-time."
+    ]
+  }
+}
+

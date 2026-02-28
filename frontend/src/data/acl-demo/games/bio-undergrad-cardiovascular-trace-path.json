@@ -1,0 +1,1088 @@
+{
+  "id": "bio-undergrad-cardiovascular-trace-path",
+  "title": "Trace Blood Flow Through the Heart",
+  "question": "Create an interactive diagram game where students trace the path of blood flow through the cardiovascular system: from vena cava through the right atrium, right ventricle, pulmonary artery, lungs, pulmonary vein, left atrium, left ventricle, and aorta.",
+  "domain": "biology",
+  "educationLevel": "undergraduate",
+  "gameType": "interactive_diagram",
+  "mechanic": "trace_path",
+  "bloomsLevel": "Apply",
+  "pipelineMetrics": {
+    "runId": "92a7202a-d618-4ac6-bb64-913418a9335e",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 165.5,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T05:20:50.529624+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "The Blood's Epic Journey: Cardiovascular Flow",
+    "subject": "Biology",
+    "difficulty": "advanced",
+    "narrativeIntro": "Welcome, intrepid explorer! Your mission is to navigate the intricate highways of the human circulatory system. First, let's get acquainted with the key landmarks, then trace the vital path of blood, and finally understand the crucial role each part plays.",
+    "narrativeTheme": "Circulatory System Explorer",
+    "completionMessage": "Congratulations, Circulatory System Expert! You have successfully mapped the blood's epic journey and mastered the functions of the cardiovascular system.",
+    "estimatedDurationMinutes": 12,
+    "diagram": {
+      "assetPrompt": "A highly detailed, cross-sectional diagram of the human heart, showing all four chambers (Right Atrium, Right Ventricle, Left Atrium, Left Ventricle), major valves, and the septum. It must clearly depict the superior and inferior Vena Cava entering the Right Atrium, the Pulmonary Artery exiting the Right Ventricle and branching towards the Lungs, the Lungs themselves (showing capillary beds implicitly), the Pulmonary Veins entering the Left Atrium, and the Aorta exiting the Left Ventricle, arching over the heart. The diagram should visually suggest the flow of blood, with distinct, but initially unlabeled, pathways for deoxygenated (blue-ish) and oxygenated (red-ish) blood, especially through the pulmonary and systemic circuits. All nine specified structures must be clearly identifiable as distinct zones for interaction.",
+      "zones": [
+        {
+          "id": "zone_vena_cava",
+          "label": "Vena Cava",
+          "points": [
+            [
+              34.1,
+              67.6
+            ],
+            [
+              33.9,
+              69.0
+            ],
+            [
+              33.8,
+              83.6
+            ],
+            [
+              34.5,
+              84.6
+            ],
+            [
+              35.4,
+              85.2
+            ],
+            [
+              36.7,
+              85.5
+            ],
+            [
+              38.4,
+              85.3
+            ],
+            [
+              39.2,
+              84.5
+            ],
+            [
+              39.4,
+              77.4
+            ],
+            [
+              37.2,
+              74.3
+            ],
+            [
+              35.9,
+              71.5
+            ],
+            [
+              35.5,
+              69.6
+            ]
+          ],
+          "x": 36.2,
+          "y": 78.2,
+          "radius": 10.8,
+          "shape": "polygon",
+          "center": {
+            "x": 36.2,
+            "y": 78.2
+          },
+          "description": "Collects deoxygenated blood from the systemic circulation and delivers it to the right atrium of the heart."
+        },
+        {
+          "id": "zone_right_atrium",
+          "label": "Right Atrium",
+          "points": [
+            [
+              39.4,
+              38.2
+            ],
+            [
+              38.3,
+              38.7
+            ],
+            [
+              33.7,
+              45.6
+            ],
+            [
+              31.8,
+              50.7
+            ],
+            [
+              31.4,
+              58.9
+            ],
+            [
+              31.8,
+              60.6
+            ],
+            [
+              32.6,
+              60.9
+            ],
+            [
+              32.8,
+              60.1
+            ],
+            [
+              33.9,
+              60.9
+            ],
+            [
+              33.1,
+              60.9
+            ],
+            [
+              33.4,
+              61.8
+            ],
+            [
+              34.1,
+              61.0
+            ],
+            [
+              35.5,
+              62.3
+            ],
+            [
+              35.1,
+              60.9
+            ],
+            [
+              33.0,
+              59.8
+            ],
+            [
+              34.3,
+              59.6
+            ],
+            [
+              33.6,
+              58.4
+            ],
+            [
+              33.9,
+              58.0
+            ],
+            [
+              36.9,
+              62.3
+            ],
+            [
+              39.8,
+              57.1
+            ],
+            [
+              43.5,
+              52.9
+            ],
+            [
+              44.3,
+              50.9
+            ],
+            [
+              43.2,
+              46.2
+            ],
+            [
+              40.5,
+              43.9
+            ],
+            [
+              39.9,
+              39.4
+            ]
+          ],
+          "x": 36.0,
+          "y": 54.8,
+          "radius": 16.9,
+          "shape": "polygon",
+          "center": {
+            "x": 36.0,
+            "y": 54.8
+          },
+          "description": "Receives deoxygenated blood from the vena cava and pumps it into the right ventricle."
+        },
+        {
+          "id": "zone_right_ventricle",
+          "label": "Right Ventricle",
+          "points": [
+            [
+              43.8,
+              54.3
+            ],
+            [
+              40.6,
+              59.1
+            ],
+            [
+              40.4,
+              61.3
+            ],
+            [
+              39.6,
+              61.5
+            ],
+            [
+              38.2,
+              64.1
+            ],
+            [
+              37.8,
+              66.0
+            ],
+            [
+              38.3,
+              68.3
+            ],
+            [
+              41.8,
+              73.7
+            ],
+            [
+              46.7,
+              78.0
+            ],
+            [
+              51.9,
+              80.8
+            ],
+            [
+              54.2,
+              80.6
+            ],
+            [
+              54.8,
+              79.6
+            ],
+            [
+              54.8,
+              78.1
+            ],
+            [
+              53.1,
+              72.0
+            ],
+            [
+              52.5,
+              67.4
+            ],
+            [
+              51.4,
+              69.6
+            ],
+            [
+              51.8,
+              65.4
+            ],
+            [
+              53.0,
+              63.8
+            ],
+            [
+              53.0,
+              60.3
+            ],
+            [
+              51.4,
+              58.7
+            ],
+            [
+              47.4,
+              56.8
+            ],
+            [
+              45.6,
+              53.9
+            ]
+          ],
+          "x": 47.4,
+          "y": 67.0,
+          "radius": 15.2,
+          "shape": "polygon",
+          "center": {
+            "x": 47.4,
+            "y": 67.0
+          },
+          "description": "Pumps deoxygenated blood from the right atrium into the pulmonary artery, initiating its journey to the lungs."
+        },
+        {
+          "id": "zone_pulmonary_artery",
+          "label": "Pulmonary Artery",
+          "x": 86.6,
+          "y": 45.6,
+          "shape": "circle",
+          "description": "Carries deoxygenated blood from the right ventricle to the lungs for oxygenation.",
+          "radius": 3,
+          "zone_type": "point"
+        },
+        {
+          "id": "zone_lungs",
+          "label": "Lungs",
+          "points": [
+            [
+              69.9,
+              25.7
+            ],
+            [
+              68.1,
+              30.6
+            ],
+            [
+              68.9,
+              37.3
+            ],
+            [
+              68.4,
+              45.8
+            ],
+            [
+              71.5,
+              48.5
+            ],
+            [
+              74.9,
+              47.6
+            ],
+            [
+              71.9,
+              50.1
+            ],
+            [
+              75.1,
+              52.5
+            ],
+            [
+              77.9,
+              52.5
+            ],
+            [
+              74.1,
+              53.7
+            ],
+            [
+              72.6,
+              52.4
+            ],
+            [
+              73.3,
+              55.1
+            ],
+            [
+              72.1,
+              55.7
+            ],
+            [
+              72.7,
+              57.5
+            ],
+            [
+              71.9,
+              58.0
+            ],
+            [
+              70.9,
+              55.4
+            ],
+            [
+              71.7,
+              52.5
+            ],
+            [
+              69.6,
+              49.1
+            ],
+            [
+              68.3,
+              49.0
+            ],
+            [
+              67.9,
+              54.1
+            ],
+            [
+              68.8,
+              59.1
+            ],
+            [
+              70.0,
+              61.6
+            ],
+            [
+              73.4,
+              63.5
+            ],
+            [
+              82.8,
+              66.0
+            ],
+            [
+              84.5,
+              61.8
+            ],
+            [
+              84.9,
+              54.5
+            ],
+            [
+              82.3,
+              39.1
+            ],
+            [
+              79.5,
+              32.4
+            ],
+            [
+              75.5,
+              27.1
+            ],
+            [
+              72.5,
+              25.3
+            ]
+          ],
+          "x": 73.5,
+          "y": 49.1,
+          "radius": 23.8,
+          "shape": "polygon",
+          "center": {
+            "x": 73.5,
+            "y": 49.1
+          },
+          "description": "Facilitate gas exchange, allowing blood to release carbon dioxide and absorb oxygen."
+        },
+        {
+          "id": "zone_pulmonary_vein",
+          "label": "Pulmonary Vein",
+          "points": [
+            [
+              62.3,
+              45.4
+            ],
+            [
+              67.5,
+              45.4
+            ],
+            [
+              67.5,
+              51.1
+            ],
+            [
+              62.3,
+              51.1
+            ]
+          ],
+          "x": 64.9,
+          "y": 48.2,
+          "width": 5.2,
+          "height": 5.7,
+          "shape": "rect",
+          "description": "Carries oxygenated blood from the lungs back to the left atrium of the heart."
+        },
+        {
+          "id": "zone_left_atrium",
+          "label": "Left Atrium",
+          "points": [
+            [
+              55.3,
+              41.9
+            ],
+            [
+              53.0,
+              51.2
+            ],
+            [
+              53.1,
+              52.2
+            ],
+            [
+              55.7,
+              57.5
+            ],
+            [
+              56.3,
+              57.4
+            ],
+            [
+              57.3,
+              58.8
+            ],
+            [
+              58.4,
+              59.1
+            ],
+            [
+              59.8,
+              58.9
+            ],
+            [
+              61.7,
+              57.8
+            ],
+            [
+              63.0,
+              56.0
+            ],
+            [
+              63.3,
+              53.8
+            ],
+            [
+              63.3,
+              50.9
+            ],
+            [
+              62.4,
+              47.3
+            ],
+            [
+              61.1,
+              45.1
+            ],
+            [
+              59.4,
+              43.5
+            ]
+          ],
+          "x": 58.9,
+          "y": 52.8,
+          "radius": 11.5,
+          "shape": "polygon",
+          "center": {
+            "x": 58.9,
+            "y": 52.8
+          },
+          "description": "Receives oxygenated blood from the pulmonary veins and pumps it into the left ventricle."
+        },
+        {
+          "id": "zone_left_ventricle",
+          "label": "Left Ventricle",
+          "points": [
+            [
+              55.7,
+              59.1
+            ],
+            [
+              55.3,
+              60.9
+            ],
+            [
+              55.7,
+              61.5
+            ],
+            [
+              55.7,
+              62.7
+            ],
+            [
+              55.2,
+              63.0
+            ],
+            [
+              55.6,
+              63.3
+            ],
+            [
+              55.8,
+              65.6
+            ],
+            [
+              55.1,
+              66.8
+            ],
+            [
+              54.3,
+              70.8
+            ],
+            [
+              54.7,
+              70.8
+            ],
+            [
+              56.2,
+              77.5
+            ],
+            [
+              57.0,
+              79.4
+            ],
+            [
+              59.2,
+              81.4
+            ],
+            [
+              61.5,
+              81.1
+            ],
+            [
+              62.8,
+              79.4
+            ],
+            [
+              63.5,
+              77.2
+            ],
+            [
+              64.1,
+              69.6
+            ],
+            [
+              63.8,
+              63.5
+            ],
+            [
+              62.7,
+              60.6
+            ],
+            [
+              61.7,
+              59.8
+            ]
+          ],
+          "x": 58.3,
+          "y": 68.7,
+          "radius": 12.8,
+          "shape": "polygon",
+          "center": {
+            "x": 58.3,
+            "y": 68.7
+          },
+          "description": "Pumps oxygenated blood from the left atrium into the aorta, distributing it to the entire body."
+        },
+        {
+          "id": "zone_aorta",
+          "label": "Aorta",
+          "points": [
+            [
+              55.7,
+              19.7
+            ],
+            [
+              54.2,
+              19.8
+            ],
+            [
+              51.5,
+              24.7
+            ],
+            [
+              52.1,
+              18.5
+            ],
+            [
+              49.8,
+              18.1
+            ],
+            [
+              48.4,
+              25.8
+            ],
+            [
+              48.0,
+              26.3
+            ],
+            [
+              47.0,
+              24.7
+            ],
+            [
+              46.7,
+              26.2
+            ],
+            [
+              44.4,
+              28.1
+            ],
+            [
+              42.0,
+              33.1
+            ],
+            [
+              40.9,
+              37.2
+            ],
+            [
+              41.0,
+              43.2
+            ],
+            [
+              43.2,
+              45.9
+            ],
+            [
+              44.5,
+              49.4
+            ],
+            [
+              48.0,
+              44.3
+            ],
+            [
+              47.5,
+              38.0
+            ],
+            [
+              49.2,
+              34.4
+            ],
+            [
+              51.4,
+              33.2
+            ],
+            [
+              53.0,
+              34.8
+            ],
+            [
+              57.1,
+              32.8
+            ],
+            [
+              56.5,
+              29.5
+            ],
+            [
+              54.1,
+              25.6
+            ],
+            [
+              55.0,
+              23.5
+            ],
+            [
+              56.8,
+              24.9
+            ],
+            [
+              57.4,
+              24.2
+            ]
+          ],
+          "x": 49.8,
+          "y": 30.2,
+          "radius": 19.9,
+          "shape": "polygon",
+          "center": {
+            "x": 49.8,
+            "y": 30.2
+          },
+          "description": "The main artery that distributes oxygenated blood from the left ventricle to the rest of the body."
+        }
+      ],
+      "imageUrl": "/api/assets/demo/92a7202a-d618-4ac6-bb64-913418a9335e/diagram_scene_1.png",
+      "assetUrl": "/api/assets/demo/92a7202a-d618-4ac6-bb64-913418a9335e/diagram_scene_1.png"
+    },
+    "labels": [
+      {
+        "id": "label_s1_0",
+        "text": "Vena Cava",
+        "correctZoneId": "zone_vena_cava"
+      },
+      {
+        "id": "label_s1_1",
+        "text": "Right Atrium",
+        "correctZoneId": "zone_right_atrium"
+      },
+      {
+        "id": "label_s1_2",
+        "text": "Right Ventricle",
+        "correctZoneId": "zone_right_ventricle"
+      },
+      {
+        "id": "label_s1_3",
+        "text": "Pulmonary Artery",
+        "correctZoneId": "zone_pulmonary_artery"
+      },
+      {
+        "id": "label_s1_4",
+        "text": "Lungs",
+        "correctZoneId": "zone_lungs"
+      },
+      {
+        "id": "label_s1_5",
+        "text": "Pulmonary Vein",
+        "correctZoneId": "zone_pulmonary_vein"
+      },
+      {
+        "id": "label_s1_6",
+        "text": "Left Atrium",
+        "correctZoneId": "zone_left_atrium"
+      },
+      {
+        "id": "label_s1_7",
+        "text": "Left Ventricle",
+        "correctZoneId": "zone_left_ventricle"
+      },
+      {
+        "id": "label_s1_8",
+        "text": "Aorta",
+        "correctZoneId": "zone_aorta"
+      }
+    ],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "Drag and drop the labels onto the correct anatomical structures of the heart, lungs, and major vessels."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 90,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! That's the correct location for the {label_name}.",
+          "on_incorrect": "Not quite. Remember, blood flows in a specific direction. Consider the role of this structure in the overall circulation.",
+          "on_completion": "Fantastic! You've successfully identified all the major structures of the heart and its vessels.",
+          "misconceptions": [
+            {
+              "trigger_label": "incorrect_placement_pulmonary_vessel",
+              "message": "Arteries carry blood away from the heart, and veins carry blood towards the heart. The pulmonary artery carries deoxygenated blood to the lungs, and the pulmonary vein carries oxygenated blood back to the heart, which are exceptions to the general rule for systemic circulation.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "incorrect_placement_left_right_chambers",
+              "message": "Remember, the heart is divided into four chambers by a septum, ensuring that oxygenated blood (left side) and deoxygenated blood (right side) remain completely separate. Double-check your left and right chambers.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "trace_path",
+        "config": {
+          "instruction_text": "Now that you've labeled the structures, trace the path of deoxygenated blood from the body, through the heart and lungs, and then the path of oxygenated blood back to the heart and out to the body. Click on the first structure to begin."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 15,
+          "max_score": 135,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "That's the correct next step in the blood flow!",
+          "on_incorrect": "Hold on, that's not the next step in the {path_label} path. Think about where blood goes after leaving the {previous_waypoint}.",
+          "on_completion": "Outstanding! You've accurately traced the complete journey of both oxygenated and deoxygenated blood through the heart and body.",
+          "misconceptions": [
+            {
+              "trigger_label": "path_mix_blood",
+              "message": "The heart is divided into four chambers by a septum, ensuring that oxygenated blood (left side) and deoxygenated blood (right side) remain completely separate. Blood should not mix between these sides.",
+              "severity": "high"
+            },
+            {
+              "trigger_label": "path_skips_circuit",
+              "message": "The cardiovascular system consists of two main, interconnected circuits: the pulmonary circuit (heart to lungs and back) and the systemic circuit (heart to body and back), which operate in series. Don't forget a key part of the journey!",
+              "severity": "high"
+            },
+            {
+              "trigger_label": "path_pulmonary_artery_oxygenated",
+              "message": "Arteries carry blood away from the heart, and veins carry blood towards the heart. The pulmonary artery carries deoxygenated blood to the lungs, not oxygenated blood.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "description_matching",
+        "config": {
+          "instruction_text": "Finally, match each structure you've identified and traced to its vital function in the circulatory system. Drag the function descriptions to their correct anatomical parts."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 90,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Perfect match! That description accurately defines the {structure_name}.",
+          "on_incorrect": "Not quite. Review the function of the description and try to match it with the correct structure. Consider what blood it carries and where it's going.",
+          "on_completion": "Brilliant! You've successfully matched all the structures with their correct functions, demonstrating a strong understanding of the heart's components.",
+          "misconceptions": [
+            {
+              "trigger_label": "match_artery_vein_generalization",
+              "message": "Arteries carry blood away from the heart, and veins carry blood towards the heart. The pulmonary artery carries deoxygenated blood, and the pulmonary vein carries oxygenated blood, which are exceptions to the general rule for systemic circulation.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "match_left_right_function_confusion",
+              "message": "The heart is divided into four chambers by a septum, ensuring that oxygenated blood (left side) and deoxygenated blood (right side) remain completely separate. The right side handles deoxygenated blood, and the left side handles oxygenated blood.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "match_single_loop_confusion",
+              "message": "The cardiovascular system consists of two main, interconnected circuits: the pulmonary circuit (heart to lungs and back) and the systemic circuit (heart to body and back), which operate in series. Each structure plays a specific role in these distinct loops.",
+              "severity": "medium"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [
+      {
+        "from": "drag_drop",
+        "to": "trace_path",
+        "trigger": "all_zones_labeled",
+        "animation": "fade"
+      },
+      {
+        "from": "trace_path",
+        "to": "description_matching",
+        "trigger": "path_complete",
+        "animation": "fade"
+      }
+    ],
+    "interactionMode": "drag_drop",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 10,
+      "max_score": 315
+    },
+    "totalMaxScore": 315,
+    "generation_complete": true,
+    "dragDropConfig": {
+      "leader_line_style": "none",
+      "tray_position": "bottom",
+      "placement_animation": "spring",
+      "show_distractors": false,
+      "tray_layout": "horizontal",
+      "pin_marker_shape": "circle",
+      "leader_line_animate": true,
+      "max_attempts": 3,
+      "interaction_mode": "drag_drop",
+      "shuffle_labels": true,
+      "zone_idle_animation": "pulse",
+      "label_style": "text",
+      "zone_hover_effect": "highlight",
+      "feedback_timing": "deferred",
+      "label_anchor_side": "auto",
+      "leader_line_color": "",
+      "incorrect_animation": "shake"
+    },
+    "tracePathConfig": {
+      "particleSpeed": "medium",
+      "showParticle": true,
+      "pathStyle": "solid",
+      "path_type": "linear",
+      "drawing_mode": "click_waypoints",
+      "particleTheme": "dots",
+      "color_transition_enabled": false,
+      "show_direction_arrows": true,
+      "show_waypoint_labels": true,
+      "show_full_flow_on_complete": true,
+      "submit_mode": "immediate"
+    },
+    "descriptionMatchingConfig": {
+      "descriptions": {
+        "zone_vena_cava": "Collects deoxygenated blood from the systemic circulation and delivers it to the right atrium of the heart.",
+        "zone_right_atrium": "Receives deoxygenated blood from the vena cava and pumps it into the right ventricle.",
+        "zone_right_ventricle": "Pumps deoxygenated blood from the right atrium into the pulmonary artery, initiating its journey to the lungs.",
+        "zone_pulmonary_artery": "Carries deoxygenated blood from the right ventricle to the lungs for oxygenation.",
+        "zone_lungs": "Facilitate gas exchange, allowing blood to release carbon dioxide and absorb oxygen.",
+        "zone_pulmonary_vein": "Carries oxygenated blood from the lungs back to the left atrium of the heart.",
+        "zone_left_atrium": "Receives oxygenated blood from the pulmonary veins and pumps it into the left ventricle.",
+        "zone_left_ventricle": "Pumps oxygenated blood from the left atrium into the aorta, distributing it to the entire body.",
+        "zone_aorta": "The main artery that distributes oxygenated blood from the left ventricle to the rest of the body."
+      },
+      "mode": "click_zone",
+      "distractor_descriptions": [
+        "Pumps oxygenated blood to the lungs.",
+        "Collects oxygenated blood from the body's tissues.",
+        "Carries deoxygenated blood to the body's systemic circulation.",
+        "Receives deoxygenated blood from the lungs and sends it to the right ventricle."
+      ],
+      "show_connecting_lines": true,
+      "defer_evaluation": false,
+      "description_panel_position": "right"
+    },
+    "paths": [
+      {
+        "id": "path_s1_0",
+        "label": "Deoxygenated Blood Flow",
+        "description": "Trace the path of deoxygenated blood from the body to the lungs.",
+        "color": "#5B2C6F",
+        "requiresOrder": true,
+        "waypoints": [
+          {
+            "id": "wp_s1_0_0",
+            "label": "Vena Cava",
+            "zoneId": "zone_vena_cava",
+            "order": 0
+          },
+          {
+            "id": "wp_s1_0_1",
+            "label": "Right Atrium",
+            "zoneId": "zone_right_atrium",
+            "order": 1
+          },
+          {
+            "id": "wp_s1_0_2",
+            "label": "Right Ventricle",
+            "zoneId": "zone_right_ventricle",
+            "order": 2
+          },
+          {
+            "id": "wp_s1_0_3",
+            "label": "Pulmonary Artery",
+            "zoneId": "zone_pulmonary_artery",
+            "order": 3
+          },
+          {
+            "id": "wp_s1_0_4",
+            "label": "Lungs",
+            "zoneId": "zone_lungs",
+            "order": 4
+          }
+        ]
+      },
+      {
+        "id": "path_s1_1",
+        "label": "Oxygenated Blood Flow",
+        "description": "Now trace the path of newly oxygenated blood from the lungs out to the rest of the body.",
+        "color": "#E74C3C",
+        "requiresOrder": true,
+        "waypoints": [
+          {
+            "id": "wp_s1_1_0",
+            "label": "Lungs",
+            "zoneId": "zone_lungs",
+            "order": 0
+          },
+          {
+            "id": "wp_s1_1_1",
+            "label": "Pulmonary Vein",
+            "zoneId": "zone_pulmonary_vein",
+            "order": 1
+          },
+          {
+            "id": "wp_s1_1_2",
+            "label": "Left Atrium",
+            "zoneId": "zone_left_atrium",
+            "order": 2
+          },
+          {
+            "id": "wp_s1_1_3",
+            "label": "Left Ventricle",
+            "zoneId": "zone_left_ventricle",
+            "order": 3
+          },
+          {
+            "id": "wp_s1_1_4",
+            "label": "Aorta",
+            "zoneId": "zone_aorta",
+            "order": 4
+          }
+        ]
+      }
+    ]
+  }
+}

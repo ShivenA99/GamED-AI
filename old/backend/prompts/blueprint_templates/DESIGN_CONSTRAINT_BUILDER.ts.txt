@@ -1,0 +1,37 @@
+export interface DesignConstraintBuilderBlueprint {
+  templateType: "DESIGN_CONSTRAINT_BUILDER";
+  title: string;
+  narrativeIntro: string;
+  constraints: Array<{
+    id: string;
+    text: string;
+    type: "required" | "optional" | "forbidden";
+    description?: string;
+  }>;
+  designSpace: {
+    elements: Array<{
+      id: string;
+      label: string;
+      type: string;
+      properties?: Record<string, any>;
+    }>;
+    canvas: {
+      width: number;
+      height: number;
+    };
+  };
+  tasks: Array<{
+    id: string;
+    type: "design_construction" | "constraint_satisfaction";
+    questionText: string;
+    requiredToProceed: boolean;
+  }>;
+  animationCues: {
+    elementPlace: string;
+    constraintCheck: string;
+    constraintViolated: string;
+    constraintSatisfied: string;
+    designComplete?: string;
+  };
+}
+

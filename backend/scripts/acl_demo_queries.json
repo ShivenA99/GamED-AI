@@ -1,0 +1,502 @@
+[
+  {
+    "id": "bio-k12-plant-cell-drag-drop",
+    "title": "Label the Parts of a Plant Cell",
+    "question": "Create an interactive diagram game where students label the parts of a plant cell including the cell wall, cell membrane, nucleus, chloroplast, mitochondria, vacuole, and endoplasmic reticulum.",
+    "domain": "biology",
+    "educationLevel": "k12",
+    "gameType": "interactive_diagram",
+    "mechanic": "drag_drop",
+    "bloomsLevel": "Remember"
+  },
+  {
+    "id": "bio-k12-mitosis-sequencing",
+    "title": "Order the Stages of Mitosis",
+    "question": "Create an interactive diagram game where students arrange the stages of mitosis in correct order: prophase, prometaphase, metaphase, anaphase, and telophase, explaining what happens at each stage.",
+    "domain": "biology",
+    "educationLevel": "k12",
+    "gameType": "interactive_diagram",
+    "mechanic": "sequencing",
+    "bloomsLevel": "Understand"
+  },
+  {
+    "id": "bio-k12-food-chains-sorting",
+    "title": "Sort Organisms by Trophic Level",
+    "question": "Create an interactive diagram game where students sort organisms into their correct trophic levels in a food chain: producers (grass, algae, oak tree), primary consumers (rabbit, grasshopper, zooplankton), secondary consumers (frog, snake, small fish), tertiary consumers (hawk, eagle, shark), and decomposers (mushroom, bacteria, earthworm).",
+    "domain": "biology",
+    "educationLevel": "k12",
+    "gameType": "interactive_diagram",
+    "mechanic": "sorting_categories",
+    "bloomsLevel": "Understand"
+  },
+  {
+    "id": "bio-undergrad-organelles-click-identify",
+    "title": "Identify Organelles from Descriptions",
+    "question": "Create an interactive diagram game where undergraduate biology students identify cell organelles (mitochondria, rough ER, smooth ER, Golgi apparatus, lysosomes, peroxisomes) from electron micrograph descriptions of their structure and function.",
+    "domain": "biology",
+    "educationLevel": "undergraduate",
+    "gameType": "interactive_diagram",
+    "mechanic": "click_to_identify",
+    "bloomsLevel": "Apply"
+  },
+  {
+    "id": "bio-undergrad-cardiovascular-trace-path",
+    "title": "Trace Blood Flow Through the Heart",
+    "question": "Create an interactive diagram game where students trace the path of blood flow through the cardiovascular system: from vena cava through the right atrium, right ventricle, pulmonary artery, lungs, pulmonary vein, left atrium, left ventricle, and aorta.",
+    "domain": "biology",
+    "educationLevel": "undergraduate",
+    "gameType": "interactive_diagram",
+    "mechanic": "trace_path",
+    "bloomsLevel": "Apply"
+  },
+  {
+    "id": "bio-undergrad-dna-enzymes-description",
+    "title": "Match DNA Replication Enzymes to Functions",
+    "question": "Create an interactive diagram game where undergraduate biology students match DNA replication enzymes to descriptions of their roles: helicase (unwinds double helix), primase (synthesizes RNA primer), DNA polymerase III (extends new strand), ligase (joins Okazaki fragments), topoisomerase (relieves supercoiling), and single-strand binding proteins (stabilize unwound DNA).",
+    "domain": "biology",
+    "educationLevel": "undergraduate",
+    "gameType": "interactive_diagram",
+    "mechanic": "description_matching",
+    "bloomsLevel": "Analyze"
+  },
+  {
+    "id": "bio-undergrad-inheritance-memory",
+    "title": "Match Genetic Inheritance Patterns",
+    "question": "Create an interactive diagram game where undergraduate students match genetic inheritance patterns to their characteristic features: autosomal dominant (affected in every generation), autosomal recessive (carrier parents, 25% affected), X-linked recessive (more males affected), codominance (both alleles expressed equally), incomplete dominance (blended phenotype), and polygenic inheritance (continuous variation).",
+    "domain": "biology",
+    "educationLevel": "undergraduate",
+    "gameType": "interactive_diagram",
+    "mechanic": "memory_match",
+    "bloomsLevel": "Apply"
+  },
+  {
+    "id": "bio-grad-clinical-diagnosis-branching",
+    "title": "Clinical Diagnosis Decision Tree",
+    "question": "Create an interactive diagram game where graduate medical students navigate a clinical decision tree to diagnose a patient presenting with fatigue, weight loss, and polyuria. Branch through differential diagnoses including diabetes mellitus, hyperthyroidism, and adrenal insufficiency.",
+    "domain": "biology",
+    "educationLevel": "graduate",
+    "gameType": "interactive_diagram",
+    "mechanic": "branching_scenario",
+    "bloomsLevel": "Evaluate"
+  },
+  {
+    "id": "bio-grad-evolution-mechanisms-compare",
+    "title": "Compare Mechanisms of Evolution",
+    "question": "Create an interactive diagram game where graduate students compare and contrast the four mechanisms of evolution: natural selection (differential survival based on fitness), genetic drift (random changes in small populations), gene flow (migration between populations), and mutation (new alleles arising) across categories including effect on allele frequency, role of population size, directionality, and real-world examples.",
+    "domain": "biology",
+    "educationLevel": "graduate",
+    "gameType": "interactive_diagram",
+    "mechanic": "compare_contrast",
+    "bloomsLevel": "Analyze"
+  },
+  {
+    "id": "bio-grad-cellular-respiration-trace-path",
+    "title": "Trace Cellular Respiration Pathways",
+    "question": "Create an interactive diagram game where graduate students trace glucose through the three stages of cellular respiration: glycolysis in the cytoplasm (glucose to pyruvate, 2 ATP), the Krebs cycle in the mitochondrial matrix (acetyl-CoA oxidation, 2 ATP, NADH, FADH2), and the electron transport chain on the inner mitochondrial membrane (oxidative phosphorylation, 34 ATP), tracking energy carriers and ATP yield at each stage.",
+    "domain": "biology",
+    "educationLevel": "graduate",
+    "gameType": "interactive_diagram",
+    "mechanic": "trace_path",
+    "bloomsLevel": "Evaluate"
+  },
+  {
+    "id": "hist-k12-american-revolution-sequencing",
+    "title": "Order Events of the American Revolution",
+    "question": "Create an interactive diagram game where students arrange major events of the American Revolution in chronological order: Stamp Act, Boston Tea Party, First Continental Congress, Battles of Lexington and Concord, Declaration of Independence, Battle of Yorktown, Treaty of Paris.",
+    "domain": "history",
+    "educationLevel": "k12",
+    "gameType": "interactive_diagram",
+    "mechanic": "sequencing",
+    "bloomsLevel": "Remember"
+  },
+  {
+    "id": "hist-k12-historical-figures-memory",
+    "title": "Match Historical Figures to Contributions",
+    "question": "Create an interactive diagram game where students match historical figures (George Washington, Benjamin Franklin, Thomas Jefferson, Alexander Hamilton, John Adams, James Madison) to their key contributions to American founding.",
+    "domain": "history",
+    "educationLevel": "k12",
+    "gameType": "interactive_diagram",
+    "mechanic": "memory_match",
+    "bloomsLevel": "Understand"
+  },
+  {
+    "id": "hist-k12-roman-empire-trace-path",
+    "title": "Trace the Expansion of the Roman Empire",
+    "question": "Create an interactive diagram game where students trace the expansion of the Roman Empire on a map, following the path of conquest from the Italian Peninsula through the Mediterranean, identifying key stages: unification of Italy, Punic Wars and conquest of Carthage, expansion into Greece and Asia Minor, conquest of Gaul under Caesar, and annexation of Egypt and Britain.",
+    "domain": "history",
+    "educationLevel": "k12",
+    "gameType": "interactive_diagram",
+    "mechanic": "trace_path",
+    "bloomsLevel": "Understand"
+  },
+  {
+    "id": "hist-undergrad-wwi-causes-sorting",
+    "title": "Sort Causes of WWI",
+    "question": "Create an interactive diagram game where students sort the causes of World War I into categories: political (alliance systems, nationalism), economic (imperial competition, arms race), military (mobilization plans, naval rivalry), and social (propaganda, ethnic tensions).",
+    "domain": "history",
+    "educationLevel": "undergraduate",
+    "gameType": "interactive_diagram",
+    "mechanic": "sorting_categories",
+    "bloomsLevel": "Apply"
+  },
+  {
+    "id": "hist-undergrad-revolutions-compare",
+    "title": "Compare French and American Revolutions",
+    "question": "Create an interactive diagram game where students compare and contrast the French and American Revolutions across categories: causes, key leaders, ideological foundations, outcomes, and lasting impact on democracy.",
+    "domain": "history",
+    "educationLevel": "undergraduate",
+    "gameType": "interactive_diagram",
+    "mechanic": "compare_contrast",
+    "bloomsLevel": "Analyze"
+  },
+  {
+    "id": "hist-undergrad-industrial-revolution-drag-drop",
+    "title": "Label Key Inventions of the Industrial Revolution",
+    "question": "Create an interactive diagram game where students label key inventions and developments on an Industrial Revolution timeline diagram: spinning jenny (1764), steam engine improvements by Watt (1769), power loom (1785), cotton gin (1794), steam locomotive (1804), telegraph (1837), and Bessemer process for steel (1856), identifying each invention's impact on industry.",
+    "domain": "history",
+    "educationLevel": "undergraduate",
+    "gameType": "interactive_diagram",
+    "mechanic": "drag_drop",
+    "bloomsLevel": "Apply"
+  },
+  {
+    "id": "hist-undergrad-ancient-civilizations-click-identify",
+    "title": "Identify Features of Ancient Civilizations",
+    "question": "Create an interactive diagram game where students identify defining features of ancient civilizations from descriptions: Mesopotamia (cuneiform writing, ziggurats, Code of Hammurabi), Egypt (hieroglyphics, pyramids, papyrus), Indus Valley (planned cities, advanced drainage, standardized weights), and China (oracle bones, Great Wall, silk production), clicking on the correct civilization for each described feature.",
+    "domain": "history",
+    "educationLevel": "undergraduate",
+    "gameType": "interactive_diagram",
+    "mechanic": "click_to_identify",
+    "bloomsLevel": "Analyze"
+  },
+  {
+    "id": "hist-grad-historiographic-description",
+    "title": "Match Historiographic Methods",
+    "question": "Create an interactive diagram game where graduate students match historiographic methodologies (Marxist, Annales School, Postcolonial, Microhistory, Quantitative/Cliometric, Gender History) to their descriptions, key practitioners, and characteristic questions.",
+    "domain": "history",
+    "educationLevel": "graduate",
+    "gameType": "interactive_diagram",
+    "mechanic": "description_matching",
+    "bloomsLevel": "Evaluate"
+  },
+  {
+    "id": "hist-grad-versailles-branching",
+    "title": "Counterfactual: What if Versailles Was Lenient?",
+    "question": "Create an interactive diagram game where graduate students explore counterfactual analysis: what if the Treaty of Versailles imposed lenient terms on Germany? Branch through economic recovery scenarios, political stability outcomes, and the likelihood of WWII.",
+    "domain": "history",
+    "educationLevel": "graduate",
+    "gameType": "interactive_diagram",
+    "mechanic": "branching_scenario",
+    "bloomsLevel": "Evaluate"
+  },
+  {
+    "id": "hist-grad-cold-war-sequencing",
+    "title": "Order Key Events of the Cold War",
+    "question": "Create an interactive diagram game where graduate students arrange key Cold War events in chronological order and identify escalation patterns: Truman Doctrine (1947), Berlin Blockade (1948), Korean War (1950), Hungarian Revolution (1956), Cuban Missile Crisis (1962), Vietnam War escalation (1965), Detente and SALT I (1972), Soviet invasion of Afghanistan (1979), Fall of the Berlin Wall (1989), and dissolution of the USSR (1991).",
+    "domain": "history",
+    "educationLevel": "graduate",
+    "gameType": "interactive_diagram",
+    "mechanic": "sequencing",
+    "bloomsLevel": "Analyze"
+  },
+  {
+    "id": "cs-k12-computer-parts-drag-drop",
+    "title": "Label Parts of a Computer",
+    "question": "Create an interactive diagram game where students label the main parts of a computer: CPU (processor), RAM (memory), hard drive/SSD (storage), motherboard, graphics card, power supply, and cooling fan.",
+    "domain": "cs",
+    "educationLevel": "k12",
+    "gameType": "interactive_diagram",
+    "mechanic": "drag_drop",
+    "bloomsLevel": "Remember"
+  },
+  {
+    "id": "cs-k12-network-data-trace-path",
+    "title": "Trace Data Flow Through a Network",
+    "question": "Create an interactive diagram game where students trace the path of data through a simple computer network: from sender computer through router, switch, modem, ISP, internet backbone, destination ISP, and to receiver computer.",
+    "domain": "cs",
+    "educationLevel": "k12",
+    "gameType": "interactive_diagram",
+    "mechanic": "trace_path",
+    "bloomsLevel": "Understand"
+  },
+  {
+    "id": "cs-k12-bubble-sort-state-tracer",
+    "title": "Trace Bubble Sort on a Small Array",
+    "question": "Create an algorithm game where students trace bubble sort step by step on the array [5, 3, 8, 1, 4]. At each step, students predict which elements are compared, whether a swap occurs, and the resulting array state.",
+    "domain": "cs",
+    "educationLevel": "k12",
+    "gameType": "algorithm",
+    "mechanic": "state_tracer",
+    "bloomsLevel": "Understand"
+  },
+  {
+    "id": "cs-undergrad-uml-click-identify",
+    "title": "Identify UML Class Diagram Components",
+    "question": "Create an interactive diagram game where students identify components in a UML class diagram: classes, attributes, methods, associations, inheritance arrows, composition diamonds, and multiplicity notations.",
+    "domain": "cs",
+    "educationLevel": "undergraduate",
+    "gameType": "interactive_diagram",
+    "mechanic": "click_to_identify",
+    "bloomsLevel": "Apply"
+  },
+  {
+    "id": "cs-undergrad-algorithm-complexity-sorting",
+    "title": "Classify Algorithms by Time Complexity",
+    "question": "Create an interactive diagram game where students sort algorithms into complexity categories: O(n) group (linear search, counting sort), O(n log n) group (merge sort, heap sort), O(n^2) group (bubble sort, insertion sort, selection sort).",
+    "domain": "cs",
+    "educationLevel": "undergraduate",
+    "gameType": "interactive_diagram",
+    "mechanic": "sorting_categories",
+    "bloomsLevel": "Apply"
+  },
+  {
+    "id": "cs-undergrad-binary-search-bug-hunter",
+    "title": "Find the Bug in Binary Search",
+    "question": "Create an algorithm game where students find bugs in a binary search implementation. The code contains common errors: wrong midpoint calculation (overflow), incorrect boundary updates, off-by-one errors, and wrong comparison operators.",
+    "domain": "cs",
+    "educationLevel": "undergraduate",
+    "gameType": "algorithm",
+    "mechanic": "bug_hunter",
+    "bloomsLevel": "Analyze"
+  },
+  {
+    "id": "cs-undergrad-bfs-algorithm-builder",
+    "title": "Build a BFS Graph Traversal Algorithm",
+    "question": "Create an algorithm game where students build a Breadth-First Search algorithm from scratch. Students must arrange steps: initialize queue with start node, mark as visited, dequeue node, explore neighbors, enqueue unvisited neighbors, and repeat.",
+    "domain": "cs",
+    "educationLevel": "undergraduate",
+    "gameType": "algorithm",
+    "mechanic": "algorithm_builder",
+    "bloomsLevel": "Apply"
+  },
+  {
+    "id": "cs-grad-tcp-udp-compare",
+    "title": "Compare TCP vs UDP Protocols",
+    "question": "Create an interactive diagram game where graduate students compare TCP and UDP protocols across categories: connection type, reliability, ordering, speed, overhead, header size, use cases, and flow control mechanisms.",
+    "domain": "cs",
+    "educationLevel": "graduate",
+    "gameType": "interactive_diagram",
+    "mechanic": "compare_contrast",
+    "bloomsLevel": "Analyze"
+  },
+  {
+    "id": "cs-grad-dp-complexity-analyzer",
+    "title": "Analyze Dynamic Programming Complexity",
+    "question": "Create an algorithm game where graduate students analyze the time and space complexity of dynamic programming solutions: fibonacci (naive vs memoized vs tabulated), longest common subsequence, and knapsack problem, identifying overlapping subproblems and optimal substructure.",
+    "domain": "cs",
+    "educationLevel": "graduate",
+    "gameType": "algorithm",
+    "mechanic": "complexity_analyzer",
+    "bloomsLevel": "Evaluate"
+  },
+  {
+    "id": "cs-grad-scheduling-constraint-puzzle",
+    "title": "Solve Scheduling Constraints with Backtracking",
+    "question": "Create an algorithm game where graduate students solve a job scheduling constraint satisfaction problem using backtracking. Given jobs with deadlines, processing times, and resource requirements, students must find a valid schedule satisfying all constraints.",
+    "domain": "cs",
+    "educationLevel": "graduate",
+    "gameType": "algorithm",
+    "mechanic": "constraint_puzzle",
+    "bloomsLevel": "Create"
+  },
+  {
+    "id": "math-k12-geometry-drag-drop",
+    "title": "Label Parts of a Geometric Shape",
+    "question": "Create an interactive diagram game where students label parts of geometric shapes: angles (acute, right, obtuse), sides, vertices, diagonals, radius, diameter, and circumference on circles, triangles, and quadrilaterals.",
+    "domain": "mathematics",
+    "educationLevel": "k12",
+    "gameType": "interactive_diagram",
+    "mechanic": "drag_drop",
+    "bloomsLevel": "Remember"
+  },
+  {
+    "id": "math-k12-linear-equation-sequencing",
+    "title": "Order Steps to Solve a Linear Equation",
+    "question": "Create an interactive diagram game where students arrange the steps to solve 3x + 7 = 22 in correct order: identify the equation, subtract 7 from both sides, simplify to 3x = 15, divide both sides by 3, solution x = 5, verify by substitution.",
+    "domain": "mathematics",
+    "educationLevel": "k12",
+    "gameType": "interactive_diagram",
+    "mechanic": "sequencing",
+    "bloomsLevel": "Understand"
+  },
+  {
+    "id": "math-k12-number-types-sorting",
+    "title": "Classify Numbers by Type",
+    "question": "Create an interactive diagram game where students sort numbers into mathematical categories: prime numbers (2, 3, 5, 7, 11, 13), composite numbers (4, 6, 8, 9, 10, 12), perfect squares (1, 4, 9, 16, 25, 36), and perfect cubes (1, 8, 27, 64), understanding number classification and properties.",
+    "domain": "mathematics",
+    "educationLevel": "k12",
+    "gameType": "interactive_diagram",
+    "mechanic": "sorting_categories",
+    "bloomsLevel": "Understand"
+  },
+  {
+    "id": "math-undergrad-calculus-description-matching",
+    "title": "Match Calculus Theorems to Statements",
+    "question": "Create an interactive diagram game where students match calculus theorems (Mean Value Theorem, Intermediate Value Theorem, Fundamental Theorem of Calculus, L'Hopital's Rule, Taylor's Theorem, Rolle's Theorem) to their formal mathematical statements.",
+    "domain": "mathematics",
+    "educationLevel": "undergraduate",
+    "gameType": "interactive_diagram",
+    "mechanic": "description_matching",
+    "bloomsLevel": "Apply"
+  },
+  {
+    "id": "math-undergrad-matrix-ops-memory",
+    "title": "Match Matrix Operations to Properties",
+    "question": "Create an interactive diagram game where students match matrix operations (transpose, inverse, determinant, eigenvalues, trace, rank) to their key properties and computational rules.",
+    "domain": "mathematics",
+    "educationLevel": "undergraduate",
+    "gameType": "interactive_diagram",
+    "mechanic": "memory_match",
+    "bloomsLevel": "Apply"
+  },
+  {
+    "id": "math-undergrad-function-types-click-identify",
+    "title": "Identify Function Properties from Graphs",
+    "question": "Create an interactive diagram game where undergraduate students identify mathematical function properties by examining graph descriptions: determine whether functions are injective (one-to-one), surjective (onto), bijective, continuous, or differentiable, and identify key features like critical points, inflection points, vertical and horizontal asymptotes, and intervals of increase and decrease.",
+    "domain": "mathematics",
+    "educationLevel": "undergraduate",
+    "gameType": "interactive_diagram",
+    "mechanic": "click_to_identify",
+    "bloomsLevel": "Analyze"
+  },
+  {
+    "id": "math-undergrad-integration-trace-path",
+    "title": "Trace Steps of Solving a Quadratic Equation",
+    "question": "Create an interactive diagram game where students trace the step-by-step process of solving quadratic equations: identifying coefficients (a, b, c), calculating the discriminant (b\u00b2-4ac), applying the quadratic formula, simplifying the square root, and arriving at the two solutions, following the flow from the original equation to the final roots.",
+    "domain": "mathematics",
+    "educationLevel": "undergraduate",
+    "gameType": "interactive_diagram",
+    "mechanic": "trace_path",
+    "bloomsLevel": "Apply"
+  },
+  {
+    "id": "math-grad-proof-strategy-branching",
+    "title": "Choose the Correct Proof Strategy",
+    "question": "Create an interactive diagram game where graduate students choose the correct proof strategy for mathematical theorems: direct proof, proof by contradiction, proof by induction, proof by contrapositive, or constructive proof, branching based on theorem structure.",
+    "domain": "mathematics",
+    "educationLevel": "graduate",
+    "gameType": "interactive_diagram",
+    "mechanic": "branching_scenario",
+    "bloomsLevel": "Evaluate"
+  },
+  {
+    "id": "math-grad-numerical-methods-compare",
+    "title": "Compare Numerical Analysis Methods",
+    "question": "Create an interactive diagram game where graduate students compare numerical methods for solving differential equations: Euler's method (first-order, simple but inaccurate), Runge-Kutta 4th order (high accuracy, four function evaluations), Adams-Bashforth multistep (efficient for smooth problems), and implicit methods (stable for stiff equations), across categories including accuracy order, stability region, computational cost per step, and appropriate problem types.",
+    "domain": "mathematics",
+    "educationLevel": "graduate",
+    "gameType": "interactive_diagram",
+    "mechanic": "compare_contrast",
+    "bloomsLevel": "Analyze"
+  },
+  {
+    "id": "math-grad-vector-spaces-drag-drop",
+    "title": "Label Components of a Vector Space",
+    "question": "Create an interactive diagram game where graduate students label components of a linear algebra vector space diagram: identify and place labels for basis vectors, span, null space (kernel), column space (range), row space, eigenspaces, orthogonal complement, and rank, understanding how these subspaces relate to each other within the fundamental theorem of linear algebra.",
+    "domain": "mathematics",
+    "educationLevel": "graduate",
+    "gameType": "interactive_diagram",
+    "mechanic": "drag_drop",
+    "bloomsLevel": "Apply"
+  },
+  {
+    "id": "ling-k12-sentence-parts-drag-drop",
+    "title": "Label Parts of a Sentence",
+    "question": "Create an interactive diagram game where students label the grammatical parts of a sentence: subject, predicate, direct object, indirect object, adjective, adverb, preposition, and conjunction in example sentences.",
+    "domain": "linguistics",
+    "educationLevel": "k12",
+    "gameType": "interactive_diagram",
+    "mechanic": "drag_drop",
+    "bloomsLevel": "Remember"
+  },
+  {
+    "id": "ling-k12-word-types-sorting",
+    "title": "Sort Words into Parts of Speech",
+    "question": "Create an interactive diagram game where students sort words into grammatical categories: nouns (dog, happiness, city), verbs (run, think, become), adjectives (blue, tall, happy), and adverbs (quickly, very, always).",
+    "domain": "linguistics",
+    "educationLevel": "k12",
+    "gameType": "interactive_diagram",
+    "mechanic": "sorting_categories",
+    "bloomsLevel": "Understand"
+  },
+  {
+    "id": "ling-k12-sentence-building-sequencing",
+    "title": "Build Sentences in Correct Word Order",
+    "question": "Create an interactive diagram game where students arrange scrambled words into grammatically correct English sentences, learning about subject-verb-object order, article placement, adjective positioning, and prepositional phrase attachment. Include sentences of increasing complexity from simple (The dog runs fast) to compound (The tall boy ate lunch and played outside).",
+    "domain": "linguistics",
+    "educationLevel": "k12",
+    "gameType": "interactive_diagram",
+    "mechanic": "sequencing",
+    "bloomsLevel": "Understand"
+  },
+  {
+    "id": "ling-undergrad-phonology-trace-path",
+    "title": "Trace Phonological Rule Application",
+    "question": "Create an interactive diagram game where students trace the application of phonological rules in a derivation: underlying form through vowel harmony, consonant assimilation, and syllabification rules to surface form.",
+    "domain": "linguistics",
+    "educationLevel": "undergraduate",
+    "gameType": "interactive_diagram",
+    "mechanic": "trace_path",
+    "bloomsLevel": "Apply"
+  },
+  {
+    "id": "ling-undergrad-morphemes-click-identify",
+    "title": "Identify Morphemes in Complex Words",
+    "question": "Create an interactive diagram game where students identify morphemes in complex words: 'unbreakable' (un-break-able), 'misunderstanding' (mis-understand-ing), 'reorganization' (re-organ-iz-ation), identifying prefixes, roots, and suffixes.",
+    "domain": "linguistics",
+    "educationLevel": "undergraduate",
+    "gameType": "interactive_diagram",
+    "mechanic": "click_to_identify",
+    "bloomsLevel": "Apply"
+  },
+  {
+    "id": "ling-undergrad-language-families-memory",
+    "title": "Match Languages to Their Families",
+    "question": "Create an interactive diagram game where undergraduate linguistics students match languages to their language families and key typological features: Indo-European (English, Hindi, Russian \u2014 inflectional morphology), Sino-Tibetan (Mandarin, Cantonese \u2014 tonal, isolating), Afro-Asiatic (Arabic, Hebrew \u2014 root-and-pattern morphology), Niger-Congo (Swahili, Yoruba \u2014 noun class systems), Japonic (Japanese \u2014 agglutinative, SOV order), and Austronesian (Tagalog, Hawaiian \u2014 focus system).",
+    "domain": "linguistics",
+    "educationLevel": "undergraduate",
+    "gameType": "interactive_diagram",
+    "mechanic": "memory_match",
+    "bloomsLevel": "Analyze"
+  },
+  {
+    "id": "ling-undergrad-semantic-roles-description",
+    "title": "Match Semantic Roles to Definitions",
+    "question": "Create an interactive diagram game where undergraduate students match semantic roles to their definitions and identify them in example sentences: Agent (doer of action), Patient (entity affected), Experiencer (entity experiencing sensation), Instrument (tool used), Theme (entity moved or described), Goal (destination), Source (origin), and Beneficiary (entity benefiting from action).",
+    "domain": "linguistics",
+    "educationLevel": "undergraduate",
+    "gameType": "interactive_diagram",
+    "mechanic": "description_matching",
+    "bloomsLevel": "Apply"
+  },
+  {
+    "id": "ling-grad-syntax-trees-compare",
+    "title": "Compare Syntax Trees Across Theories",
+    "question": "Create an interactive diagram game where graduate students compare syntactic representations across theoretical frameworks: Government & Binding (X-bar theory), Minimalist Program (Merge), Head-Driven Phrase Structure Grammar, and Lexical-Functional Grammar for the same sentence.",
+    "domain": "linguistics",
+    "educationLevel": "graduate",
+    "gameType": "interactive_diagram",
+    "mechanic": "compare_contrast",
+    "bloomsLevel": "Evaluate"
+  },
+  {
+    "id": "ling-grad-language-acquisition-branching",
+    "title": "Navigate Language Acquisition Stages",
+    "question": "Create an interactive diagram game where graduate students navigate a language acquisition decision tree: given a child's age, language exposure, and linguistic behaviors, predict the developmental stage (cooing, babbling, one-word holophrastic, two-word telegraphic, multi-word, complex sentences), identify potential delays or disorders, and recommend appropriate interventions based on milestones.",
+    "domain": "linguistics",
+    "educationLevel": "graduate",
+    "gameType": "interactive_diagram",
+    "mechanic": "branching_scenario",
+    "bloomsLevel": "Evaluate"
+  },
+  {
+    "id": "ling-grad-phonological-processes-sorting",
+    "title": "Classify Phonological Processes",
+    "question": "Create an interactive diagram game where graduate students sort phonological processes into categories: assimilation (nasal place assimilation, voicing assimilation, palatalization), dissimilation (Grassmann's Law, liquid dissimilation), deletion (cluster reduction, final consonant deletion, syncope), insertion (epenthesis, prothesis), and metathesis (segment reordering), with cross-linguistic examples from English, Spanish, Japanese, and Arabic.",
+    "domain": "linguistics",
+    "educationLevel": "graduate",
+    "gameType": "interactive_diagram",
+    "mechanic": "sorting_categories",
+    "bloomsLevel": "Analyze"
+  }
+]

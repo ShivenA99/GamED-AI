@@ -1,0 +1,25 @@
+{
+  "templateType": "IMAGE_HOTSPOT_QA",
+  "description": "Interactive image with clickable hotspots that reveal questions and answers.",
+  "domains": ["geography", "history", "science", "art", "architecture"],
+  "blueprintSchema": {
+    "requiredFields": [
+      "templateType",
+      "title",
+      "narrativeIntro",
+      "image.assetPrompt",
+      "hotspots",
+      "tasks"
+    ]
+  },
+  "htmlContract": {
+    "requiredIds": ["gameRoot", "imageContainer", "hotspotOverlay", "questionModal", "feedbackArea"],
+    "requiredClasses": ["hotspot-marker", "hotspot-active", "modal-content"],
+    "interactionNotes": [
+      "Hotspots are clickable regions on the image.",
+      "Clicking a hotspot opens a modal with question.",
+      "Answer submission provides immediate feedback."
+    ]
+  }
+}
+

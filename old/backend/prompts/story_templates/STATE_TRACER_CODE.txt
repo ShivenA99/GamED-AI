@@ -1,0 +1,20 @@
+### Template Context: STATE_TRACER_CODE
+
+The resulting visualization will be implemented as:
+- Step through code execution and track variable states.
+- Code is displayed with line-by-line execution.
+- Variable states are tracked and displayed at each step.
+
+CRITICAL REQUIREMENTS:
+- If the question requires O(log n) runtime (binary search, divide & conquer), the generated code MUST implement binary search, NOT linear search.
+- For rotated sorted array problems, use binary search with pivot detection logic.
+- The code must match the algorithm complexity specified in the problem (e.g., O(log n) means binary search, not O(n) linear search).
+- Ensure the code visualization demonstrates the correct algorithmic approach.
+
+When generating story_context, visual_metaphor, visual_elements, question_flow, and animation_cues:
+- Emphasize stepping through execution, variable states, and debugging.
+- Visual elements should represent code lines, variables, and state changes.
+- Questions should involve predicting variable values or execution flow.
+- Animation cues should show line highlighting, state updates, and step progression.
+- For binary search problems, emphasize the divide-and-conquer approach and logarithmic complexity.
+

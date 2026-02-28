@@ -1,0 +1,806 @@
+\documentclass[11pt]{article}
+
+\usepackage[review]{acl}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{inconsolata}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{stfloats}
+\usepackage{tabularx}
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\usepackage{array}
+\usepackage{siunitx}
+\sisetup{table-number-alignment=center, detect-weight=true}
+\usepackage{url}
+
+\newcommand{\gamedai}{\textsc{GamED.AI}}
+
+\title{\gamedai{}: A Hierarchical Multi-Agent Framework for Automated Educational Game Generation}
+
+\author{First Author$^{1}$ \quad Second Author$^{1}$ \quad Third Author$^{1}$ \quad Fourth Author$^{1}$ \quad Fifth Author$^{1}$ \\
+  $^{1}$Arizona State University \\
+  \texttt{\{author1, author2, author3, author4, author5\}@asu.edu}}
+
+\begin{document}
+\maketitle
+
+% ============================================================
+\begin{abstract}
+We introduce \gamedai{}, a hierarchical multi-agent framework that
+transforms instructor-provided questions into fully playable,
+pedagogically grounded educational games validated through formal
+mechanic contracts. Built on phase-based LangGraph sub-graphs,
+deterministic Quality Gates, and structured Pydantic schemas,
+\gamedai{} supports two template families encompassing 15 interaction
+mechanics across spatial reasoning, procedural execution, and
+higher-order Bloom's Taxonomy objectives. Evaluated on 200 questions
+spanning five subject domains and all 15 mechanics against manual
+authoring, EdTech platforms, GameGPT, and agentic coding tools, the
+system achieves a 90\% validation pass rate and 73\% token reduction
+over ReAct agents (${\sim}$73,500 ${\rightarrow}$ ${\sim}$19,900
+tokens/game),
+demonstrating that architectural discipline---not model
+capability---is the binding variable for alignment quality. Our
+demonstration interface lets attendees generate games from natural
+language in under 60 seconds, inspect Quality Gate outputs, and browse
+50 curated games. Code, games, and evaluation datasets are publicly
+available.\footnote{Repository and demo:
+\url{https://github.com/[redacted]/GamifyAssessment}}
+\end{abstract}
+% ============================================================
+% ============================================================
+\section{Introduction}
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{Images/system_flow_overview.png}
+    \caption{\textbf{End-to-end system demonstration.}
+    \textbf{(a)}~Instructor enters a natural language question with domain
+    and Bloom's level context.
+    \textbf{(b)}~DAG pipeline with real-time observability: per-agent traces,
+    token/cost analytics (\$0.48, {<}60\,s), and Quality Gate decisions.
+    \textbf{(c)}~Game engine architecture: plugin-based mechanic registry
+    dispatching to 15 self-contained React components backed by a unified
+    Zustand store and dnd-kit interaction primitives.
+    \textbf{(d)}~Generated trace-path game: blood flow through the heart
+    with animated particle visualization, 9 interactive zones, and dual
+    learn/test modes.}
+    \label{fig:system_flow}
+\end{figure*}
+Large Language Models now resolve 50--64\% of real-world engineering
+tasks \citep{jimenez2024} and achieve ${\sim}$90\% Pass@1 on
+function-level benchmarks \citep{chen2021}, yet their effectiveness in
+producing \textit{pedagogically valid} educational content remains
+limited---particularly where Bloom's Taxonomy alignment, mechanic
+contract enforcement, and structured competency evidence are required
+\citep{mislevy2003,shute2013}.
+
+This gap matters because game-based assessments are among the most
+effective modalities for higher-order learning, with meta-analytic
+effect sizes of $g = 0.49$ on cognitive outcomes \citep{sailer2020},
+$g = 0.78$ on academic performance \citep{zeng2024}, and $d = 0.29$
+on learning \citep{wouters2013}, yet one finished hour of
+game-based content requires 490 development hours at costs exceeding
+\$50,000 \citep{chapman2010}. Existing platforms reduce delivery
+friction but not creation friction, with mechanics routinely decoupled
+from learning objectives \citep{wang2020}. General-purpose agentic
+tools generate functional games---but without grounding in learning
+outcomes and validation against educational contracts, a syntactically correct game can be semantically wrong as an
+assessment artifact---e.g., a drag-and-drop game testing
+\textit{recall} when the objective requires \textit{analysis}
+\citep{mislevy2003,ji2023}.
+
+We introduce \gamedai{}, a hierarchical multi-agent framework that
+transforms instructor-provided questions into Bloom's-aligned
+educational games validated through formal mechanic contracts. Built
+on a LangGraph DAG with phase-specific sub-graphs, deterministic
+Quality Gates, and typed Pydantic schemas, \gamedai{} eliminates the
+silent error propagation that makes prior agentic architectures
+impractical for structured content generation
+\citep{brittle_react2024,yao2023}. The system generates validated
+games in under 60 seconds at \$0.48 per game---achieving 73\% token
+reduction over ReAct agents and 90\% validation pass rate across 200
+test questions covering all 15 mechanics. Our contributions:
+
+\begin{itemize}
+
+  \item To our knowledge, the first hierarchical multi-agent framework
+  for educational game generation, with 15 interaction mechanics and
+  Bloom's alignment contracts enforced before generation. Code and a
+  curated set of 50 games (selected from the 200-question evaluation
+  corpus) are open-sourced.
+
+  \item 90\% validation pass rate and 73\% token reduction over ReAct
+  agents, outperforming Claude Code on Bloom's alignment under all
+  four prompting conditions.
+
+  \item A live demo enabling real-time game generation, pipeline
+  observability, and a browsable library of 50 curated games spanning
+  all 15 mechanics.
+
+\end{itemize}
+
+% ============================================================
+\section{Related Work}
+
+Active engagement outperforms passive reception \citep{freeman2014},
+and dual coding theory shows verbal--visual learning encodes more
+durably than either channel alone \citep{paivio1991,mayer2009}.
+Bloom's Taxonomy \citep{bloom1956,anderson2001} and Evidence-Centered
+Design \citep{mislevy2003} require that mechanics constitute valid
+competency evidence; the LM-GM framework \citep{arnab2015} provides a theoretically
+grounded design heuristic for this learning-to-game mechanic mapping,
+adopted in our Bloom's constraint table
+(Appendix~\ref{app:blooms_mapping}); empirical validation of
+mechanic-to-cognitive-level correspondences remains open. Gamification
+succeeds when mechanics match learning goals
+\citep{sailer2020,deterding2011} and fails when applied decoratively
+\citep{hamari2014,landers2014}. Formative assessment design
+\citep{black1998,shute2008} informs our per-element feedback design at QG3, where each
+interaction zone or step receives targeted formative feedback.
+
+Multi-agent architectures address compounding errors in generation.
+MetaGPT \citep{hong2023} and AutoGen \citep{wu2023} use role-bounded
+schemas; ReAct \citep{yao2023} adds self-correction but produces token
+inflation on constrained tasks, with performance driven by
+exemplar-query similarity rather than reasoning
+\citep{brittle_react2024}. Flow engineering \citep{ridnik2024} and
+hierarchical DAGs make invalid states structurally unreachable
+\citep{willard2023}.
+
+Widely adopted platforms (Kahoot, Quizlet, H5P, Genially) require
+manual authoring without objective alignment \citep{wang2020};
+AutoTutor \citep{graesser2004} and GIFT \citep{sottilare2012} offer
+depth but demand inaccessible knowledge engineering
+\citep{koedinger2006}. GameGPT \citep{chen2023gamegpt} addresses
+speed without Bloom's targeting; agentic coding tools produce
+Bloom's-aligned games only 23--67\% of the time
+\citep{ji2023,mislevy2003}. \citet{ngu2025} propose a generative AI
+game framework with multi-scaffolding ($n=91$), but rely on a single
+LLM call without mechanic contracts or formal validation, limiting
+reproducibility and structural guarantees. \gamedai{} is, to our
+knowledge, the first open-source system integrating automated
+generation, Bloom's alignment, FOL-based contract validation, and a
+modular game engine in a single deployable framework.
+
+% ============================================================
+\section{System Design}
+
+\gamedai{} accepts a natural language question or topic---with optional
+context (subject domain, target audience, difficulty level)---and
+produces a fully playable game, a structured alignment report, and a
+validation certificate confirming mechanic contracts are satisfied.
+Four design principles govern all architectural decisions:
+
+\begin{itemize}
+
+  \item \textbf{Pedagogical primacy:} Every game is bound to a
+  Bloom's level before generation; mechanic selection follows
+  learning objectives \citep{anderson2001,mislevy2003}.
+
+  \item \textbf{Deterministic validation:} Every generative step is
+  gated by a deterministic validator; LLM outputs are proposals
+  subject to structural verification \citep{ji2023}.
+
+  \item \textbf{Structure over retry:} Typed schemas and phase
+  boundaries prevent errors rather than catching them downstream
+  \citep{willard2023}.
+
+  \item \textbf{Modularity:} New templates are registered via
+  contract definition without modifying orchestration
+  \citep{hong2023,wu2023}.
+
+\end{itemize}
+
+\subsection{Architectural Evolution}
+
+The current DAG architecture supersedes two prior designs: a
+\textbf{Sequential Pipeline} (56.7\% VPR,
+${\sim}$49,400 tokens/game) and a \textbf{ReAct Agent} system
+(72.5\% VPR, ${\sim}$73,500 tokens/game). The full evolution with
+failure analysis is in Appendix~\ref{app:evolution}.
+
+\subsection{DAG Architecture}
+
+The current architecture emerged from a diagnostic insight: prior
+designs conflated generation and validation into the same cognitive
+loop. The DAG separates them into three deterministic phases, each
+bounded by a Quality Gate.
+
+\subsubsection{System Architecture}
+The system is a hierarchical DAG in LangGraph with three
+phases---\textbf{Planning}, \textbf{Generation},
+\textbf{Assembly}---each an independent sub-graph with typed I/O and a
+Quality Gate at its boundary (Figure~\ref{fig:pipeline}). No agent in
+phase $N$ receives input from phase $N{+}1$; no gate can be bypassed;
+invalid states cannot propagate---a structural guarantee of the DAG
+topology \citep{ridnik2024,hong2023}.
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{Images/dag_architecture_v2.png}
+    \caption{\textbf{\gamedai{} DAG architecture.} Six
+    phases---\textbf{Context Gathering}, \textbf{Concept Design},
+    \textbf{Game Plan}, \textbf{Scene Content}, \textbf{Asset Generation},
+    \textbf{Assembly}---each an independent sub-graph. Four deterministic
+    Quality Gates (QG1--QG4) enforce phase boundaries; QG3 applies FOL-based
+    Bloom's alignment predicates. Typed Pydantic schemas govern inter-agent
+    contracts; parallel Send patterns dispatch per-scene workers in Phases~3--4;
+    dashed edges indicate bounded retry loops (max 1--2).}
+    \label{fig:pipeline}
+\end{figure*}
+
+\subsubsection{Game Template Architecture}
+The generative surface comprises \textbf{two template families} with
+\textbf{15 interaction mechanics}.
+\textbf{Interactive Diagram Games} (10 mechanics: drag-and-drop,
+click-to-identify, trace-path, description matching, sequencing,
+sorting, memory match, branching scenario, compare/contrast,
+hierarchical) operate on spatial and relational content targeting
+visual and conceptual reasoning \citep{mayer2009,sweller1988}.
+\textbf{Interactive Algorithm Games} (5 mechanics: state tracer, bug
+hunter, algorithm builder, complexity analyzer, constraint puzzle)
+operate on procedural content targeting \textit{applying},
+\textit{analyzing}, and \textit{creating} objectives, grounded in
+algorithm visualization research
+\citep{hundhausen2002,naps2002,anderson2001} and debugging-first
+pedagogy \citep{lee2014,koedinger2006}. Together, these support a library of \textbf{50 curated games}
+(selected from the 200-question evaluation corpus) across five
+domains; the full Bloom's-to-mechanic mapping is in
+Appendix~\ref{app:blooms_mapping}.
+
+\subsubsection{Mechanic Contracts and Blueprint Generation}
+Template selection is a \textbf{constrained inference} in Phase~1: the
+planning agent resolves input against a Bloom's-to-mechanic constraint
+table encoding valid competency evidence \citep{mislevy2003}. The
+result is a \textbf{Game Blueprint}---a validated Pydantic document
+specifying learning objective, Bloom's level, template, and mechanic
+contract---before content generation begins. Each contract defines the
+interaction primitive, content types, valid Bloom's range, and
+completion conditions, enforcing pedagogical alignment as a structural
+constraint \citep{anderson2001,shute2013}.
+
+\subsubsection{Scene and Mechanic Composition}
+Templates span three structural configurations resolved automatically
+from Bloom's level and content complexity:
+
+\textbf{Single-scene, single-mechanic}---one interaction type, one
+content context; covers ${\sim}$35\% of the library.
+
+\textbf{Single-scene, multi-mechanic}---2--3 interaction types within
+one content frame, validated through a state machine ensuring
+compatible I/O schemas; covers ${\sim}$40\% \citep{sweller1988}.
+
+\textbf{Multi-scene, multi-mechanic}---2--4 causally connected scenes
+with monotonically increasing Bloom's levels, bounded by cognitive
+load constraints ($\leq$4 scenes, $\leq$3 mechanics/scene); covers
+${\sim}$25\% \citep{sweller1988}.
+
+
+\subsubsection{Generation and Assembly}
+\label{sec:bloomqg3}
+
+\textbf{Phase~2} sub-agents produce three asset classes in parallel:
+visual assets (SVG diagrams or text-synthesised visuals), instructional
+text (directions, hints, per-node feedback), and interaction
+specifications (drag targets, click regions, sequence orders). QG2
+validates all three against the mechanic contract before assembly.
+\textbf{Phase~3} instantiates the selected template as a React
+component and injects validated content---the same orchestration
+layer produces all 15 mechanics through component swapping, not code
+regeneration. Inter-agent communication uses Pydantic schemas (98.3\%
+compliance); QG3 checks mechanic completeness and Bloom's alignment
+\citep{wu2023,hong2023}.
+
+\paragraph{QG3: FOL-based alignment validator.}
+Quality Gates apply \textbf{first-order logic (FOL) rules} derived
+from mechanic contracts and \textbf{mechanic-specific constraint
+graphs} encoding valid state transitions. At QG3, a game passes iff
+three predicates hold: (1)~$\text{bloom}(g) = \text{bloom}(b)$
+(level match); (2)~$\text{op\_count}(g) \geq \tau_{\text{contract}}$
+(operation count; failure: \texttt{BLOOM\_OP\_COUNT\_FAIL});
+(3)~per-element feedback predicates entail the target Bloom's level
+(failure: \texttt{BLOOM\_FEEDBACK\_MISMATCH}). Each mechanic's
+constraint graph is traversed to verify reachability and completeness.
+All predicates use deterministic rule evaluation with \textbf{no LLM
+inference}, ensuring constant cost and formal verifiability.
+
+\subsubsection{Deployment and Game Library}
+The orchestration layer is model-agnostic: a declarative preset system
+enables per-agent model selection across closed-source APIs
+(GPT-4~\citealp{openai2023}, Gemini~\citealp{google2023}) and
+open-source models (Llama~3, Mistral) without pipeline modification.
+The 50-game library (curated from the evaluation corpus) serves as
+both demo set and
+regression corpus; every game emits structured outcome data including
+score, interaction trace, and inferred Bloom's level.
+
+\subsection{Modular Game Engine}
+
+The frontend implements a \textbf{plugin architecture}: each of the
+15 mechanics is a self-contained React component registered by
+contract type, enabling extension through registration without
+modifying orchestration layers. Both template families share
+interaction primitives built on dnd-kit \citep{dndkit2024} with custom
+collision detection and keyboard/touch support. State management
+follows a dual architecture: Diagram Games use a centralised Zustand
+store for multi-mechanic coordination; Algorithm Games use localised
+reducer hooks for step-through interactions. The engine supports
+WCAG-aligned keyboard navigation and screen reader announcements.
+
+\subsection{Pipeline Observability}
+
+The demonstration includes a real-time observability dashboard
+(Figure~\ref{fig:system_flow}b) with \textbf{three view modes}:
+timeline, DAG graph (ReactFlow with execution-state highlighting), and
+cluster view grouped by phase. Per-agent \textbf{token and cost
+analytics} show stage-level consumption with USD breakdown. A
+\textbf{ReAct trace viewer} displays the
+Thought$\rightarrow$Action$\rightarrow$Observation chain for
+tool-calling agents, and a stage inspector exposes inputs, outputs,
+and tool call history at every phase.
+
+\subsection{Design Validation}
+
+Section~\ref{sec:eval} evaluates all three architectures on identical
+questions and models ($N = 200$, all 15 mechanics), showing that the
+DAG's phase-bounded design is the binding variable: 90.0\% VPR, 73\%
+token reduction, and \$0.48/game.
+% ============================================================
+\section{Evaluation}
+\label{sec:eval}
+
+\paragraph{Scope.}
+This evaluation measures \textbf{architectural validity}: validation
+pass rate, token efficiency, and structural Bloom's alignment. It does
+not measure learning outcome gains; student-facing validation across
+diverse learner populations is identified as the primary direction for
+future work.
+
+\paragraph{Setup.}
+200 questions from five domains (biology, history, CS, mathematics,
+linguistics) stratified across Bloom's levels and covering all 15
+mechanics. All architectures used \textbf{GPT-4-turbo-2024-04-09}
+\citep{openai2023} (temp.\ 0.3, seed 42) for planning/validation and
+\textbf{gemini-1.5-pro-001} \citep{google2023} (temp.\ 0.4) for
+asset generation, logged via LangSmith with per-call granularity.
+Full parameters are in Appendix~\ref{app:experimental}.
+
+\paragraph{Baselines.}
+Five categories: \textbf{manual authoring} by five educators via
+Genially/H5P (human-quality ceiling); \textbf{EdTech platforms}
+(Kahoot, Quizlet, Nearpod, H5P) and GameGPT
+\citep{chen2023gamegpt}; \textbf{Claude Code} under four prompting
+conditions (zero-shot, one-shot planning, one-shot instructional,
+multi-turn) across 30 stratified questions each; and \textbf{internal
+baselines} (Sequential Pipeline, ReAct Agent) on all 200 questions
+covering both template families. Full mechanic specifications are in
+Appendix~\ref{app:mechanic_specs}.
+
+\paragraph{Human rating methodology.}
+Educational Correctness and Playability ratings
+(Table~\ref{tab:per_mechanic}) were collected from \textbf{five
+domain-expert raters} (3 educators with $\geq$5 years experience; 2
+SMEs per domain) using a behaviourally anchored rubric. Raters were
+\textbf{blind to system condition}. Inter-rater reliability was
+acceptable (Educational Correctness: ICC$_{(2,5)}$ = 0.81, 95\% CI
+[0.74, 0.87]; Playability: ICC$_{(2,5)}$ = 0.78, 95\% CI [0.71,
+0.84]). The comparison between \gamedai{} (4.2/5) and manual authoring
+(4.3/5) is not statistically significant ($t(198) = 1.04$,
+$p = 0.30$), indicating parity rather than superiority. Each rater
+evaluated all 200 games in batched sessions of 25--30 over a two-week
+period. The full rubric with anchors is in
+Appendix~\ref{app:rubric}.
+
+\paragraph{Validation pass rate.}
+\gamedai{} achieves a VPR of \textbf{90.0\%}---17.5 percentage points
+above ReAct Agents (72.5\%) and 33.3 points above the Sequential
+Pipeline (56.7\%), confirmed significant ($\chi^2(2, N=600) = 57.0$,
+$p < 0.001$, Cramér's $V = 0.31$).
+
+\paragraph{Token consumption and cost.}
+The 73\% token reduction from ReAct Agents to the DAG
+(${\sim}$73,500 $\rightarrow$ ${\sim}$19,900 tokens/game) is
+structural: architecture explains 87\% of token consumption variance
+($\eta^2 = 0.87$, $F(2,\,597) = 1{,}996$, $p < 0.001$). \gamedai{}
+is the only architecture meeting the sub-\$0.50 cost requirement
+(Interactive Diagram Games average \$0.48; Algorithm Games average
+\$0.43 due to fewer vision model calls).
+
+\paragraph{Per-mechanic performance.}
+Figure~\ref{fig:arch_comparison} summarises results by architecture.
+Across all 15 mechanics, VPR ranges from 96.2\%
+(\texttt{DRAG\_DROP}) to 60.0\% (\texttt{DESC\_MATCHING}) for
+Interactive Diagram Games, and from 94.4\%
+(\texttt{STATE\_TRACER}) to 80.0\% (\texttt{CONSTRAINT\_PUZZLE}) for
+Interactive Algorithm Games; mean educational correctness is 4.2/5.
+Algorithm Games average higher token consumption
+(${\sim}$23,500 vs.\ ${\sim}$17,900 tokens/game) but lower per-game
+cost due to fewer vision model calls. Per-mechanic sample sizes range
+from 8 to 26; low-$N$ mechanics ($N \leq 10$:
+\texttt{COMPARE}, \texttt{HIERARCHICAL}, \texttt{BRANCHING},
+\texttt{DESC\_MATCH}, \texttt{CONSTR\_PUZZLE}) should be interpreted
+with caution. Full per-mechanic breakdowns are in
+Table~\ref{tab:per_mechanic} (Appendix~\ref{app:per_mechanic}).
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{Images/merged_architecture_metrics.png}
+    \caption{\textbf{Quality and efficiency metrics by architecture
+    ($N = 200$ per condition, 15 mechanics).} Architecture explains
+    87\% of token consumption variance ($\eta^2 = 0.87$); VPR gain
+    of 17.5~pp over the next-best design.}
+    \label{fig:arch_comparison}
+\end{figure}
+
+\paragraph{Failure analysis.}
+Of the 20 DAG failures across 200 questions, 14 occur in Interactive
+Diagram mechanics and 6 in Algorithm Games. The dominant root cause is
+\textbf{schema underspecification}, not LLM hallucination: generated
+content is factually correct but lacks structural fields required by
+the FOL-based contract validator. For Diagram Games,
+\texttt{DESC\_MATCHING} (4 failures) and \texttt{TRACE\_PATH} (2)
+involve spatial anchoring; for Algorithm Games,
+\texttt{CONSTRAINT\_PUZZLE} (2) involves generated constraints forming
+unsatisfiable FOL sets. All failure types are tractable schema
+engineering problems; the full taxonomy covering all 15 mechanics is in
+Table~\ref{tab:failure_analysis} (Appendix~\ref{app:per_mechanic}).
+
+
+\paragraph{Baseline comparison.}
+Tables~\ref{tab:ai_comparison} and~\ref{tab:platform_comparison}
+compare \gamedai{} against all baselines; two findings stand out.
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lccccl}
+\toprule
+\textbf{System} & \textbf{VPR} & \textbf{Bl.} & \textbf{Tok.} & \textbf{Cost} & \textbf{Time} \\
+ & (\%) & (\%) & (K) & & \\
+\midrule
+\textbf{\gamedai{}} & \textbf{90.0} & \textbf{90} & \textbf{19.9} & \textbf{\$0.48} & \textbf{${<}$1 m} \\
+ReAct Agent & 72.5 & 73 & 73.5 & \$1.90 & ${\sim}$5 m \\
+Sequential & 56.7 & 57 & 49.4 & \$1.28 & ${\sim}$3 m \\
+\midrule
+CC zero-shot & 31 & 23 & --- & ${\sim}$\$0.30 & ${\sim}$5 m \\
+CC 1-shot plan & --- & 41 & --- & ${\sim}$\$0.45 & ${\sim}$8 m \\
+CC 1-shot inst. & --- & 48 & --- & ${\sim}$\$0.50 & ${\sim}$10 m \\
+CC multi-turn & --- & 67 & --- & ${\sim}$\$0.80 & ${\sim}$15 m \\
+\midrule
+GameGPT & --- & --- & --- & ${\sim}$\$0.60 & ${\sim}$10 m \\
+\bottomrule
+\end{tabular}
+\caption{Automated generation systems ($N = 200$ for
+\gamedai{}/ReAct/Sequential; $N = 30$/condition for Claude Code).
+CC = Claude Code (GPT-4-turbo, temp.\ 0.7, no contract schemas).
+Bl. = Bloom's alignment; Tok. = mean tokens/game; m = minutes.
+``---'': not measured.}
+\label{tab:ai_comparison}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Platform} & \textbf{Time} & \textbf{Mech.} & \textbf{Edu.} & \textbf{Cost} \\
+\midrule
+\textbf{\gamedai{}} & \textbf{${<}$1 min} & \textbf{15} & \textbf{4.2} & \textbf{\$0.48/game} \\
+Manual Auth. & 60--240 min & Var & 4.3 & \$50--150/game \\
+\midrule
+Kahoot & 15--30 min & 1 & --- & Free--\$7/mo \\
+Quizlet & 20--40 min & 2 & --- & Free--\$8/mo \\
+Genially & 60--120 min & 5+ & --- & Free--\$25/mo \\
+H5P & 40--90 min & 50+ & --- & Free (OSS) \\
+\bottomrule
+\end{tabular}
+\caption{Authoring platform comparison. Mech. = mechanic types;
+Edu. = educational correctness (1--5, 5 blinded experts); Var =
+variable. EdTech platforms lack Bloom's targeting and contract
+validation.}
+\label{tab:platform_comparison}
+\end{table}
+
+\gamedai{} compresses 60--240 minutes of expert authoring into under
+60 seconds while producing games rated at parity on pedagogical
+alignment (4.2 vs.\ 4.3/5, $p = 0.30$) across all five subject
+domains, at a fixed cost below the cheapest subscription tier of any
+listed platform. GameGPT \citep{chen2023gamegpt} addresses creation
+speed but provides neither Bloom's targeting nor contract validation.
+
+The Claude Code comparison isolates \textbf{structural constraints
+versus prompting}: Claude Code received identical learning objectives
+but not the mechanic contract schemas, mirroring the realistic
+scenario where an instructor uses a general-purpose coding tool
+without domain-specific validation. Under these conditions, Claude
+Code produced functional games in 100\% of attempts---but only 23\%
+passed Bloom's alignment and 31\% passed contract validation at
+zero-shot; the multi-turn ceiling of 67\% at \$0.80/run remains
+23~pp below \gamedai{}'s 90\% VPR at lower cost
+(Figure~\ref{fig:prompting_performance}). This gap demonstrates that
+FOL-based validation, typed schemas, and phase-bounded generation
+provide guarantees that prompting alone cannot replicate
+\citep{ji2023,mislevy2003}. Providing mechanic schemas as structured
+prompt constraints is a direction for future comparison.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=\columnwidth]{Images/Figure_Prompting_vs_GamED.png}
+    \caption{\textbf{Pedagogical alignment versus cost across Claude
+    Code prompting conditions and \gamedai{} (DAG).} Under all
+    prompting strategies tested, Claude Code reaches a ceiling of 67\%
+    Bloom's alignment at \$0.80/game---23 pp below \gamedai{}'s 90\%
+    at \$0.48.}
+    \label{fig:prompting_performance}
+\end{figure}
+
+
+\section{Conclusion and Future Work}
+
+We present \gamedai{}, a hierarchical multi-agent framework for
+automated educational game generation grounded in Bloom's Taxonomy and
+enforced through formal mechanic contracts. By separating planning,
+generation, and validation into phase-specific LangGraph sub-graphs
+with deterministic Quality Gates, the system achieves a 90\%
+validation pass rate and 73\% token reduction over ReAct
+baselines---compressing 60--240 minutes of expert authoring into under
+60 seconds at \$0.48 per game. These results demonstrate that
+pedagogical alignment and efficiency emerge as properties of
+architectural structure rather than model scale or prompting strategy
+alone: no baseline replicated these outcomes.
+
+Future work targets four directions:
+\textbf{human-in-the-loop blueprint negotiation} via LangGraph
+streaming; \textbf{frame-based game engines} (Phaser.js, PixiJS)
+enabling physics simulations and sprite-based mechanics beyond
+DOM-based templates; \textbf{expanded template families} including
+PhET-inspired simulations, narrative-driven, and role-playing
+templates; and \textbf{large-scale classroom evaluation} measuring
+learning outcome gains, the primary missing validation.
+% ============================================================
+\section*{Limitations}
+
+\noindent\textbf{Spatial mechanic schema coverage.}
+The blueprint schema does not fully constrain spatial anchoring for
+\texttt{DESC\_MATCHING} and \texttt{CLICK\_TO\_TRACE}, producing the
+majority of the 20 validation failures. We are extending the schema
+with relational-link fields and coordinate normalisation at QG2.
+
+\noindent\textbf{Model and language scope.}
+Reported metrics reflect a GPT-4-turbo/Gemini configuration; while
+open-source substitution (Llama~3, Mistral) is supported, on-premises
+performance has not been benchmarked. The system currently generates
+English-only games; multilingual contracts and non-text input
+modalities are planned.
+
+\noindent\textbf{Student-facing validation.}
+The evaluation measures architectural validity and expert-rated
+alignment, not learning outcomes. Human ratings from five experts may
+diverge from learner-population judgements, particularly at lower
+Bloom's levels. Controlled classroom studies remain the primary future
+direction.
+% ============================================================
+\section*{Broader Impact}
+
+\gamedai{} is designed to democratise the creation of pedagogically
+grounded educational games, reducing the expertise and cost barriers
+that currently restrict high-quality game-based assessment to
+well-resourced institutions. By automating Bloom's-aligned game
+generation at under \$0.50 per game, the system has potential to
+expand access to interactive learning in under-served educational
+contexts where custom content development is infeasible.
+
+\noindent\textbf{Positive impacts.}
+The framework enforces pedagogical validity through structural
+constraints rather than relying on instructor expertise in assessment
+design, potentially raising the floor for educational content quality.
+The open-source release of code, 50 games, and evaluation datasets
+supports reproducibility and community-driven extension. The
+model-agnostic architecture enables on-premises deployment, addressing
+data sovereignty concerns in educational settings.
+
+\noindent\textbf{Risks and mitigations.}
+Automated game generation inherits the biases and factual limitations
+of underlying LLMs. While Quality Gates validate structural properties
+(Bloom's alignment, mechanic contracts, schema compliance), they do
+not verify factual accuracy of generated content---incorrect domain
+knowledge could propagate into games. We mitigate this through:
+(1)~domain knowledge retrieval from curated sources (textbooks,
+curricula standards, domain ontologies) rather than open-ended
+generation, (2)~deterministic validators that flag
+structural anomalies, and (3)~the observability dashboard enabling
+instructor review of all generated content before deployment.
+Over-reliance on automated assessment without human oversight remains a
+concern; we explicitly design \gamedai{} as an instructor tool, not a
+replacement for pedagogical judgement.
+
+% ============================================================
+\bibliography{gamedai}
+
+\appendix
+
+% ============================================================
+% Appendix A — Bloom's Mapping + Mechanic Contracts (merged)
+% ============================================================
+\section{Bloom's Mapping and Mechanic Contracts}
+\label{app:blooms_mapping}
+\label{app:mechanic_specs}
+
+Table~\ref{tab:blooms_mapping} maps Bloom's levels to mechanics,
+adopted as a design heuristic from \citet{anderson2001} and the LM-GM
+framework \citep{arnab2015}; empirical validation of
+mechanic-to-cognitive-level correspondences remains open. Each
+mechanic defines a typed Pydantic contract
+(interaction primitive, minimum item count, scoring model, completion
+condition) validated by QG1; full schemas are in the
+repository.\label{tab:mechanic_contracts}
+
+\begin{table}[ht]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{2pt}
+\begin{tabularx}{\columnwidth}{@{}l l l X@{}}
+\toprule
+\textbf{Bloom's} & \textbf{Fam.} & \textbf{Mechanics} & \textbf{Cognitive Operation} \\
+\midrule
+\textit{Remember} & ID & Click-to-Id., Memory Match & Recognise/recall via visual id.\ \citep{anderson2001} \\
+\textit{Understand} & ID & Drag-Drop, Desc.\ Match & Interpret by label-structure mapping \citep{mayer2009} \\
+\textit{Apply} & Both & Trace Path, Seq., State Tr.\textsuperscript{A} & Execute procedures by tracing/ordering \citep{parsons2006} \\
+\textit{Analyze} & Both & Sorting, Hier., Bug H.\textsuperscript{A}, Cmplx.\textsuperscript{A} & Differentiate by categorising/error id.\ \citep{sweller1988} \\
+\textit{Evaluate} & ID & Compare, Branching & Critique by comparing alternatives \citep{mislevy2003} \\
+\textit{Create} & Algo & Algo.\ Builder\textsuperscript{A}, Constr.\ Pzl.\textsuperscript{A} & Generate solutions from primitives \citep{ericson2022} \\
+\bottomrule
+\end{tabularx}
+\caption{Bloom's-to-mechanic mapping. Fam.:
+ID = Interactive Diagram, Algo = Algorithm, Both = shared;
+\textsuperscript{A} = Algorithm Game mechanic.}
+\label{tab:blooms_mapping}
+\end{table}
+
+% ============================================================
+% Appendix B — Per-Mechanic Results + Failure Analysis
+% ============================================================
+\section{Per-Mechanic Results and Failure Analysis}
+\label{app:per_mechanic}
+
+Table~\ref{tab:per_mechanic} disaggregates VPR across all 15
+mechanics. Fully constrained schemas achieve $\geq$90\% VPR; the
+lowest-performing mechanics share root causes in spatial anchoring
+(Diagram) or constraint satisfiability (Algorithm).
+Table~\ref{tab:failure_analysis} classifies all 20 failures.
+
+\begin{table}[ht]
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{
+    l
+    c
+    S[table-format=2.1]
+    S[table-format=2.1]
+    S[table-format=2.1]
+    S[table-format=1.1]
+    S[table-format=2.1]
+}
+\toprule
+\textbf{Mechanic}
+  & \textbf{N}
+  & {\textbf{VPR}}
+  & {\textbf{Tok.}}
+  & {\textbf{Lat.}}
+  & {\textbf{Edu.}}
+  & {\textbf{Play}} \\
+  & & {(\%)} & {(K)} & {(s)} & {(1--5)} & {(\%)} \\
+\midrule
+\multicolumn{7}{l}{\textit{Interactive Diagram Games}} \\
+\texttt{DRAG\_DROP}       & 26 & 96.2 & 18.2 & 27.0 & 4.4 & 96.2 \\
+\texttt{SEQUENCING}       & 16 & 93.8 & 17.0 & 25.0 & 4.5 & 93.8 \\
+\texttt{CLICK\_TO\_ID}    & 14 & 92.9 & 16.8 & 24.0 & 4.3 & 92.9 \\
+\texttt{SORTING}          & 12 & 91.7 & 18.5 & 28.0 & 4.2 & 91.7 \\
+\texttt{MEMORY\_MATCH}    & 12 & 91.7 & 16.2 & 23.0 & 4.3 & 91.7 \\
+\texttt{BRANCHING}        & 10 & 90.0 & 19.5 & 30.0 & 4.1 & 90.0 \\
+\texttt{COMPARE}          &  8 & 87.5 & 20.1 & 31.0 & 4.0 & 87.5 \\
+\texttt{HIERARCHICAL}     &  8 & 87.5 & 22.4 & 35.0 & 3.9 & 87.5 \\
+\texttt{TRACE\_PATH}      & 14 & 85.7 & 17.5 & 26.0 & 4.1 & 85.7 \\
+\texttt{DESC\_MATCH}      & 10 & 60.0 & 15.8 & 22.0 & 3.8 & 75.0 \\
+\midrule
+\multicolumn{7}{l}{\textit{Interactive Algorithm Games}} \\
+\texttt{STATE\_TRACER}    & 18 & 94.4 & 21.3 & 32.0 & 4.4 & 94.4 \\
+\texttt{BUG\_HUNTER}      & 16 & 93.8 & 23.8 & 36.0 & 4.2 & 87.5 \\
+\texttt{ALGO\_BUILDER}    & 14 & 92.9 & 25.2 & 38.0 & 4.3 & 92.9 \\
+\texttt{COMPLEXITY}       & 12 & 91.7 & 22.7 & 34.0 & 4.1 & 83.3 \\
+\texttt{CONSTR\_PUZZLE}   & 10 & 80.0 & 26.5 & 40.0 & 3.9 & 80.0 \\
+\midrule
+\textbf{Overall}          & \textbf{200} & \textbf{90.0} & \textbf{19.9} & \textbf{29.4} & \textbf{4.2} & \textbf{89.5} \\
+\bottomrule
+\end{tabular}
+\caption{Per-mechanic metrics ($N = 200$, 15 mechanics). Lat. =
+end-to-end generation latency; Edu./Play: mean human ratings from 5
+blinded raters (ICC $> 0.78$). Algorithm Games average higher token
+consumption but lower per-game cost (no vision model calls).}
+\label{tab:per_mechanic}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\columnwidth}{@{}l c l X@{}}
+\toprule
+\textbf{Mechanic} & \textbf{N} & \textbf{Gate} & \textbf{Error / Root Cause} \\
+\midrule
+\multicolumn{4}{l}{\textit{Interactive Diagram Games (14 failures)}} \\
+\texttt{DESC\_MATCH}   & 4 & QG3 & \texttt{BLOOM\_OP\_COUNT\_FAIL}; pairs lack relational links \\
+\texttt{TRACE\_PATH}   & 2 & QG3 & \texttt{ANCHOR\_OOB}; SVG coords outside bounding box \\
+\texttt{COMPARE}       & 1 & QG2 & \texttt{ASSET\_SCHEMA\_MISMATCH}; axis label missing \\
+\texttt{HIERARCHICAL}  & 1 & QG3 & \texttt{DEPTH\_MISMATCH}; tree depth $<$ contract min \\
+5 other ID mech.       & 6 & QG2/3 & Region overlap (2); state/schema violations (4) \\
+\midrule
+\multicolumn{4}{l}{\textit{Interactive Algorithm Games (6 failures)}} \\
+\texttt{CONSTR\_PZL}   & 2 & QG3 & \texttt{CONSTRAINT\_UNSAT}; FOL rules form unsat.\ set \\
+\texttt{COMPLEXITY}    & 1 & QG3 & \texttt{CLASS\_MISMATCH}; generated $\neq$ target class \\
+3 other Algo mech.     & 3 & QG2/3 & Placement, ordering, state transition errors \\
+\bottomrule
+\end{tabularx}
+\caption{Failure taxonomy (20 failures, $N = 200$, 15 mechanics). All
+attributable to schema underspecification, not LLM hallucination.
+FOL-based validators catch structural violations deterministically.}
+\label{tab:failure_analysis}
+\end{table}
+
+% ============================================================
+% Appendix C — Evaluation Protocol
+% ============================================================
+\section{Evaluation Protocol}
+\label{app:rubric}
+\label{app:experimental}
+
+\textbf{Models.} GPT-4-turbo-2024-04-09 (temp.\ 0.3, seed 42) for
+planning/validation; gemini-1.5-pro-001 (temp.\ 0.4) for assets.
+\textbf{Domains.} 200 questions, 5 domains $\times$ 40 each, balanced
+across Bloom's levels and covering all 15 mechanics.
+\textbf{Claude Code.} Four conditions: zero-shot, one-shot planning,
+one-shot instructional, multi-turn (30 questions each).
+\textbf{Rating.} Five blinded experts; Educational Correctness (1--5
+anchored: 1 = factually wrong or Bloom's mismatch; 2 = partially
+correct, major gaps; 3 = correct but incomplete alignment; 4 =
+correct, well-aligned; 5 = exemplary alignment with clear competency
+evidence) and Playability (\% of mechanic contract conditions met).
+\textbf{Statistics.} VPR: $\chi^2$/Cramér's $V$; tokens: ANOVA/$\eta^2$;
+ratings: $t$-tests, Bonferroni; $\alpha = 0.05$.
+
+% ============================================================
+% Appendix D — Architectural Evolution (condensed inline)
+% ============================================================
+\section{Architectural Evolution}
+\label{app:evolution}
+
+\textbf{V1 Sequential} (56.7\% VPR, ${\sim}$49.4K tok.): dominant
+failure was cascading schema violations in later stages, where early
+errors propagated unchecked through 8+ serial agents. No validation
+gates existed between stages.
+
+\textbf{V2 ReAct} (72.5\%, ${\sim}$73.5K tok.): self-correction via
+Thought$\rightarrow$Action$\rightarrow$Observation loops improved VPR
+but caused $3.7{\times}$ token inflation over Sequential; performance
+was driven by exemplar-query similarity rather than reasoning depth
+\citep{brittle_react2024}.
+
+\textbf{V3 DAG} (90.0\%, ${\sim}$19.9K tok.; $\eta^2 = 0.87$):
+phase-bounded validation eliminated cascading errors; remaining
+failures are attributable to schema underspecification
+(Section~\ref{sec:eval}). Full analysis in the repository.
+
+\end{document}

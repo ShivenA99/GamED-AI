@@ -1,0 +1,26 @@
+{
+  "templateType": "MATRIX_MATCH",
+  "description": "Match items across rows and columns in a matrix grid.",
+  "domains": ["mathematics", "logic", "relationships", "correlations", "mappings"],
+  "blueprintSchema": {
+    "requiredFields": [
+      "templateType",
+      "title",
+      "narrativeIntro",
+      "rows",
+      "columns",
+      "matches",
+      "tasks"
+    ]
+  },
+  "htmlContract": {
+    "requiredIds": ["gameRoot", "matrixGrid", "submitBtn", "feedbackArea"],
+    "requiredClasses": ["matrix-cell", "cell-selected", "cell-matched", "cell-incorrect"],
+    "interactionNotes": [
+      "Cells are clickable to select.",
+      "Selecting row and column creates a match.",
+      "Visual feedback shows correct/incorrect matches."
+    ]
+  }
+}
+

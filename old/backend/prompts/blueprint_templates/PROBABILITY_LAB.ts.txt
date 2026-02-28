@@ -1,0 +1,34 @@
+export interface ProbabilityLabBlueprint {
+  templateType: "PROBABILITY_LAB";
+  title: string;
+  narrativeIntro: string;
+  experiments: Array<{
+    id: string;
+    name: string;
+    description: string;
+    type: "coin_flip" | "dice_roll" | "card_draw" | "custom";
+    parameters?: Record<string, any>;
+  }>;
+  parameters: Array<{
+    id: string;
+    label: string;
+    type: "slider" | "input" | "dropdown";
+    min?: number;
+    max?: number;
+    defaultValue: number | string;
+  }>;
+  tasks: Array<{
+    id: string;
+    type: "probability_prediction" | "experiment_analysis";
+    questionText: string;
+    targetProbability?: number;
+    requiredToProceed: boolean;
+  }>;
+  animationCues: {
+    experimentRun: string;
+    resultUpdate: string;
+    probabilityDisplay: string;
+    targetReached?: string;
+  };
+}
+

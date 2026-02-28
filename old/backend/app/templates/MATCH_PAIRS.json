@@ -1,0 +1,24 @@
+{
+  "templateType": "MATCH_PAIRS",
+  "description": "Match related pairs by clicking cards to reveal and connect them.",
+  "domains": ["vocabulary", "definitions", "concepts", "relationships", "associations"],
+  "blueprintSchema": {
+    "requiredFields": [
+      "templateType",
+      "title",
+      "narrativeIntro",
+      "pairs",
+      "tasks"
+    ]
+  },
+  "htmlContract": {
+    "requiredIds": ["gameRoot", "cardsContainer", "submitBtn", "feedbackArea"],
+    "requiredClasses": ["match-card", "card-flipped", "card-matched", "card-selected"],
+    "interactionNotes": [
+      "Cards are clickable to flip.",
+      "Matching pairs are highlighted.",
+      "All pairs must be matched to complete."
+    ]
+  }
+}
+

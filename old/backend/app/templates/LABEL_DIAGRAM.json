@@ -1,0 +1,27 @@
+{
+  "templateType": "LABEL_DIAGRAM",
+  "description": "Single diagram with draggable labels and optional explanation task.",
+  "domains": ["biology", "anatomy", "circuits", "geography", "systems"],
+  "blueprintSchema": {
+    "requiredFields": [
+      "templateType",
+      "title",
+      "narrativeIntro",
+      "diagram.assetPrompt",
+      "diagram.zones",
+      "labels",
+      "tasks"
+    ]
+  },
+  "htmlContract": {
+    "requiredIds": ["gameRoot", "questionText", "diagramCanvas", "labelsPanel", "submitBtn", "feedbackArea"],
+    "requiredClasses": ["label-chip", "drop-zone", "zone-correct", "zone-incorrect"],
+    "interactionNotes": [
+      "label-chip elements are draggable.",
+      "drop-zone elements represent diagram target regions.",
+      "Correct placement triggers short green glow on zone.",
+      "Incorrect placement shakes the label and returns it to labelsPanel."
+    ]
+  }
+}
+

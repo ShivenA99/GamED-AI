@@ -1,0 +1,36 @@
+export interface BeforeAfterTransformerBlueprint {
+  templateType: "BEFORE_AFTER_TRANSFORMER";
+  title: string;
+  narrativeIntro: string;
+  beforeState: {
+    description: string;
+    assetPrompt?: string;
+    assetUrl?: string;
+    data?: any;
+  };
+  afterState: {
+    description: string;
+    assetPrompt?: string;
+    assetUrl?: string;
+    data?: any;
+  };
+  transformations: Array<{
+    id: string;
+    description: string;
+    order: number; // Correct order in transformation sequence
+    effect?: string;
+  }>;
+  tasks: Array<{
+    id: string;
+    type: "transformation_sequence" | "transformation_analysis";
+    questionText: string;
+    requiredToProceed: boolean;
+  }>;
+  animationCues: {
+    transformationApply: string;
+    stateTransition: string;
+    sequenceCorrect: string;
+    sequenceIncorrect?: string;
+  };
+}
+

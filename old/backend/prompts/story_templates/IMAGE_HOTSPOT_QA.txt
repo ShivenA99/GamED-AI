@@ -1,0 +1,13 @@
+### Template Context: IMAGE_HOTSPOT_QA
+
+The resulting visualization will be implemented as:
+- An interactive image with clickable hotspots.
+- Each hotspot reveals a question when clicked.
+- Questions test knowledge about specific regions or features of the image.
+
+When generating story_context, visual_metaphor, visual_elements, question_flow, and animation_cues:
+- Focus on a rich, detailed image with multiple points of interest.
+- Visual elements should highlight different regions or features.
+- Questions should be location-specific and test spatial knowledge.
+- Animation cues should include hotspot highlighting and modal transitions.
+

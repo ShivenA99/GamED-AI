@@ -1,0 +1,25 @@
+{
+  "templateType": "STATE_TRACER_CODE",
+  "description": "Step through code execution and track variable states.",
+  "domains": ["programming", "algorithms", "debugging", "execution_tracing", "computer_science"],
+  "blueprintSchema": {
+    "requiredFields": [
+      "templateType",
+      "title",
+      "narrativeIntro",
+      "code",
+      "steps",
+      "tasks"
+    ]
+  },
+  "htmlContract": {
+    "requiredIds": ["gameRoot", "codeEditor", "statePanel", "stepControls", "submitBtn", "feedbackArea"],
+    "requiredClasses": ["code-line", "line-highlighted", "variable-display", "step-button"],
+    "interactionNotes": [
+      "Code is displayed with line numbers.",
+      "Step controls advance execution.",
+      "Variable states are tracked and displayed."
+    ]
+  }
+}
+

@@ -1,0 +1,13 @@
+### Template Context: MATCH_PAIRS
+
+The resulting visualization will be implemented as:
+- Match related pairs by clicking cards to reveal and connect them.
+- Cards are flipped to reveal content.
+- Matching pairs are highlighted when found.
+
+When generating story_context, visual_metaphor, visual_elements, question_flow, and animation_cues:
+- Focus on relationships, associations, and pairings.
+- Visual elements should represent pairs that need to be matched.
+- Questions should involve finding relationships or connections.
+- Animation cues should include card flips, matches, and pair highlighting.
+

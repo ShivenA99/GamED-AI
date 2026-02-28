@@ -1,0 +1,24 @@
+{
+  "templateType": "GRAPH_SKETCHER",
+  "description": "Draw or manipulate graphs, nodes, and edges.",
+  "domains": ["mathematics", "computer_science", "networks", "data_structures", "algorithms"],
+  "blueprintSchema": {
+    "requiredFields": [
+      "templateType",
+      "title",
+      "narrativeIntro",
+      "graph",
+      "tasks"
+    ]
+  },
+  "htmlContract": {
+    "requiredIds": ["gameRoot", "graphCanvas", "toolsPanel", "submitBtn", "feedbackArea"],
+    "requiredClasses": ["graph-node", "graph-edge", "tool-button", "canvas-drawing"],
+    "interactionNotes": [
+      "Canvas allows drawing nodes and edges.",
+      "Tools panel provides drawing controls.",
+      "Graph structure is validated on submit."
+    ]
+  }
+}
+

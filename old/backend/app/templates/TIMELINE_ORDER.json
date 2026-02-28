@@ -1,0 +1,25 @@
+{
+  "templateType": "TIMELINE_ORDER",
+  "description": "Chronological ordering of events on a timeline.",
+  "domains": ["history", "literature", "science", "biography", "processes"],
+  "blueprintSchema": {
+    "requiredFields": [
+      "templateType",
+      "title",
+      "narrativeIntro",
+      "events",
+      "timeline",
+      "tasks"
+    ]
+  },
+  "htmlContract": {
+    "requiredIds": ["gameRoot", "timelineContainer", "eventsPanel", "submitBtn", "feedbackArea"],
+    "requiredClasses": ["event-card", "timeline-marker", "event-correct", "event-incorrect"],
+    "interactionNotes": [
+      "Events are draggable onto timeline.",
+      "Timeline shows chronological order.",
+      "Feedback indicates correct position."
+    ]
+  }
+}
+

@@ -1,0 +1,29 @@
+export interface SequenceBuilderBlueprint {
+  templateType: "SEQUENCE_BUILDER";
+  title: string;
+  narrativeIntro: string;
+  steps: Array<{
+    id: string;
+    text: string;
+    orderIndex: number; // Correct position in sequence
+    description?: string;
+  }>;
+  distractors?: Array<{
+    id: string;
+    text: string;
+    description?: string;
+  }>;
+  tasks: Array<{
+    id: string;
+    type: "sequence_order";
+    questionText: string;
+    requiredToProceed: boolean;
+  }>;
+  animationCues: {
+    stepDrag: string;
+    correctPlacement: string;
+    incorrectPlacement: string;
+    sequenceComplete?: string;
+  };
+}
+

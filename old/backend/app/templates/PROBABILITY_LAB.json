@@ -1,0 +1,25 @@
+{
+  "templateType": "PROBABILITY_LAB",
+  "description": "Interactive probability experiments and simulations.",
+  "domains": ["mathematics", "statistics", "probability", "simulations", "experiments"],
+  "blueprintSchema": {
+    "requiredFields": [
+      "templateType",
+      "title",
+      "narrativeIntro",
+      "experiments",
+      "parameters",
+      "tasks"
+    ]
+  },
+  "htmlContract": {
+    "requiredIds": ["gameRoot", "experimentArea", "controlsPanel", "resultsDisplay", "submitBtn", "feedbackArea"],
+    "requiredClasses": ["experiment-control", "result-chart", "parameter-input", "simulation-button"],
+    "interactionNotes": [
+      "Experiments are runnable simulations.",
+      "Parameters control experiment behavior.",
+      "Results are visualized in charts/graphs."
+    ]
+  }
+}
+

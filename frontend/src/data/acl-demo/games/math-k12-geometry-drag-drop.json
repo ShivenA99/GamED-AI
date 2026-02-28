@@ -1,0 +1,388 @@
+{
+  "id": "math-k12-geometry-drag-drop",
+  "title": "Label Parts of a Geometric Shape",
+  "question": "Create an interactive diagram game where students label parts of geometric shapes: angles (acute, right, obtuse), sides, vertices, diagonals, radius, diameter, and circumference on circles, triangles, and quadrilaterals.",
+  "domain": "mathematics",
+  "educationLevel": "k12",
+  "gameType": "interactive_diagram",
+  "mechanic": "drag_drop",
+  "bloomsLevel": "Remember",
+  "pipelineMetrics": {
+    "runId": "995da96d-9408-44f1-9279-3bd5917f3859",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 395.2,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T06:00:23.341623+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "Geometric Explorer: Shape Anatomy",
+    "subject": "Mathematics",
+    "difficulty": "advanced",
+    "narrativeIntro": "Welcome, aspiring geometer! Your mission is to accurately identify and label the fundamental parts of various geometric shapes. Precision and understanding are key to mastering the language of geometry.",
+    "narrativeTheme": "Geometry Lab",
+    "completionMessage": "Excellent work, Geometer! You've successfully mastered the identification of key geometric components across different shapes. Your precision will serve you well in advanced mathematical explorations.",
+    "estimatedDurationMinutes": 12,
+    "diagram": {
+      "assetPrompt": "A clean, educational diagram featuring three distinct triangles arranged neatly on a light background: an acute triangle (all angles < 90\u00b0), a right triangle (one 90\u00b0 angle clearly marked with a square symbol), and an obtuse triangle (one angle > 90\u00b0). Each triangle must have clearly delineated segments for its sides, distinct points for its vertices, and clearly marked arcs for its angles. The diagram must provide distinct, highlightable zones for at least two 'Side' segments, two 'Vertex' points, one 'Acute Angle', one 'Right Angle', and one 'Obtuse Angle' across the three triangles, ensuring enough unique targets for labeling.",
+      "zones": [
+        {
+          "id": "zone_side",
+          "label": "Side",
+          "points": [
+            [
+              69.8,
+              59.5
+            ],
+            [
+              94.2,
+              59.5
+            ],
+            [
+              94.2,
+              60.8
+            ],
+            [
+              69.8,
+              60.8
+            ]
+          ],
+          "x": 82.0,
+          "y": 60.1,
+          "width": 24.5,
+          "height": 1.3,
+          "shape": "rect",
+          "description": "Forms the boundary of a polygon, defining its perimeter and contributing to its overall shape and dimensions."
+        },
+        {
+          "id": "zone_vertex",
+          "label": "Vertex",
+          "points": [
+            [
+              92.9,
+              58.8
+            ],
+            [
+              94.9,
+              58.8
+            ],
+            [
+              94.9,
+              61.7
+            ],
+            [
+              92.9,
+              61.7
+            ]
+          ],
+          "x": 93.9,
+          "y": 60.2,
+          "width": 2.0,
+          "height": 2.9,
+          "shape": "rect",
+          "description": "Serves as a point where two or more sides of a shape meet, defining its corners and indicating points of intersection."
+        },
+        {
+          "id": "zone_acute_angle",
+          "label": "Acute Angle",
+          "points": [
+            [
+              25.2,
+              54.3
+            ],
+            [
+              29.0,
+              54.3
+            ],
+            [
+              29.0,
+              59.5
+            ],
+            [
+              25.2,
+              59.5
+            ]
+          ],
+          "x": 27.1,
+          "y": 56.9,
+          "width": 3.8,
+          "height": 5.2,
+          "shape": "rect",
+          "description": "Represents a sharp turn or opening, measuring less than 90 degrees and contributing to the 'sharpness' of a corner in a polygon."
+        },
+        {
+          "id": "zone_right_angle",
+          "label": "Right Angle",
+          "points": [
+            [
+              49.0,
+              52.2
+            ],
+            [
+              52.4,
+              52.2
+            ],
+            [
+              52.4,
+              56.4
+            ],
+            [
+              49.0,
+              56.4
+            ]
+          ],
+          "x": 50.7,
+          "y": 54.3,
+          "width": 3.4,
+          "height": 4.2,
+          "shape": "rect",
+          "description": "Indicates a precise, square corner, measuring exactly 90 degrees and forming perpendicular lines or edges."
+        }
+      ],
+      "imageUrl": "/api/assets/demo/995da96d-9408-44f1-9279-3bd5917f3859/diagram_scene_1.png",
+      "assetUrl": "/api/assets/demo/995da96d-9408-44f1-9279-3bd5917f3859/diagram_scene_1.png"
+    },
+    "labels": [
+      {
+        "id": "label_s1_0",
+        "text": "Side",
+        "correctZoneId": "zone_side"
+      },
+      {
+        "id": "label_s1_1",
+        "text": "Vertex",
+        "correctZoneId": "zone_vertex"
+      },
+      {
+        "id": "label_s1_2",
+        "text": "Acute Angle",
+        "correctZoneId": "zone_acute_angle"
+      },
+      {
+        "id": "label_s1_3",
+        "text": "Right Angle",
+        "correctZoneId": "zone_right_angle"
+      },
+      {
+        "id": "label_s1_4",
+        "text": "Obtuse Angle",
+        "correctZoneId": "zone_s1_obtuse_angle"
+      }
+    ],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "Identify the fundamental parts of these triangles. Drag and drop each label to its correct location on the diagram."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 80,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! That's the correct label for this part of the triangle.",
+          "on_incorrect": "Not quite. Review the definitions of triangle parts and try placing the label in the right zone.",
+          "on_completion": "Fantastic! You've successfully identified and labeled all the parts of the triangle.",
+          "misconceptions": [
+            {
+              "trigger_label": "Radius",
+              "message": "Remember, a radius is a concept related to circles, defining the distance from the center to the circumference, not a part of a triangle.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "Diagonal",
+              "message": "A diagonal is a line segment connecting two non-adjacent vertices *within* a polygon. Triangles do not have diagonals because all their vertices are adjacent.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "angle_type_misplacement",
+              "message": "While an equilateral triangle has three acute angles, other triangles can have one right angle (right triangle) or one obtuse angle (obtuse triangle), but never more than one. Double-check the angle type you're labeling.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "description_matching",
+        "config": {
+          "instruction_text": "Now that you've identified and labeled the parts of the triangles, match each labeled component to its correct definition or property."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 50,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "That's a perfect match! You've accurately described that triangle part.",
+          "on_incorrect": "Not quite. Re-read the description and the definitions of the triangle parts carefully. What makes them distinct?",
+          "on_completion": "Excellent work! You've successfully matched all the descriptions to their correct triangle parts.",
+          "misconceptions": [
+            {
+              "trigger_label": "Acute Angle_description_mismatch",
+              "message": "Remember, an acute angle measures less than 90 degrees. Triangles can also feature right angles (exactly 90 degrees) or obtuse angles (greater than 90 degrees), each with distinct characteristics.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "Drag and drop the labels onto the correct parts of the quadrilateral diagram. Pay close attention to the different types of angles and the diagonals."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 70,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Correct!",
+          "on_incorrect": "Try again.",
+          "on_completion": "Well done!",
+          "misconceptions": []
+        }
+      },
+      {
+        "type": "description_matching",
+        "config": {
+          "instruction_text": "Now that you've labeled the parts, match each description to its corresponding part on the quadrilateral diagram. Remember the specific properties of each element."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 60,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Correct!",
+          "on_incorrect": "Try again.",
+          "on_completion": "Well done!",
+          "misconceptions": []
+        }
+      },
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "Drag and drop the labels from the panel to correctly identify the Radius, Diameter, and Circumference on the circle diagram."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 30,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! You've correctly identified this part of the circle.",
+          "on_incorrect": "Not quite. Take another look at the definition or position of this part of the circle.",
+          "on_completion": "Fantastic! You've successfully labeled all the key parts of the circle.",
+          "misconceptions": [
+            {
+              "trigger_label": "misplaced_Radius_Diameter_confusion",
+              "message": "Remember, the diameter is a chord that passes through the center of a circle and is exactly twice the length of the radius, which is the distance from the center to any point on the circumference.",
+              "severity": "high"
+            }
+          ]
+        }
+      },
+      {
+        "type": "description_matching",
+        "config": {
+          "instruction_text": "Now that you've labeled the parts of the circle, match each description to its correct term on the diagram to reinforce your understanding."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 30,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Spot on! That description perfectly matches the circle element.",
+          "on_incorrect": "Hmm, that description doesn't quite fit. Re-read the description and consider which circle part it best defines.",
+          "on_completion": "Outstanding! You've matched all the descriptions to their correct circle elements.",
+          "misconceptions": [
+            {
+              "trigger_label": "mismatched_description_Radius_Diameter_confusion",
+              "message": "The diameter is a chord that passes through the center of a circle and is exactly twice the length of the radius, which is the distance from the center to any point on the circumference.",
+              "severity": "high"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [
+      {
+        "from": "drag_drop",
+        "to": "description_matching",
+        "trigger": "all_zones_labeled",
+        "animation": "fade"
+      },
+      {
+        "from": "drag_drop",
+        "to": "description_matching",
+        "trigger": "all_zones_labeled",
+        "animation": "fade"
+      },
+      {
+        "from": "drag_drop",
+        "to": "description_matching",
+        "trigger": "all_zones_labeled",
+        "animation": "fade"
+      }
+    ],
+    "interactionMode": "drag_drop",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 10,
+      "max_score": 320
+    },
+    "totalMaxScore": 320,
+    "generation_complete": true,
+    "dragDropConfig": {
+      "leader_line_style": "elbow",
+      "tray_position": "bottom",
+      "placement_animation": "spring",
+      "show_distractors": false,
+      "incorrect_animation": "shake",
+      "interaction_mode": "drag_drop",
+      "zone_hover_effect": "highlight",
+      "pin_marker_shape": "circle",
+      "label_style": "text",
+      "zone_idle_animation": "pulse",
+      "max_attempts": 3,
+      "tray_layout": "horizontal",
+      "shuffle_labels": true,
+      "label_anchor_side": "auto",
+      "leader_line_color": "",
+      "feedback_timing": "deferred",
+      "leader_line_animate": true
+    },
+    "descriptionMatchingConfig": {
+      "descriptions": {
+        "zone_side": "Forms the boundary of a polygon, defining its perimeter and contributing to its overall shape and dimensions.",
+        "zone_vertex": "Serves as a point where two or more sides of a shape meet, defining its corners and indicating points of intersection.",
+        "zone_acute_angle": "Represents a sharp turn or opening, measuring less than 90 degrees and contributing to the 'sharpness' of a corner in a polygon.",
+        "zone_right_angle": "Indicates a precise, square corner, measuring exactly 90 degrees and forming perpendicular lines or edges.",
+        "zone_s1_obtuse_angle": "Represents a wide turn or opening, measuring more than 90 degrees but less than 180 degrees, contributing to a 'blunt' corner."
+      },
+      "mode": "click_zone",
+      "distractor_descriptions": [
+        "A line segment that connects two non-adjacent vertices within a polygon."
+      ],
+      "show_connecting_lines": true,
+      "defer_evaluation": false,
+      "description_panel_position": "right"
+    }
+  }
+}

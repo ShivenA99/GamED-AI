@@ -1,0 +1,223 @@
+{
+  "id": "math-grad-proof-strategy-branching",
+  "title": "Choose the Correct Proof Strategy",
+  "question": "Create an interactive diagram game where graduate students choose the correct proof strategy for mathematical theorems: direct proof, proof by contradiction, proof by induction, proof by contrapositive, or constructive proof, branching based on theorem structure.",
+  "domain": "mathematics",
+  "educationLevel": "graduate",
+  "gameType": "interactive_diagram",
+  "mechanic": "branching_scenario",
+  "bloomsLevel": "Evaluate",
+  "pipelineMetrics": {
+    "runId": "03c4f9df-8b11-4a13-907a-11d9ed862aef",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 101.1,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T06:22:15.030583+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "Theorem Tactician: Proof Strategy Challenge",
+    "subject": "Educational Technology",
+    "difficulty": "advanced",
+    "narrativeIntro": "Welcome, graduate student, to the advanced mathematical logic lab. Your mission is to analyze complex theorems and deduce the most effective proof strategy. Each theorem presents a unique challenge, requiring a keen eye for structure and a deep understanding of proof methodologies. Choose wisely, for the elegance of a proof lies in its strategy.",
+    "narrativeTheme": "Mathematical Logic Lab",
+    "completionMessage": "Congratulations, Master Logician! You have successfully navigated the complexities of theorem analysis and demonstrated a profound understanding of proof strategy selection. Your expertise in educational game design shines through.",
+    "estimatedDurationMinutes": 12,
+    "diagram": {
+      "assetPrompt": "",
+      "zones": []
+    },
+    "labels": [],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "branching_scenario",
+        "config": {
+          "instruction_text": "A new theorem appears on the screen. Carefully examine its structure, premises, and conclusion. Select the most appropriate proof strategy to begin your proof. Your decision will determine the next steps in the analytical process."
+        },
+        "scoring": {
+          "strategy": "weighted",
+          "points_per_correct": 20,
+          "max_score": 100,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent analysis! Choosing proof by contrapositive for an 'If P, then Q' statement often provides the most direct and elegant path, especially when the contrapositive is easier to prove directly than the original statement.",
+          "on_incorrect": "Not quite the most efficient path. While some strategies might eventually work, consider how the structure of 'If P, then Q' can be transformed or approached to simplify the proof. Re-evaluate the logical equivalence of statements or the assumptions required for each method.",
+          "on_completion": "You've successfully navigated the initial strategy selection. By carefully analyzing the theorem's structure and considering the logical implications of different proof techniques, you've laid the groundwork for an effective proof. Remember, the elegance of a proof often stems from choosing the right strategy upfront.",
+          "misconceptions": [
+            {
+              "trigger_label": "misconception_contrapositive_vs_contradiction",
+              "message": "Proof by contrapositive directly proves an 'if-then' statement by proving its logically equivalent contrapositive, while proof by contradiction assumes the negation of the entire statement and derives a falsehood.",
+              "severity": "high"
+            },
+            {
+              "trigger_label": "misconception_universal_strategy",
+              "message": "The most effective and elegant proof strategy is highly dependent on the specific structure, premises, and conclusion of the theorem being proven.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misconception_induction_misapplication",
+              "message": "Mathematical induction requires a rigorously proven base case and an inductive step that demonstrates if the statement holds for an arbitrary k, it must also hold for k+1.",
+              "severity": "high"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [],
+    "interactionMode": "branching_scenario",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 20,
+      "max_score": 100
+    },
+    "totalMaxScore": 100,
+    "generation_complete": true,
+    "branchingConfig": {
+      "nodes": [
+        {
+          "id": "scene_1_node_1",
+          "question": "Theorem: For all integers *n*, if *n*\u00b2 is even, then *n* is even. This statement is of the form 'If P, then Q'. Analyze its structure. Which proof strategy offers the most direct and elegant path to a solution?",
+          "description": "The main console of the Mathematical Logic Lab hums to life, displaying a complex theorem. Your mission: dissect its logical form and chart the most elegant path to its proof. Each decision point will test your understanding of proof strategies and their nuanced applications.",
+          "node_type": "decision",
+          "options": [
+            {
+              "id": "opt_1a",
+              "text": "Attempt a Direct Proof",
+              "nextNodeId": "scene_1_node_4",
+              "isCorrect": false,
+              "consequence": "This path is more complex than it appears. A direct approach can lead to algebraic difficulties.",
+              "points": 0,
+              "quality": null
+            },
+            {
+              "id": "opt_1b",
+              "text": "Use Proof by Contrapositive",
+              "nextNodeId": "scene_1_node_2",
+              "isCorrect": true,
+              "consequence": "Excellent choice. The 'If P, then Q' structure is often simplified by proving its contrapositive, 'If not Q, then not P'.",
+              "points": 10,
+              "quality": null
+            },
+            {
+              "id": "opt_1c",
+              "text": "Use Proof by Induction",
+              "nextNodeId": "scene_1_node_5",
+              "isCorrect": false,
+              "consequence": "This strategy is incompatible with the theorem's domain. Induction applies to well-ordered sets like natural numbers, not all integers.",
+              "points": 0,
+              "quality": null
+            }
+          ],
+          "isEndNode": false,
+          "endMessage": null,
+          "ending_type": null,
+          "narrative_text": "",
+          "image_description": ""
+        },
+        {
+          "id": "scene_1_node_2",
+          "question": "You've correctly selected Proof by Contrapositive. The next critical step is to accurately formulate the contrapositive statement, 'If not Q, then not P'. What is the contrapositive of 'If *n*\u00b2 is even, then *n* is even'?",
+          "description": "The system confirms your strategic choice. Now, you must translate the abstract logical form into a concrete mathematical statement. Precision is paramount.",
+          "node_type": "decision",
+          "options": [
+            {
+              "id": "opt_2a",
+              "text": "If *n* is odd, then *n*\u00b2 is odd.",
+              "nextNodeId": "scene_1_node_3",
+              "isCorrect": true,
+              "consequence": "Perfect formulation. This statement is logically equivalent to the original theorem and is much simpler to prove directly.",
+              "points": 10,
+              "quality": null
+            },
+            {
+              "id": "opt_2b",
+              "text": "If *n*\u00b2 is odd, then *n* is odd.",
+              "nextNodeId": "scene_1_node_6",
+              "isCorrect": false,
+              "consequence": "This is the inverse of the theorem ('If not P, then not Q'), not the contrapositive. It is not logically equivalent.",
+              "points": 0,
+              "quality": null
+            },
+            {
+              "id": "opt_2c",
+              "text": "If *n* is even, then *n*\u00b2 is even.",
+              "nextNodeId": "scene_1_node_6",
+              "isCorrect": false,
+              "consequence": "This is the converse of the theorem ('If Q, then P'), not the contrapositive. While true, proving it does not prove the original theorem.",
+              "points": 0,
+              "quality": null
+            }
+          ],
+          "isEndNode": false,
+          "endMessage": null,
+          "ending_type": null,
+          "narrative_text": "",
+          "image_description": ""
+        },
+        {
+          "id": "scene_1_node_3",
+          "question": "Strategy Confirmed",
+          "description": "",
+          "node_type": "decision",
+          "options": [],
+          "isEndNode": true,
+          "endMessage": "Success! You've correctly identified the optimal strategy and formulated the contrapositive. Proving 'If *n* is odd, then *n*\u00b2 is odd' is straightforward and logically equivalent to proving the original theorem. Your analytical path is clear.",
+          "ending_type": "optimal",
+          "narrative_text": "The system confirms your logic. The path forward illuminates, showing the subsequent steps of the proof flowing from your correct formulation. You have successfully navigated the first critical step of mathematical discovery.",
+          "image_description": ""
+        },
+        {
+          "id": "scene_1_node_4",
+          "question": "Path Analysis: Suboptimal",
+          "description": "",
+          "node_type": "decision",
+          "options": [],
+          "isEndNode": true,
+          "endMessage": "While a Direct Proof is a valid starting point for many theorems, it leads to complications here. Assuming *n*\u00b2 is even means *n*\u00b2 = 2k for some integer k. Taking the square root gives *n* = \u00b1sqrt(2k), which doesn't immediately show that *n* is an even integer. This path is more complex than necessary.",
+          "ending_type": "suboptimal",
+          "narrative_text": "The console flags your chosen path with a yellow warning. While not technically an error, the projected steps reveal a tangled web of algebraic manipulation. A more elegant solution exists. The system suggests reconsidering the theorem's 'If P, then Q' structure.",
+          "image_description": ""
+        },
+        {
+          "id": "scene_1_node_5",
+          "question": "Strategy Analysis: Incompatible",
+          "description": "",
+          "node_type": "decision",
+          "options": [],
+          "isEndNode": true,
+          "endMessage": "This is a common misconception. Proof by Induction is best suited for statements about natural numbers (1, 2, 3, ...) that follow a sequence, like 'for all n \u2265 1'. The theorem states 'for all integers *n*', which includes 0 and negative numbers, making standard induction inapplicable.",
+          "ending_type": "incorrect",
+          "narrative_text": "A red alert flashes on the console. The logic matrix cannot apply the principle of induction to the set of all integers in this context. The strategy is incompatible with the theorem's domain. The system resets for a new strategic analysis.",
+          "image_description": ""
+        },
+        {
+          "id": "scene_1_node_6",
+          "question": "Logical Formulation Error",
+          "description": "",
+          "node_type": "decision",
+          "options": [],
+          "isEndNode": true,
+          "endMessage": "Your formulation is incorrect. You have stated either the inverse or the converse, neither of which is logically equivalent to the original statement. Remember, the contrapositive swaps the hypothesis and conclusion AND negates both. The correct form is 'If not Q, then not P'.",
+          "ending_type": "suboptimal",
+          "narrative_text": "The console highlights a logical fallacy in your formulation. The resulting statement is not equivalent to the original theorem, and proving it would not prove the theorem itself. Precision in logical transformation is key. The system prompts you to re-evaluate the definition of a contrapositive.",
+          "image_description": ""
+        }
+      ],
+      "startNodeId": "scene_1_node_1",
+      "narrative_structure": "branching",
+      "show_path_taken": true,
+      "allow_backtrack": false,
+      "show_consequences": true,
+      "multiple_valid_endings": false
+    }
+  }
+}

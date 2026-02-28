@@ -1,0 +1,221 @@
+{
+  "id": "hist-undergrad-industrial-revolution-drag-drop",
+  "title": "Label Key Inventions of the Industrial Revolution",
+  "question": "Create an interactive diagram game where students label key inventions and developments on an Industrial Revolution timeline diagram: spinning jenny (1764), steam engine improvements by Watt (1769), power loom (1785), cotton gin (1794), steam locomotive (1804), telegraph (1837), and Bessemer process for steel (1856), identifying each invention's impact on industry.",
+  "domain": "history",
+  "educationLevel": "undergraduate",
+  "gameType": "interactive_diagram",
+  "mechanic": "drag_drop",
+  "bloomsLevel": "Apply",
+  "pipelineMetrics": {
+    "runId": "ae6c3bf0-d98b-44a1-8cdf-40464049ebfb",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 276.5,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T09:02:07.529965+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "Industrial Revolution: Forging the Future",
+    "subject": "History",
+    "difficulty": "advanced",
+    "narrativeIntro": "Welcome, aspiring historian! The Industrial Revolution was a period of unprecedented technological advancement that reshaped the world. Your mission is to journey through time, chronologically ordering key inventions and understanding their profound impact on industry. Prepare to uncover the innovations that forged our modern world!",
+    "narrativeTheme": "Time Travel Through Innovation",
+    "completionMessage": "Congratulations! You've successfully navigated the timeline of the Industrial Revolution, demonstrating a deep understanding of its pivotal inventions and their lasting impact. The future was truly forged in these innovations!",
+    "estimatedDurationMinutes": 12,
+    "diagram": {
+      "assetPrompt": "",
+      "zones": []
+    },
+    "labels": [],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "sequencing",
+        "config": {
+          "instruction_text": "Welcome, intrepid time traveler! Your first mission is to correctly arrange these pivotal Industrial Revolution inventions in the chronological order they first appeared. Drag each invention onto its proper place on the historical timeline."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 70,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! That invention is in the right place on the timeline.",
+          "on_incorrect": "Not quite. Consider what major technological advancements came just before or after this invention.",
+          "on_completion": "Fantastic! You've successfully sequenced the key innovations of the Industrial Revolution. Your understanding of this transformative period is strong!",
+          "misconceptions": [
+            {
+              "trigger_label": "timeline_compression",
+              "message": "Remember, the Industrial Revolution was a gradual process of technological, economic, and social transformation spanning decades, with continuous developments, not a sudden event.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "isolated_invention_belief",
+              "message": "It's important to know that most inventions are the result of cumulative knowledge, previous innovations, and often involve multiple contributors or iterative improvements over time.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "Now, drag each invention to its correct position on the interactive timeline. The years are marked to guide you, ensuring you place each innovation in its proper chronological context!"
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 70,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "That's right! You've placed it correctly on the timeline.",
+          "on_incorrect": "Not quite the right spot. Take another look at its historical context and try placing it again.",
+          "on_completion": "Excellent work! You've accurately charted the progress of key Industrial Revolution inventions.",
+          "misconceptions": [
+            {
+              "trigger_label": "multiple_chronological_errors",
+              "message": "Remember, the Industrial Revolution was a gradual process of technological, economic, and social transformation spanning decades, with continuous developments. Each invention built upon previous ideas!",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misplaced_foundational_or_improvement",
+              "message": "It's easy to think of inventions as isolated breakthroughs, but most are the result of cumulative knowledge, previous innovations, and often involve multiple contributors or iterative improvements over time. Think about how one invention might have inspired the next!",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "description_matching",
+        "config": {
+          "instruction_text": "Each invention had a massive impact. Match each invention on the diagram to its description outlining its industrial significance and societal change."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 15,
+          "max_score": 105,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! That's the correct match. This invention significantly impacted its industry, driving key changes during the Industrial Revolution.",
+          "on_incorrect": "Not quite. Take another look at the description. What specific problem did this invention solve, or what was its primary contribution to industrial change? Consider its unique impact.",
+          "on_completion": "Fantastic work! You've successfully matched all the impactful innovations with their descriptions, demonstrating a strong understanding of their significance during the Industrial Revolution.",
+          "misconceptions": [
+            {
+              "trigger_label": "repeated_incorrect_matches_across_multiple_inventions",
+              "message": "It seems you're finding it challenging to distinguish between some of these innovations. Remember, the Industrial Revolution was a gradual process of technological, economic, and social transformation spanning decades, with continuous developments, not a sudden, singular event. Each invention built upon previous knowledge.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "consistent_difficulty_with_invention_origins_or_development",
+              "message": "It's easy to think of these inventions as isolated breakthroughs. However, most inventions are the result of cumulative knowledge, previous innovations, and often involve multiple contributors or iterative improvements over time. Consider the historical context of each development.",
+              "severity": "medium"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [],
+    "interactionMode": "sequencing",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 10,
+      "max_score": 245
+    },
+    "totalMaxScore": 245,
+    "generation_complete": true,
+    "sequenceConfig": {
+      "items": [
+        {
+          "id": "spinning_jenny_1764",
+          "content": "Spinning Jenny (1764)",
+          "explanation": "Invented by James Hargreaves, this multi-spindle spinning frame was one of the key developments in the industrialization of weaving, allowing a worker to produce multiple spools of thread simultaneously.",
+          "icon": "",
+          "image_url": "",
+          "image_description": "A vintage blueprint style illustration of the Spinning Jenny. The image shows a detailed schematic of a wooden frame with eight spindles in a row, connected by gears and a hand-cranked wheel. The style is reminiscent of an 18th-century engineering drawing with precise lines, annotations, and a sepia-toned, aged paper background.",
+          "image": "/api/assets/demo/ae6c3bf0-d98b-44a1-8cdf-40464049ebfb/items/spinning_jenny_1764.png"
+        },
+        {
+          "id": "watt_steam_engine_1769",
+          "content": "Watt's Steam Engine (1769)",
+          "explanation": "James Watt's crucial improvements, particularly the separate condenser, dramatically increased the efficiency of the steam engine, making it a viable power source for factories and mines.",
+          "icon": "",
+          "image_url": "",
+          "image_description": "A vintage blueprint style illustration of James Watt's improved steam engine. The schematic details the large piston, cylinder, and the separate condenser unit, connected by intricate pipes and valves. The drawing features cross-sections and callouts, rendered in white ink on a dark blue background, mimicking a classic engineering blueprint.",
+          "image": "/api/assets/demo/ae6c3bf0-d98b-44a1-8cdf-40464049ebfb/items/watt_steam_engine_1769.png"
+        },
+        {
+          "id": "power_loom_1785",
+          "content": "Power Loom (1785)",
+          "explanation": "Invented by Edmund Cartwright, this mechanized loom was powered by a line shaft and steam engine, automating the weaving process and significantly speeding up textile production.",
+          "icon": "",
+          "image_url": "",
+          "image_description": "A vintage blueprint style illustration of the Power Loom. The diagram shows a complex, large wooden and iron machine with shuttles, heddles, and a system of gears and belts designed to be connected to a central power source. The illustration has an aged, hand-drawn quality with detailed annotations on a faded parchment background.",
+          "image": "/api/assets/demo/ae6c3bf0-d98b-44a1-8cdf-40464049ebfb/items/power_loom_1785.png"
+        },
+        {
+          "id": "cotton_gin_1794",
+          "content": "Cotton Gin (1794)",
+          "explanation": "Eli Whitney's invention automated the separation of cotton fibers from their seeds, making cotton production far more profitable and fueling the expansion of the textile industry.",
+          "icon": "",
+          "image_url": "",
+          "image_description": "A vintage blueprint style illustration of the Cotton Gin. The image displays a cutaway view of a wooden box containing a drum with wire hooks or teeth that pull cotton fibers through a mesh. A hand crank is visible on the side. The style is that of a patent drawing from the late 18th century, with precise lines and labels on a sepia background.",
+          "image": "/api/assets/demo/ae6c3bf0-d98b-44a1-8cdf-40464049ebfb/items/cotton_gin_1794.png"
+        },
+        {
+          "id": "steam_locomotive_1804",
+          "content": "Steam Locomotive (1804)",
+          "explanation": "Richard Trevithick built the first full-scale working railway steam locomotive, heralding the age of rail transport which would revolutionize trade and travel.",
+          "icon": "",
+          "image_url": "",
+          "image_description": "A vintage blueprint style illustration of an early steam locomotive, like Trevithick's 'Pen-y-Darren'. The schematic shows a large boiler, a tall smokestack, a single piston, and large flywheel connected to the wheels. The drawing has a mechanical, industrial feel with detailed cross-hatching and notes on a gray, textured paper.",
+          "image": "/api/assets/demo/ae6c3bf0-d98b-44a1-8cdf-40464049ebfb/items/steam_locomotive_1804.png"
+        },
+        {
+          "id": "telegraph_1837",
+          "content": "Telegraph (1837)",
+          "explanation": "Developed by Samuel Morse and others, the electrical telegraph allowed for long-distance communication almost instantaneously, transforming commerce, news, and warfare.",
+          "icon": "",
+          "image_url": "",
+          "image_description": "A vintage blueprint style illustration of an early telegraph system. The schematic shows the sender's key, an electromagnet receiver that marks a paper tape, and the connecting wires. The drawing is intricate, with details of the electrical components, rendered in a classic 19th-century technical illustration style on a dark blue background.",
+          "image": "/api/assets/demo/ae6c3bf0-d98b-44a1-8cdf-40464049ebfb/items/telegraph_1837.png"
+        },
+        {
+          "id": "bessemer_process_1856",
+          "content": "Bessemer Process for Steel (1856)",
+          "explanation": "Henry Bessemer's process was the first inexpensive industrial method for the mass production of steel from molten pig iron, paving the way for modern skyscrapers, bridges, and railways.",
+          "icon": "",
+          "image_url": "",
+          "image_description": "A vintage blueprint style illustration of the Bessemer converter. The image shows a large, pear-shaped steel vessel, tilted to receive molten iron. Detailed diagrams show the tuyeres at the bottom for blowing air through the metal. The style is a mid-19th-century industrial schematic with precise lines, shading, and annotations on an aged paper background.",
+          "image": "/api/assets/demo/ae6c3bf0-d98b-44a1-8cdf-40464049ebfb/items/bessemer_process_1856.png"
+        }
+      ],
+      "correct_order": [
+        "spinning_jenny_1764",
+        "watt_steam_engine_1769",
+        "power_loom_1785",
+        "cotton_gin_1794",
+        "steam_locomotive_1804",
+        "telegraph_1837",
+        "bessemer_process_1856"
+      ],
+      "sequence_type": "ordered",
+      "layout_mode": "vertical_list",
+      "interaction_pattern": "drag_reorder",
+      "card_type": "image_card",
+      "connector_style": "arrow",
+      "show_position_numbers": false,
+      "allow_partial_credit": true
+    }
+  }
+}

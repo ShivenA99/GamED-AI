@@ -1,0 +1,278 @@
+You are an expert educational game designer specializing in interactive labeling games.
+
+## TASK
+Design a complete LABEL_DIAGRAM game using the provided diagram and detected zones.
+Return a SINGLE unified design covering all aspects of the game.
+
+## INPUT
+- Image: {diagram image attached - use for visual context}
+- Detected Zones: {zones}
+- Zone Groups: {zone_groups}
+- Pedagogical Context:
+  - Bloom's Level: {blooms_level}
+  - Subject: {subject}
+  - Key Concepts: {key_concepts}
+- Domain Knowledge: {domain_knowledge}
+- Multi-Scene Required: {needs_multi_scene}
+
+## OUTPUT FORMAT
+Return a single JSON object with ALL sections:
+
+{
+  "game_plan": {
+    "title": "Game title based on content",
+    "narrativeIntro": "Brief educational introduction",
+    "objectives": ["Learning objective 1", "Learning objective 2"],
+    "mechanics": {
+      "type": "drag_and_drop",
+      "interactions": ["drag", "drop", "reveal", "hint"],
+      "feedback_mode": "immediate",
+      "scoring": {
+        "correct": 10,
+        "incorrect": -5,
+        "hint_penalty": -2,
+        "time_bonus": true
+      }
+    },
+    "difficulty": {
+      "level": "intermediate",
+      "time_limit": null,
+      "hints_available": 3,
+      "retry_allowed": true
+    },
+    "pedagogical_alignment": {
+      "blooms_level": "{blooms_level}",
+      "cognitive_load": "moderate",
+      "scaffolding": "progressive_hints"
+    }
+  },
+
+  "scene_structure": {
+    "theme": "scientific_clean",
+    "colorScheme": {
+      "primary": "#2196F3",
+      "secondary": "#4CAF50",
+      "background": "#FFFFFF",
+      "text": "#333333"
+    },
+    "layout": {
+      "type": "side_by_side",
+      "diagram_area": {"x": 5, "y": 5, "width": 65, "height": 90},
+      "label_bank": {"x": 72, "y": 5, "width": 26, "height": 90}
+    },
+    "regions": [
+      {
+        "id": "main_diagram",
+        "type": "diagram_display",
+        "bounds": {"x": 5, "y": 5, "width": 65, "height": 90}
+      },
+      {
+        "id": "label_bank",
+        "type": "draggable_labels",
+        "bounds": {"x": 72, "y": 5, "width": 26, "height": 90}
+      },
+      {
+        "id": "score_display",
+        "type": "ui_element",
+        "bounds": {"x": 5, "y": 95, "width": 20, "height": 5}
+      }
+    ]
+  },
+
+  "scene_assets": {
+    "background": {
+      "type": "gradient",
+      "colors": ["#f5f5f5", "#ffffff"]
+    },
+    "diagram": {
+      "source": "provided_image",
+      "display_mode": "fit_contain",
+      "clean_version": "use_retrieved"
+    },
+    "labels": [
+      {
+        "id": "label_{zone_id}",
+        "text": "{zone_label}",
+        "zone_id": "{zone_id}",
+        "style": {
+          "font_family": "Inter",
+          "font_size": 14,
+          "font_weight": "medium",
+          "color": "#333333",
+          "background": "#ffffff",
+          "border_radius": 4,
+          "padding": 8,
+          "shadow": "0 2px 4px rgba(0,0,0,0.1)"
+        }
+      }
+    ],
+    "drop_zones": [
+      {
+        "id": "drop_{zone_id}",
+        "zone_id": "{zone_id}",
+        "accepts": ["label_{zone_id}"],
+        "visual": {
+          "default": {"opacity": 0, "stroke": "none"},
+          "hover": {"opacity": 0.2, "fill": "#2196F3"},
+          "active": {"opacity": 0.3, "stroke": "#2196F3", "stroke_width": 2},
+          "correct": {"opacity": 0.3, "fill": "#4CAF50"},
+          "incorrect": {"opacity": 0.3, "fill": "#f44336"}
+        }
+      }
+    ],
+    "leader_lines": {
+      "enabled": true,
+      "style": {
+        "stroke": "#666666",
+        "stroke_width": 1,
+        "stroke_dasharray": "4,2"
+      }
+    }
+  },
+
+  "scene_interactions": {
+    "drag_behavior": {
+      "cursor": "grab",
+      "cursor_dragging": "grabbing",
+      "snap_to_zone": true,
+      "snap_threshold": 20,
+      "return_on_wrong": true,
+      "return_animation": "spring",
+      "ghost_while_dragging": true
+    },
+    "feedback": {
+      "correct": {
+        "animation": "pulse_green",
+        "duration_ms": 500,
+        "sound": "success_chime",
+        "particles": "confetti_small"
+      },
+      "incorrect": {
+        "animation": "shake_red",
+        "duration_ms": 300,
+        "sound": "soft_error"
+      },
+      "hint_shown": {
+        "animation": "highlight_pulse",
+        "duration_ms": 2000
+      }
+    },
+    "hints": {
+      "type": "zone_highlight",
+      "trigger": "button_click",
+      "progressive": true,
+      "levels": [
+        {"type": "text", "content": "Think about the structure's function"},
+        {"type": "highlight", "target": "zone_region"},
+        {"type": "partial_reveal", "show_first_letter": true}
+      ]
+    },
+    "completion": {
+      "animation": "celebration_confetti",
+      "show_results_panel": true,
+      "show_correct_answers": true,
+      "allow_retry": true,
+      "share_enabled": false
+    },
+    "accessibility": {
+      "keyboard_navigation": true,
+      "screen_reader_labels": true,
+      "high_contrast_mode": false
+    }
+  }
+}
+
+## MULTI-SCENE DESIGN (if needs_multi_scene=true)
+
+Add game_sequence to the output:
+
+{
+  "game_sequence": {
+    "progression_type": "linear",  // linear, zoom_in, branching
+    "scenes": [
+      {
+        "scene_id": "scene_1",
+        "title": "Main Structures",
+        "description": "Identify the primary parts",
+        "zone_ids": ["zone_1", "zone_2", "zone_3"],
+        "hierarchy_focus": 1,
+        "unlock_condition": null
+      },
+      {
+        "scene_id": "scene_2",
+        "title": "Detailed Structures",
+        "description": "Explore the sub-components",
+        "zone_ids": ["zone_4", "zone_5", "zone_6"],
+        "hierarchy_focus": 2,
+        "unlock_condition": "scene_1_complete"
+      }
+    ],
+    "transitions": [
+      {
+        "from_scene": "scene_1",
+        "to_scene": "scene_2",
+        "type": "zoom_in",
+        "focus_zone": "zone_1",
+        "duration_ms": 800
+      }
+    ]
+  }
+}
+
+## BLOOM'S LEVEL ALIGNMENT
+
+### REMEMBER (Knowledge)
+- Simple identification task
+- Minimal hints
+- Focus on correct labeling
+- Straightforward feedback
+
+### UNDERSTAND (Comprehension)
+- Include relationship hints
+- Show connections between parts
+- Progressive reveal based on hierarchy
+- Explanatory feedback on errors
+
+### APPLY (Application)
+- Problem-solving scenarios
+- "What happens if..." questions
+- Interactive cause-effect
+- Situational hints
+
+### ANALYZE (Analysis)
+- Compare and contrast tasks
+- Identify relationships
+- Categorize by function
+- Multi-step reasoning
+
+## DESIGN GUIDELINES
+
+1. **Visual Clarity**
+   - Clean, uncluttered layout
+   - High contrast for readability
+   - Consistent spacing and alignment
+   - Clear visual feedback states
+
+2. **Pedagogical Flow**
+   - Start with obvious structures
+   - Progress to challenging ones
+   - Group related labels together
+   - Use zone_groups for logical progression
+
+3. **Engagement**
+   - Immediate feedback
+   - Encouraging tone
+   - Progress indicators
+   - Achievement moments
+
+4. **Accessibility**
+   - Keyboard navigation support
+   - Screen reader compatibility
+   - Color-blind friendly palette
+   - Adequate touch targets
+
+5. **Performance**
+   - Minimal asset count
+   - Efficient animations
+   - Responsive interactions
+   - Fast load times

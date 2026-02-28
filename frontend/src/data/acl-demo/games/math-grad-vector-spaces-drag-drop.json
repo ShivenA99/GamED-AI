@@ -1,0 +1,553 @@
+{
+  "id": "math-grad-vector-spaces-drag-drop",
+  "title": "Label Components of a Vector Space",
+  "question": "Create an interactive diagram game where graduate students label components of a linear algebra vector space diagram: identify and place labels for basis vectors, span, null space (kernel), column space (range), row space, eigenspaces, orthogonal complement, and rank, understanding how these subspaces relate to each other within the fundamental theorem of linear algebra.",
+  "domain": "mathematics",
+  "educationLevel": "graduate",
+  "gameType": "interactive_diagram",
+  "mechanic": "drag_drop",
+  "bloomsLevel": "Apply",
+  "pipelineMetrics": {
+    "runId": "27d408b3-1e3a-4c6b-aa17-63bb3358c791",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 306.7,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T09:28:07.759409+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "Vector Space Navigator: Subspace Exploration",
+    "subject": "Linear Algebra",
+    "difficulty": "advanced",
+    "narrativeIntro": "Welcome, advanced mathematician! Your mission is to navigate and map the intricate landscape of vector spaces. Precisely identify and understand the fundamental subspaces that define linear transformations, and demonstrate your mastery of the Fundamental Theorem of Linear Algebra.",
+    "narrativeTheme": "Exploring Subspaces",
+    "completionMessage": "Congratulations, Navigator! You have successfully mapped the complex terrain of vector spaces and their fundamental subspaces. Your understanding of their interrelationships is truly multidimensional!",
+    "estimatedDurationMinutes": 15,
+    "diagram": {
+      "assetPrompt": "A clean, abstract 3D vector space diagram with clearly distinguishable axes (x, y, z) labeled subtly. Two distinct, linearly independent vectors are prominently displayed originating from the origin, representing basis vectors. The plane or subspace these two vectors span is visually indicated with a translucent, shaded surface, clearly showing its extent within the larger vector space. The overall vector space itself is subtly defined by a coordinate grid.",
+      "zones": [
+        {
+          "id": "zone_vector_space",
+          "label": "Vector Space",
+          "points": [
+            [
+              96.5,
+              55.3
+            ],
+            [
+              58.2,
+              14.9
+            ],
+            [
+              38.0,
+              26.0
+            ],
+            [
+              2.0,
+              48.4
+            ],
+            [
+              14.1,
+              62.7
+            ],
+            [
+              13.2,
+              63.7
+            ],
+            [
+              15.0,
+              63.5
+            ],
+            [
+              39.6,
+              90.7
+            ]
+          ],
+          "x": 34.6,
+          "y": 53.1,
+          "radius": 61.9,
+          "shape": "polygon",
+          "center": {
+            "x": 34.6,
+            "y": 53.1
+          },
+          "hierarchyLevel": 1,
+          "childZoneIds": [
+            "zone_span"
+          ]
+        },
+        {
+          "id": "zone_basis_vectors",
+          "label": "Basis Vectors",
+          "points": [
+            [
+              41.2,
+              45.7
+            ],
+            [
+              59.6,
+              45.7
+            ],
+            [
+              59.6,
+              58.7
+            ],
+            [
+              41.2,
+              58.7
+            ]
+          ],
+          "x": 50.4,
+          "y": 52.2,
+          "width": 18.4,
+          "height": 13.0,
+          "shape": "rect",
+          "hierarchyLevel": 3,
+          "parentZoneId": "zone_span"
+        },
+        {
+          "id": "zone_span",
+          "label": "Span",
+          "points": [
+            [
+              81.3,
+              50.1
+            ],
+            [
+              76.0,
+              44.8
+            ],
+            [
+              73.7,
+              42.8
+            ],
+            [
+              73.2,
+              42.1
+            ],
+            [
+              72.0,
+              41.2
+            ],
+            [
+              55.0,
+              25.0
+            ],
+            [
+              54.5,
+              25.0
+            ],
+            [
+              53.0,
+              25.8
+            ],
+            [
+              50.7,
+              27.4
+            ],
+            [
+              45.2,
+              30.7
+            ],
+            [
+              44.5,
+              31.2
+            ],
+            [
+              29.1,
+              40.6
+            ],
+            [
+              27.6,
+              41.7
+            ],
+            [
+              24.5,
+              43.4
+            ],
+            [
+              20.7,
+              45.9
+            ],
+            [
+              18.8,
+              47.0
+            ],
+            [
+              18.7,
+              47.3
+            ],
+            [
+              20.7,
+              49.5
+            ],
+            [
+              23.1,
+              51.7
+            ],
+            [
+              23.3,
+              52.2
+            ],
+            [
+              29.3,
+              58.0
+            ],
+            [
+              30.2,
+              59.1
+            ],
+            [
+              31.5,
+              60.2
+            ],
+            [
+              35.4,
+              64.0
+            ],
+            [
+              36.1,
+              64.9
+            ],
+            [
+              36.8,
+              65.4
+            ],
+            [
+              45.2,
+              73.7
+            ],
+            [
+              45.8,
+              73.7
+            ],
+            [
+              58.3,
+              65.4
+            ],
+            [
+              60.0,
+              64.5
+            ],
+            [
+              60.9,
+              63.7
+            ],
+            [
+              62.6,
+              62.7
+            ],
+            [
+              76.4,
+              53.5
+            ],
+            [
+              79.6,
+              51.6
+            ],
+            [
+              81.2,
+              50.5
+            ]
+          ],
+          "x": 47.3,
+          "y": 49.6,
+          "radius": 34.0,
+          "shape": "polygon",
+          "center": {
+            "x": 47.3,
+            "y": 49.6
+          },
+          "hierarchyLevel": 2,
+          "parentZoneId": "zone_vector_space",
+          "childZoneIds": [
+            "zone_basis_vectors"
+          ]
+        }
+      ],
+      "imageUrl": "/api/assets/demo/27d408b3-1e3a-4c6b-aa17-63bb3358c791/diagram_scene_1.png",
+      "assetUrl": "/api/assets/demo/27d408b3-1e3a-4c6b-aa17-63bb3358c791/diagram_scene_1.png"
+    },
+    "labels": [
+      {
+        "id": "label_s1_0",
+        "text": "Vector Space",
+        "correctZoneId": "zone_vector_space"
+      },
+      {
+        "id": "label_s1_1",
+        "text": "Basis Vectors",
+        "correctZoneId": "zone_basis_vectors"
+      },
+      {
+        "id": "label_s1_2",
+        "text": "Span",
+        "correctZoneId": "zone_span"
+      }
+    ],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "Drag and drop the labels to correctly identify the Basis Vectors, the Span, and the overall Vector Space within the diagram."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 30,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! You've correctly identified this component.",
+          "on_incorrect": "Not quite. Review the definition of this term and try placing it in the correct area.",
+          "on_completion": "Fantastic! You've accurately identified the basis vectors, their span, and the overall vector space.",
+          "misconceptions": [
+            {
+              "trigger_label": "placed_distractor_in_correct_zone",
+              "message": "It looks like you're thinking about other important vector spaces. Remember, the null space contains vectors mapped to zero, while the column space contains all possible outputs. The null space is orthogonal to the row space, not necessarily the column space.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "incorrect_placement_span",
+              "message": "The span of a set of vectors is the collection of all possible linear combinations of those vectors. It defines the subspace generated by them, which may or may not be the entire vector space.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "incorrect_placement_basis_vectors",
+              "message": "Basis vectors are a set of linearly independent vectors that can generate (span) a given vector space. The number of vectors in a basis determines the dimension of that space, which is closely related to the concept of rank in transformations.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "Now, consider a linear transformation represented by matrix A. Within the domain, locate the subspaces that define its input behavior. Drag the correct labels to identify the Null Space and Row Space."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 20,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! You've correctly identified this subspace within the domain.",
+          "on_incorrect": "Not quite. Revisit the definitions of Null Space and Row Space. Consider what vectors belong to each region of the domain.",
+          "on_completion": "Fantastic! You've accurately placed both the Null Space and Row Space, demonstrating a clear understanding of their locations within the domain.",
+          "misconceptions": [
+            {
+              "trigger_label": "Column Space_incorrect_placement",
+              "message": "Careful! The Column Space lives in the codomain, not the domain. The Null Space and Row Space are the key subspaces within the domain. Remember, the null space is orthogonal to the row space, not necessarily the column space.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "Left Null Space_incorrect_placement",
+              "message": "The Left Null Space is also in the codomain. For this scene, focus on the Null Space and Row Space, which are found within the domain.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "Null Space (Kernel)_incorrect_zone",
+              "message": "You've swapped the Null Space and Row Space. Remember: The Null Space contains vectors mapped to zero, while the Row Space is spanned by the matrix's rows. They are orthogonal complements within the domain.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "Row Space_incorrect_zone",
+              "message": "You've swapped the Null Space and Row Space. Remember: The Row Space is spanned by the matrix's rows, while the Null Space contains vectors mapped to zero. They are orthogonal complements within the domain.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "description_matching",
+        "config": {
+          "instruction_text": "Now that you've identified the Null Space and Row Space, match each one to its defining characteristic and its orthogonal relationship within the domain."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 15,
+          "max_score": 30,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "That's a perfect match! You've correctly associated the description with its subspace.",
+          "on_incorrect": "This description doesn't quite fit. Re-read the definitions carefully and consider which subspace it truly describes. Think about the unique properties of Null Space versus Row Space.",
+          "on_completion": "Outstanding! You've successfully matched all the subspace descriptions. You clearly understand their roles and relationships!",
+          "misconceptions": [
+            {
+              "trigger_label": "Null Space (Kernel)_description_mismatch",
+              "message": "It seems there's a mix-up in the descriptions. Remember: The Null Space comprises all vectors in the domain that are mapped to the zero vector. It is the orthogonal complement to the Row Space.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "Drag the labels to correctly identify the Column Space (Range) and its orthogonal complement, the Left Null Space, within the codomain diagram."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 20,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! You've correctly identified this subspace within the codomain.",
+          "on_incorrect": "Not quite. Revisit the definitions of the Column Space and Left Null Space. Remember which space they belong to.",
+          "on_completion": "Fantastic! You've successfully identified both the Column Space and Left Null Space. You're doing great!",
+          "misconceptions": [
+            {
+              "trigger_label": "drag_NullSpace_to_codomain_subspace_target",
+              "message": "Careful! The Null Space contains vectors mapped to zero in the domain. The Column Space (Range) and Left Null Space are subspaces of the codomain. They are distinct concepts.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "drag_RowSpace_to_codomain_subspace_target",
+              "message": "Remember, the Row Space is a subspace of the domain, not the codomain. Focus on the subspaces that exist within the codomain here.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "click_to_identify",
+        "config": {
+          "instruction_text": "Now that you've labeled the subspaces, click on the subspace whose dimension defines the 'Rank' of the matrix."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 15,
+          "max_score": 15,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "That's correct! The dimension of the Column Space (Range) is indeed the 'Rank' of the matrix.",
+          "on_incorrect": "Not quite. Think about which subspace's dimension quantifies the 'Rank' of a matrix. The explanation for the prompt might offer a hint.",
+          "on_completion": "Great job! You've correctly identified the subspace whose dimension defines the matrix's Rank.",
+          "misconceptions": [
+            {
+              "trigger_label": "click_wrong_subspace_for_rank",
+              "message": "Remember, the 'Rank' of a matrix isn't just a numerical value; it represents the dimension of the Column Space (and Row Space). This indicates the 'effective' dimension of the output space or the number of independent directions preserved by the transformation.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "For square matrices, some special directions remain unchanged (only scaled) by a transformation. Locate these 'eigenspaces' by dragging the label to the correct highlighted region."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 10,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! You've correctly identified the eigenspace. This is the set of all eigenvectors (plus the zero vector) corresponding to a particular eigenvalue, representing directions preserved by the transformation.",
+          "on_incorrect": "Not quite. Remember, an eigenspace is a subspace where vectors are only scaled by the transformation, not changed in direction. Look for the direction(s) that remain invariant under the transformation.",
+          "on_completion": "Fantastic! You've successfully identified the eigenspace in this diagram. Understanding these preserved directions is key to grasping linear transformations.",
+          "misconceptions": [
+            {
+              "trigger_label": "incorrect_placement",
+              "message": "It looks like there might be some confusion about what an eigenspace represents. Remember, an eigenspace contains vectors whose direction is preserved by the transformation, only scaled. This is different from the null space (vectors mapped to zero) or the column space (all possible outputs).",
+              "severity": "medium"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [
+      {
+        "from": "drag_drop",
+        "to": "description_matching",
+        "trigger": "all_zones_labeled",
+        "animation": "fade"
+      },
+      {
+        "from": "drag_drop",
+        "to": "click_to_identify",
+        "trigger": "all_zones_labeled",
+        "animation": "fade"
+      }
+    ],
+    "interactionMode": "drag_drop",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 10,
+      "max_score": 125
+    },
+    "totalMaxScore": 125,
+    "generation_complete": true,
+    "dragDropConfig": {
+      "leader_line_style": "none",
+      "tray_position": "bottom",
+      "placement_animation": "spring",
+      "show_distractors": false,
+      "zone_idle_animation": "pulse",
+      "max_attempts": 3,
+      "pin_marker_shape": "circle",
+      "leader_line_animate": true,
+      "interaction_mode": "drag_drop",
+      "zone_hover_effect": "highlight",
+      "tray_layout": "horizontal",
+      "leader_line_color": "",
+      "label_anchor_side": "auto",
+      "label_style": "text",
+      "incorrect_animation": "shake",
+      "feedback_timing": "deferred",
+      "shuffle_labels": true
+    },
+    "zoneGroups": [
+      {
+        "id": "group_zone_vector_space",
+        "parentZoneId": "zone_vector_space",
+        "childZoneIds": [
+          "zone_span"
+        ],
+        "revealTrigger": "complete_parent",
+        "label": "Vector Space"
+      },
+      {
+        "id": "group_zone_span",
+        "parentZoneId": "zone_span",
+        "childZoneIds": [
+          "zone_basis_vectors"
+        ],
+        "revealTrigger": "complete_parent",
+        "label": "Span"
+      }
+    ],
+    "temporalConstraints": [
+      {
+        "constraint_type": "after",
+        "zone_a": "zone_span",
+        "zone_b": "zone_vector_space",
+        "description": "Zone zone_span visible after zone_vector_space is labeled"
+      },
+      {
+        "constraint_type": "after",
+        "zone_a": "zone_basis_vectors",
+        "zone_b": "zone_span",
+        "description": "Zone zone_basis_vectors visible after zone_span is labeled"
+      }
+    ],
+    "revealOrder": [
+      "zone_vector_space",
+      "zone_basis_vectors",
+      "zone_span"
+    ]
+  }
+}

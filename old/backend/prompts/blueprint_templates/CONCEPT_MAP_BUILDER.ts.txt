@@ -1,0 +1,33 @@
+export interface ConceptMapBuilderBlueprint {
+  templateType: "CONCEPT_MAP_BUILDER";
+  title: string;
+  narrativeIntro: string;
+  concepts: Array<{
+    id: string;
+    label: string;
+    description?: string;
+    required?: boolean; // Must be included in solution
+    initialX?: number; // 0–1
+    initialY?: number; // 0–1
+  }>;
+  connections: Array<{
+    id: string;
+    fromConceptId: string;
+    toConceptId: string;
+    label?: string;
+    required?: boolean; // Must be included in solution
+  }>;
+  tasks: Array<{
+    id: string;
+    type: "concept_map_construction" | "relationship_analysis";
+    questionText: string;
+    requiredToProceed: boolean;
+  }>;
+  animationCues: {
+    conceptPlace: string;
+    connectionDraw: string;
+    mapValid: string;
+    mapInvalid?: string;
+  };
+}
+

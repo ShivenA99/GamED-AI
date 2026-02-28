@@ -1,0 +1,50 @@
+# Core Framework
+fastapi>=0.104.1
+uvicorn[standard]>=0.24.0
+python-multipart>=0.0.6
+pydantic>=2.9.0
+
+# LangGraph & LangChain (updated for Python 3.14 compatibility)
+langgraph>=0.2.40
+langchain>=0.3.0
+langchain-core>=0.3.0
+langchain-openai>=0.2.0
+langchain-anthropic>=0.2.0
+langsmith>=0.1.0
+langgraph-checkpoint-sqlite>=0.1.0  # Database-backed checkpointing for retry functionality
+
+# LLM Providers
+openai>=1.3.5
+anthropic>=0.7.7
+
+# Database
+sqlalchemy>=2.0.0
+alembic>=1.12.0
+
+# Utilities
+python-dotenv>=1.0.0
+aiofiles>=23.2.1
+httpx>=0.25.0
+
+# Document Processing (preserved from old)
+python-docx>=1.1.0
+PyPDF2>=3.0.1
+
+# Image Processing & Computer Vision
+easyocr>=1.7.0
+opencv-python>=4.8.0
+Pillow>=10.0.0
+numpy>=1.24.0
+
+# SAM3 (Segment Anything Model 3) - Preferred for segmentation
+# Official: pip install sam3
+# MLX (Apple Silicon optimized): pip install git+https://github.com/mlx-community/sam3-image.git
+sam3>=0.1.0
+huggingface_hub>=0.20.0  # Required for SAM3 model downloads and authentication
+
+# Rate Limiting & Security
+slowapi>=0.1.9
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0

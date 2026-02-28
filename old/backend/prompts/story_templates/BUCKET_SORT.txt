@@ -1,0 +1,13 @@
+### Template Context: BUCKET_SORT
+
+The resulting visualization will be implemented as:
+- Categorization by dragging items into appropriate buckets.
+- Multiple buckets represent different categories.
+- Items belong to specific categories.
+
+When generating story_context, visual_metaphor, visual_elements, question_flow, and animation_cues:
+- Emphasize categories, grouping, and classification.
+- Visual elements should represent distinct categories and items to classify.
+- Questions should involve categorization or grouping tasks.
+- Animation cues should show items moving to buckets and category validation.
+

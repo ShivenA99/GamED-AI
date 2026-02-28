@@ -1,0 +1,677 @@
+## LABEL_DIAGRAM Blueprint Generation
+
+You are an expert educational game blueprint designer. Generate a complete, valid LABEL_DIAGRAM blueprint that teaches concepts through interactive labeling of visual diagrams.
+
+### Template Purpose
+The LABEL_DIAGRAM creates interactive labeling experiences where learners drag labels to correct positions on a diagram/image. This template is ideal for:
+- Anatomy labeling (e.g., parts of the heart, cell organelles)
+- Geography identification (e.g., countries, landforms)
+- Technical diagrams (e.g., circuit components, engine parts)
+- Scientific equipment (e.g., lab apparatus, microscope parts)
+- Architectural elements (e.g., building features, structural components)
+- Botanical structures (e.g., flower parts, leaf anatomy)
+
+### Cognitive Alignment by Bloom's Level
+- **Remember Level**: Recall names of familiar parts (basic labeling)
+- **Understand Level**: Explain function of labeled parts (function-based clues)
+- **Apply Level**: Label unfamiliar diagrams using knowledge (transfer tasks)
+- **Analyze Level**: Identify relationships between parts (connected systems)
+
+### Using interaction_design from State
+When `interaction_design` is provided in context (from the interaction_designer agent), use it to configure:
+
+```
+interaction_design: {
+    primary_interaction_mode: string,     // Use as interactionMode
+    secondary_modes: string[],            // Use as secondaryModes
+    zone_behavior_strategy: {
+        zone_type: "point" | "area" | "mixed",
+        reveal_on_complete: boolean
+    },
+    reveal_strategy: {
+        type: "flat" | "progressive" | "hierarchical",
+        ...
+    },
+    feedback_strategy: {
+        immediate_feedback: boolean,
+        show_correct_on_error: boolean
+    },
+    scoring_strategy: {
+        type: string,
+        base_points_per_zone: number,
+        time_bonus_enabled: boolean,
+        partial_credit: boolean,
+        ...
+    },
+    animation_config: {
+        correct_animation: string,
+        incorrect_animation: string,
+        completion_animation: string
+    }
+}
+```
+
+**IMPORTANT:** If interaction_design is provided:
+- Use `primary_interaction_mode` as the main interactionMode
+- Use `scoring_strategy.base_points_per_zone` for maxScore calculation
+- Use `animation_config` to populate animations object
+- Apply `reveal_strategy` for hierarchical/multi-scene progression
+
+### Required Schema (ALL FIELDS MUST BE PRESENT)
+
+```typescript
+{{
+    "templateType": "LABEL_DIAGRAM",  // MUST be exactly this
+    "title": string,                   // Engaging, descriptive title
+    "narrativeIntro": string,          // 2-4 sentences setting the scene
+    "maxScore": number,                // Total points = labels.length × base_points (use scoring_strategy if provided)
+    "diagram": {{
+        "assetPrompt": string,      // Description for AI image generation
+        "assetUrl"?: string,        // Or direct URL to existing image
+        "width"?: number,           // Display width (default 800)
+        "height"?: number,          // Display height (default 600)
+        "zones": Array<{{
+            "id": string,           // Descriptive ID like "zone_left_atrium"
+            "label": string,        // Correct label for this zone
+            "x": number,            // X position (0-100, percentage)
+            "y": number,            // Y position (0-100, percentage)
+            "radius": number,       // Click target radius (5-15 typical)
+            "description"?: string  // Explanation for feedback
+        }}>
+    }},
+    "labels": Array<{{
+        "id": string,               // Descriptive ID like "label_left_atrium"
+        "text": string,             // Display text on the label
+        "correctZoneId": string     // Which zone this label belongs to
+    }}>,
+    "distractorLabels"?: Array<{{  // Optional wrong labels for challenge
+        "id": string,
+        "text": string,
+        "explanation": string       // REQUIRED: Why this label doesn't belong (educational feedback)
+    }}>,
+    "tasks": Array<{{
+        "id": string,
+        "type": "interactive_diagram" | "identify_function" | "trace_path",
+        "questionText": string,
+        "requiredToProceed": boolean
+    }}>,
+    "animationCues": {{
+        "labelDrag": string,        // Visual cue when dragging
+        "correctPlacement": string, // Feedback for correct label
+        "incorrectPlacement": string, // Feedback for wrong placement
+        "allLabeled"?: string       // Celebration when complete
+    }},
+    "hints": Array<{{
+        "zoneId": string,
+        "hintText": string
+    }}>,
+    "feedbackMessages": {{
+        "perfect": string,
+        "good": string,
+        "retry": string
+    }}
+}}
+```
+
+### Critical Output Rules
+- Output ONLY the schema above. Do NOT include extra fields.
+- Use `labels[].id` only (never `labelId`).
+- Ignore scene-style fields such as `required_assets`, `layout_specification`, `animation_sequences`, or `game_mechanics`.
+- For geography/diagram topics, place zones at approximate real-world positions (use 0-100 map-like coordinates).
+- Ensure every label has a corresponding zone and vice versa (1:1 mapping).
+- Zone IDs must be unique. Label IDs must be unique. Each label must map to a unique `correctZoneId`.
+- `diagram.width` and `diagram.height` must be numbers (default to 800 and 600 if unsure).
+- If Domain Knowledge is provided in context, use ONLY those canonical labels (or acceptable variants) for `labels[].text` and `diagram.zones[].label`.
+
+### EXAMPLE 1: Human Heart Anatomy (Biology)
+
+```json
+{{
+    "templateType": "LABEL_DIAGRAM",
+    "title": "Heart Explorer: Know Your Chambers",
+    "narrativeIntro": "Welcome to the Cardiology Training Center! Before you can become a heart surgeon, you must prove you know every chamber and vessel. Drag each label to its correct location on this cross-section of the human heart.",
+    "diagram": {{
+        "assetPrompt": "Cross-sectional medical illustration of a human heart showing all four chambers, major blood vessels (aorta, pulmonary artery, vena cava), and heart valves. Clean educational style with clear outlines, neutral background. Labeled regions should be visually distinct.",
+        "width": 800,
+        "height": 700,
+        "zones": [
+            {{
+                "id": "zone_right_atrium",
+                "label": "Right Atrium",
+                "x": 30,
+                "y": 25,
+                "radius": 10,
+                "description": "Receives deoxygenated blood from the body via the vena cava"
+            }},
+            {{
+                "id": "zone_right_ventricle",
+                "label": "Right Ventricle",
+                "x": 35,
+                "y": 55,
+                "radius": 10,
+                "description": "Pumps deoxygenated blood to the lungs via the pulmonary artery"
+            }},
+            {{
+                "id": "zone_left_atrium",
+                "label": "Left Atrium",
+                "x": 65,
+                "y": 25,
+                "radius": 10,
+                "description": "Receives oxygenated blood from the lungs via the pulmonary veins"
+            }},
+            {{
+                "id": "zone_left_ventricle",
+                "label": "Left Ventricle",
+                "x": 60,
+                "y": 60,
+                "radius": 12,
+                "description": "Pumps oxygenated blood to the body via the aorta. Has the thickest walls!"
+            }},
+            {{
+                "id": "zone_aorta",
+                "label": "Aorta",
+                "x": 55,
+                "y": 8,
+                "radius": 8,
+                "description": "The largest artery, carries oxygenated blood from the left ventricle to the body"
+            }},
+            {{
+                "id": "zone_pulmonary_artery",
+                "label": "Pulmonary Artery",
+                "x": 40,
+                "y": 12,
+                "radius": 8,
+                "description": "Carries deoxygenated blood from the right ventricle to the lungs"
+            }},
+            {{
+                "id": "zone_vena_cava",
+                "label": "Vena Cava",
+                "x": 25,
+                "y": 40,
+                "radius": 8,
+                "description": "The largest vein, brings deoxygenated blood back from the body to the right atrium"
+            }},
+            {{
+                "id": "zone_septum",
+                "label": "Septum",
+                "x": 50,
+                "y": 45,
+                "radius": 8,
+                "description": "The muscular wall dividing the left and right sides of the heart"
+            }}
+        ]
+    }},
+    "labels": [
+        {{"id": "label_ra", "text": "Right Atrium", "correctZoneId": "zone_right_atrium"}},
+        {{"id": "label_rv", "text": "Right Ventricle", "correctZoneId": "zone_right_ventricle"}},
+        {{"id": "label_la", "text": "Left Atrium", "correctZoneId": "zone_left_atrium"}},
+        {{"id": "label_lv", "text": "Left Ventricle", "correctZoneId": "zone_left_ventricle"}},
+        {{"id": "label_aorta", "text": "Aorta", "correctZoneId": "zone_aorta"}},
+        {{"id": "label_pa", "text": "Pulmonary Artery", "correctZoneId": "zone_pulmonary_artery"}},
+        {{"id": "label_vc", "text": "Vena Cava", "correctZoneId": "zone_vena_cava"}},
+        {{"id": "label_septum", "text": "Septum", "correctZoneId": "zone_septum"}}
+    ],
+    "distractorLabels": [
+        {{
+            "id": "distractor_coronary",
+            "text": "Coronary Artery",
+            "explanation": "Coronary arteries supply blood to the heart muscle itself, but they're not shown in this cross-section view."
+        }}
+    ],
+    "tasks": [
+        {{
+            "id": "task_label_heart",
+            "type": "interactive_diagram",
+            "questionText": "Drag each label to its correct location on the heart diagram. Remember: the right side receives blood FROM the body, the left side sends blood TO the body!",
+            "requiredToProceed": true
+        }},
+        {{
+            "id": "task_trace_blood_flow",
+            "type": "trace_path",
+            "questionText": "Bonus: Can you trace the path of blood from the body, through the heart, to the lungs, and back?",
+            "requiredToProceed": false
+        }}
+    ],
+    "animationCues": {{
+        "labelDrag": "Label lifts with stethoscope cursor, subtle heartbeat pulse",
+        "correctPlacement": "Label snaps into place with ECG beep, green pulse radiates from zone",
+        "incorrectPlacement": "Flatline sound, label bounces back with red X",
+        "allLabeled": "Heart beats visibly, blood flow animation shows pathway, 'Board Certified!' badge appears"
+    }},
+    "hints": [
+        {{
+            "zoneId": "zone_left_ventricle",
+            "hintText": "This chamber has the thickest walls because it needs to pump blood all the way to your toes!"
+        }},
+        {{
+            "zoneId": "zone_pulmonary_artery",
+            "hintText": "This is the only artery that carries deoxygenated blood. It goes to the lungs."
+        }},
+        {{
+            "zoneId": "zone_septum",
+            "hintText": "What wall prevents mixing of oxygenated and deoxygenated blood?"
+        }}
+    ],
+    "feedbackMessages": {{
+        "perfect": "Excellent! You've mastered heart anatomy. Remember: Right side = deoxygenated blood, Left side = oxygenated blood. The left ventricle is strongest because it pumps to the whole body!",
+        "good": "Great progress! You've got most parts correct. Review the blood flow path: body → right atrium → right ventricle → lungs → left atrium → left ventricle → body",
+        "retry": "Keep practicing! Tip: 'Right' and 'Left' are from the heart's perspective (flipped from your view). Atria are on top, ventricles on bottom."
+    }}
+}}
+```
+
+### EXAMPLE 2: Plant Cell Structure (Biology)
+
+```json
+{{
+    "templateType": "LABEL_DIAGRAM",
+    "title": "Cell City: Plant Edition",
+    "narrativeIntro": "Welcome to Cell City, where each organelle is a building with a special job! As the new city planner, you need to learn where everything is located. Label each part of this plant cell to prove you know your cellular geography.",
+    "diagram": {{
+        "assetPrompt": "Detailed cross-section illustration of a plant cell showing cell wall, cell membrane, nucleus, chloroplasts, mitochondria, vacuole, endoplasmic reticulum, Golgi apparatus, and ribosomes. Educational style with bright colors distinguishing each organelle. Clean white background.",
+        "width": 900,
+        "height": 700,
+        "zones": [
+            {{
+                "id": "zone_cell_wall",
+                "label": "Cell Wall",
+                "x": 10,
+                "y": 50,
+                "radius": 10,
+                "description": "Rigid outer layer made of cellulose. Only in plant cells! Provides structure and protection."
+            }},
+            {{
+                "id": "zone_cell_membrane",
+                "label": "Cell Membrane",
+                "x": 15,
+                "y": 50,
+                "radius": 8,
+                "description": "Thin, flexible barrier that controls what enters and exits the cell."
+            }},
+            {{
+                "id": "zone_nucleus",
+                "label": "Nucleus",
+                "x": 50,
+                "y": 45,
+                "radius": 12,
+                "description": "The 'brain' of the cell containing DNA. Controls all cell activities."
+            }},
+            {{
+                "id": "zone_chloroplast",
+                "label": "Chloroplast",
+                "x": 30,
+                "y": 30,
+                "radius": 10,
+                "description": "Green organelles that perform photosynthesis. Only in plant cells!"
+            }},
+            {{
+                "id": "zone_mitochondria",
+                "label": "Mitochondria",
+                "x": 70,
+                "y": 65,
+                "radius": 8,
+                "description": "The 'powerhouse' of the cell. Produces ATP energy through cellular respiration."
+            }},
+            {{
+                "id": "zone_vacuole",
+                "label": "Central Vacuole",
+                "x": 50,
+                "y": 70,
+                "radius": 15,
+                "description": "Large storage organelle filled with water and nutrients. Much larger in plant cells!"
+            }},
+            {{
+                "id": "zone_er",
+                "label": "Endoplasmic Reticulum",
+                "x": 65,
+                "y": 35,
+                "radius": 10,
+                "description": "Network of membranes that helps produce and transport proteins and lipids."
+            }},
+            {{
+                "id": "zone_golgi",
+                "label": "Golgi Apparatus",
+                "x": 75,
+                "y": 45,
+                "radius": 8,
+                "description": "The 'post office' of the cell. Packages and ships proteins to their destinations."
+            }}
+        ]
+    }},
+    "labels": [
+        {{"id": "label_wall", "text": "Cell Wall", "correctZoneId": "zone_cell_wall"}},
+        {{"id": "label_membrane", "text": "Cell Membrane", "correctZoneId": "zone_cell_membrane"}},
+        {{"id": "label_nucleus", "text": "Nucleus", "correctZoneId": "zone_nucleus"}},
+        {{"id": "label_chloroplast", "text": "Chloroplast", "correctZoneId": "zone_chloroplast"}},
+        {{"id": "label_mitochondria", "text": "Mitochondria", "correctZoneId": "zone_mitochondria"}},
+        {{"id": "label_vacuole", "text": "Central Vacuole", "correctZoneId": "zone_vacuole"}},
+        {{"id": "label_er", "text": "Endoplasmic Reticulum", "correctZoneId": "zone_er"}},
+        {{"id": "label_golgi", "text": "Golgi Apparatus", "correctZoneId": "zone_golgi"}}
+    ],
+    "tasks": [
+        {{
+            "id": "task_label_cell",
+            "type": "interactive_diagram",
+            "questionText": "Drag each organelle name to its correct location. Remember: Plant cells have features animal cells don't have!",
+            "requiredToProceed": true
+        }}
+    ],
+    "animationCues": {{
+        "labelDrag": "Label card lifts with microscope cursor, cell slightly magnifies",
+        "correctPlacement": "Organelle pulses with glow, label connects with animated line",
+        "incorrectPlacement": "Cell membrane vibrates like rejection, label slides back",
+        "allLabeled": "Cell comes to life with internal movement animation, 'Cell-ebration!' confetti"
+    }},
+    "hints": [
+        {{
+            "zoneId": "zone_chloroplast",
+            "hintText": "These green organelles are where photosynthesis happens. What makes plant cells green?"
+        }},
+        {{
+            "zoneId": "zone_vacuole",
+            "hintText": "This is the largest organelle in plant cells and stores water. It's huge compared to animal cell vacuoles!"
+        }}
+    ],
+    "feedbackMessages": {{
+        "perfect": "Outstanding! You know your organelles! Remember: Cell wall and chloroplasts are ONLY in plant cells, and the central vacuole is much larger than in animal cells.",
+        "good": "Great work! You've identified most organelles correctly. Review the special plant cell features.",
+        "retry": "Keep practicing! Think of the cell as a city: nucleus = city hall, mitochondria = power plant, chloroplasts = solar panels, Golgi = post office."
+    }}
+}}
+```
+
+### ENHANCED FEATURES (Optional)
+
+#### Interaction Modes
+**IMPORTANT:** When `interaction_design` is provided in context, use the modes specified there. The interaction_designer agent determines optimal modes based on Bloom's level, content structure, and pedagogy.
+
+Available interaction modes (extendable via interaction_patterns config):
+
+```json
+{
+    "interactionMode": string,  // Primary mode from interaction_design
+    "secondaryModes"?: string[] // Additional modes for multi-mode games
+}
+```
+
+**Core Modes:**
+- **drag_drop**: Traditional drag labels to zones - good for spatial learning
+- **click_to_identify**: Sequential prompts asking user to click on specific parts - reduces cognitive load
+- **trace_path**: User traces a path through connected zones (e.g., blood flow) - shows relationships
+- **hierarchical**: Multi-level diagrams where completing a zone reveals sub-zones - manages complexity
+
+**Advanced Modes:**
+- **description_matching**: Match text descriptions to zones - tests deeper understanding
+- **compare_contrast**: Identify similarities/differences between structures - analytical thinking
+- **sequencing**: Order events or steps correctly - process understanding
+- **timed_challenge**: Time-limited gameplay - builds automaticity
+
+**Multi-Mode Games:**
+Games can combine multiple interaction modes for richer learning:
+```json
+{
+    "interactionMode": "drag_drop",
+    "secondaryModes": ["trace_path", "click_to_identify"],
+    "modeTransitions": [
+        {"from": "drag_drop", "to": "trace_path", "trigger": "all_zones_labeled"},
+        {"from": "trace_path", "to": "click_to_identify", "trigger": "path_complete"}
+    ]
+}
+```
+
+#### Click-to-Identify Mode Example
+```json
+{
+    "interactionMode": "click_to_identify",
+    "selectionMode": "sequential",
+    "identificationPrompts": [
+        {"zoneId": "zone_nucleus", "prompt": "Click on the nucleus", "order": 1},
+        {"zoneId": "zone_mitochondria", "prompt": "Now click on the powerhouse of the cell", "order": 2}
+    ]
+}
+```
+
+#### Hierarchical Mode Example
+
+Use hierarchical mode when domain_knowledge contains `hierarchical_relationships` or when parts contain sub-parts that would cause overlapping zones.
+
+**When to Use Hierarchical Mode:**
+- Parts contain sub-parts (e.g., stamen contains anther + filament)
+- Multiple nested structures (e.g., pistil contains stigma, style, ovary)
+- More than 8-10 zones that would overlap if shown simultaneously
+- Domain knowledge explicitly lists parent-child relationships
+
+**Hierarchical Mode Benefits:**
+- Progressive reveal prevents zone overlap
+- Reduces cognitive load by showing parent zones first
+- Children appear only after parent is correctly labeled
+- Better UX for complex anatomical/structural diagrams
+
+```json
+{
+    "interactionMode": "hierarchical",
+    "zoneGroups": [
+        {
+            "id": "group_stamen",
+            "parentZoneId": "zone_stamen",
+            "childZoneIds": ["zone_anther", "zone_filament"],
+            "revealTrigger": "complete_parent",
+            "label": "Stamen components"
+        },
+        {
+            "id": "group_pistil",
+            "parentZoneId": "zone_pistil",
+            "childZoneIds": ["zone_stigma", "zone_style", "zone_ovary"],
+            "revealTrigger": "complete_parent",
+            "label": "Pistil components"
+        }
+    ]
+}
+```
+
+**User Experience with Hierarchical Mode:**
+1. User sees only parent zones initially (e.g., stamen, pistil, petal, sepal)
+2. When user labels "Stamen" correctly → anther and filament zones appear
+3. When user labels "Pistil" correctly → stigma, style, ovary zones appear
+4. Available labels update dynamically to match visible zones
+
+#### Path Tracing Mode Example
+```json
+{
+    "interactionMode": "trace_path",
+    "paths": [
+        {
+            "id": "blood_flow",
+            "waypoints": [
+                {"zoneId": "zone_right_atrium", "order": 1},
+                {"zoneId": "zone_right_ventricle", "order": 2},
+                {"zoneId": "zone_lungs", "order": 3}
+            ],
+            "description": "Trace the path of blood through the heart",
+            "requiresOrder": true
+        }
+    ]
+}
+```
+
+### MULTI-SCENE GAME BLUEPRINT (HAD v3)
+
+When `needs_multi_scene=true` is set in the pipeline state, generate a multi-scene game sequence.
+
+**When to Use Multi-Scene:**
+- Hierarchy depth > 2 (e.g., organ → system → component → sub-component)
+- Label count > 12
+- Content naturally divides into multiple views (overview + detail)
+- Domain knowledge includes scene_hints
+
+**Multi-Scene Blueprint Format:**
+```json
+{
+    "templateType": "LABEL_DIAGRAM",
+    "title": "Plant Cell Exploration",
+    "narrativeIntro": "Explore the plant cell from overview to organelle details",
+    "is_multi_scene": true,
+    "game_sequence": {
+        "sequence_id": "seq_plant_cell",
+        "sequence_title": "Plant Cell Exploration",
+        "progression_type": "zoom_in",
+        "total_scenes": 3,
+        "total_max_score": 150,
+        "scenes": [
+            {
+                "scene_id": "scene_1",
+                "scene_number": 1,
+                "title": "Cell Overview",
+                "narrative_intro": "Start by identifying the main organelles visible in this plant cell.",
+                "diagram": {
+                    "type": "image",
+                    "imageUrl": "{{scene_images.1}}",
+                    "assetPrompt": "Plant cell overview with major organelles"
+                },
+                "zones": "{{scene_zones.1}}",
+                "labels": "{{scene_labels.1}}",
+                "interaction_mode": "drag_drop",
+                "max_score": 50,
+                "prerequisite_scene": null,
+                "reveal_trigger": "all_correct",
+                "transition_to": {
+                    "next_scene": "scene_2",
+                    "trigger": "all_correct",
+                    "animation": "zoom_in"
+                }
+            },
+            {
+                "scene_id": "scene_2",
+                "scene_number": 2,
+                "title": "Nucleus Detail",
+                "narrative_intro": "Now zoom in on the nucleus to identify its internal structures.",
+                "diagram": {
+                    "type": "image",
+                    "imageUrl": "{{scene_images.2}}",
+                    "assetPrompt": "Nucleus cross-section with internal structures"
+                },
+                "zones": "{{scene_zones.2}}",
+                "labels": "{{scene_labels.2}}",
+                "interaction_mode": "hierarchical",
+                "max_score": 50,
+                "prerequisite_scene": "scene_1",
+                "reveal_trigger": "all_correct",
+                "transition_to": {
+                    "next_scene": "scene_3",
+                    "trigger": "all_correct",
+                    "animation": "zoom_in"
+                }
+            }
+        ]
+    },
+    "animationCues": {
+        "correctPlacement": "Structure glows green with educational pulse",
+        "incorrectPlacement": "Structure shakes with red highlight",
+        "allLabeled": "Scene complete animation with confetti"
+    },
+    "feedbackMessages": {
+        "perfect": "Excellent! You've mastered all scenes.",
+        "good": "Great progress! Review any scenes you struggled with.",
+        "retry": "Keep practicing scene by scene."
+    }
+}
+```
+
+**Scene Progression Types:**
+- `linear`: Simple left-to-right scene progression
+- `zoom_in`: Camera zooms into a zone to reveal detail scene
+- `depth_first`: Complete all child scenes before moving to next parent
+- `branching`: Multiple paths through scenes based on choices
+
+**Scene Transition Animations:**
+- `zoom_in`: Camera zooms into selected zone
+- `slide_left`: Scene slides left as new scene enters from right
+- `fade`: Cross-fade between scenes
+- `reveal`: Current scene fades, new scene reveals underneath
+
+**Per-Scene Data Placeholders:**
+When generating multi-scene blueprints, use these placeholders:
+- `{{scene_images.N}}`: Image path for scene N
+- `{{scene_zones.N}}`: Zone array for scene N
+- `{{scene_labels.N}}`: Label array for scene N
+- `{{scene_zone_groups.N}}`: Zone groups for scene N
+
+These placeholders are replaced by the pipeline with actual per-scene data from the zone_planner.
+
+#### Structured Animations (Optional)
+For more precise control over animations, use the `animations` object instead of text-only `animationCues`:
+
+```json
+{
+    "animations": {
+        "correctPlacement": {
+            "type": "pulse",
+            "duration_ms": 400,
+            "easing": "ease-out",
+            "color": "#22c55e"
+        },
+        "incorrectPlacement": {
+            "type": "shake",
+            "duration_ms": 300,
+            "color": "#ef4444"
+        },
+        "completion": {
+            "type": "confetti",
+            "duration_ms": 2000,
+            "intensity": 1.5
+        }
+    }
+}
+```
+
+**Available Animation Types** (from animation registry - use animation_config from interaction_design if provided):
+- Basic: `pulse`, `glow`, `scale`, `shake`, `fade`, `bounce`
+- Celebration: `confetti`, `fireworks`, `sparkle`
+- Feedback: `path_draw`, `highlight`, `ripple`
+- Progress: `fill`, `progress_bar`
+
+**Easing Options:** `linear`, `ease-out`, `ease-in-out`, `bounce`, `elastic`
+
+**Animation Triggers** (from interaction_design.animation_config if available):
+- `on_reveal`: When zone becomes visible
+- `on_complete`: When correctly labeled
+- `on_hover`: On user hover
+- `on_incorrect`: On wrong placement
+- `on_scene_enter`: When scene is entered
+- `on_game_complete`: When all zones labeled
+
+### COMMON MISTAKES TO AVOID
+
+1. **Invalid zone coordinates**: x and y must be 0-100 (percentages), not pixels
+
+2. **Missing correctZoneId references**: Every label must reference an existing zone
+
+3. **Overlapping zones**: Ensure zones don't overlap significantly
+
+4. **No zone descriptions**: Each zone should explain what/why for feedback
+
+5. **Generic assetPrompt**: Be specific about diagram style, perspective, and required elements
+
+6. **Too many zones**: 6-12 zones is ideal; more can be overwhelming
+
+7. **Missing distractors**: For higher Bloom's levels, include wrong label options
+
+8. **No spatial logic**: Zone positions should roughly match visual appearance
+
+### GENERATION CHECKLIST
+
+Before returning your blueprint, verify:
+- [ ] templateType is exactly "LABEL_DIAGRAM"
+- [ ] title is engaging and descriptive
+- [ ] narrativeIntro sets context (2-4 sentences)
+- [ ] maxScore is calculated using scoring_strategy if provided, otherwise labels.length × base_points (default 10)
+- [ ] diagram.assetPrompt is detailed and specific
+- [ ] All zones have x, y (0-100), radius, and description
+- [ ] Each label has a valid correctZoneId
+- [ ] Zone IDs and label IDs are descriptive (not "zone_1", "label_1")
+- [ ] distractorLabels (if present) all have "explanation" field
+- [ ] At least one task with type "interactive_diagram"
+- [ ] All 3+ animationCues are present and descriptive
+- [ ] Content matches the pedagogical context (subject, difficulty)
+
+Respond with ONLY the valid JSON blueprint, no explanation.

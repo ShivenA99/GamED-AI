@@ -1,0 +1,297 @@
+{
+  "id": "ling-k12-sentence-parts-drag-drop",
+  "title": "Label Parts of a Sentence",
+  "question": "Create an interactive diagram game where students label the grammatical parts of a sentence: subject, predicate, direct object, indirect object, adjective, adverb, preposition, and conjunction in example sentences.",
+  "domain": "linguistics",
+  "educationLevel": "k12",
+  "gameType": "interactive_diagram",
+  "mechanic": "drag_drop",
+  "bloomsLevel": "Remember",
+  "pipelineMetrics": {
+    "runId": "73c88450-f19b-45bf-8abb-36fd08f7a5f4",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 197.8,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T05:48:01.270581+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "Grammar Architect: Sentence Deconstruction",
+    "subject": "English Language Arts",
+    "difficulty": "advanced",
+    "narrativeIntro": "Welcome, aspiring Grammar Architect! Your mission is to meticulously deconstruct complex sentences, identifying each grammatical part with precision. Sharpen your tools and prepare to analyze!",
+    "narrativeTheme": "Grammar Lab: Deconstructing Sentences",
+    "completionMessage": "Excellent work, Grammar Architect! Your sentences are perfectly labeled and understood. You've mastered the art of deconstruction!",
+    "estimatedDurationMinutes": 15,
+    "diagram": {
+      "assetPrompt": "A classic sentence 'The quick brown fox jumps over the lazy dog.' displayed prominently on a minimalist digital screen or whiteboard. The sentence is presented in a clear, sans-serif font. Specific phrases within the sentence are clearly delineated and visually distinct, forming interactive zones for grammatical analysis. The phrase 'The quick brown fox' is subtly highlighted as one zone. The phrase 'jumps over the lazy dog' is another distinct zone. The word 'over' is clearly marked as a separate zone. The words 'quick', 'brown', and 'lazy' are collectively highlighted as a single conceptual zone representing adjectives, ensuring all four required labels have a distinct target area.",
+      "zones": [
+        {
+          "id": "zone_s1_subject",
+          "label": "Subject",
+          "points": [],
+          "description": "Indicates who or what the sentence is primarily about, performing the action or being described."
+        },
+        {
+          "id": "zone_s1_predicate",
+          "label": "Predicate",
+          "points": [],
+          "description": "Contains the verb and makes a statement about the subject, describing its action or state of being."
+        },
+        {
+          "id": "zone_s1_adjective",
+          "label": "Adjective",
+          "points": [],
+          "description": "Modifies or describes a noun or pronoun, providing more specific information about its qualities or characteristics."
+        },
+        {
+          "id": "zone_s1_preposition",
+          "label": "Preposition",
+          "points": [],
+          "description": "Shows the relationship between a noun or pronoun and other words in the sentence, often indicating position, direction, or time."
+        }
+      ]
+    },
+    "labels": [
+      {
+        "id": "label_s1_0",
+        "text": "Subject",
+        "correctZoneId": "zone_s1_subject"
+      },
+      {
+        "id": "label_s1_1",
+        "text": "Predicate",
+        "correctZoneId": "zone_s1_predicate"
+      },
+      {
+        "id": "label_s1_2",
+        "text": "Adjective",
+        "correctZoneId": "zone_s1_adjective"
+      },
+      {
+        "id": "label_s1_3",
+        "text": "Preposition",
+        "correctZoneId": "zone_s1_preposition"
+      }
+    ],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "Deconstruct the sentence! Drag each grammatical label to its corresponding part in the sentence. Pay close attention to what each part represents."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 40,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! You've correctly identified the {label_name}.",
+          "on_incorrect": "Not quite. The {label_name} describes or acts differently. Re-evaluate its role in the sentence.",
+          "on_completion": "Fantastic! You've accurately labeled all the core components of the sentence.",
+          "misconceptions": [
+            {
+              "trigger_label": "incorrect_subject_first_noun",
+              "message": "Remember, the subject is the noun or pronoun performing the action or being described. While it's often early in the sentence, it's not always the very first noun if introductory phrases or clauses are present.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "incorrect_adjective_vs_adverb",
+              "message": "Be careful with words ending in '-ly'. While many adverbs end this way, some adjectives also share this ending (e.g., 'friendly,' 'lovely'), and many adverbs do not (e.g., 'fast,' 'well'). Consider what the word is modifying.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "incorrect_predicate_scope",
+              "message": "The predicate includes the verb and everything that tells us what the subject is doing or being. It doesn't always include direct or indirect objects; those depend on the verb type.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "description_matching",
+        "config": {
+          "instruction_text": "Now that you've identified and labeled the core components, match each labeled part to its correct functional definition. Click on a labeled zone, then click on its matching description."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 40,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "That's right! You've correctly matched the definition for {component_name}.",
+          "on_incorrect": "Not quite. Re-read the definition and consider the core function of the {component_name} in a sentence.",
+          "on_completion": "Excellent work! You've demonstrated a strong understanding of these core sentence components.",
+          "misconceptions": [
+            {
+              "trigger_label": "misconception_subject_predicate_confusion",
+              "message": "The subject is *who or what* the sentence is about, while the predicate is *what the subject does or is*. They are distinct but related.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misconception_adjective_adverb_confusion",
+              "message": "Remember, adjectives modify nouns and pronouns, telling us 'which one,' 'what kind,' or 'how many.' Adverbs, on the other hand, modify verbs, adjectives, or other adverbs, telling us 'how,' 'when,' 'where,' or 'to what extent.'",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misconception_preposition_function",
+              "message": "Prepositions show relationships between a noun/pronoun and other words in the sentence, often indicating location, direction, or time. They always introduce a prepositional phrase.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "Identify the key grammatical parts in the sentence below. Drag and drop each label to its correct place."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 50,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! You've correctly identified this part of the sentence.",
+          "on_incorrect": "Not quite. Re-evaluate what role this word or phrase plays in the sentence. Remember its definition.",
+          "on_completion": "Fantastic! You've successfully identified all the key grammatical components in the sentence.",
+          "misconceptions": [
+            {
+              "trigger_type": "incorrect_placement",
+              "trigger_data": {
+                "label_attempted": "Adverb"
+              },
+              "message": "While many adverbs end in '-ly,' some adjectives also share this ending (e.g., 'friendly,' 'lovely'), and many adverbs do not (e.g., 'fast,' 'well'). Consider what the word modifies.",
+              "severity": "medium"
+            },
+            {
+              "trigger_type": "incorrect_placement",
+              "trigger_data": {
+                "label_attempted": "Subject"
+              },
+              "message": "The subject is the noun or pronoun performing the action or being described, which may not be the first noun if introductory phrases or clauses are present. Look for who or what is doing the main action.",
+              "severity": "medium"
+            },
+            {
+              "trigger_type": "incorrect_placement",
+              "trigger_data": {
+                "label_attempted": "Direct Object"
+              },
+              "message": "Only transitive verbs can have direct objects, and indirect objects only appear when there is a direct object and the verb allows for it (e.g., verbs of giving, telling, showing). Ask 'verb + what?' or 'verb + whom?'",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "description_matching",
+        "config": {
+          "instruction_text": "Now that you've identified and labeled the parts of the sentence, match each labeled part to its correct grammatical function. Draw a line from the description to the corresponding labeled zone."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 50,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Spot on! That description perfectly matches the sentence part.",
+          "on_incorrect": "Not quite. Review the definition of the grammatical term and how it functions in the sentence. Try again.",
+          "on_completion": "Outstanding work! You've accurately matched all the descriptions to their corresponding sentence parts.",
+          "misconceptions": [
+            {
+              "trigger_type": "incorrect_match",
+              "trigger_data": {
+                "description_text": "A word that modifies a verb, an adjective, or another adverb, often indicating how, when, where, or to what extent."
+              },
+              "message": "While many adverbs end in '-ly,' some adjectives also share this ending (e.g., 'friendly,' 'lovely'), and many adverbs do not (e.g., 'fast,' 'well'). Consider what the word modifies.",
+              "severity": "medium"
+            },
+            {
+              "trigger_type": "incorrect_match",
+              "trigger_data": {
+                "description_text": "The noun or pronoun performing the action or being described."
+              },
+              "message": "The subject is the noun or pronoun performing the action or being described, which may not be the first noun if introductory phrases or clauses are present. Look for who or what is doing the main action.",
+              "severity": "medium"
+            },
+            {
+              "trigger_type": "incorrect_match",
+              "trigger_data": {
+                "description_text": "The noun or pronoun that receives the action of a transitive verb."
+              },
+              "message": "Only transitive verbs can have direct objects, and indirect objects only appear when there is a direct object and the verb allows for it (e.g., verbs of giving, telling, showing). Ask 'verb + what?' or 'verb + whom?'",
+              "severity": "medium"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [
+      {
+        "from": "drag_drop",
+        "to": "description_matching",
+        "trigger": "all_zones_labeled",
+        "animation": "fade"
+      },
+      {
+        "from_mode": "drag_drop",
+        "to_mode": "description_matching",
+        "trigger": "all_zones_labeled"
+      }
+    ],
+    "interactionMode": "drag_drop",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 10,
+      "max_score": 180
+    },
+    "totalMaxScore": 180,
+    "generation_complete": true,
+    "dragDropConfig": {
+      "leader_line_style": "elbow",
+      "tray_position": "bottom",
+      "placement_animation": "spring",
+      "show_distractors": false,
+      "zone_hover_effect": "highlight",
+      "leader_line_animate": true,
+      "max_attempts": 3,
+      "pin_marker_shape": "circle",
+      "feedback_timing": "deferred",
+      "label_anchor_side": "auto",
+      "interaction_mode": "drag_drop",
+      "leader_line_color": "",
+      "shuffle_labels": true,
+      "incorrect_animation": "shake",
+      "tray_layout": "horizontal",
+      "zone_idle_animation": "pulse",
+      "label_style": "text"
+    },
+    "descriptionMatchingConfig": {
+      "descriptions": {
+        "zone_s1_subject": "Indicates who or what the sentence is primarily about, performing the action or being described.",
+        "zone_s1_predicate": "Contains the verb and makes a statement about the subject, describing its action or state of being.",
+        "zone_s1_adjective": "Modifies or describes a noun or pronoun, providing more specific information about its qualities or characteristics.",
+        "zone_s1_preposition": "Shows the relationship between a noun or pronoun and other words in the sentence, often indicating position, direction, or time."
+      },
+      "mode": "click_zone",
+      "distractor_descriptions": [
+        "Connects words, phrases, or clauses, showing their relationship."
+      ],
+      "show_connecting_lines": true,
+      "defer_evaluation": false,
+      "description_panel_position": "right"
+    }
+  }
+}

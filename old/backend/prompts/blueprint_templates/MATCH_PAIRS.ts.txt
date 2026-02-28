@@ -1,0 +1,31 @@
+export interface MatchPairsBlueprint {
+  templateType: "MATCH_PAIRS";
+  title: string;
+  narrativeIntro: string;
+  pairs: Array<{
+    id: string;
+    leftItem: {
+      id: string;
+      text: string;
+      imageUrl?: string;
+    };
+    rightItem: {
+      id: string;
+      text: string;
+      imageUrl?: string;
+    };
+  }>;
+  tasks: Array<{
+    id: string;
+    type: "match_pairs";
+    questionText: string;
+    requiredToProceed: boolean;
+  }>;
+  animationCues: {
+    cardFlip: string;
+    cardMatch: string;
+    cardMismatch: string;
+    allMatched?: string;
+  };
+}
+

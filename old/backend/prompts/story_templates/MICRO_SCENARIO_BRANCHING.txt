@@ -1,0 +1,13 @@
+### Template Context: MICRO_SCENARIO_BRANCHING
+
+The resulting visualization will be implemented as:
+- Interactive branching scenarios with decision points.
+- Scenarios present choices that lead to different branches.
+- Path taken is tracked and evaluated.
+
+When generating story_context, visual_metaphor, visual_elements, question_flow, and animation_cues:
+- Focus on decision-making, branching narratives, and consequences.
+- Visual elements should represent scenarios, choices, and branches.
+- Questions should involve making decisions or understanding consequences.
+- Animation cues should show scenario transitions, choice selection, and branch paths.
+

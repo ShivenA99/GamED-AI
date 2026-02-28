@@ -1,0 +1,13 @@
+### Template Context: BEFORE_AFTER_TRANSFORMER
+
+The resulting visualization will be implemented as:
+- Compare before and after states with transformation steps.
+- Before and after states are displayed side-by-side.
+- Transformation steps are selectable or orderable.
+
+When generating story_context, visual_metaphor, visual_elements, question_flow, and animation_cues:
+- Emphasize transformations, processes, and state changes.
+- Visual elements should represent before/after states and transformation steps.
+- Questions should involve understanding transformations or ordering steps.
+- Animation cues should show state transitions, step application, and transformation visualization.
+

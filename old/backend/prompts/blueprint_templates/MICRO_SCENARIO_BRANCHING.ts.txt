@@ -1,0 +1,33 @@
+export interface MicroScenarioBranchingBlueprint {
+  templateType: "MICRO_SCENARIO_BRANCHING";
+  title: string;
+  narrativeIntro: string;
+  scenarios: Array<{
+    id: string;
+    text: string;
+    imageUrl?: string;
+    assetPrompt?: string;
+  }>;
+  branches: Array<{
+    id: string;
+    fromScenarioId: string;
+    toScenarioId: string;
+    choiceText: string;
+    isCorrect?: boolean;
+    consequence?: string;
+  }>;
+  tasks: Array<{
+    id: string;
+    type: "decision_making" | "path_analysis";
+    questionText: string;
+    targetPath?: string[]; // Array of scenario IDs
+    requiredToProceed: boolean;
+  }>;
+  animationCues: {
+    scenarioTransition: string;
+    choiceSelect: string;
+    pathComplete: string;
+    optimalPath?: string;
+  };
+}
+

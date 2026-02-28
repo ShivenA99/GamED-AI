@@ -1,0 +1,210 @@
+{
+  "id": "hist-undergrad-wwi-causes-sorting",
+  "title": "Sort Causes of WWI",
+  "question": "Create an interactive diagram game where students sort the causes of World War I into categories: political (alliance systems, nationalism), economic (imperial competition, arms race), military (mobilization plans, naval rivalry), and social (propaganda, ethnic tensions).",
+  "domain": "history",
+  "educationLevel": "undergraduate",
+  "gameType": "interactive_diagram",
+  "mechanic": "sorting_categories",
+  "bloomsLevel": "Apply",
+  "pipelineMetrics": {
+    "runId": "46594cea-83b4-4e8b-9269-1683515e5874",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 73.5,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T05:16:34.516748+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "The Great War's Roots: A Causal Analysis",
+    "subject": "History",
+    "difficulty": "advanced",
+    "narrativeIntro": "Welcome, historian. The outbreak of World War I was not a simple event, but the culmination of complex, interconnected factors. Your mission is to unravel these threads and categorize them to truly understand the origins of the Great War.",
+    "narrativeTheme": "Historical Investigation",
+    "completionMessage": "Excellent work! You've successfully categorized the multifaceted causes of World War I, demonstrating a deep understanding of historical causation. This complex interplay of factors ultimately led to one of the most devastating conflicts in human history.",
+    "estimatedDurationMinutes": 10,
+    "diagram": {
+      "assetPrompt": "",
+      "zones": []
+    },
+    "labels": [],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "sorting_categories",
+        "config": {
+          "instruction_text": "Now, carefully consider each specific cause of World War I. Drag and drop each cause card into the category (Political, Economic, Military, or Social) that best describes it."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 80,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! That's correctly identified as a cause of WWI in its appropriate category.",
+          "on_incorrect": "Not quite. Re-evaluate this factor. Does it primarily relate to political power, economic competition, military build-up, or social tensions? Consider its core impact.",
+          "on_completion": "Outstanding work! You've successfully categorized the complex and interconnected causes of World War I, demonstrating a strong grasp of its origins.",
+          "misconceptions": [
+            {
+              "trigger_label": "repeated_single_cause_focus",
+              "message": "It's easy to focus on one event, but WWI resulted from a complex interplay of multiple long-term political, economic, military, and social factors, with the assassination serving as an immediate trigger.",
+              "severity": "high"
+            },
+            {
+              "trigger_label": "struggle_with_overlapping_causes",
+              "message": "While useful for analysis, these categories are interconnected; causes often overlap and influence each other (e.g., economic competition fueling political rivalries and arms races).",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "incorrect_alliance_placement",
+              "message": "While intended for defense, the rigid and interlocking alliance systems also created a mechanism that escalated local conflicts into widespread war, as nations were compelled to support allies.",
+              "severity": "medium"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [],
+    "interactionMode": "sorting_categories",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 10,
+      "max_score": 80
+    },
+    "totalMaxScore": 80,
+    "generation_complete": true,
+    "sortingConfig": {
+      "categories": [
+        {
+          "id": "cat1",
+          "label": "Political Causes",
+          "color": "#465A74",
+          "description": "Factors related to governments, diplomacy, alliances, and struggles for power between nations."
+        },
+        {
+          "id": "cat2",
+          "label": "Economic Causes",
+          "color": "#8B4513",
+          "description": "Factors involving industrial competition, trade, and the quest for resources and colonies."
+        },
+        {
+          "id": "cat3",
+          "label": "Military Causes",
+          "color": "#6C7A89",
+          "description": "Factors concerning the buildup of armed forces, weapons development, and strategic war plans."
+        },
+        {
+          "id": "cat4",
+          "label": "Social Causes",
+          "color": "#708238",
+          "description": "Factors rooted in the beliefs, attitudes, and structures of societies, such as nationalism and public opinion."
+        }
+      ],
+      "items": [
+        {
+          "id": "i1",
+          "content": "Alliance Systems",
+          "correctCategoryId": "cat1",
+          "correct_category_ids": [],
+          "explanation": "The complex web of treaties like the Triple Entente and Triple Alliance were political agreements that obligated nations to defend one another, turning a regional conflict into a world war.",
+          "description": "",
+          "difficulty": "easy",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i2",
+          "content": "Assassination of Archduke Franz Ferdinand",
+          "correctCategoryId": "cat1",
+          "correct_category_ids": [],
+          "explanation": "This was the immediate political trigger. The assassination of the Austro-Hungarian heir by a Serbian nationalist set off a chain of diplomatic crises and ultimatums that led to war.",
+          "description": "",
+          "difficulty": "easy",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i3",
+          "content": "Imperial Competition for Colonies",
+          "correctCategoryId": "cat2",
+          "correct_category_ids": [],
+          "explanation": "European powers competed for overseas territories to secure raw materials and new markets, leading to economic friction and rivalries, particularly in Africa and Asia.",
+          "description": "",
+          "difficulty": "medium",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i4",
+          "content": "Industrial Rivalry",
+          "correctCategoryId": "cat2",
+          "correct_category_ids": [],
+          "explanation": "The rapid industrialization of Germany challenged Britain's long-standing economic dominance, creating intense competition for markets, resources, and global influence.",
+          "description": "",
+          "difficulty": "medium",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i5",
+          "content": "Arms Race",
+          "correctCategoryId": "cat3",
+          "correct_category_ids": [],
+          "explanation": "Nations engaged in a massive buildup of their armies and navies, developing new weapons and increasing military spending. This created an atmosphere of tension and suspicion.",
+          "description": "",
+          "difficulty": "easy",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i6",
+          "content": "Elaborate Mobilization Plans",
+          "correctCategoryId": "cat3",
+          "correct_category_ids": [],
+          "explanation": "Countries developed rigid and complex military plans, like Germany's Schlieffen Plan, which required rapid mobilization. Once started, these plans were difficult to stop, creating pressure to act first.",
+          "description": "",
+          "difficulty": "medium",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i7",
+          "content": "Intense Nationalism",
+          "correctCategoryId": "cat4",
+          "correct_category_ids": [],
+          "explanation": "Strong feelings of pride and superiority in one's country led to public pressure for aggressive foreign policies and fueled ethnic tensions, especially in the volatile Balkan region.",
+          "description": "",
+          "difficulty": "easy",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i8",
+          "content": "Influence of Social Darwinism",
+          "correctCategoryId": "cat4",
+          "correct_category_ids": [],
+          "explanation": "This social theory applied 'survival of the fittest' to nations, fostering a belief that war was a natural and necessary part of international competition for dominance.",
+          "description": "",
+          "difficulty": "hard",
+          "image": "",
+          "image_description": ""
+        }
+      ],
+      "sort_mode": "bucket",
+      "item_card_type": "text_only",
+      "container_style": "bucket",
+      "submit_mode": "immediate_feedback",
+      "allow_multi_category": false,
+      "show_category_hints": false,
+      "allow_partial_credit": true
+    }
+  }
+}

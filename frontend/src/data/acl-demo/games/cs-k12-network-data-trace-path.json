@@ -1,0 +1,728 @@
+{
+  "id": "cs-k12-network-data-trace-path",
+  "title": "Trace Data Flow Through a Network",
+  "question": "Create an interactive diagram game where students trace the path of data through a simple computer network: from sender computer through router, switch, modem, ISP, internet backbone, destination ISP, and to receiver computer.",
+  "domain": "cs",
+  "educationLevel": "k12",
+  "gameType": "interactive_diagram",
+  "mechanic": "trace_path",
+  "bloomsLevel": "Understand",
+  "pipelineMetrics": {
+    "runId": "e719f6df-39a3-49fe-a983-fdd2abd8510d",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 282.1,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T06:01:32.547291+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "Network Data Journey",
+    "subject": "Computer Networking",
+    "difficulty": "advanced",
+    "narrativeIntro": "Embark on a digital expedition to trace the intricate path of data as it travels from one computer to another across the vast expanse of the internet. Your mission is to identify the key components and understand their roles in this incredible journey.",
+    "narrativeTheme": "Digital Expedition",
+    "completionMessage": "Congratulations, Network Navigator! You've successfully mapped the complex journey of data across a computer network, demonstrating a deep understanding of its components and flow.",
+    "estimatedDurationMinutes": 12,
+    "diagram": {
+      "assetPrompt": "A simplified, clean educational diagram illustrating a computer network. It should clearly depict a sender computer connected to a local network via a Network Interface Card (NIC), then to a Switch, a Router, and a Modem. This local network should then connect to an Internet Service Provider (ISP), which leads to the Internet Backbone. The backbone then connects to a Destination ISP, another Modem, and finally a Receiver Computer. The diagram should visually suggest the flow of data from sender to receiver, possibly with subtle directional arrows or a 'path' line. Each component should be distinct and visually recognizable, even in a simplified form.",
+      "zones": [
+        {
+          "id": "zone_sender_computer",
+          "label": "Sender Computer",
+          "points": [
+            [
+              3.4,
+              46.4
+            ],
+            [
+              8.4,
+              46.4
+            ],
+            [
+              8.4,
+              52.1
+            ],
+            [
+              3.4,
+              52.1
+            ]
+          ],
+          "x": 5.9,
+          "y": 49.2,
+          "width": 5.0,
+          "height": 5.7,
+          "shape": "rect",
+          "description": "The device that initiates communication by creating and sending data packets into the network.",
+          "hierarchyLevel": 1,
+          "childZoneIds": [
+            "zone_network_interface_card_(nic)"
+          ]
+        },
+        {
+          "id": "zone_network_interface_card_(nic)",
+          "label": "Network Interface Card (NIC)",
+          "points": [
+            [
+              9.5,
+              40.8
+            ],
+            [
+              16.9,
+              40.8
+            ],
+            [
+              16.9,
+              46.2
+            ],
+            [
+              9.5,
+              46.2
+            ]
+          ],
+          "x": 13.2,
+          "y": 43.5,
+          "width": 7.4,
+          "height": 5.5,
+          "shape": "rect",
+          "description": "A hardware component that allows a computer to connect to a network, converting digital data into signals for transmission.",
+          "hierarchyLevel": 2,
+          "parentZoneId": "zone_receiver_computer"
+        },
+        {
+          "id": "zone_switch",
+          "label": "Switch",
+          "points": [
+            [
+              14.6,
+              48.3
+            ],
+            [
+              19.2,
+              48.3
+            ],
+            [
+              19.2,
+              53.7
+            ],
+            [
+              14.6,
+              53.7
+            ]
+          ],
+          "x": 16.9,
+          "y": 51.0,
+          "width": 4.6,
+          "height": 5.4,
+          "shape": "rect",
+          "description": "A local network device that connects multiple devices, forwarding data packets to specific destinations within the same network.",
+          "hierarchyLevel": 2,
+          "parentZoneId": "zone_internet_service_provider_(isp)"
+        },
+        {
+          "id": "zone_router",
+          "label": "Router",
+          "points": [
+            [
+              23.1,
+              44.2
+            ],
+            [
+              29.2,
+              44.2
+            ],
+            [
+              29.2,
+              53.8
+            ],
+            [
+              23.1,
+              53.8
+            ]
+          ],
+          "x": 26.2,
+          "y": 49.0,
+          "width": 6.1,
+          "height": 9.6,
+          "shape": "rect",
+          "description": "A network device that connects different networks, directing data packets between them based on IP addresses.",
+          "hierarchyLevel": 2,
+          "parentZoneId": "zone_internet_backbone"
+        },
+        {
+          "id": "zone_modem_(sender)",
+          "label": "Modem (Sender)",
+          "points": [
+            [
+              2.1,
+              52.6
+            ],
+            [
+              10.1,
+              52.6
+            ],
+            [
+              10.1,
+              54.4
+            ],
+            [
+              2.1,
+              54.4
+            ]
+          ],
+          "x": 6.1,
+          "y": 53.5,
+          "width": 8.0,
+          "height": 1.7,
+          "shape": "rect",
+          "description": "Converts incoming analog signals from the ISP's network back into digital signals for the receiver's computer.",
+          "hierarchyLevel": 1
+        },
+        {
+          "id": "zone_internet_service_provider_(isp)",
+          "label": "Internet Service Provider (ISP)",
+          "points": [
+            [
+              71.5,
+              33.2
+            ],
+            [
+              83.3,
+              33.2
+            ],
+            [
+              83.3,
+              42.3
+            ],
+            [
+              71.5,
+              42.3
+            ]
+          ],
+          "x": 77.4,
+          "y": 37.8,
+          "width": 11.8,
+          "height": 9.1,
+          "shape": "rect",
+          "description": "A company that provides internet access and connectivity, linking local networks to the global internet.",
+          "hierarchyLevel": 1,
+          "childZoneIds": [
+            "zone_router",
+            "zone_switch"
+          ]
+        },
+        {
+          "id": "zone_internet_backbone",
+          "label": "Internet Backbone",
+          "points": [
+            [
+              85.4,
+              56.0
+            ],
+            [
+              82.3,
+              53.6
+            ],
+            [
+              82.3,
+              48.4
+            ],
+            [
+              78.6,
+              46.1
+            ],
+            [
+              78.0,
+              47.9
+            ],
+            [
+              80.3,
+              49.7
+            ],
+            [
+              80.0,
+              52.5
+            ],
+            [
+              76.2,
+              54.2
+            ],
+            [
+              75.7,
+              48.0
+            ],
+            [
+              77.2,
+              48.8
+            ],
+            [
+              76.9,
+              45.5
+            ],
+            [
+              76.5,
+              46.9
+            ],
+            [
+              74.7,
+              46.3
+            ],
+            [
+              72.4,
+              50.6
+            ],
+            [
+              72.2,
+              47.7
+            ],
+            [
+              73.9,
+              45.6
+            ],
+            [
+              70.3,
+              49.2
+            ],
+            [
+              61.7,
+              49.2
+            ],
+            [
+              59.8,
+              47.6
+            ],
+            [
+              56.2,
+              49.5
+            ],
+            [
+              53.1,
+              47.7
+            ],
+            [
+              51.7,
+              49.3
+            ],
+            [
+              42.1,
+              50.5
+            ],
+            [
+              36.6,
+              48.3
+            ],
+            [
+              34.0,
+              49.4
+            ],
+            [
+              42.0,
+              51.7
+            ],
+            [
+              52.6,
+              50.3
+            ],
+            [
+              53.5,
+              52.2
+            ],
+            [
+              54.6,
+              50.6
+            ],
+            [
+              58.5,
+              50.0
+            ],
+            [
+              60.6,
+              51.6
+            ],
+            [
+              66.0,
+              50.0
+            ],
+            [
+              67.1,
+              55.3
+            ],
+            [
+              74.1,
+              56.1
+            ],
+            [
+              76.5,
+              57.8
+            ],
+            [
+              74.5,
+              58.1
+            ],
+            [
+              76.1,
+              59.0
+            ]
+          ],
+          "x": 66.6,
+          "y": 50.6,
+          "radius": 32.6,
+          "shape": "polygon",
+          "center": {
+            "x": 66.6,
+            "y": 50.6
+          },
+          "description": "The primary, high-capacity data routes and connections that form the core infrastructure of the global internet.",
+          "hierarchyLevel": 1,
+          "childZoneIds": [
+            "zone_router"
+          ]
+        },
+        {
+          "id": "zone_destination_isp",
+          "label": "Destination ISP",
+          "points": [
+            [
+              81.0,
+              48.9
+            ],
+            [
+              87.0,
+              48.9
+            ],
+            [
+              87.0,
+              56.1
+            ],
+            [
+              81.0,
+              56.1
+            ]
+          ],
+          "x": 84.0,
+          "y": 52.5,
+          "width": 6.1,
+          "height": 7.3,
+          "shape": "rect",
+          "description": "The internet service provider responsible for delivering data from the internet backbone to the receiver's local network.",
+          "hierarchyLevel": 1
+        },
+        {
+          "id": "zone_receiver_computer",
+          "label": "Receiver Computer",
+          "points": [
+            [
+              91.8,
+              46.7
+            ],
+            [
+              96.6,
+              46.7
+            ],
+            [
+              96.6,
+              54.3
+            ],
+            [
+              91.8,
+              54.3
+            ]
+          ],
+          "x": 94.2,
+          "y": 50.5,
+          "width": 4.8,
+          "height": 7.6,
+          "shape": "rect",
+          "description": "The device that is the final recipient of the data, processing the incoming data packets from the network.",
+          "hierarchyLevel": 1,
+          "childZoneIds": [
+            "zone_network_interface_card_(nic)"
+          ]
+        }
+      ],
+      "imageUrl": "/api/assets/demo/e719f6df-39a3-49fe-a983-fdd2abd8510d/diagram_scene_1.png",
+      "assetUrl": "/api/assets/demo/e719f6df-39a3-49fe-a983-fdd2abd8510d/diagram_scene_1.png"
+    },
+    "labels": [
+      {
+        "id": "label_s1_0",
+        "text": "Sender Computer",
+        "correctZoneId": "zone_sender_computer"
+      },
+      {
+        "id": "label_s1_1",
+        "text": "Network Interface Card (NIC)",
+        "correctZoneId": "zone_network_interface_card_(nic)"
+      },
+      {
+        "id": "label_s1_2",
+        "text": "Switch",
+        "correctZoneId": "zone_switch"
+      },
+      {
+        "id": "label_s1_3",
+        "text": "Router",
+        "correctZoneId": "zone_router"
+      },
+      {
+        "id": "label_s1_4",
+        "text": "Modem (Sender)",
+        "correctZoneId": "zone_modem_(sender)"
+      },
+      {
+        "id": "label_s1_5",
+        "text": "Internet Service Provider (ISP)",
+        "correctZoneId": "zone_internet_service_provider_(isp)"
+      },
+      {
+        "id": "label_s1_6",
+        "text": "Internet Backbone",
+        "correctZoneId": "zone_internet_backbone"
+      },
+      {
+        "id": "label_s1_7",
+        "text": "Destination ISP",
+        "correctZoneId": "zone_destination_isp"
+      },
+      {
+        "id": "label_s1_8",
+        "text": "Modem (Receiver)",
+        "correctZoneId": "zone_modem_(sender)"
+      },
+      {
+        "id": "label_s1_9",
+        "text": "Receiver Computer",
+        "correctZoneId": "zone_receiver_computer"
+      }
+    ],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "First, let's identify the crucial hardware components that facilitate data transmission. Drag the labels to their correct positions on the network diagram."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 100,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! That's the correct component in the network path.",
+          "on_incorrect": "Not quite. Consider the specific function of this component in routing or connecting. Try again.",
+          "on_completion": "Fantastic! You've successfully identified and placed all the key network components.",
+          "misconceptions": [
+            {
+              "trigger_label": "incorrect_placement_router_as_switch",
+              "message": "Remember, each network device has a distinct role. A switch connects devices within a local network, while a router connects different networks together.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "incorrect_placement_internet_backbone_local",
+              "message": "The Internet Backbone isn't just a 'cloud'; it's a vast, high-capacity network of networks that carries data across long distances, connecting ISPs and major data centers.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "description_matching",
+        "config": {
+          "instruction_text": "Now that you've identified the components, match each one to its primary function in the network. Drag the description to the corresponding component."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 100,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Spot on! That description perfectly matches the component's function.",
+          "on_incorrect": "Close, but not quite. Review the specific function of each device. Which component does this description best fit?",
+          "on_completion": "Outstanding! You've accurately matched all the components with their functions.",
+          "misconceptions": [
+            {
+              "trigger_label": "incorrect_match_router_description_to_switch",
+              "message": "Each device has a distinct role: a modem translates signals, a switch connects devices within a LAN, and a router connects different networks.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "incorrect_match_internet_backbone_description_to_local_device",
+              "message": "The internet is a vast, interconnected network of networks, comprising numerous physical components (like cables, routers, servers) and logical pathways, not just a single 'cloud'.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "trace_path",
+        "config": {
+          "instruction_text": "Now that you know the components, trace the journey of a data packet from the sender computer all the way to the receiver computer. Click on the components in the exact order a data packet would traverse them."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 15,
+          "max_score": 150,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! That's the correct next step in the data packet's journey.",
+          "on_incorrect": "Not quite. Revisit the function of network devices. What device typically connects a local network to the internet, or routes data between different networks?",
+          "on_completion": "Congratulations! You've successfully traced the entire logical path of a data packet from sender to receiver.",
+          "misconceptions": [
+            {
+              "trigger_label": "skips_intermediate_steps",
+              "message": "Remember, data doesn't travel directly from sender to receiver. It's broken into packets and routed through multiple devices (switches, routers, modems) and networks (ISPs, backbone) to reach its destination.",
+              "severity": "high"
+            },
+            {
+              "trigger_label": "incorrect_device_sequence",
+              "message": "Each network device has a distinct role: a modem translates signals, a switch connects devices within a LAN, and a router connects different networks. Ensure your sequence reflects these functions.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "skips_internet_infrastructure",
+              "message": "The internet isn't a single 'cloud'. It's a vast, interconnected network of networks, comprising numerous physical components (like cables, routers, servers) and logical pathways that your data packet must traverse.",
+              "severity": "medium"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [
+      {
+        "from": "drag_drop",
+        "to": "description_matching",
+        "trigger": "all_zones_labeled",
+        "animation": "fade"
+      }
+    ],
+    "interactionMode": "drag_drop",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 10,
+      "max_score": 350
+    },
+    "totalMaxScore": 350,
+    "generation_complete": true,
+    "dragDropConfig": {
+      "leader_line_style": "none",
+      "tray_position": "bottom",
+      "placement_animation": "spring",
+      "show_distractors": false,
+      "label_style": "text",
+      "tray_layout": "horizontal",
+      "feedback_timing": "immediate",
+      "interaction_mode": "drag_drop",
+      "leader_line_color": "",
+      "zone_hover_effect": "highlight",
+      "leader_line_animate": true,
+      "shuffle_labels": true,
+      "max_attempts": 3,
+      "incorrect_animation": "shake",
+      "zone_idle_animation": "pulse",
+      "label_anchor_side": "auto",
+      "pin_marker_shape": "circle"
+    },
+    "descriptionMatchingConfig": {
+      "descriptions": {
+        "zone_sender_computer": "The device that initiates communication by creating and sending data packets into the network.",
+        "zone_network_interface_card_(nic)": "A hardware component that allows a computer to connect to a network, converting digital data into signals for transmission.",
+        "zone_switch": "A local network device that connects multiple devices, forwarding data packets to specific destinations within the same network.",
+        "zone_router": "A network device that connects different networks, directing data packets between them based on IP addresses.",
+        "zone_modem_(sender)": "Converts incoming analog signals from the ISP's network back into digital signals for the receiver's computer.",
+        "zone_internet_service_provider_(isp)": "A company that provides internet access and connectivity, linking local networks to the global internet.",
+        "zone_internet_backbone": "The primary, high-capacity data routes and connections that form the core infrastructure of the global internet.",
+        "zone_destination_isp": "The internet service provider responsible for delivering data from the internet backbone to the receiver's local network.",
+        "zone_receiver_computer": "The device that is the final recipient of the data, processing the incoming data packets from the network."
+      },
+      "mode": "click_zone",
+      "distractor_descriptions": [
+        "A device primarily used for storing large volumes of data for backup and retrieval.",
+        "Software that manages user authentication and access control for network resources.",
+        "A component that encrypts all outgoing data to ensure secure communication across the internet."
+      ],
+      "show_connecting_lines": true,
+      "defer_evaluation": false,
+      "description_panel_position": "right"
+    },
+    "zoneGroups": [
+      {
+        "id": "group_zone_sender_computer",
+        "parentZoneId": "zone_sender_computer",
+        "childZoneIds": [
+          "zone_network_interface_card_(nic)"
+        ],
+        "revealTrigger": "complete_parent",
+        "label": "Sender Computer"
+      },
+      {
+        "id": "group_zone_receiver_computer",
+        "parentZoneId": "zone_receiver_computer",
+        "childZoneIds": [
+          "zone_network_interface_card_(nic)"
+        ],
+        "revealTrigger": "complete_parent",
+        "label": "Receiver Computer"
+      },
+      {
+        "id": "group_zone_internet_service_provider_(isp)",
+        "parentZoneId": "zone_internet_service_provider_(isp)",
+        "childZoneIds": [
+          "zone_router",
+          "zone_switch"
+        ],
+        "revealTrigger": "complete_parent",
+        "label": "Internet Service Provider (ISP)"
+      },
+      {
+        "id": "group_zone_internet_backbone",
+        "parentZoneId": "zone_internet_backbone",
+        "childZoneIds": [
+          "zone_router"
+        ],
+        "revealTrigger": "complete_parent",
+        "label": "Internet Backbone"
+      }
+    ],
+    "temporalConstraints": [
+      {
+        "constraint_type": "after",
+        "zone_a": "zone_network_interface_card_(nic)",
+        "zone_b": "zone_receiver_computer",
+        "description": "Zone zone_network_interface_card_(nic) visible after zone_receiver_computer is labeled"
+      },
+      {
+        "constraint_type": "after",
+        "zone_a": "zone_router",
+        "zone_b": "zone_internet_backbone",
+        "description": "Zone zone_router visible after zone_internet_backbone is labeled"
+      },
+      {
+        "constraint_type": "after",
+        "zone_a": "zone_switch",
+        "zone_b": "zone_internet_service_provider_(isp)",
+        "description": "Zone zone_switch visible after zone_internet_service_provider_(isp) is labeled"
+      }
+    ],
+    "revealOrder": [
+      "zone_sender_computer",
+      "zone_network_interface_card_(nic)",
+      "zone_switch",
+      "zone_router",
+      "zone_internet_service_provider_(isp)",
+      "zone_internet_backbone",
+      "zone_destination_isp",
+      "zone_router",
+      "zone_receiver_computer",
+      "zone_modem_(sender)"
+    ]
+  }
+}

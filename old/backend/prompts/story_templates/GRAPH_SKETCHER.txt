@@ -1,0 +1,13 @@
+### Template Context: GRAPH_SKETCHER
+
+The resulting visualization will be implemented as:
+- Draw or manipulate graphs, nodes, and edges.
+- Canvas allows drawing and editing graph structures.
+- Graph structure is validated on submission.
+
+When generating story_context, visual_metaphor, visual_elements, question_flow, and animation_cues:
+- Emphasize graph structures, networks, and relationships.
+- Visual elements should represent nodes and edges.
+- Questions should involve constructing or understanding graph structures.
+- Animation cues should show node/edge creation and graph validation.
+

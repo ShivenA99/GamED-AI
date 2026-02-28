@@ -1,0 +1,312 @@
+{
+  "id": "bio-grad-clinical-diagnosis-branching",
+  "title": "Clinical Diagnosis Decision Tree",
+  "question": "Create an interactive diagram game where graduate medical students navigate a clinical decision tree to diagnose a patient presenting with fatigue, weight loss, and polyuria. Branch through differential diagnoses including diabetes mellitus, hyperthyroidism, and adrenal insufficiency.",
+  "domain": "biology",
+  "educationLevel": "graduate",
+  "gameType": "interactive_diagram",
+  "mechanic": "branching_scenario",
+  "bloomsLevel": "Evaluate",
+  "pipelineMetrics": {
+    "runId": "5d129f9e-61ab-4b02-b09e-fa5186d757e3",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 116.8,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T05:32:56.036455+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "The Diagnostic Dilemma: Fatigue, Weight Loss, and Polyuria",
+    "subject": "Clinical Medicine",
+    "difficulty": "advanced",
+    "narrativeIntro": "You are a resident physician on call, and a new patient presents to the clinic with a complex set of symptoms: persistent fatigue, unexplained weight loss, and increased urination (polyuria). Your task is to navigate the diagnostic pathway, order appropriate tests, and arrive at the most likely diagnosis among several challenging differentials. Every decision counts.",
+    "narrativeTheme": "Clinical Consultation",
+    "completionMessage": "Congratulations, Doctor! You've successfully navigated a complex clinical scenario and arrived at a well-reasoned diagnosis. Your ability to integrate patient data, consider differential diagnoses, and apply diagnostic logic is commendable.",
+    "estimatedDurationMinutes": 15,
+    "diagram": {
+      "assetPrompt": "",
+      "zones": []
+    },
+    "labels": [],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "branching_scenario",
+        "config": {
+          "instruction_text": "Mr. Miller presents with fatigue, weight loss, and polyuria. Based on his initial presentation, what is your first diagnostic step? Navigate the clinical decision tree to reach a diagnosis and initial management plan."
+        },
+        "scoring": {
+          "strategy": "weighted",
+          "points_per_correct": 10,
+          "max_score": 70,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent clinical reasoning! Given Mr. Miller's constellation of symptoms including fatigue, weight loss, increased thirst, and polyuria, your chosen first diagnostic step is crucial for identifying potential metabolic or endocrine disorders and guiding subsequent investigations.",
+          "on_incorrect": "That's not the most immediate or comprehensive first step. While [student's chosen incorrect option, if known, or a general less optimal choice] might be relevant later, the initial presentation strongly suggests the need for urgent laboratory investigations to rule out critical conditions like uncontrolled diabetes or renal impairment. Prioritizing these tests will provide objective data to narrow down the differential diagnosis.",
+          "on_completion": "You've completed the initial assessment phase for Mr. Miller. Remember, a systematic and evidence-based approach to patient presentation, starting with key diagnostic steps, is fundamental for accurate and timely patient management in complex cases.",
+          "misconceptions": [
+            {
+              "trigger_label": "oversimplified_path",
+              "message": "Effective clinical decision trees for complex cases involve multiple branching points, parallel pathways, and iterative loops to account for varying patient presentations and diagnostic uncertainties. Avoid oversimplifying the diagnostic journey.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "focus_single_symptom",
+              "message": "Accurate diagnosis, especially in cases with overlapping symptoms like fatigue and weight loss, requires synthesizing a constellation of symptoms, signs, and laboratory findings. Always consider the full clinical picture.",
+              "severity": "medium"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [],
+    "interactionMode": "branching_scenario",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 10,
+      "max_score": 70
+    },
+    "totalMaxScore": 70,
+    "generation_complete": true,
+    "branchingConfig": {
+      "nodes": [
+        {
+          "id": "n1",
+          "question": "Mr. Miller, a 45-year-old male, presents with a 3-month history of fatigue, a 15 lb unintentional weight loss, increased thirst, and polyuria. What is your first diagnostic step?",
+          "description": "Evaluate the patient's initial presentation to determine the most appropriate first action in the diagnostic process.",
+          "node_type": "decision",
+          "options": [
+            {
+              "id": "o1",
+              "text": "Perform a comprehensive history and physical exam.",
+              "nextNodeId": "n2",
+              "isCorrect": true,
+              "consequence": "Excellent. A thorough history and physical exam is the essential first step to gather more data and narrow the differential diagnosis.",
+              "points": 10,
+              "quality": null
+            },
+            {
+              "id": "o2",
+              "text": "Immediately order a broad panel of screening lab tests.",
+              "nextNodeId": "n8",
+              "isCorrect": false,
+              "consequence": "While labs are necessary, ordering them without a physical exam can lead to missed clinical signs and a less focused, more expensive workup.",
+              "points": 0,
+              "quality": null
+            }
+          ],
+          "isEndNode": false,
+          "endMessage": null,
+          "ending_type": null,
+          "narrative_text": "",
+          "image_description": ""
+        },
+        {
+          "id": "n2",
+          "question": "History reveals anxiety and heat intolerance. Physical exam shows: T 37.1\u00b0C, HR 110 bpm, BP 145/85 mmHg, RR 18. He has warm, moist skin, a fine tremor in his hands, and a diffusely enlarged, non-tender thyroid gland. What is the next most appropriate step?",
+          "description": "Synthesize the history and physical findings to guide your selection of initial investigations.",
+          "node_type": "decision",
+          "options": [
+            {
+              "id": "o3",
+              "text": "Order initial labs: CBC, CMP, TSH with reflex to Free T4, and HbA1c.",
+              "nextNodeId": "n3",
+              "isCorrect": true,
+              "consequence": "Correct. This panel appropriately screens for the most likely diagnoses, including hyperthyroidism and diabetes mellitus, based on the clinical findings.",
+              "points": 10,
+              "quality": null
+            },
+            {
+              "id": "o4",
+              "text": "Order a 24-hour urine cortisol test to rule out Cushing's syndrome.",
+              "nextNodeId": "n8",
+              "isCorrect": false,
+              "consequence": "While weight changes can occur in Cushing's, the constellation of symptoms (tachycardia, goiter, tremor) points more strongly toward other etiologies. This is a low-yield test at this stage.",
+              "points": 0,
+              "quality": null
+            }
+          ],
+          "isEndNode": false,
+          "endMessage": null,
+          "ending_type": null,
+          "narrative_text": "",
+          "image_description": ""
+        },
+        {
+          "id": "n3",
+          "question": "Lab results return: TSH <0.01 mIU/L (Low), Free T4 3.2 ng/dL (High), Glucose 115 mg/dL (Mildly elevated), HbA1c 5.5% (Normal). How do you interpret these results?",
+          "description": "Analyze the laboratory data to refine your differential diagnosis.",
+          "node_type": "decision",
+          "options": [
+            {
+              "id": "o5",
+              "text": "The results indicate primary hyperthyroidism. The mild hyperglycemia is likely stress-induced.",
+              "nextNodeId": "n4",
+              "isCorrect": true,
+              "consequence": "Excellent interpretation. The suppressed TSH and elevated Free T4 are classic for primary hyperthyroidism. The normal HbA1c makes underlying diabetes less likely.",
+              "points": 10,
+              "quality": null
+            },
+            {
+              "id": "o6",
+              "text": "The patient has both Diabetes Mellitus and a thyroid issue.",
+              "nextNodeId": "n4",
+              "isCorrect": false,
+              "consequence": "While the glucose is slightly high, the normal HbA1c suggests this is not chronic hyperglycemia. The primary, most urgent finding is the significant thyroid abnormality.",
+              "points": 0,
+              "quality": null
+            }
+          ],
+          "isEndNode": false,
+          "endMessage": null,
+          "ending_type": null,
+          "narrative_text": "",
+          "image_description": ""
+        },
+        {
+          "id": "n4",
+          "question": "You have diagnosed primary hyperthyroidism. What is the next step to determine the underlying cause?",
+          "description": "Select the appropriate confirmatory tests to establish the specific etiology of the patient's hyperthyroidism.",
+          "node_type": "decision",
+          "options": [
+            {
+              "id": "o7",
+              "text": "Order Thyroid Stimulating Immunoglobulin (TSI) and a Radioactive Iodine Uptake (RAIU) scan.",
+              "nextNodeId": "n5",
+              "isCorrect": true,
+              "consequence": "Correct. These tests will differentiate between Graves' disease (high TSI, diffuse uptake) and other causes like a toxic nodule or thyroiditis.",
+              "points": 10,
+              "quality": null
+            },
+            {
+              "id": "o8",
+              "text": "Start empiric treatment with methimazole.",
+              "nextNodeId": "n9",
+              "isCorrect": false,
+              "consequence": "Starting treatment without a definitive etiology is not ideal. The cause of hyperthyroidism dictates the optimal long-term management strategy.",
+              "points": 0,
+              "quality": null
+            }
+          ],
+          "isEndNode": false,
+          "endMessage": null,
+          "ending_type": null,
+          "narrative_text": "",
+          "image_description": ""
+        },
+        {
+          "id": "n5",
+          "question": "The TSI antibody test is positive, and the RAIU scan shows diffuse, symmetric, increased uptake of iodine. What is the definitive diagnosis?",
+          "description": "Integrate all clinical and laboratory findings to arrive at a final diagnosis.",
+          "node_type": "decision",
+          "options": [
+            {
+              "id": "o9",
+              "text": "Graves' Disease",
+              "nextNodeId": "n6",
+              "isCorrect": true,
+              "consequence": "Correct. The combination of clinical signs of hyperthyroidism, a suppressed TSH, elevated Free T4, positive TSI antibodies, and diffuse uptake on RAIU scan is diagnostic for Graves' Disease.",
+              "points": 10,
+              "quality": null
+            },
+            {
+              "id": "o10",
+              "text": "Toxic Multinodular Goiter",
+              "nextNodeId": "n6",
+              "isCorrect": false,
+              "consequence": "Incorrect. While this condition causes hyperthyroidism, the RAIU scan would typically show multiple areas of focal increased uptake, not diffuse uptake.",
+              "points": 0,
+              "quality": null
+            }
+          ],
+          "isEndNode": false,
+          "endMessage": null,
+          "ending_type": null,
+          "narrative_text": "",
+          "image_description": ""
+        },
+        {
+          "id": "n6",
+          "question": "With a confirmed diagnosis of Graves' Disease, what is the most appropriate initial management plan for Mr. Miller?",
+          "description": "Formulate an initial treatment plan based on the definitive diagnosis to address both symptoms and the underlying pathology.",
+          "node_type": "decision",
+          "options": [
+            {
+              "id": "o11",
+              "text": "Start a beta-blocker for symptom control and an anti-thyroid drug (e.g., methimazole).",
+              "nextNodeId": "n7",
+              "isCorrect": true,
+              "consequence": "Excellent. This approach correctly addresses the patient's immediate symptoms (tachycardia, tremor) with a beta-blocker while starting definitive treatment with an anti-thyroid medication to reduce thyroid hormone production.",
+              "points": 10,
+              "quality": null
+            },
+            {
+              "id": "o12",
+              "text": "Recommend immediate radioactive iodine ablation.",
+              "nextNodeId": "n7",
+              "isCorrect": false,
+              "consequence": "While a valid treatment, this is typically considered a second-line option after a trial of anti-thyroid medication, especially in a younger patient. Medical management is the standard initial approach.",
+              "points": 0,
+              "quality": null
+            }
+          ],
+          "isEndNode": false,
+          "endMessage": null,
+          "ending_type": null,
+          "narrative_text": "",
+          "image_description": ""
+        },
+        {
+          "id": "n7",
+          "question": "Case Complete",
+          "description": "",
+          "node_type": "decision",
+          "options": [],
+          "isEndNode": true,
+          "endMessage": "You have successfully navigated the diagnostic pathway for Mr. Miller. By starting with a thorough H&P, ordering focused labs, interpreting the results to narrow the differential, and using confirmatory tests, you correctly diagnosed Graves' Disease and initiated appropriate first-line management. This systematic approach is key to effective clinical reasoning.",
+          "ending_type": "optimal",
+          "narrative_text": "Mr. Miller is started on propranolol and methimazole and scheduled for a follow-up appointment in 4 weeks to monitor his symptoms and thyroid function tests.",
+          "image_description": ""
+        },
+        {
+          "id": "n8",
+          "question": "Diagnostic Delay",
+          "description": "",
+          "node_type": "decision",
+          "options": [],
+          "isEndNode": true,
+          "endMessage": "Your chosen path led to a delay in diagnosis. While the test you ordered may be relevant in other contexts, it was not the highest-yield choice given the initial presentation. The key findings from the physical exam (goiter, tachycardia, tremor) were missed, which would have pointed more directly to a thyroid disorder. Always begin with a thorough history and physical exam to build a strong clinical foundation.",
+          "ending_type": "suboptimal",
+          "narrative_text": "The unnecessary tests returned normal, and you are now back at the beginning of the workup, having lost valuable time and resources.",
+          "image_description": ""
+        },
+        {
+          "id": "n9",
+          "question": "Incomplete Workup",
+          "description": "",
+          "node_type": "decision",
+          "options": [],
+          "isEndNode": true,
+          "endMessage": "While starting an anti-thyroid drug will treat the hyperthyroidism, it's crucial to first confirm the etiology. Different causes of hyperthyroidism (e.g., Graves' disease, toxic adenoma, thyroiditis) have different long-term management strategies and prognoses. Skipping the confirmatory tests can lead to suboptimal or incorrect future treatment decisions.",
+          "ending_type": "suboptimal",
+          "narrative_text": "You have initiated treatment without a complete understanding of the patient's condition, which could complicate long-term care.",
+          "image_description": ""
+        }
+      ],
+      "startNodeId": "n1",
+      "narrative_structure": "branching",
+      "show_path_taken": true,
+      "allow_backtrack": false,
+      "show_consequences": true,
+      "multiple_valid_endings": false
+    }
+  }
+}

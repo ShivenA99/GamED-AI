@@ -1,0 +1,248 @@
+{
+  "id": "hist-undergrad-revolutions-compare",
+  "title": "Compare French and American Revolutions",
+  "question": "Create an interactive diagram game where students compare and contrast the French and American Revolutions across categories: causes, key leaders, ideological foundations, outcomes, and lasting impact on democracy.",
+  "domain": "history",
+  "educationLevel": "undergraduate",
+  "gameType": "interactive_diagram",
+  "mechanic": "compare_contrast",
+  "bloomsLevel": "Analyze",
+  "pipelineMetrics": {
+    "runId": "9711a302-ad98-427d-9e64-1745f4594adf",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 98.5,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T05:18:13.054728+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "Revolutionary Crossroads: French vs. American",
+    "subject": "History",
+    "difficulty": "advanced",
+    "narrativeIntro": "Welcome, esteemed archivist! Your task is to meticulously compare and contrast two pivotal moments in history: the French and American Revolutions. We need to organize their core concepts, then build a comprehensive comparative analysis grid across key categories. Your insights will help future generations understand their distinct paths and shared legacies on democracy.",
+    "narrativeTheme": "Historical Archivist",
+    "completionMessage": "Excellent work, archivist! Your detailed comparison of the French and American Revolutions provides invaluable insights into their unique characteristics and profound, yet divergent, impacts on the development of democracy. You've successfully navigated complex historical analysis!",
+    "estimatedDurationMinutes": 15,
+    "diagram": {
+      "assetPrompt": "",
+      "zones": []
+    },
+    "labels": [],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "sorting_categories",
+        "config": {
+          "instruction_text": "As a historical archivist, your task is to accurately sort these foundational concepts and documents into their primary revolutionary context: the American Revolution, the French Revolution, or as shared ideological foundations that influenced both."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 120,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! You've correctly identified this concept's primary association.",
+          "on_incorrect": "Not quite. Consider the core principles, key figures, and historical context of each revolution. Where does this concept fit best?",
+          "on_completion": "Fantastic work! You've successfully categorized all the concepts, demonstrating a strong understanding of the distinct characteristics and shared foundations of the American and French Revolutions.",
+          "misconceptions": [
+            {
+              "trigger_label": "misconception_same_revolutions",
+              "message": "While both were inspired by Enlightenment ideals and sought liberty, their causes, societal structures, leaders, methods, and outcomes (especially regarding stability and the role of the state) differed significantly. The American Revolution aimed to preserve existing rights and establish a new nation, while the French Revolution sought to fundamentally transform society and create a new social order.",
+              "severity": "high"
+            },
+            {
+              "trigger_label": "misconception_stable_democracies",
+              "message": "The American Revolution resulted in a relatively stable republic, whereas the French Revolution experienced extreme radicalism, multiple regime changes (including the Reign of Terror and Napoleon's empire), and a much longer, more tumultuous path to a stable republic.",
+              "severity": "high"
+            },
+            {
+              "trigger_label": "misconception_enlightenment_uniform",
+              "message": "While both drew heavily from Enlightenment thinkers, the interpretation and application of these ideas varied significantly. American revolutionaries emphasized natural rights, limited government, and self-determination, while French revolutionaries often pursued more radical social restructuring, universal rights, and state control, leading to different constitutional frameworks and societal changes.",
+              "severity": "high"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [],
+    "interactionMode": "sorting_categories",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 10,
+      "max_score": 120
+    },
+    "totalMaxScore": 120,
+    "generation_complete": true,
+    "sortingConfig": {
+      "categories": [
+        {
+          "id": "american_revolution",
+          "label": "American Revolution",
+          "color": "#4A6B8A",
+          "description": "Concepts, events, and documents primarily associated with the American struggle for independence from British rule (c. 1765-1783)."
+        },
+        {
+          "id": "french_revolution",
+          "label": "French Revolution",
+          "color": "#8B3A3A",
+          "description": "Concepts, events, and documents primarily associated with the period of radical social and political upheaval in France (c. 1789-1799)."
+        },
+        {
+          "id": "shared_ideals",
+          "label": "Shared Ideals",
+          "color": "#B59410",
+          "description": "Core philosophical principles, largely from the Enlightenment, that provided the intellectual foundation for both revolutions."
+        }
+      ],
+      "items": [
+        {
+          "id": "i1",
+          "content": "Declaration of Independence",
+          "correctCategoryId": "american_revolution",
+          "correct_category_ids": [],
+          "explanation": "This foundational document, adopted in 1776, formally declared the American colonies' separation from Great Britain.",
+          "description": "",
+          "difficulty": "easy",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i2",
+          "content": "Declaration of the Rights of Man and Citizen",
+          "correctCategoryId": "french_revolution",
+          "correct_category_ids": [],
+          "explanation": "Adopted by France's National Assembly in 1789, this document defined the individual and collective rights of all estates as universal.",
+          "description": "",
+          "difficulty": "easy",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i3",
+          "content": "Popular Sovereignty",
+          "correctCategoryId": "shared_ideals",
+          "correct_category_ids": [],
+          "explanation": "This core Enlightenment principle, that the authority of a state is created and sustained by the consent of its people, was central to both revolutions.",
+          "description": "",
+          "difficulty": "hard",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i4",
+          "content": "Reign of Terror",
+          "correctCategoryId": "french_revolution",
+          "correct_category_ids": [],
+          "explanation": "This was a specific, radical phase of the French Revolution marked by mass executions of perceived enemies of the revolution.",
+          "description": "",
+          "difficulty": "medium",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i5",
+          "content": "Boston Tea Party",
+          "correctCategoryId": "american_revolution",
+          "correct_category_ids": [],
+          "explanation": "This 1773 protest against British taxation was a key event leading directly to the American Revolutionary War.",
+          "description": "",
+          "difficulty": "easy",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i6",
+          "content": "Social Contract Theory",
+          "correctCategoryId": "shared_ideals",
+          "correct_category_ids": [],
+          "explanation": "Philosophers like Locke and Rousseau developed this idea that people consent to be governed in exchange for protection of their rights, influencing both revolutions.",
+          "description": "",
+          "difficulty": "hard",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i7",
+          "content": "Liberty, Equality, Fraternity",
+          "correctCategoryId": "french_revolution",
+          "correct_category_ids": [],
+          "explanation": "This was the national motto of France, encapsulating the primary goals and ideals of the French Revolution.",
+          "description": "",
+          "difficulty": "easy",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i8",
+          "content": "No Taxation Without Representation",
+          "correctCategoryId": "american_revolution",
+          "correct_category_ids": [],
+          "explanation": "This slogan captured a primary grievance of American colonists, who argued that the British Parliament had no right to tax them without their own elected representatives.",
+          "description": "",
+          "difficulty": "medium",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i9",
+          "content": "Separation of Powers",
+          "correctCategoryId": "shared_ideals",
+          "correct_category_ids": [],
+          "explanation": "Montesquieu's concept of dividing government into legislative, executive, and judicial branches was a key Enlightenment idea that influenced the governmental structures created after both revolutions.",
+          "description": "",
+          "difficulty": "hard",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i10",
+          "content": "Storming of the Bastille",
+          "correctCategoryId": "french_revolution",
+          "correct_category_ids": [],
+          "explanation": "The attack on this medieval fortress and political prison in Paris on July 14, 1789, is considered the symbolic start of the French Revolution.",
+          "description": "",
+          "difficulty": "medium",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i11",
+          "content": "Enlightenment Ideals",
+          "correctCategoryId": "shared_ideals",
+          "correct_category_ids": [],
+          "explanation": "This broad intellectual movement emphasized reason, individual rights, and liberty, providing the philosophical bedrock for both the American and French Revolutions.",
+          "description": "",
+          "difficulty": "medium",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i12",
+          "content": "Battle of Yorktown",
+          "correctCategoryId": "american_revolution",
+          "correct_category_ids": [],
+          "explanation": "This decisive victory by American and French forces in 1781 effectively ended major land operations in the American Revolutionary War.",
+          "description": "",
+          "difficulty": "medium",
+          "image": "",
+          "image_description": ""
+        }
+      ],
+      "sort_mode": "column",
+      "item_card_type": "text_only",
+      "container_style": "bucket",
+      "submit_mode": "immediate_feedback",
+      "allow_multi_category": false,
+      "show_category_hints": false,
+      "allow_partial_credit": true
+    }
+  }
+}

@@ -1,0 +1,38 @@
+export interface LabelDiagramBlueprint {
+  templateType: "LABEL_DIAGRAM";
+  title: string;
+  narrativeIntro: string;
+  diagram: {
+    assetPrompt: string;
+    assetUrl?: string;
+    zones: Array<{
+      id: string;
+      label: string;
+      x: number; // 0–1
+      y: number; // 0–1
+      radius: number; // 0–1, relative to smallest dimension
+    }>;
+  };
+  labels: Array<{
+    id: string;
+    text: string;
+    isCorrect: boolean;
+  }>;
+  tasks: Array<{
+    id: string;
+    type: "label_diagram" | "free_response";
+    questionText: string;
+    requiredToProceed: boolean;
+    rubric?: {
+      mustMention?: string[];
+      commonMisconceptions?: string[];
+    };
+  }>;
+  animationCues: {
+    correctPlacement: string;
+    incorrectPlacement: string;
+    onSubmitCorrect?: string;
+    onSubmitIncorrect?: string;
+  };
+}
+

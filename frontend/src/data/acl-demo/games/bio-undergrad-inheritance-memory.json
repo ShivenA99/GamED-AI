@@ -1,0 +1,189 @@
+{
+  "id": "bio-undergrad-inheritance-memory",
+  "title": "Match Genetic Inheritance Patterns",
+  "question": "Create an interactive diagram game where undergraduate students match genetic inheritance patterns to their characteristic features: autosomal dominant (affected in every generation), autosomal recessive (carrier parents, 25% affected), X-linked recessive (more males affected), codominance (both alleles expressed equally), incomplete dominance (blended phenotype), and polygenic inheritance (continuous variation).",
+  "domain": "biology",
+  "educationLevel": "undergraduate",
+  "gameType": "interactive_diagram",
+  "mechanic": "memory_match",
+  "bloomsLevel": "Apply",
+  "pipelineMetrics": {
+    "runId": "c8c7ea23-0287-412d-82e3-6ed6255e8b5a",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 84.9,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T08:48:57.560202+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "Genetic Pattern Investigator",
+    "subject": "Biology",
+    "difficulty": "advanced",
+    "narrativeIntro": "Welcome, aspiring geneticist! The world of inheritance is complex, with countless patterns dictating how traits are passed down. Your mission is to accurately classify various genetic scenarios by matching their characteristic features to the correct inheritance pattern. Sharpen your analytical skills and prepare to decode the mysteries of heredity!",
+    "narrativeTheme": "Decoding Genetic Mysteries",
+    "completionMessage": "Congratulations, Master Geneticist! You've successfully classified the intricate patterns of genetic inheritance. Your understanding will be crucial in unraveling the secrets of life!",
+    "estimatedDurationMinutes": 8,
+    "diagram": {
+      "assetPrompt": "",
+      "zones": []
+    },
+    "labels": [],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "sorting_categories",
+        "config": {
+          "instruction_text": "Your mission is to accurately classify the presented genetic features. Drag each feature card into the inheritance pattern category it best describes."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 5,
+          "max_score": 95,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! This feature perfectly matches the characteristics of this inheritance pattern.",
+          "on_incorrect": "Not quite. Re-examine the specific features of this pattern and compare them carefully to the descriptions of the categories. Which category's definition does it best fit?",
+          "on_completion": "Fantastic work! You've successfully classified all the genetic inheritance patterns, demonstrating a strong grasp of their distinguishing features.",
+          "misconceptions": [
+            {
+              "trigger_label": "misconception_incomplete_codominance",
+              "message": "Remember, in incomplete dominance, the heterozygote shows an intermediate phenotype (blended), while in codominance, both alleles are fully and separately expressed (both visible).",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misconception_x_linked_males_only",
+              "message": "It's a common misconception that X-linked traits only affect males. Females can be carriers of X-linked recessive traits and can also be affected if they inherit two copies of the recessive allele, though this is less common.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misconception_single_gene_traits",
+              "message": "While many traits are determined by a single gene, many complex traits, such as height, skin color, or intelligence, are influenced by multiple genes (polygenic inheritance) and environmental factors.",
+              "severity": "medium"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [],
+    "interactionMode": "sorting_categories",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 5,
+      "max_score": 95
+    },
+    "totalMaxScore": 95,
+    "generation_complete": true,
+    "sortingConfig": {
+      "categories": [
+        {
+          "id": "cat1",
+          "label": "Autosomal Dominant",
+          "color": "#4A90E2",
+          "description": "A pattern where a single copy of a dominant allele on a non-sex chromosome is enough to cause the trait to be expressed."
+        },
+        {
+          "id": "cat2",
+          "label": "Autosomal Recessive",
+          "color": "#50E3C2",
+          "description": "A pattern where two copies of a recessive allele on a non-sex chromosome are required for the trait to be expressed."
+        },
+        {
+          "id": "cat3",
+          "label": "X-linked Recessive",
+          "color": "#9013FE",
+          "description": "A pattern where a recessive allele on the X chromosome causes the trait. It is more common in males than females."
+        },
+        {
+          "id": "cat4",
+          "label": "Codominance",
+          "color": "#4A90D9",
+          "description": "A pattern where both alleles in a heterozygote are fully and separately expressed, resulting in a phenotype with both traits visible."
+        },
+        {
+          "id": "cat5",
+          "label": "Incomplete Dominance",
+          "color": "#BD10E0",
+          "description": "A pattern where the heterozygous phenotype is an intermediate blend of the two homozygous phenotypes."
+        },
+        {
+          "id": "cat6",
+          "label": "Polygenic Inheritance",
+          "color": "#2E8B57",
+          "description": "A pattern where a single trait is controlled by the additive effects of two or more genes, resulting in a continuous range of phenotypes."
+        }
+      ],
+      "items": [
+        {
+          "id": "i1",
+          "content": "Affected individuals have at least one affected parent.",
+          "correctCategoryId": "cat1",
+          "correct_category_ids": [],
+          "explanation": "This is a hallmark of dominant inheritance, as the trait does not typically skip generations.",
+          "description": "",
+          "difficulty": "easy",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i2",
+          "content": "Trait can skip generations.",
+          "correctCategoryId": "cat2",
+          "correct_category_ids": [],
+          "explanation": "Recessive traits can be carried by unaffected heterozygotes and reappear in later generations.",
+          "description": "",
+          "difficulty": "easy",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i3",
+          "content": "Much more common in males than in females.",
+          "correctCategoryId": "cat3",
+          "correct_category_ids": [],
+          "explanation": "Males (XY) only need one copy of the recessive allele on their X chromosome to express the trait, while females (XX) need two.",
+          "description": "",
+          "difficulty": "easy",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i4",
+          "content": "Both alleles are fully and separately expressed in the heterozygote.",
+          "correctCategoryId": "cat4",
+          "correct_category_ids": [],
+          "explanation": "This is the definition of codominance, where neither allele masks the other. For example, AB blood type.",
+          "description": "",
+          "difficulty": "medium",
+          "image": "",
+          "image_description": ""
+        },
+        {
+          "id": "i5",
+          "content": "Heterozygotes display a blended, intermediate phenotype.",
+          "correctCategoryId": "cat5",
+          "correct_category_ids": [],
+          "explanation": "This is the definition of incomplete dominance, like a red and white flower producing a pink flower.",
+          "description": "",
+          "difficulty": "medium",
+          "image": "",
+          "image_description": ""
+        }
+      ],
+      "sort_mode": "bucket",
+      "item_card_type": "text_only",
+      "container_style": "bucket",
+      "submit_mode": "immediate_feedback",
+      "allow_multi_category": false,
+      "show_category_hints": false,
+      "allow_partial_credit": true
+    }
+  }
+}

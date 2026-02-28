@@ -1,0 +1,13 @@
+### Template Context: MATRIX_MATCH
+
+The resulting visualization will be implemented as:
+- Match items across rows and columns in a matrix grid.
+- Cells represent relationships between row and column items.
+- Selecting row and column creates a match.
+
+When generating story_context, visual_metaphor, visual_elements, question_flow, and animation_cues:
+- Emphasize two-dimensional relationships and correlations.
+- Visual elements should represent matrix structure with rows and columns.
+- Questions should involve finding matches or relationships in a matrix.
+- Animation cues should show cell selection and match validation.
+

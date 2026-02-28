@@ -1,0 +1,1402 @@
+{
+  "id": "cs-grad-dp-complexity-analyzer",
+  "title": "Analyze Dynamic Programming Complexity",
+  "question": "Create an algorithm game where graduate students analyze the time and space complexity of dynamic programming solutions: fibonacci (naive vs memoized vs tabulated), longest common subsequence, and knapsack problem, identifying overlapping subproblems and optimal substructure.",
+  "domain": "cs",
+  "educationLevel": "graduate",
+  "gameType": "algorithm",
+  "mechanic": "complexity_analyzer",
+  "bloomsLevel": "Evaluate",
+  "pipelineMetrics": {
+    "runId": "77aa6e88-639e-4ec1-9bb8-7b420365e533",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 270.6,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T06:21:48.244796+00:00"
+  },
+  "blueprint": {
+    "templateType": "ALGORITHM_GAME",
+    "title": "The Complexity Heist: A Knapsack Challenge",
+    "subject": "dynamic_programming",
+    "difficulty": "intermediate",
+    "algorithmName": "Knapsack",
+    "algorithmCategory": "dynamic_programming",
+    "narrativeIntro": "You're a master analyst hired to crack a series of high-tech vaults. Each vault's security is based on a classic optimization problem. Can you analyze the algorithms and pull off the perfect heist?",
+    "totalMaxScore": 1500,
+    "passThreshold": 0.6,
+    "learn_config": {
+      "auto_reveal_hint_tier_1_after_ms": 10000,
+      "hint_penalties": [
+        0,
+        0,
+        0
+      ],
+      "partial_credit_multiplier": 0.5,
+      "show_correct_answer_on_wrong": true,
+      "show_misconceptions_preemptively": true,
+      "scaffolding": {}
+    },
+    "test_config": {
+      "auto_reveal_hint_tier_1_after_ms": null,
+      "hint_penalties": [
+        0.1,
+        0.2,
+        0.3
+      ],
+      "partial_credit_multiplier": 0.0,
+      "show_correct_answer_on_wrong": false,
+      "show_misconceptions_preemptively": false,
+      "time_limit_seconds": null
+    },
+    "algorithmGameType": null,
+    "is_multi_scene": true,
+    "scenes": [
+      {
+        "scene_id": "scene_1",
+        "scene_number": 1,
+        "title": "The Jewelry Case",
+        "game_type": "constraint_puzzle",
+        "difficulty": "beginner",
+        "learning_goal": "Apply the core concept of the knapsack problem: maximizing value within a weight constraint by making optimal choices.",
+        "max_score": 400,
+        "content": {
+          "title": "The Jewel Thief's Dilemma",
+          "narrative": "You are a master thief breaking into a vault. Your satchel can only hold 10kg. Before you are several priceless jewels, each with a different weight and value. Choose which items to steal to maximize the total value of your haul!",
+          "rules": [
+            "Select one or more jewels to place in your satchel.",
+            "The total weight of the selected jewels cannot exceed 10kg.",
+            "Your goal is to maximize the total value of the jewels you take."
+          ],
+          "objective": "Maximize the total value of the selected jewels without exceeding the satchel's weight limit.",
+          "boardConfig": {
+            "boardType": "item_selection",
+            "items": [
+              {
+                "id": "item_1",
+                "label": "Emerald Tablet",
+                "properties": {
+                  "weight": 6,
+                  "value": 30
+                },
+                "icon": "\ud83d\udcdc"
+              },
+              {
+                "id": "item_2",
+                "label": "Ruby Scepter",
+                "properties": {
+                  "weight": 4,
+                  "value": 28
+                },
+                "icon": "\ud83d\udc51"
+              },
+              {
+                "id": "item_3",
+                "label": "Diamond Ring",
+                "properties": {
+                  "weight": 3,
+                  "value": 20
+                },
+                "icon": "\ud83d\udc8d"
+              },
+              {
+                "id": "item_4",
+                "label": "Golden Goblet",
+                "properties": {
+                  "weight": 5,
+                  "value": 20
+                },
+                "icon": "\ud83c\udfc6"
+              },
+              {
+                "id": "item_5",
+                "label": "Sapphire Locket",
+                "properties": {
+                  "weight": 2,
+                  "value": 12
+                },
+                "icon": "\ud83d\udc8e"
+              }
+            ],
+            "extra": {
+              "capacity": 10
+            },
+            "showConstraintsVisually": true,
+            "allowUndo": true
+          },
+          "constraints": [
+            {
+              "type": "capacity",
+              "property": "weight",
+              "max": 10,
+              "description": "Total weight cannot exceed 10kg."
+            }
+          ],
+          "scoringConfig": {
+            "method": "sum_property",
+            "maxPoints": 58,
+            "property": "value"
+          },
+          "optimalValue": 58,
+          "optimalSolutionDescription": "The optimal solution is to take the Emerald Tablet (weight 6, value 30) and the Ruby Scepter (weight 4, value 28). This combination uses the full 10kg capacity and yields the maximum possible value of 58.",
+          "algorithmName": "Knapsack",
+          "algorithmExplanation": "The Knapsack algorithm solves this by building a table of optimal values for every possible weight capacity up to the limit. It considers each item and decides whether including it or excluding it leads to a better outcome for the current weight, ensuring the final choice is truly the most valuable combination.",
+          "hints": [
+            "Simply picking the items with the highest value-to-weight ratio might not lead to the best overall score. Consider all combinations.",
+            "Try to use as much of the 10kg capacity as possible. An item with a lower value might enable a better overall combination.",
+            "The best solution involves exactly two items that perfectly fill the 10kg capacity."
+          ]
+        },
+        "asset_url": null
+      },
+      {
+        "scene_id": "scene_2",
+        "scene_number": 2,
+        "title": "The Security Matrix",
+        "game_type": "state_tracer",
+        "difficulty": "intermediate",
+        "learning_goal": "Understand how a dynamic programming table is constructed for the knapsack problem, recognizing optimal substructure and overlapping subproblems.",
+        "max_score": 800,
+        "content": {
+          "algorithmName": "Knapsack",
+          "algorithmDescription": "The Knapsack problem determines the most valuable combination of items to fit into a container of limited capacity. This dynamic programming solution builds a table to solve subproblems and find the overall optimal solution.",
+          "narrativeIntro": "You are a master cryptographer tasked with encoding a critical message. You can choose from several data fragments, each with a size (weight) and a security rating (value). Your goal is to fill a data packet of a fixed capacity to achieve the maximum total security rating. This 'Security Matrix' will help you find the optimal combination.",
+          "code": "def knapsack(weights, values, capacity):\n    n = len(weights)\n    dp_table = [[0 for _ in range(capacity + 1)] for _ in range(n + 1)]\n\n    for i in range(1, n + 1):\n        for w in range(1, capacity + 1):\n            weight = weights[i-1]\n            value = values[i-1]\n            if weight <= w:\n                dp_table[i][w] = max(value + dp_table[i-1][w - weight],\n                                     dp_table[i-1][w])\n            else:\n                dp_table[i][w] = dp_table[i-1][w]\n\n    return dp_table[n][capacity]",
+          "language": "python",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "codeLine": 3,
+              "description": "Initialize the DP table, a (n+1) x (capacity+1) grid, with zeros. This represents the base cases: 0 value for 0 items or 0 capacity.",
+              "variables": {
+                "weights": "[1, 2, 3]",
+                "values": "[60, 100, 120]",
+                "capacity": "3",
+                "n": "3"
+              },
+              "changedVariables": [
+                "dp_table"
+              ],
+              "dataStructure": {
+                "type": "dp_table",
+                "cells": [
+                  [
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    }
+                  ],
+                  [
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    }
+                  ],
+                  [
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    }
+                  ],
+                  [
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    }
+                  ]
+                ],
+                "rowLabels": [
+                  "Items",
+                  "Item 1 (w:1, v:60)",
+                  "Item 2 (w:2, v:100)",
+                  "Item 3 (w:3, v:120)"
+                ],
+                "colLabels": [
+                  "Capacity",
+                  "0",
+                  "1",
+                  "2",
+                  "3"
+                ],
+                "activeCell": null
+              },
+              "prediction": null,
+              "explanation": "The DP table is created to store the maximum value for each subproblem, which is defined by the number of items considered and the current capacity. It's initialized to all zeros.",
+              "hints": [
+                "This is the setup step.",
+                "The table dimensions depend on the number of items and the total capacity.",
+                "A table of size 4x4 is created and filled with zeros."
+              ]
+            },
+            {
+              "stepNumber": 2,
+              "codeLine": 5,
+              "description": "Begin iterating through the items. `i` is 1, representing the first item (weight=1, value=60).",
+              "variables": {
+                "weights": "[1, 2, 3]",
+                "values": "[60, 100, 120]",
+                "capacity": "3",
+                "n": "3",
+                "i": "1"
+              },
+              "changedVariables": [
+                "i"
+              ],
+              "dataStructure": {
+                "type": "dp_table",
+                "cells": [
+                  [
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    }
+                  ],
+                  [
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    }
+                  ],
+                  [
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    }
+                  ],
+                  [
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    }
+                  ]
+                ],
+                "rowLabels": [
+                  "Items",
+                  "Item 1 (w:1, v:60)",
+                  "Item 2 (w:2, v:100)",
+                  "Item 3 (w:3, v:120)"
+                ],
+                "colLabels": [
+                  "Capacity",
+                  "0",
+                  "1",
+                  "2",
+                  "3"
+                ],
+                "activeCell": null
+              },
+              "prediction": null,
+              "explanation": "The outer loop iterates from 1 to `n`. Each `i` corresponds to considering the first `i` items from our list.",
+              "hints": [
+                "This step starts the main logic.",
+                "The loops will fill the table row by row, item by item.",
+                "The variable `i` is initialized to 1."
+              ]
+            },
+            {
+              "stepNumber": 3,
+              "codeLine": 9,
+              "description": "Consider item 1 (weight=1) with capacity `w=1`. Since `1 <= 1`, we check if we should take the item.",
+              "variables": {
+                "weights": "[1, 2, 3]",
+                "values": "[60, 100, 120]",
+                "capacity": "3",
+                "n": "3",
+                "i": "1",
+                "w": "1",
+                "weight": "1",
+                "value": "60"
+              },
+              "changedVariables": [
+                "w",
+                "weight",
+                "value"
+              ],
+              "dataStructure": {
+                "type": "dp_table",
+                "cells": [
+                  [
+                    {
+                      "value": 0,
+                      "state": "referenced"
+                    },
+                    {
+                      "value": 0,
+                      "state": "referenced"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    }
+                  ],
+                  [
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "active"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    }
+                  ],
+                  [
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    }
+                  ],
+                  [
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    }
+                  ]
+                ],
+                "rowLabels": [
+                  "Items",
+                  "Item 1 (w:1, v:60)",
+                  "Item 2 (w:2, v:100)",
+                  "Item 3 (w:3, v:120)"
+                ],
+                "colLabels": [
+                  "Capacity",
+                  "0",
+                  "1",
+                  "2",
+                  "3"
+                ],
+                "activeCell": [
+                  1,
+                  1
+                ]
+              },
+              "prediction": {
+                "type": "multiple_choice",
+                "prompt": "Which two values are compared to fill `dp_table[1][1]`?",
+                "options": [
+                  {
+                    "id": "a",
+                    "label": "value + dp_table[0][w-weight] vs. dp_table[0][w]"
+                  },
+                  {
+                    "id": "b",
+                    "label": "value vs. dp_table[0][w]"
+                  },
+                  {
+                    "id": "c",
+                    "label": "dp_table[0][w-weight] vs. dp_table[0][w]"
+                  }
+                ],
+                "correctId": "a"
+              },
+              "explanation": "We compare two choices: 1) Take the item: its value (60) plus the best value for the remaining capacity (`w-weight`=0), which is `dp_table[0][0]`. 2) Don't take the item: the best value without this item for the same capacity, `dp_table[0][1]`. We take the maximum of these two options.",
+              "hints": [
+                "The formula involves two options: taking the item or leaving it.",
+                "If we take the item, we get its value and add the optimal value for the capacity that remains.",
+                "We compare `values[0] + dp_table[0][1-1]` with `dp_table[0][1]`."
+              ]
+            },
+            {
+              "stepNumber": 4,
+              "codeLine": 10,
+              "description": "The maximum of `60 + 0` and `0` is 60. This value is placed in `dp_table[1][1]`.",
+              "variables": {
+                "weights": "[1, 2, 3]",
+                "values": "[60, 100, 120]",
+                "capacity": "3",
+                "n": "3",
+                "i": "1",
+                "w": "1",
+                "weight": "1",
+                "value": "60"
+              },
+              "changedVariables": [
+                "dp_table"
+              ],
+              "dataStructure": {
+                "type": "dp_table",
+                "cells": [
+                  [
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    }
+                  ],
+                  [
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 60,
+                      "state": "changed"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    }
+                  ],
+                  [
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    }
+                  ],
+                  [
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    }
+                  ]
+                ],
+                "rowLabels": [
+                  "Items",
+                  "Item 1 (w:1, v:60)",
+                  "Item 2 (w:2, v:100)",
+                  "Item 3 (w:3, v:120)"
+                ],
+                "colLabels": [
+                  "Capacity",
+                  "0",
+                  "1",
+                  "2",
+                  "3"
+                ],
+                "activeCell": [
+                  1,
+                  1
+                ]
+              },
+              "prediction": {
+                "type": "value",
+                "prompt": "What is the new value of dp_table[1][1]?",
+                "correctValue": "60",
+                "acceptableValues": [
+                  "60"
+                ],
+                "placeholder": "Enter value"
+              },
+              "explanation": "The calculation `max(60 + dp_table[0][0], dp_table[0][1])` evaluates to `max(60, 0)`, which is 60. This becomes the new value for the current cell.",
+              "hints": [
+                "The value is the maximum of the two options from the previous step.",
+                "The options were taking the item (value 60) or not taking it (value 0).",
+                "The value is `max(60 + 0, 0)`."
+              ]
+            },
+            {
+              "stepNumber": 5,
+              "codeLine": 10,
+              "description": "Now with `w=2`. Item 1's weight (1) is less than or equal to 2. We calculate `max(60 + dp_table[0][1], dp_table[0][2])`.",
+              "variables": {
+                "weights": "[1, 2, 3]",
+                "values": "[60, 100, 120]",
+                "capacity": "3",
+                "n": "3",
+                "i": "1",
+                "w": "2",
+                "weight": "1",
+                "value": "60"
+              },
+              "changedVariables": [
+                "w",
+                "dp_table"
+              ],
+              "dataStructure": {
+                "type": "dp_table",
+                "cells": [
+                  [
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "referenced"
+                    },
+                    {
+                      "value": 0,
+                      "state": "referenced"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    }
+                  ],
+                  [
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 60,
+                      "state": "default"
+                    },
+                    {
+                      "value": 60,
+                      "state": "changed"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    }
+                  ],
+                  [
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    }
+                  ],
+                  [
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    }
+                  ]
+                ],
+                "rowLabels": [
+                  "Items",
+                  "Item 1 (w:1, v:60)",
+                  "Item 2 (w:2, v:100)",
+                  "Item 3 (w:3, v:120)"
+                ],
+                "colLabels": [
+                  "Capacity",
+                  "0",
+                  "1",
+                  "2",
+                  "3"
+                ],
+                "activeCell": [
+                  1,
+                  2
+                ]
+              },
+              "prediction": {
+                "type": "value",
+                "prompt": "What will be the value of dp_table[1][2]?",
+                "correctValue": "60",
+                "acceptableValues": [
+                  "60"
+                ],
+                "placeholder": "Enter value"
+              },
+              "explanation": "With a capacity of 2, we can still only take the first item (weight 1). The choice is between taking it (`60 + dp_table[0][1] = 60`) and not taking it (`dp_table[0][2] = 0`). The max is 60.",
+              "hints": [
+                "Compare taking the item versus not taking it.",
+                "The value if we take the item is `60 + dp_table[0][2-1]`. The value if we don't is `dp_table[0][2]`.",
+                "The calculation is `max(60 + 0, 0)`."
+              ]
+            },
+            {
+              "stepNumber": 6,
+              "codeLine": 11,
+              "description": "Now `i=2`, considering item 2 (weight=2). For capacity `w=1`, the item's weight is greater than the capacity.",
+              "variables": {
+                "weights": "[1, 2, 3]",
+                "values": "[60, 100, 120]",
+                "capacity": "3",
+                "n": "3",
+                "i": "2",
+                "w": "1",
+                "weight": "2",
+                "value": "100"
+              },
+              "changedVariables": [
+                "i",
+                "w",
+                "weight",
+                "value"
+              ],
+              "dataStructure": {
+                "type": "dp_table",
+                "cells": [
+                  [
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    }
+                  ],
+                  [
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 60,
+                      "state": "referenced"
+                    },
+                    {
+                      "value": 60,
+                      "state": "default"
+                    },
+                    {
+                      "value": 60,
+                      "state": "default"
+                    }
+                  ],
+                  [
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "active"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    }
+                  ],
+                  [
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    }
+                  ]
+                ],
+                "rowLabels": [
+                  "Items",
+                  "Item 1 (w:1, v:60)",
+                  "Item 2 (w:2, v:100)",
+                  "Item 3 (w:3, v:120)"
+                ],
+                "colLabels": [
+                  "Capacity",
+                  "0",
+                  "1",
+                  "2",
+                  "3"
+                ],
+                "activeCell": [
+                  2,
+                  1
+                ]
+              },
+              "prediction": {
+                "type": "multiple_choice",
+                "prompt": "Since the item is too heavy, what value will dp_table[2][1] take?",
+                "options": [
+                  {
+                    "id": "a",
+                    "label": "0"
+                  },
+                  {
+                    "id": "b",
+                    "label": "The value from the cell above, dp_table[1][1]"
+                  },
+                  {
+                    "id": "c",
+                    "label": "The value from the cell to the left, dp_table[2][0]"
+                  }
+                ],
+                "correctId": "b"
+              },
+              "explanation": "Since the current item's weight (2) is greater than the current capacity (1), we cannot include it. The best we can do is the optimal solution without this item, which is stored in the cell directly above.",
+              "hints": [
+                "This is the 'else' case of the `if` statement.",
+                "If an item can't fit, the solution is the same as the solution for the previous set of items at the same capacity.",
+                "The value is copied from `dp_table[i-1][w]`."
+              ]
+            },
+            {
+              "stepNumber": 7,
+              "codeLine": 12,
+              "description": "The item is too heavy, so the value from the cell above (`dp_table[1][1]`) is copied to `dp_table[2][1]`.",
+              "variables": {
+                "weights": "[1, 2, 3]",
+                "values": "[60, 100, 120]",
+                "capacity": "3",
+                "n": "3",
+                "i": "2",
+                "w": "1",
+                "weight": "2",
+                "value": "100"
+              },
+              "changedVariables": [
+                "dp_table"
+              ],
+              "dataStructure": {
+                "type": "dp_table",
+                "cells": [
+                  [
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    }
+                  ],
+                  [
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 60,
+                      "state": "default"
+                    },
+                    {
+                      "value": 60,
+                      "state": "default"
+                    },
+                    {
+                      "value": 60,
+                      "state": "default"
+                    }
+                  ],
+                  [
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 60,
+                      "state": "changed"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    }
+                  ],
+                  [
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    }
+                  ]
+                ],
+                "rowLabels": [
+                  "Items",
+                  "Item 1 (w:1, v:60)",
+                  "Item 2 (w:2, v:100)",
+                  "Item 3 (w:3, v:120)"
+                ],
+                "colLabels": [
+                  "Capacity",
+                  "0",
+                  "1",
+                  "2",
+                  "3"
+                ],
+                "activeCell": [
+                  2,
+                  1
+                ]
+              },
+              "prediction": {
+                "type": "value",
+                "prompt": "What is the new value of dp_table[2][1]?",
+                "correctValue": "60",
+                "acceptableValues": [
+                  "60"
+                ],
+                "placeholder": "Enter value"
+              },
+              "explanation": "The value of `dp_table[1][1]`, which is 60, is assigned to `dp_table[2][1]`. This carries forward the best solution found so far for this capacity.",
+              "hints": [
+                "Look at the value in the cell directly above the active one.",
+                "The value is `dp_table[i-1][w]`, which is `dp_table[1][1]`.",
+                "The value is 60."
+              ]
+            },
+            {
+              "stepNumber": 8,
+              "codeLine": 10,
+              "description": "With `i=2` and `w=3`, item 2 (weight=2) can fit. We compare taking it vs. not taking it.",
+              "variables": {
+                "weights": "[1, 2, 3]",
+                "values": "[60, 100, 120]",
+                "capacity": "3",
+                "n": "3",
+                "i": "2",
+                "w": "3",
+                "weight": "2",
+                "value": "100"
+              },
+              "changedVariables": [
+                "w",
+                "dp_table"
+              ],
+              "dataStructure": {
+                "type": "dp_table",
+                "cells": [
+                  [
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    }
+                  ],
+                  [
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 60,
+                      "state": "referenced"
+                    },
+                    {
+                      "value": 60,
+                      "state": "default"
+                    },
+                    {
+                      "value": 60,
+                      "state": "referenced"
+                    }
+                  ],
+                  [
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 60,
+                      "state": "default"
+                    },
+                    {
+                      "value": 100,
+                      "state": "default"
+                    },
+                    {
+                      "value": 160,
+                      "state": "changed"
+                    }
+                  ],
+                  [
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    },
+                    {
+                      "value": 0,
+                      "state": "default"
+                    }
+                  ]
+                ],
+                "rowLabels": [
+                  "Items",
+                  "Item 1 (w:1, v:60)",
+                  "Item 2 (w:2, v:100)",
+                  "Item 3 (w:3, v:120)"
+                ],
+                "colLabels": [
+                  "Capacity",
+                  "0",
+                  "1",
+                  "2",
+                  "3"
+                ],
+                "activeCell": [
+                  2,
+                  3
+                ]
+              },
+              "prediction": {
+                "type": "value",
+                "prompt": "What is the value of dp_table[2][3]?",
+                "correctValue": "160",
+                "acceptableValues": [
+                  "160"
+                ],
+                "placeholder": "Enter value"
+              },
+              "explanation": "We compare: 1) Taking item 2: `value + dp_table[1][3-2]` which is `100 + dp_table[1][1] = 100 + 60 = 160`. 2) Not taking item 2: `dp_table[1][3] = 60`. The maximum is 160.",
+              "hints": [
+                "The choice is between `value + dp_table[i-1][w-weight]` and `dp_table[i-1][w]`.",
+                "This means comparing `100 + dp_table[1][1]` with `dp_table[1][3]`.",
+                "The calculation is `max(100 + 60, 60)`."
+              ]
+            }
+          ],
+          "scoringConfig": {
+            "basePoints": 100,
+            "streakThresholds": [
+              {
+                "min": 0,
+                "multiplier": 1
+              },
+              {
+                "min": 3,
+                "multiplier": 1.5
+              },
+              {
+                "min": 5,
+                "multiplier": 2
+              },
+              {
+                "min": 8,
+                "multiplier": 3
+              }
+            ],
+            "hintPenalties": [
+              0.1,
+              0.2,
+              0.3
+            ],
+            "perfectRunBonus": 0.2
+          }
+        },
+        "asset_url": null
+      },
+      {
+        "scene_id": "scene_3",
+        "scene_number": 3,
+        "title": "The Chief Engineer's Terminal",
+        "game_type": "complexity_analyzer",
+        "difficulty": "advanced",
+        "learning_goal": "Analyze and compare the time and space complexity of different dynamic programming solutions, including naive recursive, memoized, and tabulated approaches for various DP problems.",
+        "max_score": 300,
+        "content": {
+          "algorithmName": "Knapsack",
+          "algorithmDescription": "The Knapsack problem is a classic combinatorial optimization problem. Given a set of items, each with a weight and a value, and a maximum capacity, the goal is to determine the subset of items to include such that their total weight does not exceed the capacity and their total value is maximized.",
+          "challenges": [
+            {
+              "challengeId": "challenge_1",
+              "type": "identify_from_code",
+              "title": "Analyze Naive Recursive Knapsack Time Complexity",
+              "description": "Analyze the time complexity of the provided naive recursive solution for the 0/1 Knapsack problem. Assume 'n' is the number of items.",
+              "code": "def knapsack_recursive(weights, values, capacity, n):\n    # Base Case\n    if n == 0 or capacity == 0:\n        return 0\n\n    # If weight of the nth item is more than capacity, then it cannot be included\n    if weights[n-1] > capacity:\n        return knapsack_recursive(weights, values, capacity, n-1)\n\n    # Return the maximum of two cases:\n    # (1) nth item included\n    # (2) nth item not included\n    else:\n        return max(values[n-1] + knapsack_recursive(weights, values, capacity - weights[n-1], n-1),\n                   knapsack_recursive(weights, values, capacity, n-1))",
+              "language": "python",
+              "growthData": null,
+              "codeSections": [],
+              "correctComplexity": "O(2^n)",
+              "options": [
+                "O(n)",
+                "O(n log n)",
+                "O(n^2)",
+                "O(2^n)"
+              ],
+              "explanation": "The naive recursive solution explores two branches for each item (include or exclude), leading to a binary decision tree. In the worst case, this results in an exponential time complexity of O(2^n), where 'n' is the number of items.",
+              "points": 100,
+              "hints": [
+                "Consider the number of recursive calls made for each item.",
+                "Think about the structure of the recursion tree.",
+                "Each item presents two choices, leading to an exponential growth in calls."
+              ],
+              "complexityDimension": "time",
+              "caseVariant": "worst"
+            },
+            {
+              "challengeId": "challenge_2",
+              "type": "infer_from_growth",
+              "title": "Infer Complexity from Memoized Knapsack Performance Data",
+              "description": "The following data represents the operation counts for a memoized or tabulated Knapsack solution as the input size (representing the number of items 'n', where capacity 'W' is proportional to 'n') increases. Infer the time complexity.",
+              "code": null,
+              "language": "python",
+              "growthData": {
+                "inputSizes": [
+                  10,
+                  100,
+                  1000,
+                  10000
+                ],
+                "operationCounts": [
+                  100,
+                  10000,
+                  1000000,
+                  100000000
+                ]
+              },
+              "codeSections": [],
+              "correctComplexity": "O(n^2)",
+              "options": [
+                "O(n)",
+                "O(n log n)",
+                "O(n^2)",
+                "O(2^n)"
+              ],
+              "explanation": "The operation counts increase quadratically with the input size. For example, when the input size increases by a factor of 10, the operation count increases by a factor of 100 (10^2). This pattern is characteristic of O(n^2) complexity. In the context of Knapsack, this often arises from O(items * capacity) where capacity 'W' is proportional to the number of items 'n', effectively leading to O(n^2).",
+              "points": 100,
+              "hints": [
+                "Calculate the ratio of operation counts to input sizes squared.",
+                "Observe how the operation count scales when the input size is multiplied by a constant factor.",
+                "A 10x increase in input size leads to a 100x increase in operations, indicating a squared relationship."
+              ],
+              "complexityDimension": "time",
+              "caseVariant": "worst"
+            },
+            {
+              "challengeId": "challenge_3",
+              "type": "find_bottleneck",
+              "title": "Identify Bottleneck in Tabulated Knapsack",
+              "description": "Analyze the provided tabulated (bottom-up) 0/1 Knapsack solution. Identify the section that represents the performance bottleneck in terms of both time and space complexity. Assume 'n' is the number of items and 'W' is the knapsack capacity. For complexity notation, assume 'W' is proportional to 'n', so the overall complexity can be expressed using 'n'.",
+              "code": "def knapsack_tabulated(weights, values, capacity, n):\n    # sec_a: Initialize DP table\n    dp = [[0 for _ in range(capacity + 1)] for _ in range(n + 1)]\n\n    # sec_b: Fill DP table\n    for i in range(1, n + 1):\n        for w in range(1, capacity + 1):\n            weight_i = weights[i-1]\n            value_i = values[i-1]\n\n            if weight_i <= w:\n                dp[i][w] = max(value_i + dp[i-1][w - weight_i], dp[i-1][w])\n            else:\n                dp[i][w] = dp[i-1][w]\n\n    return dp[n][capacity]",
+              "language": "python",
+              "growthData": null,
+              "codeSections": [
+                {
+                  "sectionId": "sec_a",
+                  "label": "DP Table Initialization",
+                  "startLine": 2,
+                  "endLine": 3,
+                  "complexity": "O(n^2)",
+                  "isBottleneck": false
+                },
+                {
+                  "sectionId": "sec_b",
+                  "label": "Filling DP Table (Nested Loops)",
+                  "startLine": 6,
+                  "endLine": 16,
+                  "complexity": "O(n^2)",
+                  "isBottleneck": true
+                }
+              ],
+              "correctComplexity": "O(n^2)",
+              "options": [
+                "O(n)",
+                "O(n log n)",
+                "O(n^2)",
+                "O(n^3)"
+              ],
+              "explanation": "Both the initialization and the filling of the DP table contribute O(n^2) to the complexity, assuming capacity 'W' is proportional to the number of items 'n'. The nested loops (sec_b) perform the core computations for each cell, making it the primary driver of the constant factor and the most 'active' part of the O(n^2) work. The overall time and space complexity is O(n^2) because a 2D table of size (n+1) x (W+1) is created and each cell is computed once, where W is proportional to n.",
+              "points": 150,
+              "hints": [
+                "Consider how many times each line of code within the loops is executed.",
+                "The size of the DP table directly impacts both time (to fill) and space (to store).",
+                "Look for nested iterations that scale with both 'n' and 'W', which combine to 'n^2' under the given assumption."
+              ],
+              "complexityDimension": "both",
+              "caseVariant": "worst"
+            },
+            {
+              "challengeId": "challenge_4",
+              "type": "identify_from_code",
+              "title": "Analyze Space-Optimized Knapsack Space Complexity",
+              "description": "Analyze the space complexity of this optimized tabulated 0/1 Knapsack solution. Assume 'n' is the number of items and 'W' is the knapsack capacity. For this challenge, consider 'n' in the complexity notation to represent the capacity 'W'.",
+              "code": "def knapsack_space_optimized(weights, values, capacity, n):\n    dp = [0] * (capacity + 1)\n\n    for i in range(1, n + 1):\n        # Iterate capacity from right to left to use previous row's values correctly\n        for w in range(capacity, 0, -1):\n            weight_i = weights[i-1]\n            value_i = values[i-1]\n\n            if weight_i <= w:\n                dp[w] = max(value_i + dp[w - weight_i], dp[w])\n    \n    return dp[capacity]",
+              "language": "python",
+              "growthData": null,
+              "codeSections": [],
+              "correctComplexity": "O(n)",
+              "options": [
+                "O(1)",
+                "O(n)",
+                "O(n log n)",
+                "O(n^2)"
+              ],
+              "explanation": "This solution uses a 1D DP array of size (capacity + 1). It iterates through items and updates this array in place. The space required is solely dependent on the knapsack capacity, which we represent as 'n' in this context, making its space complexity O(n).",
+              "points": 150,
+              "hints": [
+                "How many elements does the 'dp' array store?",
+                "Does the size of the 'dp' array change with the number of items (the outer loop variable)?",
+                "The array's length is determined by the capacity, which is represented by 'n' here."
+              ],
+              "complexityDimension": "space",
+              "caseVariant": "worst"
+            }
+          ],
+          "complexity_dimension": "both",
+          "case_variants": "worst_only"
+        },
+        "asset_url": null
+      }
+    ],
+    "scene_transitions": [
+      {
+        "from_scene": "scene_1",
+        "to_scene": "scene_2",
+        "trigger": "completion"
+      },
+      {
+        "from_scene": "scene_2",
+        "to_scene": "scene_3",
+        "trigger": "completion"
+      }
+    ],
+    "scene_assets": {
+      "scene_1": {
+        "scene_id": "scene_1",
+        "status": "skipped",
+        "image_url": "",
+        "asset_type": "board_illustration"
+      },
+      "scene_2": {
+        "scene_id": "scene_2",
+        "status": "skipped",
+        "image_url": "",
+        "asset_type": "algorithm_illustration"
+      },
+      "scene_3": {
+        "scene_id": "scene_3",
+        "status": "skipped",
+        "image_url": "",
+        "asset_type": "growth_chart"
+      }
+    },
+    "is_degraded": false,
+    "generation_complete": true
+  }
+}

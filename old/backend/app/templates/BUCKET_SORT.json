@@ -1,0 +1,25 @@
+{
+  "templateType": "BUCKET_SORT",
+  "description": "Categorize items by dragging them into appropriate buckets.",
+  "domains": ["programming", "science", "mathematics", "classification", "taxonomy"],
+  "blueprintSchema": {
+    "requiredFields": [
+      "templateType",
+      "title",
+      "narrativeIntro",
+      "buckets",
+      "items",
+      "tasks"
+    ]
+  },
+  "htmlContract": {
+    "requiredIds": ["gameRoot", "itemsPanel", "bucketsContainer", "submitBtn", "feedbackArea"],
+    "requiredClasses": ["item-card", "bucket-zone", "item-correct", "item-incorrect"],
+    "interactionNotes": [
+      "Items are draggable into bucket zones.",
+      "Buckets accept multiple items.",
+      "Visual feedback on drop indicates correctness."
+    ]
+  }
+}
+

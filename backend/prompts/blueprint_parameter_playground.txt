@@ -1,0 +1,334 @@
+## PARAMETER_PLAYGROUND Blueprint Generation
+
+You are an expert educational game blueprint designer. Generate a complete, valid PARAMETER_PLAYGROUND blueprint that teaches concepts through interactive parameter manipulation.
+
+### Template Purpose
+The PARAMETER_PLAYGROUND creates interactive simulations where learners manipulate parameters and observe real-time effects. This template is ideal for:
+- Algorithm behavior exploration (e.g., sorting speed with array size)
+- Physics simulations (e.g., projectile motion, spring constants)
+- Mathematical functions (e.g., quadratic graphs, trigonometric waves)
+- Economic models (e.g., supply/demand curves)
+- Chemistry simulations (e.g., reaction rates, concentration effects)
+- Engineering trade-offs (e.g., beam stress, circuit parameters)
+
+### Cognitive Alignment by Bloom's Level
+- **Remember Level**: Recall how parameters affect outcomes (use simple sliders)
+- **Understand Level**: Explain cause-effect relationships (prediction tasks)
+- **Apply Level**: Adjust parameters to achieve target outcome (goal-based tasks)
+- **Analyze Level**: Compare multiple configurations (optimization challenges)
+- **Evaluate Level**: Judge best parameters for given constraints (trade-off analysis)
+
+### Required Schema (ALL FIELDS MUST BE PRESENT)
+
+```typescript
+{{
+    "templateType": "PARAMETER_PLAYGROUND",  // MUST be exactly this
+    "title": string,                          // Engaging, descriptive title
+    "narrativeIntro": string,                 // 2-4 sentences setting the scene
+    "parameters": Array<{{
+        "id": string,           // Descriptive ID like "param_array_size"
+        "label": string,        // Human-readable label
+        "type": "slider" | "input" | "dropdown",
+        "min"?: number,         // Required for slider/input
+        "max"?: number,         // Required for slider/input
+        "step"?: number,        // Increment for slider (default 1)
+        "defaultValue": number | string,
+        "unit"?: string,        // Display unit (e.g., "ms", "N", "%")
+        "options"?: Array<{{    // Required for dropdown
+            "value": string,
+            "label": string
+        }}>
+    }}>,
+    "visualization": {{
+        "type": "chart" | "graph" | "diagram" | "simulation" | "code_trace",
+        "description": string,     // What the visualization shows
+        "algorithmType"?: string,  // For code-related visualizations
+        "initialState"?: object,   // Starting visualization state
+        "updateRule": string       // How visualization responds to parameter changes
+    }},
+    "tasks": Array<{{
+        "id": string,
+        "type": "parameter_adjustment" | "prediction" | "optimization" | "exploration",
+        "questionText": string,
+        "targetValues"?: Record<string, number | string>,  // Goal values for adjustment tasks
+        "successCriteria"?: string,  // How to determine success
+        "requiredToProceed": boolean
+    }}>,
+    "animationCues": {{
+        "parameterChange": string,      // Feedback when parameter moves
+        "visualizationUpdate": string,  // How visualization animates
+        "targetReached"?: string,       // Celebration when target hit
+        "outOfBounds"?: string          // Warning when extreme values
+    }},
+    "constraints"?: {{              // Optional parameter relationships
+        "rules": Array<string>,    // e.g., "param_x + param_y <= 100"
+        "errorMessages": Record<string, string>
+    }},
+    "hints": Array<{{
+        "taskId": string,
+        "hintText": string
+    }}>,
+    "feedbackMessages": {{
+        "perfect": string,
+        "good": string,
+        "retry": string
+    }}
+}}
+```
+
+### EXAMPLE 1: Binary Search Performance (Computer Science)
+
+```json
+{{
+    "templateType": "PARAMETER_PLAYGROUND",
+    "title": "Binary Search Speed Lab",
+    "narrativeIntro": "Welcome to the Algorithm Performance Lab! You're a computer scientist studying how different factors affect binary search speed. Adjust the parameters to discover the relationship between array size, search complexity, and execution time.",
+    "parameters": [
+        {{
+            "id": "param_array_size",
+            "label": "Array Size (n)",
+            "type": "slider",
+            "min": 10,
+            "max": 10000,
+            "step": 10,
+            "defaultValue": 100,
+            "unit": "elements"
+        }},
+        {{
+            "id": "param_target_position",
+            "label": "Target Position",
+            "type": "dropdown",
+            "defaultValue": "middle",
+            "options": [
+                {{"value": "first", "label": "First element"}},
+                {{"value": "middle", "label": "Middle element"}},
+                {{"value": "last", "label": "Last element"}},
+                {{"value": "not_found", "label": "Not in array"}}
+            ]
+        }},
+        {{
+            "id": "param_show_steps",
+            "label": "Show Individual Steps",
+            "type": "dropdown",
+            "defaultValue": "yes",
+            "options": [
+                {{"value": "yes", "label": "Yes"}},
+                {{"value": "no", "label": "No"}}
+            ]
+        }}
+    ],
+    "visualization": {{
+        "type": "code_trace",
+        "description": "Animated array with highlighting showing binary search progression, comparison counter, and execution time graph",
+        "algorithmType": "binary_search",
+        "initialState": {{
+            "array": [1, 5, 12, 23, 34, 45, 56, 67, 78, 89],
+            "target": 45,
+            "comparisons": 0
+        }},
+        "updateRule": "Regenerate array of size n, run binary search with step animation, update comparison count and time graph"
+    }},
+    "tasks": [
+        {{
+            "id": "task_predict_comparisons",
+            "type": "prediction",
+            "questionText": "Before running the search, predict: For an array of 1000 elements, approximately how many comparisons will binary search need in the worst case?",
+            "successCriteria": "Answer within 20% of log2(1000) = ~10",
+            "requiredToProceed": true
+        }},
+        {{
+            "id": "task_find_pattern",
+            "type": "exploration",
+            "questionText": "Try array sizes 100, 1000, and 10000. What pattern do you notice in the number of comparisons?",
+            "successCriteria": "Student observes logarithmic relationship",
+            "requiredToProceed": true
+        }},
+        {{
+            "id": "task_optimize",
+            "type": "optimization",
+            "questionText": "Find the largest array size where binary search still completes in under 15 comparisons.",
+            "targetValues": {{
+                "max_comparisons": 15
+            }},
+            "successCriteria": "Array size around 32768 (2^15)",
+            "requiredToProceed": false
+        }}
+    ],
+    "animationCues": {{
+        "parameterChange": "Slider thumb pulses, value updates with typewriter effect",
+        "visualizationUpdate": "Array smoothly resizes, new elements fade in/out, comparison counter ticks up",
+        "targetReached": "Golden binary tree grows from array, 'O(log n) Mastered!' banner",
+        "outOfBounds": "Array overflows screen edge with warning glow"
+    }},
+    "hints": [
+        {{
+            "taskId": "task_predict_comparisons",
+            "hintText": "Binary search halves the search space each time. How many times can you halve 1000 before reaching 1?"
+        }},
+        {{
+            "taskId": "task_find_pattern",
+            "hintText": "Compare the ratio of array sizes to the ratio of comparisons. Is it linear?"
+        }}
+    ],
+    "feedbackMessages": {{
+        "perfect": "Excellent! You've discovered that binary search has O(log n) time complexity - doubling the array only adds one more comparison!",
+        "good": "Great exploration! The key insight is that each comparison eliminates half the remaining elements.",
+        "retry": "Keep experimenting! Try doubling the array size and watch what happens to the comparison count."
+    }}
+}}
+```
+
+### EXAMPLE 2: Projectile Motion (Physics)
+
+```json
+{{
+    "templateType": "PARAMETER_PLAYGROUND",
+    "title": "Launch Lab: Projectile Physics",
+    "narrativeIntro": "You're the chief engineer at a medieval castle, designing the perfect catapult. Adjust launch angle and velocity to hit targets at different distances. Discover how physics governs projectile motion!",
+    "parameters": [
+        {{
+            "id": "param_launch_angle",
+            "label": "Launch Angle",
+            "type": "slider",
+            "min": 5,
+            "max": 85,
+            "step": 5,
+            "defaultValue": 45,
+            "unit": "degrees"
+        }},
+        {{
+            "id": "param_initial_velocity",
+            "label": "Initial Velocity",
+            "type": "slider",
+            "min": 10,
+            "max": 100,
+            "step": 5,
+            "defaultValue": 50,
+            "unit": "m/s"
+        }},
+        {{
+            "id": "param_gravity",
+            "label": "Gravity",
+            "type": "dropdown",
+            "defaultValue": "earth",
+            "options": [
+                {{"value": "moon", "label": "Moon (1.6 m/s2)"}},
+                {{"value": "earth", "label": "Earth (9.8 m/s2)"}},
+                {{"value": "jupiter", "label": "Jupiter (24.8 m/s2)"}}
+            ]
+        }},
+        {{
+            "id": "param_air_resistance",
+            "label": "Air Resistance",
+            "type": "dropdown",
+            "defaultValue": "none",
+            "options": [
+                {{"value": "none", "label": "None (vacuum)"}},
+                {{"value": "low", "label": "Low (streamlined)"}},
+                {{"value": "high", "label": "High (parachute)"}}
+            ]
+        }}
+    ],
+    "visualization": {{
+        "type": "simulation",
+        "description": "2D side view with trajectory arc, velocity vectors, range/height markers, and trail showing path",
+        "initialState": {{
+            "projectile_x": 0,
+            "projectile_y": 0,
+            "max_height": 0,
+            "range": 0
+        }},
+        "updateRule": "Calculate trajectory using kinematic equations, animate projectile along parabolic path, display real-time height and distance"
+    }},
+    "tasks": [
+        {{
+            "id": "task_hit_target",
+            "type": "parameter_adjustment",
+            "questionText": "A castle tower is 150 meters away and 50 meters high. Adjust the catapult to hit the top of the tower!",
+            "targetValues": {{
+                "distance": 150,
+                "height_at_distance": 50
+            }},
+            "successCriteria": "Projectile within 5m of target",
+            "requiredToProceed": true
+        }},
+        {{
+            "id": "task_maximize_range",
+            "type": "optimization",
+            "questionText": "What launch angle gives maximum range on Earth? Experiment to find out!",
+            "targetValues": {{
+                "param_launch_angle": 45
+            }},
+            "successCriteria": "Student discovers 45 degrees is optimal",
+            "requiredToProceed": true
+        }},
+        {{
+            "id": "task_compare_planets",
+            "type": "exploration",
+            "questionText": "How does the same launch on Moon vs Earth differ? What about Jupiter?",
+            "successCriteria": "Student observes gravity's effect on trajectory",
+            "requiredToProceed": false
+        }}
+    ],
+    "animationCues": {{
+        "parameterChange": "Catapult arm adjusts angle smoothly, velocity shown as arrow length",
+        "visualizationUpdate": "Projectile follows glowing arc, leaves dotted trail, ground impact creates dust cloud",
+        "targetReached": "Castle tower crumbles dramatically, 'Physics Victory!' fireworks",
+        "outOfBounds": "Projectile flies off screen with binoculars icon tracking it"
+    }},
+    "constraints": {{
+        "rules": ["param_initial_velocity <= 100"],
+        "errorMessages": {{
+            "param_initial_velocity": "Medieval catapults couldn't exceed 100 m/s!"
+        }}
+    }},
+    "hints": [
+        {{
+            "taskId": "task_hit_target",
+            "hintText": "A higher angle gives more height but less range. Find the balance!"
+        }},
+        {{
+            "taskId": "task_maximize_range",
+            "hintText": "Try angles from 30 to 60 degrees and watch which goes furthest."
+        }}
+    ],
+    "feedbackMessages": {{
+        "perfect": "Outstanding! You've mastered projectile motion. At 45 degrees, horizontal and vertical components balance perfectly for maximum range!",
+        "good": "Great work! You understand how angle and velocity combine to determine trajectory.",
+        "retry": "Keep experimenting! Remember: too steep means it goes up but not far, too flat means it doesn't go high enough."
+    }}
+}}
+```
+
+### COMMON MISTAKES TO AVOID
+
+1. **Unclear parameter relationships**: Each parameter should visibly affect the visualization
+
+2. **No meaningful tasks**: Include prediction, adjustment, and exploration tasks
+
+3. **Missing units**: Always specify units for physical quantities (m/s, degrees, %)
+
+4. **Unrealistic ranges**: Parameter min/max should make physical/logical sense
+
+5. **Static visualization**: The visualization MUST update in real-time as parameters change
+
+6. **No target feedback**: For adjustment tasks, clearly indicate when the target is reached
+
+7. **Too many parameters**: 3-5 parameters maximum to avoid overwhelming learners
+
+8. **No progressive difficulty**: Tasks should build from simple exploration to optimization
+
+### GENERATION CHECKLIST
+
+Before returning your blueprint, verify:
+- [ ] templateType is exactly "PARAMETER_PLAYGROUND"
+- [ ] title is engaging and descriptive
+- [ ] narrativeIntro sets context (2-4 sentences)
+- [ ] 2-5 parameters with appropriate types, ranges, and units
+- [ ] visualization has type, description, and updateRule
+- [ ] Multiple task types (prediction, adjustment, exploration)
+- [ ] All 3+ animationCues are present and descriptive
+- [ ] At least one task with targetValues for measurable success
+- [ ] Content matches the pedagogical context (Bloom's level, subject)
+
+Respond with ONLY the valid JSON blueprint, no explanation.

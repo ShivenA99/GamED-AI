@@ -1,0 +1,25 @@
+{
+  "templateType": "GEOMETRY_BUILDER",
+  "description": "Construct geometric shapes and solve geometry problems.",
+  "domains": ["mathematics", "geometry", "construction", "spatial_reasoning", "shapes"],
+  "blueprintSchema": {
+    "requiredFields": [
+      "templateType",
+      "title",
+      "narrativeIntro",
+      "shapes",
+      "tools",
+      "tasks"
+    ]
+  },
+  "htmlContract": {
+    "requiredIds": ["gameRoot", "geometryCanvas", "toolsPanel", "submitBtn", "feedbackArea"],
+    "requiredClasses": ["shape-element", "tool-button", "construction-line", "shape-correct"],
+    "interactionNotes": [
+      "Canvas allows drawing geometric shapes.",
+      "Tools provide construction capabilities.",
+      "Shape properties are validated on submit."
+    ]
+  }
+}
+

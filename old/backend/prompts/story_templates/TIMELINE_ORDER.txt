@@ -1,0 +1,13 @@
+### Template Context: TIMELINE_ORDER
+
+The resulting visualization will be implemented as:
+- Chronological ordering of events on a timeline.
+- Events are placed at specific time points.
+- Timeline shows temporal relationships.
+
+When generating story_context, visual_metaphor, visual_elements, question_flow, and animation_cues:
+- Focus on temporal sequences and historical or process timelines.
+- Visual elements should represent time progression and events.
+- Questions should involve chronological ordering or time-based relationships.
+- Animation cues should show timeline progression and event placement.
+

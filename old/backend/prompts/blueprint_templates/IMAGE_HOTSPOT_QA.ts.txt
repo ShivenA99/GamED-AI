@@ -1,0 +1,36 @@
+export interface ImageHotspotQABlueprint {
+  templateType: "IMAGE_HOTSPOT_QA";
+  title: string;
+  narrativeIntro: string;
+  image: {
+    assetPrompt: string;
+    assetUrl?: string;
+  };
+  hotspots: Array<{
+    id: string;
+    x: number; // 0–1
+    y: number; // 0–1
+    radius: number; // 0–1
+    label: string;
+  }>;
+  tasks: Array<{
+    id: string;
+    hotspotId: string;
+    questionText: string;
+    type: "multiple_choice" | "free_response";
+    options?: string[];
+    correctAnswer: string;
+    feedback: {
+      correct: string;
+      incorrect: string;
+    };
+    requiredToProceed: boolean;
+  }>;
+  animationCues: {
+    hotspotClick: string;
+    modalOpen: string;
+    correctAnswer: string;
+    incorrectAnswer: string;
+  };
+}
+

@@ -1,0 +1,25 @@
+{
+  "templateType": "SEQUENCE_BUILDER",
+  "description": "Drag-and-drop interface to arrange steps in correct order.",
+  "domains": ["programming", "science", "history", "processes", "algorithms"],
+  "blueprintSchema": {
+    "requiredFields": [
+      "templateType",
+      "title",
+      "narrativeIntro",
+      "steps",
+      "distractors",
+      "tasks"
+    ]
+  },
+  "htmlContract": {
+    "requiredIds": ["gameRoot", "stepsContainer", "dropZone", "submitBtn", "feedbackArea"],
+    "requiredClasses": ["step-card", "step-dragging", "step-correct", "step-incorrect"],
+    "interactionNotes": [
+      "Steps are draggable cards.",
+      "Drop zone accepts steps in order.",
+      "Visual feedback shows correct/incorrect placement."
+    ]
+  }
+}
+

@@ -1,0 +1,529 @@
+## STATE_TRACER_CODE Blueprint Generation
+
+You are an expert educational game blueprint designer. Generate a complete, valid STATE_TRACER_CODE blueprint that teaches programming concepts through interactive code execution tracing.
+
+### Template Purpose
+The STATE_TRACER_CODE creates step-by-step code execution visualizations where learners trace variable values and predict program behavior. This template is ideal for:
+- Algorithm understanding (e.g., sorting steps, search iterations)
+- Variable scope and lifetime tracking
+- Loop execution tracing (for, while, nested)
+- Recursion stack visualization
+- Data structure operations (push, pop, enqueue)
+- Function call tracing
+- Debugging practice
+
+### Cognitive Alignment by Bloom's Level
+- **Remember Level**: Recall what operations do (simple assignments)
+- **Understand Level**: Explain why variables change (operation semantics)
+- **Apply Level**: Predict values at arbitrary execution points
+- **Analyze Level**: Trace complex control flow (nested loops, recursion)
+- **Evaluate Level**: Identify bugs or inefficiencies in code
+
+### Required Schema (ALL FIELDS MUST BE PRESENT)
+
+```typescript
+{{
+    "templateType": "STATE_TRACER_CODE",  // MUST be exactly this
+    "title": string,                       // Engaging, descriptive title
+    "narrativeIntro": string,              // 2-4 sentences setting the scene
+    "code": string,                        // The actual code to trace
+    "language"?: string,                   // e.g., "python", "javascript"
+    "initialInput"?: any,                  // Input values if applicable
+    "steps": Array<{{
+        "index": number,               // Step number (0-indexed)
+        "lineNumber": number,          // Which line is executing (1-indexed)
+        "description": string,         // What happens in this step
+        "expectedVariables": Record<string, any>,  // Variable state after step
+        "highlightLine"?: number,      // Line to visually highlight
+        "callStack"?: string[],        // For function/recursion tracking
+        "output"?: string              // Any console output
+    }}>,
+    "tasks": Array<{{
+        "id": string,
+        "type": "variable_value" | "step_analysis" | "predict_output" | "find_bug",
+        "questionText": string,
+        "stepIndex"?: number,          // Which step this question refers to
+        "variableName"?: string,       // Which variable to predict
+        "correctAnswer": string | number | boolean,
+        "options"?: string[],          // For multiple choice
+        "requiredToProceed": boolean
+    }}>,
+    "animationCues": {{
+        "lineHighlight": string,       // How to highlight current line
+        "variableUpdate": string,      // Animation when variable changes
+        "stepComplete": string,        // Feedback after correct answer
+        "codeComplete"?: string        // When all steps traced
+    }},
+    "hints": Array<{{
+        "stepIndex": number,
+        "hintText": string
+    }}>,
+    "feedbackMessages": {{
+        "perfect": string,
+        "good": string,
+        "retry": string
+    }}
+}}
+```
+
+### EXAMPLE 1: Binary Search Trace (Algorithms)
+
+```json
+{{
+    "templateType": "STATE_TRACER_CODE",
+    "title": "Binary Search Detective",
+    "narrativeIntro": "You're debugging a binary search algorithm that's not returning the expected result. Step through the code line by line, tracking how the variables change. Can you follow the search and find where target 7 is located?",
+    "code": "def binary_search(arr, target):\n    low = 0\n    high = len(arr) - 1\n    \n    while low <= high:\n        mid = (low + high) // 2\n        \n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            low = mid + 1\n        else:\n            high = mid - 1\n    \n    return -1\n\n# Call: binary_search([1, 3, 5, 7, 9, 11], 7)",
+    "language": "python",
+    "initialInput": {{
+        "arr": [1, 3, 5, 7, 9, 11],
+        "target": 7
+    }},
+    "steps": [
+        {{
+            "index": 0,
+            "lineNumber": 2,
+            "description": "Initialize low pointer to start of array",
+            "expectedVariables": {{
+                "low": 0,
+                "arr": [1, 3, 5, 7, 9, 11],
+                "target": 7
+            }},
+            "highlightLine": 2
+        }},
+        {{
+            "index": 1,
+            "lineNumber": 3,
+            "description": "Initialize high pointer to end of array (index 5)",
+            "expectedVariables": {{
+                "low": 0,
+                "high": 5,
+                "arr": [1, 3, 5, 7, 9, 11],
+                "target": 7
+            }},
+            "highlightLine": 3
+        }},
+        {{
+            "index": 2,
+            "lineNumber": 5,
+            "description": "Check loop condition: 0 <= 5 is True, enter loop",
+            "expectedVariables": {{
+                "low": 0,
+                "high": 5
+            }},
+            "highlightLine": 5
+        }},
+        {{
+            "index": 3,
+            "lineNumber": 6,
+            "description": "Calculate mid: (0 + 5) // 2 = 2",
+            "expectedVariables": {{
+                "low": 0,
+                "high": 5,
+                "mid": 2
+            }},
+            "highlightLine": 6
+        }},
+        {{
+            "index": 4,
+            "lineNumber": 8,
+            "description": "Compare arr[2]=5 with target=7. 5 != 7, so condition is False",
+            "expectedVariables": {{
+                "low": 0,
+                "high": 5,
+                "mid": 2,
+                "arr[mid]": 5
+            }},
+            "highlightLine": 8
+        }},
+        {{
+            "index": 5,
+            "lineNumber": 10,
+            "description": "Check if arr[mid]=5 < target=7. True! Target is in right half",
+            "expectedVariables": {{
+                "low": 0,
+                "high": 5,
+                "mid": 2
+            }},
+            "highlightLine": 10
+        }},
+        {{
+            "index": 6,
+            "lineNumber": 11,
+            "description": "Move low pointer: low = 2 + 1 = 3",
+            "expectedVariables": {{
+                "low": 3,
+                "high": 5,
+                "mid": 2
+            }},
+            "highlightLine": 11
+        }},
+        {{
+            "index": 7,
+            "lineNumber": 5,
+            "description": "Check loop condition: 3 <= 5 is True, continue loop",
+            "expectedVariables": {{
+                "low": 3,
+                "high": 5
+            }},
+            "highlightLine": 5
+        }},
+        {{
+            "index": 8,
+            "lineNumber": 6,
+            "description": "Calculate new mid: (3 + 5) // 2 = 4",
+            "expectedVariables": {{
+                "low": 3,
+                "high": 5,
+                "mid": 4
+            }},
+            "highlightLine": 6
+        }},
+        {{
+            "index": 9,
+            "lineNumber": 8,
+            "description": "Compare arr[4]=9 with target=7. 9 != 7",
+            "expectedVariables": {{
+                "low": 3,
+                "high": 5,
+                "mid": 4,
+                "arr[mid]": 9
+            }},
+            "highlightLine": 8
+        }},
+        {{
+            "index": 10,
+            "lineNumber": 12,
+            "description": "arr[mid]=9 > target=7, so move high pointer: high = 4 - 1 = 3",
+            "expectedVariables": {{
+                "low": 3,
+                "high": 3,
+                "mid": 4
+            }},
+            "highlightLine": 13
+        }},
+        {{
+            "index": 11,
+            "lineNumber": 6,
+            "description": "Calculate new mid: (3 + 3) // 2 = 3",
+            "expectedVariables": {{
+                "low": 3,
+                "high": 3,
+                "mid": 3
+            }},
+            "highlightLine": 6
+        }},
+        {{
+            "index": 12,
+            "lineNumber": 8,
+            "description": "Compare arr[3]=7 with target=7. They match!",
+            "expectedVariables": {{
+                "low": 3,
+                "high": 3,
+                "mid": 3,
+                "arr[mid]": 7
+            }},
+            "highlightLine": 8
+        }},
+        {{
+            "index": 13,
+            "lineNumber": 9,
+            "description": "Return mid=3 as the index where target was found",
+            "expectedVariables": {{
+                "return_value": 3
+            }},
+            "highlightLine": 9,
+            "output": "Found at index 3"
+        }}
+    ],
+    "tasks": [
+        {{
+            "id": "task_initial_mid",
+            "type": "variable_value",
+            "questionText": "After the first mid calculation, what is the value of mid?",
+            "stepIndex": 3,
+            "variableName": "mid",
+            "correctAnswer": 2,
+            "options": ["0", "2", "3", "5"],
+            "requiredToProceed": true
+        }},
+        {{
+            "id": "task_first_comparison",
+            "type": "step_analysis",
+            "questionText": "After comparing arr[mid]=5 with target=7, which half of the array will we search next?",
+            "stepIndex": 5,
+            "correctAnswer": "right",
+            "options": ["left half", "right half", "found already", "not in array"],
+            "requiredToProceed": true
+        }},
+        {{
+            "id": "task_predict_iterations",
+            "type": "predict_output",
+            "questionText": "How many times will the while loop execute before finding the target?",
+            "correctAnswer": 3,
+            "options": ["1", "2", "3", "6"],
+            "requiredToProceed": true
+        }},
+        {{
+            "id": "task_final_index",
+            "type": "variable_value",
+            "questionText": "What index is returned when the target is found?",
+            "stepIndex": 13,
+            "variableName": "return_value",
+            "correctAnswer": 3,
+            "requiredToProceed": true
+        }}
+    ],
+    "animationCues": {{
+        "lineHighlight": "Current line glows yellow with cursor blinking, line number pulses",
+        "variableUpdate": "Variable card flips to reveal new value, old value fades with strikethrough",
+        "stepComplete": "Green checkmark appears, 'Code executed!' sound",
+        "codeComplete": "All lines flash green sequentially, 'Debug Complete!' banner, variable history timeline appears"
+    }},
+    "hints": [
+        {{
+            "stepIndex": 3,
+            "hintText": "Integer division (//) always rounds down. (0 + 5) // 2 = ?"
+        }},
+        {{
+            "stepIndex": 5,
+            "hintText": "If arr[mid] is LESS than target, the target must be in the RIGHT half (larger indices)."
+        }}
+    ],
+    "feedbackMessages": {{
+        "perfect": "Excellent! You've traced binary search perfectly. Notice how each comparison eliminates half the remaining elements - that's O(log n) efficiency!",
+        "good": "Great work! You understand the core loop. Remember: low/high pointers converge toward the target by halving the search space.",
+        "retry": "Keep tracing! Tip: When arr[mid] < target, we search RIGHT (larger values). When arr[mid] > target, we search LEFT (smaller values)."
+    }}
+}}
+```
+
+### EXAMPLE 2: Recursion Stack Trace (Factorial)
+
+```json
+{{
+    "templateType": "STATE_TRACER_CODE",
+    "title": "Recursion Unwrapped: The Factorial Stack",
+    "narrativeIntro": "Recursion can feel like magic, but it's really just a stack of function calls! Let's trace through factorial(4) and watch how the call stack grows and then unwinds. Pay attention to when values are actually calculated!",
+    "code": "def factorial(n):\n    if n <= 1:\n        return 1\n    else:\n        return n * factorial(n - 1)\n\n# Call: factorial(4)",
+    "language": "python",
+    "initialInput": {{
+        "n": 4
+    }},
+    "steps": [
+        {{
+            "index": 0,
+            "lineNumber": 1,
+            "description": "Call factorial(4) - first call pushed to stack",
+            "expectedVariables": {{
+                "n": 4
+            }},
+            "highlightLine": 1,
+            "callStack": ["factorial(4)"]
+        }},
+        {{
+            "index": 1,
+            "lineNumber": 2,
+            "description": "Check if 4 <= 1. False, so we go to else branch",
+            "expectedVariables": {{
+                "n": 4
+            }},
+            "highlightLine": 2,
+            "callStack": ["factorial(4)"]
+        }},
+        {{
+            "index": 2,
+            "lineNumber": 5,
+            "description": "Need to calculate 4 * factorial(3). Must call factorial(3) first!",
+            "expectedVariables": {{
+                "n": 4,
+                "waiting_for": "factorial(3)"
+            }},
+            "highlightLine": 5,
+            "callStack": ["factorial(4)", "factorial(3)"]
+        }},
+        {{
+            "index": 3,
+            "lineNumber": 2,
+            "description": "In factorial(3): Check if 3 <= 1. False, continue to else",
+            "expectedVariables": {{
+                "n": 3
+            }},
+            "highlightLine": 2,
+            "callStack": ["factorial(4)", "factorial(3)"]
+        }},
+        {{
+            "index": 4,
+            "lineNumber": 5,
+            "description": "Need 3 * factorial(2). Must call factorial(2) first!",
+            "expectedVariables": {{
+                "n": 3,
+                "waiting_for": "factorial(2)"
+            }},
+            "highlightLine": 5,
+            "callStack": ["factorial(4)", "factorial(3)", "factorial(2)"]
+        }},
+        {{
+            "index": 5,
+            "lineNumber": 5,
+            "description": "In factorial(2): Need 2 * factorial(1). Call factorial(1)!",
+            "expectedVariables": {{
+                "n": 2,
+                "waiting_for": "factorial(1)"
+            }},
+            "highlightLine": 5,
+            "callStack": ["factorial(4)", "factorial(3)", "factorial(2)", "factorial(1)"]
+        }},
+        {{
+            "index": 6,
+            "lineNumber": 2,
+            "description": "In factorial(1): Check if 1 <= 1. TRUE! Base case reached!",
+            "expectedVariables": {{
+                "n": 1
+            }},
+            "highlightLine": 2,
+            "callStack": ["factorial(4)", "factorial(3)", "factorial(2)", "factorial(1)"]
+        }},
+        {{
+            "index": 7,
+            "lineNumber": 3,
+            "description": "BASE CASE: Return 1. Stack starts unwinding!",
+            "expectedVariables": {{
+                "n": 1,
+                "return_value": 1
+            }},
+            "highlightLine": 3,
+            "callStack": ["factorial(4)", "factorial(3)", "factorial(2)"],
+            "output": "factorial(1) returns 1"
+        }},
+        {{
+            "index": 8,
+            "lineNumber": 5,
+            "description": "Back in factorial(2): Now calculate 2 * 1 = 2",
+            "expectedVariables": {{
+                "n": 2,
+                "return_value": 2
+            }},
+            "highlightLine": 5,
+            "callStack": ["factorial(4)", "factorial(3)"],
+            "output": "factorial(2) returns 2"
+        }},
+        {{
+            "index": 9,
+            "lineNumber": 5,
+            "description": "Back in factorial(3): Now calculate 3 * 2 = 6",
+            "expectedVariables": {{
+                "n": 3,
+                "return_value": 6
+            }},
+            "highlightLine": 5,
+            "callStack": ["factorial(4)"],
+            "output": "factorial(3) returns 6"
+        }},
+        {{
+            "index": 10,
+            "lineNumber": 5,
+            "description": "Back in factorial(4): Finally calculate 4 * 6 = 24",
+            "expectedVariables": {{
+                "n": 4,
+                "return_value": 24
+            }},
+            "highlightLine": 5,
+            "callStack": [],
+            "output": "factorial(4) returns 24"
+        }}
+    ],
+    "tasks": [
+        {{
+            "id": "task_max_stack_depth",
+            "type": "predict_output",
+            "questionText": "What is the maximum depth of the call stack during factorial(4)?",
+            "correctAnswer": 4,
+            "options": ["1", "3", "4", "24"],
+            "requiredToProceed": true
+        }},
+        {{
+            "id": "task_base_case",
+            "type": "step_analysis",
+            "questionText": "Which value of n triggers the base case (stops recursion)?",
+            "correctAnswer": 1,
+            "options": ["0", "1", "4", "never"],
+            "requiredToProceed": true
+        }},
+        {{
+            "id": "task_first_multiplication",
+            "type": "variable_value",
+            "questionText": "What is the first actual multiplication performed (not just scheduled)?",
+            "stepIndex": 8,
+            "correctAnswer": "2 * 1",
+            "options": ["4 * 3", "3 * 2", "2 * 1", "1 * 1"],
+            "requiredToProceed": true
+        }},
+        {{
+            "id": "task_final_result",
+            "type": "variable_value",
+            "questionText": "What value does factorial(4) return?",
+            "stepIndex": 10,
+            "variableName": "return_value",
+            "correctAnswer": 24,
+            "requiredToProceed": true
+        }}
+    ],
+    "animationCues": {{
+        "lineHighlight": "Current line pulses, stack frame visually highlights",
+        "variableUpdate": "Stack frame shows return value, calculation animates",
+        "stepComplete": "Stack frame pops with satisfying 'pop' animation",
+        "codeComplete": "Full calculation tree displays, '4! = 24' result banner"
+    }},
+    "hints": [
+        {{
+            "stepIndex": 6,
+            "hintText": "The base case is crucial! Without it, recursion would never stop."
+        }},
+        {{
+            "stepIndex": 8,
+            "hintText": "Calculations happen on the way BACK UP the stack, not on the way down!"
+        }}
+    ],
+    "feedbackMessages": {{
+        "perfect": "Outstanding! You've mastered recursion tracing. Key insight: the stack grows DOWN to the base case, then UNWINDS back up doing calculations!",
+        "good": "Great progress! You understand the basic flow. Remember: recursive calls PAUSE the current function until they return.",
+        "retry": "Keep practicing! Think of recursion like stacking plates: you keep adding until you hit the base case, then remove plates one by one."
+    }}
+}}
+```
+
+### COMMON MISTAKES TO AVOID
+
+1. **Missing step descriptions**: Every step needs clear description of what happens
+
+2. **Inconsistent variable state**: expectedVariables must reflect actual state after step
+
+3. **Wrong line numbers**: lineNumber should match the actual code line being executed
+
+4. **Forgetting call stack**: For recursion/functions, track the call stack
+
+5. **Too many steps**: Keep it focused - 8-15 steps is ideal
+
+6. **No base case for recursion**: Always show the terminating condition
+
+7. **Missing output**: Show console output when relevant
+
+8. **Non-sequential step indices**: index should be 0, 1, 2, ... with no gaps
+
+### GENERATION CHECKLIST
+
+Before returning your blueprint, verify:
+- [ ] templateType is exactly "STATE_TRACER_CODE"
+- [ ] title is engaging and descriptive
+- [ ] narrativeIntro sets context (2-4 sentences)
+- [ ] code is valid, properly formatted with line breaks (\n)
+- [ ] language is specified (python, javascript, etc.)
+- [ ] Each step has index, lineNumber, description, expectedVariables
+- [ ] Steps are sequential and match actual code execution
+- [ ] Tasks include variable_value and step_analysis types
+- [ ] All 4 animationCues are present and descriptive
+- [ ] Hints help learners at tricky steps
+- [ ] Content matches the pedagogical context (algorithm, difficulty)
+
+Respond with ONLY the valid JSON blueprint, no explanation.

@@ -1,0 +1,65 @@
+{
+  "job": {
+    "jobId": "job-002",
+    "createdAt": "2026-02-11T12:00:00Z",
+    "projectId": "sports-game",
+    "topicId": "cricket-equipment",
+    "assetId": "cricket_bat_icon",
+    "assetType": "svg",
+    "version": 1
+  },
+  "model": {
+    "provider": "google",
+    "route": "imagen",
+    "name": "imagen-4.0-generate-001"
+  },
+  "imagenConfig": {
+    "numberOfImages": 4,
+    "imageSize": "1K",
+    "aspectRatio": "1:1",
+    "personGeneration": "dont_allow",
+    "seed": 789012,
+    "transparentBackground": true
+  },
+  "safetySettings": [
+    {"category": "HARM_CATEGORY_SEXUAL", "threshold": "BLOCK_MEDIUM_AND_ABOVE"}
+  ],
+  "promptSpec": {
+    "subject": "A simple sports UI icon of a cricket bat and ball",
+    "context": "Centered icon composition with generous padding, clean silhouette, no background elements",
+    "style": "Flat vector icon, geometric shapes, consistent stroke weight, minimal palette (2–4 colors), no gradients, no texture, no noise",
+    "qualityModifiers": ["crisp edges", "high contrast", "clean outlines", "minimal detail", "game-ready UI icon"],
+    "photography": {
+      "lighting": "flat even lighting"
+    },
+    "aspectRatioHint": "1:1 square icon, centered, consistent padding, suitable for UI"
+  },
+  "assetSpec": {
+    "background": {"type": "transparent"},
+    "svg": {
+      "strategy": "vectorize",
+      "vectorizeTool": "potrace",
+      "maxPaths": 2000,
+      "disallowRasterEmbeds": true,
+      "optimize": {"tool": "svgo", "preset": "default"}
+    }
+  },
+  "validationSpec": {
+    "mustMatchAspectRatio": true,
+    "dimensions": {"minPx": 512, "maxPx": 1024},
+    "maxFileSizeKB": 200,
+    "transparencyRequired": true
+  },
+  "retrySpec": {
+    "maxAttempts": 4
+  },
+  "outputSpec": {
+    "baseDir": "./assets"
+  },
+  "loggingSpec": {
+    "level": "INFO"
+  },
+  "checkpointSpec": {
+    "enabled": true
+  }
+}

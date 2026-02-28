@@ -1,0 +1,220 @@
+{
+  "id": "ling-k12-sentence-building-sequencing",
+  "title": "Build Sentences in Correct Word Order",
+  "question": "Create an interactive diagram game where students arrange scrambled words into grammatically correct English sentences, learning about subject-verb-object order, article placement, adjective positioning, and prepositional phrase attachment. Include sentences of increasing complexity from simple (The dog runs fast) to compound (The tall boy ate lunch and played outside).",
+  "domain": "linguistics",
+  "educationLevel": "k12",
+  "gameType": "interactive_diagram",
+  "mechanic": "sequencing",
+  "bloomsLevel": "Understand",
+  "pipelineMetrics": {
+    "runId": "2937fff8-8140-4e40-a9c6-45bff7475fe7",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 180.4,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T09:31:08.193521+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "Sentence Architect: Grammar Challenge",
+    "subject": "English Grammar",
+    "difficulty": "advanced",
+    "narrativeIntro": "Welcome, aspiring Sentence Architect! Your mission is to construct grammatically perfect English sentences from scrambled word fragments. Master subject-verb-object order, article placement, adjective positioning, and prepositional phrase attachment to build clear and complex expressions.",
+    "narrativeTheme": "Grammar Construction Site",
+    "completionMessage": "Congratulations, Master Architect! You've successfully constructed a variety of complex and grammatically sound English sentences. Your understanding of sentence structure is truly impressive!",
+    "estimatedDurationMinutes": 12,
+    "diagram": {
+      "assetPrompt": "",
+      "zones": []
+    },
+    "labels": [],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "sequencing",
+        "config": {
+          "instruction_text": "Your first task on the grammar construction site: arrange these word blocks to build a simple, grammatically correct sentence. Remember to place articles and adjectives carefully!"
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 60,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! That word fits perfectly in its place, contributing to a clear sentence structure.",
+          "on_incorrect": "Not quite. Consider the role of this word in the sentence. Does it describe something, or is it an action? Think about what typically comes before or after it.",
+          "on_completion": "Fantastic! You've successfully arranged all the words to form a grammatically correct and meaningful sentence. Well done!",
+          "misconceptions": [
+            {
+              "trigger_label": "adjective_after_noun",
+              "message": "Remember, in English, adjectives typically precede the noun they modify (e.g., 'the big dog'), although they can follow in predicate positions.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "article_sound_confusion",
+              "message": "'A' is used before words starting with a consonant sound, and 'an' is used before words starting with a vowel sound (e.g., 'a unique idea', 'an hour').",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misplaced_prepositional_phrase",
+              "message": "Prepositional phrases must be logically attached to the word or phrase they modify to ensure clarity and avoid ambiguity (e.g., 'He ate the pizza with anchovies' vs. 'He ate the pizza with a fork').",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "subject_always_first",
+              "message": "While common, the subject can appear later in a sentence, especially in questions, inverted sentences, or sentences starting with introductory phrases.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "sequencing",
+        "config": {
+          "instruction_text": "Assemble the sentence by dragging the word and phrase blocks into the correct order. Pay special attention to where you place the prepositional phrases to ensure the meaning is clear and logical."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 80,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! That piece fits perfectly into the sentence structure.",
+          "on_incorrect": "Not quite. Remember, prepositional phrases often provide details about *when*, *where*, or *how* an action occurs, or *which* noun is being described. Consider what information this phrase adds and where it logically belongs.",
+          "on_completion": "Fantastic! You've successfully constructed a detailed and clear sentence using prepositional phrases to add rich information. Well done!",
+          "misconceptions": [
+            {
+              "trigger_label": "incorrect_pp_placement",
+              "message": "Prepositional phrases must be logically attached to the word or phrase they modify to ensure clarity and avoid ambiguity (e.g., 'He ate the pizza with anchovies' vs. 'He ate the pizza with a fork'). Think about what this phrase is describing.",
+              "severity": "high"
+            },
+            {
+              "trigger_label": "subject_misplaced",
+              "message": "While common, the subject can appear later in a sentence, especially in questions, inverted sentences, or sentences starting with introductory phrases. However, in a declarative sentence like this, the subject typically comes early to establish who or what the sentence is about.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "sequencing",
+        "config": {
+          "instruction_text": "On this grammar construction site, your task is to build a strong compound sentence. Arrange the word and phrase 'building blocks' to form two complete independent clauses, then connect them with the correct coordinating conjunction."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 90,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "That piece is perfectly placed! You're building a strong sentence.",
+          "on_incorrect": "Not quite right. Take another look at how this piece connects to the others to form a complete thought.",
+          "on_completion": "Excellent work! You've successfully constructed a grammatically correct compound sentence, skillfully joining two independent clauses.",
+          "misconceptions": [
+            {
+              "trigger_label": "misplaced_conjunction",
+              "message": "Remember, in a compound sentence, the coordinating conjunction (like 'and', 'but', 'or') connects two complete independent clauses. It typically follows a comma and introduces the second clause.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "missing_comma_before_conjunction",
+              "message": "When joining two independent clauses with a coordinating conjunction, a comma is usually placed immediately before the conjunction.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "subject_verb_inversion_in_clause",
+              "message": "Within each independent clause, the subject typically comes before its verb to form a clear statement.",
+              "severity": "medium"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [],
+    "interactionMode": "sequencing",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 10,
+      "max_score": 230
+    },
+    "totalMaxScore": 230,
+    "generation_complete": true,
+    "sequenceConfig": {
+      "items": [
+        {
+          "id": "s1",
+          "content": "The",
+          "explanation": "The article 'The' begins the noun phrase that will act as the subject of our sentence.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        },
+        {
+          "id": "s2",
+          "content": "clever",
+          "explanation": "The adjective 'clever' describes the subject, 'fox'. Adjectives typically come just before the nouns they modify.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        },
+        {
+          "id": "s3",
+          "content": "fox",
+          "explanation": "'fox' is the subject of the sentence \u2013 the one performing the action.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        },
+        {
+          "id": "s4",
+          "content": "jumped",
+          "explanation": "'jumped' is the verb, describing the action that the fox took. It follows the subject.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        },
+        {
+          "id": "s5",
+          "content": "over a",
+          "explanation": "This prepositional phrase begins with 'over' and includes the article 'a', setting up the object of the preposition.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        },
+        {
+          "id": "s6",
+          "content": "log.",
+          "explanation": "'log.' is the object of the preposition 'over', completing the phrase and the sentence. The period marks the end.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        }
+      ],
+      "correct_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6"
+      ],
+      "sequence_type": "ordered",
+      "layout_mode": "horizontal_list",
+      "interaction_pattern": "drag_reorder",
+      "card_type": "text_only",
+      "connector_style": "none",
+      "show_position_numbers": false,
+      "allow_partial_credit": true
+    }
+  }
+}

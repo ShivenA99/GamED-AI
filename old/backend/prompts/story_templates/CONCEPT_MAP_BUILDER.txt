@@ -1,0 +1,13 @@
+### Template Context: CONCEPT_MAP_BUILDER
+
+The resulting visualization will be implemented as:
+- Build concept maps by connecting related ideas.
+- Concepts are represented as nodes.
+- Connections are drawn between related concepts.
+
+When generating story_context, visual_metaphor, visual_elements, question_flow, and animation_cues:
+- Emphasize knowledge modeling, relationships, and concept connections.
+- Visual elements should represent concepts and their relationships.
+- Questions should involve building or understanding concept maps.
+- Animation cues should show node creation, connection drawing, and map validation.
+

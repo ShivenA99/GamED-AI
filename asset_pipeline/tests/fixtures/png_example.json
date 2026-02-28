@@ -1,0 +1,70 @@
+{
+  "job": {
+    "jobId": "job-001",
+    "createdAt": "2026-02-11T12:00:00Z",
+    "projectId": "math-game",
+    "topicId": "fractions-level-1",
+    "assetId": "fraction_pie_half",
+    "assetType": "png",
+    "version": 1
+  },
+  "model": {
+    "provider": "google",
+    "route": "imagen",
+    "name": "imagen-4.0-generate-001"
+  },
+  "imagenConfig": {
+    "numberOfImages": 4,
+    "imageSize": "1K",
+    "aspectRatio": "3:4",
+    "personGeneration": "dont_allow",
+    "seed": 123456,
+    "transparentBackground": true
+  },
+  "safetySettings": [
+    {"category": "HARM_CATEGORY_SEXUAL", "threshold": "BLOCK_MEDIUM_AND_ABOVE"},
+    {"category": "HARM_CATEGORY_HATE_SPEECH", "threshold": "BLOCK_MEDIUM_AND_ABOVE"}
+  ],
+  "promptSpec": {
+    "subject": "A colorful pie chart showing one half highlighted",
+    "context": "Object centered, small margins, neutral studio backdrop",
+    "style": "Professional game asset illustration with subtle gradients and shading, clean edges, realistic materials but not photoreal",
+    "qualityModifiers": ["high-quality", "detailed", "sharp edges", "clean rendering", "production-ready"],
+    "photography": {
+      "cameraProximity": "close-up",
+      "lighting": "soft studio lighting",
+      "cameraSettings": "sharp focus, high clarity"
+    }
+  },
+  "assetSpec": {
+    "background": {"type": "transparent"},
+    "png": {
+      "alpha": true,
+      "colorProfile": "sRGB",
+      "compression": {"tool": "oxipng", "level": 3}
+    }
+  },
+  "validationSpec": {
+    "mustMatchAspectRatio": true,
+    "dimensions": {"minPx": 512, "maxPx": 2048},
+    "maxFileSizeKB": 800,
+    "transparencyRequired": true
+  },
+  "retrySpec": {
+    "maxAttempts": 4,
+    "backoffMs": [0, 500, 1500, 3000]
+  },
+  "outputSpec": {
+    "baseDir": "./assets",
+    "namingTemplate": "{assetId}__{contentHash8}__v{version}"
+  },
+  "loggingSpec": {
+    "level": "INFO",
+    "jsonLogs": true
+  },
+  "checkpointSpec": {
+    "enabled": true,
+    "store": "sqlite",
+    "path": "./.checkpoints/assets.db"
+  }
+}

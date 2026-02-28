@@ -1,0 +1,968 @@
+{
+  "id": "cs-k12-bubble-sort-state-tracer",
+  "title": "Trace Bubble Sort on a Small Array",
+  "question": "Create an algorithm game where students trace bubble sort step by step on the array [5, 3, 8, 1, 4]. At each step, students predict which elements are compared, whether a swap occurs, and the resulting array state.",
+  "domain": "cs",
+  "educationLevel": "k12",
+  "gameType": "algorithm",
+  "mechanic": "state_tracer",
+  "bloomsLevel": "Understand",
+  "pipelineMetrics": {
+    "runId": "d6ec218f-143c-4456-b121-7fb95afa12bb",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 190.0,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T03:26:21.181172+00:00"
+  },
+  "blueprint": {
+    "templateType": "ALGORITHM_GAME",
+    "title": "Bubble Tea Sort Challenge",
+    "subject": "sorting",
+    "difficulty": "intermediate",
+    "algorithmName": "Bubble Sort",
+    "algorithmCategory": "sorting",
+    "narrativeIntro": "Welcome to the Bubble Tea Bar! Customers want their drink ingredients sorted perfectly. Let's use Bubble Sort to get the orders right!",
+    "totalMaxScore": 1700,
+    "passThreshold": 0.6,
+    "learn_config": {
+      "auto_reveal_hint_tier_1_after_ms": 10000,
+      "hint_penalties": [
+        0,
+        0,
+        0
+      ],
+      "partial_credit_multiplier": 0.5,
+      "show_correct_answer_on_wrong": true,
+      "show_misconceptions_preemptively": true,
+      "scaffolding": {}
+    },
+    "test_config": {
+      "auto_reveal_hint_tier_1_after_ms": null,
+      "hint_penalties": [
+        0.1,
+        0.2,
+        0.3
+      ],
+      "partial_credit_multiplier": 0.0,
+      "show_correct_answer_on_wrong": false,
+      "show_misconceptions_preemptively": false,
+      "time_limit_seconds": null
+    },
+    "algorithmGameType": null,
+    "is_multi_scene": true,
+    "scenes": [
+      {
+        "scene_id": "scene_1",
+        "scene_number": 1,
+        "title": "First Order Up!",
+        "game_type": "state_tracer",
+        "difficulty": "beginner",
+        "learning_goal": "Understand the basic comparison and swap mechanism of Bubble Sort by tracing its execution on a small array.",
+        "max_score": 800,
+        "content": {
+          "algorithmName": "Bubble Sort",
+          "algorithmDescription": "Bubble Sort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted.",
+          "narrativeIntro": "Welcome to the 'First Order Up!' diner! The orders are all mixed up. Your job is to sort them by ticket number using the Bubble Sort method. Let's get these dishes out to the right tables, one comparison at a time!",
+          "code": "def bubble_sort(array):\n  n = len(array)\n  for i in range(n):\n    swapped = False\n    for j in range(0, n - i - 1):\n      if array[j] > array[j+1]:\n        array[j], array[j+1] = array[j+1], array[j]\n        swapped = True\n    if not swapped:\n      break\n  return array",
+          "language": "python",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "codeLine": 2,
+              "description": "Initialize `n` with the length of the array.",
+              "variables": {
+                "array": "[5, 3, 8, 4]"
+              },
+              "changedVariables": [
+                "n"
+              ],
+              "dataStructure": {
+                "type": "array",
+                "elements": [
+                  5,
+                  3,
+                  8,
+                  4
+                ],
+                "highlights": [],
+                "sortedIndices": []
+              },
+              "prediction": null,
+              "explanation": "The variable `n` is set to the length of the input array, which is 4. This value will be used to control the loops.",
+              "hints": [
+                "What does the `len()` function do?",
+                "It calculates the number of elements in the list or array.",
+                "The array `[5, 3, 8, 4]` has 4 elements, so `n` will be 4."
+              ]
+            },
+            {
+              "stepNumber": 2,
+              "codeLine": 3,
+              "description": "Start the outer loop for the first pass. `i` is initialized to 0.",
+              "variables": {
+                "array": "[5, 3, 8, 4]",
+                "n": "4"
+              },
+              "changedVariables": [
+                "i"
+              ],
+              "dataStructure": {
+                "type": "array",
+                "elements": [
+                  5,
+                  3,
+                  8,
+                  4
+                ],
+                "highlights": [],
+                "sortedIndices": []
+              },
+              "prediction": null,
+              "explanation": "The outer loop begins, controlling the number of passes over the array. `i` starts at 0 for the first pass.",
+              "hints": [
+                "This is the first iteration of the outer loop.",
+                "In Python, `range(n)` starts at 0.",
+                "The variable `i` is initialized to 0."
+              ]
+            },
+            {
+              "stepNumber": 3,
+              "codeLine": 5,
+              "description": "Start the inner loop for comparing adjacent elements. `j` is initialized to 0.",
+              "variables": {
+                "array": "[5, 3, 8, 4]",
+                "n": "4",
+                "i": "0",
+                "swapped": "False"
+              },
+              "changedVariables": [
+                "j"
+              ],
+              "dataStructure": {
+                "type": "array",
+                "elements": [
+                  5,
+                  3,
+                  8,
+                  4
+                ],
+                "highlights": [
+                  {
+                    "index": 0,
+                    "color": "active"
+                  },
+                  {
+                    "index": 1,
+                    "color": "active"
+                  }
+                ],
+                "sortedIndices": []
+              },
+              "prediction": {
+                "type": "multiple_choice",
+                "prompt": "Which two elements will be compared first in this pass?",
+                "options": [
+                  {
+                    "id": "a",
+                    "label": "5 and 3"
+                  },
+                  {
+                    "id": "b",
+                    "label": "3 and 8"
+                  },
+                  {
+                    "id": "c",
+                    "label": "8 and 4"
+                  }
+                ],
+                "correctId": "a"
+              },
+              "explanation": "The inner loop starts, responsible for comparing adjacent elements. `j` starts at 0, so we will compare `array[0]` and `array[1]`.",
+              "hints": [
+                "The inner loop variable `j` determines the first element in the pair.",
+                "The code compares `array[j]` and `array[j+1]`. What are the values when `j` is 0?",
+                "Since `j` is 0, the elements at index 0 (value 5) and index 1 (value 3) are compared."
+              ]
+            },
+            {
+              "stepNumber": 4,
+              "codeLine": 6,
+              "description": "Compare `array[0]` (5) and `array[1]` (3). The condition `5 > 3` is true.",
+              "variables": {
+                "array": "[5, 3, 8, 4]",
+                "n": "4",
+                "i": "0",
+                "swapped": "False",
+                "j": "0"
+              },
+              "changedVariables": [],
+              "dataStructure": {
+                "type": "array",
+                "elements": [
+                  5,
+                  3,
+                  8,
+                  4
+                ],
+                "highlights": [
+                  {
+                    "index": 0,
+                    "color": "compare"
+                  },
+                  {
+                    "index": 1,
+                    "color": "compare"
+                  }
+                ],
+                "sortedIndices": []
+              },
+              "prediction": {
+                "type": "multiple_choice",
+                "prompt": "Will the elements 5 and 3 be swapped?",
+                "options": [
+                  {
+                    "id": "a",
+                    "label": "Yes"
+                  },
+                  {
+                    "id": "b",
+                    "label": "No"
+                  }
+                ],
+                "correctId": "a"
+              },
+              "explanation": "The condition `array[j] > array[j+1]` (which is `5 > 3`) evaluates to true, so the code inside the `if` block will execute, causing a swap.",
+              "hints": [
+                "A swap occurs if the left element is greater than the right element.",
+                "Is 5 greater than 3?",
+                "Yes, 5 is greater than 3, so they will be swapped to put the smaller element first."
+              ]
+            },
+            {
+              "stepNumber": 5,
+              "codeLine": 7,
+              "description": "Swap `array[0]` and `array[1]` because 5 > 3.",
+              "variables": {
+                "array": "[5, 3, 8, 4]",
+                "n": "4",
+                "i": "0",
+                "swapped": "False",
+                "j": "0"
+              },
+              "changedVariables": [
+                "array"
+              ],
+              "dataStructure": {
+                "type": "array",
+                "elements": [
+                  5,
+                  3,
+                  8,
+                  4
+                ],
+                "highlights": [
+                  {
+                    "index": 0,
+                    "color": "swap"
+                  },
+                  {
+                    "index": 1,
+                    "color": "swap"
+                  }
+                ],
+                "sortedIndices": []
+              },
+              "prediction": {
+                "type": "arrangement",
+                "prompt": "What does the array look like after this swap?",
+                "elements": [
+                  5,
+                  3,
+                  8,
+                  4
+                ],
+                "correctArrangement": [
+                  3,
+                  5,
+                  8,
+                  4
+                ]
+              },
+              "explanation": "The elements at indices 0 and 1 are swapped because 5 is greater than 3. The array is now `[3, 5, 8, 4]`.",
+              "hints": [
+                "The values at index 0 and index 1 are exchanged.",
+                "The value 5 moves to index 1, and the value 3 moves to index 0.",
+                "The new array will be `[3, 5, 8, 4]`."
+              ]
+            },
+            {
+              "stepNumber": 6,
+              "codeLine": 8,
+              "description": "Set the `swapped` flag to `True` since a swap occurred.",
+              "variables": {
+                "array": "[3, 5, 8, 4]",
+                "n": "4",
+                "i": "0",
+                "swapped": "False",
+                "j": "0"
+              },
+              "changedVariables": [
+                "swapped"
+              ],
+              "dataStructure": {
+                "type": "array",
+                "elements": [
+                  3,
+                  5,
+                  8,
+                  4
+                ],
+                "highlights": [],
+                "sortedIndices": []
+              },
+              "prediction": {
+                "type": "value",
+                "prompt": "What is the new value of the `swapped` variable?",
+                "correctValue": "True",
+                "acceptableValues": [
+                  "True",
+                  "true"
+                ],
+                "placeholder": "Enter boolean value"
+              },
+              "explanation": "The `swapped` flag is set to `True` to indicate that at least one swap has happened in this pass. This is an optimization to stop early if the array becomes sorted.",
+              "hints": [
+                "This line executes right after a swap.",
+                "The code explicitly assigns a new value to the `swapped` variable.",
+                "The variable `swapped` is set to `True`."
+              ]
+            },
+            {
+              "stepNumber": 7,
+              "codeLine": 5,
+              "description": "Inner loop continues. `j` is incremented to 1.",
+              "variables": {
+                "array": "[3, 5, 8, 4]",
+                "n": "4",
+                "i": "0",
+                "swapped": "True",
+                "j": "0"
+              },
+              "changedVariables": [
+                "j"
+              ],
+              "dataStructure": {
+                "type": "array",
+                "elements": [
+                  3,
+                  5,
+                  8,
+                  4
+                ],
+                "highlights": [
+                  {
+                    "index": 1,
+                    "color": "active"
+                  },
+                  {
+                    "index": 2,
+                    "color": "active"
+                  }
+                ],
+                "sortedIndices": []
+              },
+              "prediction": {
+                "type": "multiple_choice",
+                "prompt": "Which two elements are compared next?",
+                "options": [
+                  {
+                    "id": "a",
+                    "label": "3 and 5"
+                  },
+                  {
+                    "id": "b",
+                    "label": "5 and 8"
+                  },
+                  {
+                    "id": "c",
+                    "label": "8 and 4"
+                  }
+                ],
+                "correctId": "b"
+              },
+              "explanation": "The inner loop increments `j` to 1. Now, `array[1]` (5) and `array[2]` (8) are compared.",
+              "hints": [
+                "The inner loop moves to the next pair of adjacent elements.",
+                "The variable `j` is now 1. The comparison is between `array[j]` and `array[j+1]`.",
+                "The elements at index 1 (value 5) and index 2 (value 8) are compared."
+              ]
+            },
+            {
+              "stepNumber": 8,
+              "codeLine": 6,
+              "description": "Compare `array[1]` (5) and `array[2]` (8). The condition `5 > 8` is false.",
+              "variables": {
+                "array": "[3, 5, 8, 4]",
+                "n": "4",
+                "i": "0",
+                "swapped": "True",
+                "j": "1"
+              },
+              "changedVariables": [],
+              "dataStructure": {
+                "type": "array",
+                "elements": [
+                  3,
+                  5,
+                  8,
+                  4
+                ],
+                "highlights": [
+                  {
+                    "index": 1,
+                    "color": "compare"
+                  },
+                  {
+                    "index": 2,
+                    "color": "compare"
+                  }
+                ],
+                "sortedIndices": []
+              },
+              "prediction": {
+                "type": "multiple_choice",
+                "prompt": "Will a swap occur between 5 and 8?",
+                "options": [
+                  {
+                    "id": "a",
+                    "label": "Yes"
+                  },
+                  {
+                    "id": "b",
+                    "label": "No"
+                  }
+                ],
+                "correctId": "b"
+              },
+              "explanation": "The condition `array[j] > array[j+1]` (which is `5 > 8`) is false. The elements are already in the correct order, so no swap occurs.",
+              "hints": [
+                "A swap only happens if the left element is greater than the right.",
+                "Is 5 greater than 8?",
+                "No, 5 is not greater than 8, so the `if` block is skipped and no swap happens."
+              ]
+            },
+            {
+              "stepNumber": 9,
+              "codeLine": 5,
+              "description": "Inner loop continues. `j` is incremented to 2.",
+              "variables": {
+                "array": "[3, 5, 8, 4]",
+                "n": "4",
+                "i": "0",
+                "swapped": "True",
+                "j": "1"
+              },
+              "changedVariables": [
+                "j"
+              ],
+              "dataStructure": {
+                "type": "array",
+                "elements": [
+                  3,
+                  5,
+                  8,
+                  4
+                ],
+                "highlights": [
+                  {
+                    "index": 2,
+                    "color": "active"
+                  },
+                  {
+                    "index": 3,
+                    "color": "active"
+                  }
+                ],
+                "sortedIndices": []
+              },
+              "prediction": {
+                "type": "multiple_choice",
+                "prompt": "Which two elements are compared next?",
+                "options": [
+                  {
+                    "id": "a",
+                    "label": "5 and 8"
+                  },
+                  {
+                    "id": "b",
+                    "label": "8 and 4"
+                  },
+                  {
+                    "id": "c",
+                    "label": "3 and 5"
+                  }
+                ],
+                "correctId": "b"
+              },
+              "explanation": "The inner loop increments `j` to 2. Now, `array[2]` (8) and `array[3]` (4) are compared. This is the last comparison in the first pass.",
+              "hints": [
+                "This is the last comparison in the first pass (where i=0).",
+                "The variable `j` is now 2. The comparison is between `array[j]` and `array[j+1]`.",
+                "The elements at index 2 (value 8) and index 3 (value 4) are compared."
+              ]
+            },
+            {
+              "stepNumber": 10,
+              "codeLine": 6,
+              "description": "Compare `array[2]` (8) and `array[3]` (4). The condition `8 > 4` is true.",
+              "variables": {
+                "array": "[3, 5, 8, 4]",
+                "n": "4",
+                "i": "0",
+                "swapped": "True",
+                "j": "2"
+              },
+              "changedVariables": [],
+              "dataStructure": {
+                "type": "array",
+                "elements": [
+                  3,
+                  5,
+                  8,
+                  4
+                ],
+                "highlights": [
+                  {
+                    "index": 2,
+                    "color": "compare"
+                  },
+                  {
+                    "index": 3,
+                    "color": "compare"
+                  }
+                ],
+                "sortedIndices": []
+              },
+              "prediction": {
+                "type": "arrangement",
+                "prompt": "What will the array look like at the end of this pass (after this comparison and potential swap)?",
+                "elements": [
+                  3,
+                  5,
+                  8,
+                  4
+                ],
+                "correctArrangement": [
+                  3,
+                  5,
+                  4,
+                  8
+                ]
+              },
+              "explanation": "The condition `8 > 4` is true, so a swap will occur. After the swap, the array will be `[3, 5, 4, 8]`. This concludes the first pass, and the largest element (8) has 'bubbled' to the end.",
+              "hints": [
+                "The comparison is `8 > 4`. Will a swap happen?",
+                "Since 8 is greater than 4, they will be swapped.",
+                "The array becomes `[3, 5, 4, 8]`. Notice the largest element is now at the end."
+              ]
+            }
+          ],
+          "scoringConfig": {
+            "basePoints": 100,
+            "streakThresholds": [
+              {
+                "min": 0,
+                "multiplier": 1
+              },
+              {
+                "min": 3,
+                "multiplier": 1.5
+              },
+              {
+                "min": 5,
+                "multiplier": 2
+              },
+              {
+                "min": 8,
+                "multiplier": 3
+              }
+            ],
+            "hintPenalties": [
+              0.1,
+              0.2,
+              0.3
+            ],
+            "perfectRunBonus": 0.2
+          }
+        },
+        "asset_url": null
+      },
+      {
+        "scene_id": "scene_2",
+        "scene_number": 2,
+        "title": "The Rush Hour Bug",
+        "game_type": "bug_hunter",
+        "difficulty": "intermediate",
+        "learning_goal": "Identify and fix a common off-by-one error in the inner loop of a Bubble Sort implementation.",
+        "max_score": 600,
+        "content": {
+          "algorithmName": "Bubble Sort",
+          "algorithmDescription": "Bubble Sort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order.",
+          "narrativeIntro": "The city's traffic control system is in chaos! The sorting algorithm that organizes vehicle dispatch times is malfunctioning, causing gridlock. Find and fix the bugs before the whole city comes to a standstill!",
+          "language": "python",
+          "rounds": [
+            {
+              "roundId": "round_1",
+              "title": "The Phantom Index",
+              "buggyCode": "def bubble_sort(arr):\n    n = len(arr)\n    for i in range(n):\n        # The inner loop's range is off by one\n        for j in range(0, n-i):\n            if arr[j] > arr[j+1]:\n                arr[j], arr[j+1] = arr[j+1], arr[j]\n    return arr",
+              "correctCode": "def bubble_sort(arr):\n    n = len(arr)\n    # Outer loop for passes\n    for i in range(n-1):\n        # Inner loop for comparisons\n        for j in range(0, n-i-1):\n            if arr[j] > arr[j+1]:\n                # Swap elements\n                arr[j], arr[j+1] = arr[j+1], arr[j]\n    return arr",
+              "bugs": [
+                {
+                  "bugId": "bug_1",
+                  "bugLines": [
+                    5
+                  ],
+                  "buggyLinesText": [
+                    "        for j in range(0, n-i):"
+                  ],
+                  "correctLinesText": [
+                    "        for j in range(0, n-i-1):"
+                  ],
+                  "bugType": "boundary_error",
+                  "difficulty": 1,
+                  "explanation": "The inner loop's range is one position too large. Because the code accesses `arr[j+1]`, the loop for `j` must stop one element sooner to avoid an `IndexError`. The correct range is `n-i-1`.",
+                  "bugTypeExplanation": "A boundary error, often called an off-by-one error, occurs when a loop or array access goes one step too far or one step too short of its intended boundary, often leading to an `IndexError` or incorrect results.",
+                  "fixOptions": [
+                    {
+                      "id": "fix_1",
+                      "codeText": "for j in range(0, n-i-1):",
+                      "isCorrect": true,
+                      "feedback": "Correct! This prevents the loop from trying to access an index that is out of bounds."
+                    },
+                    {
+                      "id": "fix_2",
+                      "codeText": "for j in range(0, n-1):",
+                      "isCorrect": false,
+                      "feedback": "This is a common implementation, but it's less efficient and doesn't fix the crash that occurs when `i` is greater than 0."
+                    },
+                    {
+                      "id": "fix_3",
+                      "codeText": "for j in range(0, n):",
+                      "isCorrect": false,
+                      "feedback": "This makes the boundary error even worse, as it will always try to access an index beyond the end of the list."
+                    }
+                  ],
+                  "hints": [
+                    "The error is related to how many times a loop runs.",
+                    "Look at the inner loop where array elements are compared.",
+                    "The range for `j` needs to account for the `j+1` access."
+                  ]
+                }
+              ],
+              "testCases": [
+                {
+                  "id": "test_1",
+                  "inputDescription": "A simple reverse-sorted list `[3, 2, 1]`",
+                  "expectedOutput": "[1, 2, 3]",
+                  "buggyOutput": "IndexError: list index out of range",
+                  "exposedBugs": [
+                    "bug_1"
+                  ]
+                },
+                {
+                  "id": "test_2",
+                  "inputDescription": "A longer, unsorted list `[5, 1, 4, 2, 8]`",
+                  "expectedOutput": "[1, 2, 4, 5, 8]",
+                  "buggyOutput": "IndexError: list index out of range",
+                  "exposedBugs": [
+                    "bug_1"
+                  ]
+                }
+              ],
+              "redHerrings": [
+                {
+                  "lineNumber": 3,
+                  "feedback": "This outer loop `for i in range(n):` is technically correct. While `range(n-1)` is a common optimization, this version is still valid; the last pass will simply do no comparisons."
+                }
+              ]
+            },
+            {
+              "roundId": "round_2",
+              "title": "The Duplicating Dispatch",
+              "buggyCode": "def bubble_sort(arr):\n    n = len(arr)\n    for i in range(n-1):\n        for j in range(0, n-i-1):\n            if arr[j] > arr[j+1]:\n                # The swap logic is flawed\n                arr[j], arr[j+1] = arr[j+1], arr[j+1]\n    return arr",
+              "correctCode": "def bubble_sort(arr):\n    n = len(arr)\n    # Outer loop for passes\n    for i in range(n-1):\n        # Inner loop for comparisons\n        for j in range(0, n-i-1):\n            if arr[j] > arr[j+1]:\n                # Swap elements\n                arr[j], arr[j+1] = arr[j+1], arr[j]\n    return arr",
+              "bugs": [
+                {
+                  "bugId": "bug_1",
+                  "bugLines": [
+                    7
+                  ],
+                  "buggyLinesText": [
+                    "                arr[j], arr[j+1] = arr[j+1], arr[j+1]"
+                  ],
+                  "correctLinesText": [
+                    "                arr[j], arr[j+1] = arr[j+1], arr[j]"
+                  ],
+                  "bugType": "logic_error",
+                  "difficulty": 2,
+                  "explanation": "The tuple assignment for the swap is incorrect. It assigns the value of `arr[j+1]` to both positions, which duplicates the larger element and loses the smaller one. The correct swap should be `arr[j], arr[j+1] = arr[j+1], arr[j]`.",
+                  "bugTypeExplanation": "A logic error occurs when code is syntactically correct and runs without crashing, but it does not produce the intended result due to a flaw in the programmer's reasoning or implementation of the algorithm.",
+                  "fixOptions": [
+                    {
+                      "id": "fix_1",
+                      "codeText": "arr[j], arr[j+1] = arr[j+1], arr[j]",
+                      "isCorrect": true,
+                      "feedback": "Correct! This is the standard Pythonic way to swap two variables."
+                    },
+                    {
+                      "id": "fix_2",
+                      "codeText": "arr[j], arr[j+1] = arr[j], arr[j]",
+                      "isCorrect": false,
+                      "feedback": "This is also incorrect. It duplicates the smaller element (`arr[j]`) and loses the larger one."
+                    },
+                    {
+                      "id": "fix_3",
+                      "codeText": "arr[j] = arr[j+1]",
+                      "isCorrect": false,
+                      "feedback": "This only performs half a swap, overwriting the value of `arr[j]` without storing it somewhere first."
+                    }
+                  ],
+                  "hints": [
+                    "The code runs but produces the wrong output. What is the core operation of this algorithm?",
+                    "Examine the line where two elements are exchanged.",
+                    "The swap operation is overwriting a value instead of exchanging it."
+                  ]
+                }
+              ],
+              "testCases": [
+                {
+                  "id": "test_1",
+                  "inputDescription": "An unsorted list `[3, 1, 2]`",
+                  "expectedOutput": "[1, 2, 3]",
+                  "buggyOutput": "[1, 1, 2]",
+                  "exposedBugs": [
+                    "bug_1"
+                  ]
+                },
+                {
+                  "id": "test_2",
+                  "inputDescription": "A list with a large value at the start `[10, 4, 6]`",
+                  "expectedOutput": "[4, 6, 10]",
+                  "buggyOutput": "[4, 4, 6]",
+                  "exposedBugs": [
+                    "bug_1"
+                  ]
+                }
+              ],
+              "redHerrings": [
+                {
+                  "lineNumber": 3,
+                  "feedback": "This outer loop `for i in range(n-1):` is a correct and common optimization for Bubble Sort. Since each pass moves the next largest element to its final position, we only need n-1 passes."
+                }
+              ]
+            }
+          ],
+          "config": {
+            "revealSequentially": true,
+            "showTestOutput": true,
+            "showRunButton": true,
+            "fixMode": "multiple_choice",
+            "maxWrongLineClicks": 3,
+            "roundMode": true
+          }
+        },
+        "asset_url": null
+      },
+      {
+        "scene_id": "scene_3",
+        "scene_number": 3,
+        "title": "Optimizing the Menu",
+        "game_type": "complexity_analyzer",
+        "difficulty": "advanced",
+        "learning_goal": "Analyze the time complexity of Bubble Sort in its best, average, and worst-case scenarios.",
+        "max_score": 300,
+        "content": {
+          "algorithmName": "Bubble Sort",
+          "algorithmDescription": "Bubble Sort is a simple comparison-based sorting algorithm. It repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. The pass through the list is repeated until no swaps are needed, which indicates that the list is sorted. It's known for its simplicity but generally performs poorly on large lists.",
+          "challenges": [
+            {
+              "challengeId": "challenge_1",
+              "type": "identify_from_code",
+              "title": "Best-Case Scenario: Optimized Bubble Sort",
+              "description": "Analyze the provided Python code for an optimized Bubble Sort. Determine its time complexity when the input array is already sorted (best-case scenario).",
+              "code": "def bubble_sort_optimized(arr):\n    n = len(arr)\n    for i in range(n - 1):\n        swapped = False\n        for j in range(0, n - i - 1):\n            if arr[j] > arr[j + 1]:\n                arr[j], arr[j + 1] = arr[j + 1], arr[j]\n                swapped = True\n        if not swapped:\n            break # Optimization: If no two elements were swapped by inner loop, then array is sorted\n    return arr",
+              "language": "python",
+              "growthData": null,
+              "codeSections": [
+                {
+                  "sectionId": "sec_1",
+                  "label": "Initialization",
+                  "startLine": 2,
+                  "endLine": 2,
+                  "complexity": "O(1)",
+                  "isBottleneck": false
+                },
+                {
+                  "sectionId": "sec_2",
+                  "label": "Outer Loop (Best Case)",
+                  "startLine": 3,
+                  "endLine": 10,
+                  "complexity": "O(n)",
+                  "isBottleneck": true
+                },
+                {
+                  "sectionId": "sec_3",
+                  "label": "Inner Loop (Best Case)",
+                  "startLine": 5,
+                  "endLine": 7,
+                  "complexity": "O(n)",
+                  "isBottleneck": false
+                },
+                {
+                  "sectionId": "sec_4",
+                  "label": "Optimization Check",
+                  "startLine": 8,
+                  "endLine": 9,
+                  "complexity": "O(1)",
+                  "isBottleneck": false
+                }
+              ],
+              "correctComplexity": "O(n)",
+              "options": [
+                "O(1)",
+                "O(n)",
+                "O(n log n)",
+                "O(n^2)"
+              ],
+              "explanation": "In the best-case scenario (array is already sorted), the outer loop runs only once. The inner loop iterates 'n-1' times, performing comparisons. However, no swaps occur, so the 'swapped' flag remains False. The 'if not swapped: break' condition is met after the first full pass, terminating the sorting process early. This results in a single pass through the array, making the time complexity O(n).",
+              "points": 100,
+              "hints": [
+                "Consider what happens if the array is already sorted.",
+                "Pay attention to the 'swapped' flag and the 'break' statement.",
+                "The algorithm only needs to make one full pass to confirm sortedness, leading to O(n) operations."
+              ],
+              "complexityDimension": "time",
+              "caseVariant": "best"
+            },
+            {
+              "challengeId": "challenge_2",
+              "type": "infer_from_growth",
+              "title": "Average-Case Performance of Bubble Sort",
+              "description": "The table below shows the number of operations (comparisons and swaps) performed by Bubble Sort for different input sizes. Infer the average-case time complexity based on this growth pattern.",
+              "code": null,
+              "language": "python",
+              "growthData": {
+                "inputSizes": [
+                  10,
+                  100,
+                  1000,
+                  10000
+                ],
+                "operationCounts": [
+                  100,
+                  10000,
+                  1000000,
+                  100000000
+                ]
+              },
+              "codeSections": [],
+              "correctComplexity": "O(n^2)",
+              "options": [
+                "O(n)",
+                "O(n log n)",
+                "O(n^2)",
+                "O(2^n)"
+              ],
+              "explanation": "When the input size (n) increases by a factor of 10, the number of operations increases by a factor of 100 (10^2). This quadratic relationship (operations proportional to n squared) is characteristic of O(n^2) complexity. Bubble Sort, on average, performs a number of comparisons and swaps roughly proportional to n^2.",
+              "points": 100,
+              "hints": [
+                "Calculate the ratio of operation counts when the input size increases.",
+                "If N increases by X, and operations increase by X^2, what does that suggest?",
+                "The growth pattern shows a quadratic relationship, indicating O(n^2)."
+              ],
+              "complexityDimension": "time",
+              "caseVariant": "average"
+            },
+            {
+              "challengeId": "challenge_3",
+              "type": "find_bottleneck",
+              "title": "Worst-Case Bottleneck in Bubble Sort",
+              "description": "Examine the standard Bubble Sort implementation. Identify the section of code that contributes most significantly to its worst-case time complexity and determine the overall worst-case complexity.",
+              "code": "def bubble_sort(arr):\n    n = len(arr)\n    # Section A: Outer loop for passes\n    for i in range(n - 1):\n        # Section B: Inner loop for comparisons and swaps\n        for j in range(0, n - i - 1):\n            if arr[j] > arr[j + 1]:\n                arr[j], arr[j + 1] = arr[j + 1], arr[j]\n    return arr",
+              "language": "python",
+              "growthData": null,
+              "codeSections": [
+                {
+                  "sectionId": "sec_a",
+                  "label": "Outer Loop",
+                  "startLine": 4,
+                  "endLine": 4,
+                  "complexity": "O(n)",
+                  "isBottleneck": false
+                },
+                {
+                  "sectionId": "sec_b",
+                  "label": "Inner Loop (Comparisons/Swaps)",
+                  "startLine": 6,
+                  "endLine": 8,
+                  "complexity": "O(n^2)",
+                  "isBottleneck": true
+                }
+              ],
+              "correctComplexity": "O(n^2)",
+              "options": [
+                "O(n)",
+                "O(n log n)",
+                "O(n^2)",
+                "O(n^3)"
+              ],
+              "explanation": "In the worst-case scenario (e.g., a reverse-sorted array), every element needs to be compared and potentially swapped multiple times. The outer loop runs 'n-1' times. For each iteration of the outer loop, the inner loop runs 'n-1', then 'n-2', ..., down to 1 time. This nested loop structure leads to approximately (n-1) + (n-2) + ... + 1 = n(n-1)/2 operations, which simplifies to O(n^2). The inner loop (Section B) is the bottleneck because its execution count is dependent on the outer loop, resulting in a quadratic number of operations.",
+              "points": 150,
+              "hints": [
+                "Focus on the nested loop structure.",
+                "How many times does the inner loop execute in total across all passes of the outer loop?",
+                "The sum of an arithmetic series (n-1) + (n-2) + ... + 1 is key to understanding the total operations, which results in O(n^2)."
+              ],
+              "complexityDimension": "time",
+              "caseVariant": "worst"
+            }
+          ],
+          "complexity_dimension": "time",
+          "case_variants": "best_average_worst"
+        },
+        "asset_url": null
+      }
+    ],
+    "scene_transitions": [
+      {
+        "from_scene": "scene_1",
+        "to_scene": "scene_2",
+        "trigger": "completion"
+      },
+      {
+        "from_scene": "scene_2",
+        "to_scene": "scene_3",
+        "trigger": "completion"
+      }
+    ],
+    "scene_assets": {
+      "scene_1": {
+        "scene_id": "scene_1",
+        "status": "skipped",
+        "image_url": null,
+        "asset_type": "algorithm_illustration"
+      },
+      "scene_3": {
+        "scene_id": "scene_3",
+        "status": "skipped",
+        "image_url": null,
+        "asset_type": "growth_chart"
+      }
+    },
+    "is_degraded": false,
+    "generation_complete": true
+  }
+}

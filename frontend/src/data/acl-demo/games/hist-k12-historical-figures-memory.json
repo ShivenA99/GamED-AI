@@ -1,0 +1,680 @@
+{
+  "id": "hist-k12-historical-figures-memory",
+  "title": "Match Historical Figures to Contributions",
+  "question": "Create an interactive diagram game where students match historical figures (George Washington, Benjamin Franklin, Thomas Jefferson, Alexander Hamilton, John Adams, James Madison) to their key contributions to American founding.",
+  "domain": "history",
+  "educationLevel": "k12",
+  "gameType": "interactive_diagram",
+  "mechanic": "memory_match",
+  "bloomsLevel": "Understand",
+  "pipelineMetrics": {
+    "runId": "b0bab089-c783-4a67-9ebc-9b8f235a9c7b",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 122.1,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T05:11:15.083323+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "Founding Fathers: Architects of a Nation",
+    "subject": "History",
+    "difficulty": "advanced",
+    "narrativeIntro": "Step back in time to the birth of a nation and explore the pivotal roles played by the American Founding Fathers. Your mission is to connect these visionary leaders with their enduring contributions and understand their profound impact.",
+    "narrativeTheme": "Historical Legacy",
+    "completionMessage": "Congratulations, historian! You've successfully identified the key architects and their legacies that shaped the United States.",
+    "estimatedDurationMinutes": 10,
+    "diagram": {
+      "assetPrompt": "A dignified collage featuring six distinct, historically accurate portraits or busts of George Washington, Benjamin Franklin, Thomas Jefferson, Alexander Hamilton, John Adams, and James Madison. Each figure is clearly separated with a subtle, elegant frame or background element (e.g., a faint architectural arch, a distinct color wash), creating distinct, clickable/droppable zones for interaction. The overall style should evoke historical documents or classical portraiture, with a slightly aged texture.",
+      "zones": [
+        {
+          "id": "zone_george_washington",
+          "label": "George Washington",
+          "points": [
+            [
+              14.0,
+              12.0
+            ],
+            [
+              11.5,
+              15.5
+            ],
+            [
+              9.8,
+              21.3
+            ],
+            [
+              10.1,
+              24.1
+            ],
+            [
+              12.0,
+              26.2
+            ],
+            [
+              12.2,
+              28.2
+            ],
+            [
+              10.9,
+              30.0
+            ],
+            [
+              10.5,
+              33.3
+            ],
+            [
+              4.8,
+              38.4
+            ],
+            [
+              4.7,
+              45.4
+            ],
+            [
+              28.6,
+              45.3
+            ],
+            [
+              27.0,
+              39.9
+            ],
+            [
+              23.1,
+              36.1
+            ],
+            [
+              22.4,
+              31.7
+            ],
+            [
+              20.9,
+              29.7
+            ],
+            [
+              22.0,
+              25.8
+            ],
+            [
+              24.2,
+              22.7
+            ],
+            [
+              21.7,
+              14.8
+            ],
+            [
+              18.5,
+              11.3
+            ],
+            [
+              16.2,
+              11.0
+            ]
+          ],
+          "x": 16.3,
+          "y": 27.1,
+          "radius": 22.0,
+          "shape": "polygon",
+          "center": {
+            "x": 16.3,
+            "y": 27.1
+          },
+          "description": "As Commander-in-Chief of the Continental Army, he led the nascent American forces to victory against Great Britain, securing the nation's independence. Later, as the first U.S. President, he established crucial precedents for the executive branch, guiding the young republic through its formative years and ensuring a peaceful transfer of power."
+        },
+        {
+          "id": "zone_benjamin_franklin",
+          "label": "Benjamin Franklin",
+          "points": [
+            [
+              46.5,
+              12.2
+            ],
+            [
+              44.1,
+              16.3
+            ],
+            [
+              41.7,
+              25.5
+            ],
+            [
+              42.3,
+              32.3
+            ],
+            [
+              45.2,
+              33.4
+            ],
+            [
+              40.5,
+              39.0
+            ],
+            [
+              37.9,
+              45.3
+            ],
+            [
+              62.4,
+              45.4
+            ],
+            [
+              62.5,
+              37.0
+            ],
+            [
+              58.1,
+              32.8
+            ],
+            [
+              59.4,
+              28.5
+            ],
+            [
+              55.5,
+              15.5
+            ],
+            [
+              53.5,
+              12.6
+            ],
+            [
+              51.3,
+              11.1
+            ],
+            [
+              48.6,
+              11.0
+            ]
+          ],
+          "x": 50.0,
+          "y": 26.5,
+          "radius": 22.6,
+          "shape": "polygon",
+          "center": {
+            "x": 50.0,
+            "y": 26.5
+          },
+          "description": "A renowned polymath, inventor, and statesman, he served as a crucial diplomat to France, securing vital foreign aid and military support during the Revolutionary War. His wisdom and influence were instrumental in both signing the Declaration of Independence and helping to draft and sign the U.S. Constitution, embodying the spirit of American ingenuity and diplomacy."
+        },
+        {
+          "id": "zone_thomas_jefferson",
+          "label": "Thomas Jefferson",
+          "points": [
+            [
+              79.2,
+              11.8
+            ],
+            [
+              76.9,
+              15.9
+            ],
+            [
+              76.0,
+              19.4
+            ],
+            [
+              76.4,
+              21.1
+            ],
+            [
+              75.6,
+              22.2
+            ],
+            [
+              79.0,
+              31.1
+            ],
+            [
+              77.6,
+              34.7
+            ],
+            [
+              72.9,
+              39.6
+            ],
+            [
+              70.9,
+              45.3
+            ],
+            [
+              95.1,
+              45.3
+            ],
+            [
+              94.9,
+              38.2
+            ],
+            [
+              88.9,
+              32.2
+            ],
+            [
+              87.2,
+              27.9
+            ],
+            [
+              89.9,
+              23.0
+            ],
+            [
+              89.0,
+              20.9
+            ],
+            [
+              88.3,
+              14.7
+            ],
+            [
+              84.5,
+              10.9
+            ]
+          ],
+          "x": 82.5,
+          "y": 26.7,
+          "radius": 22.5,
+          "shape": "polygon",
+          "center": {
+            "x": 82.5,
+            "y": 26.7
+          },
+          "description": "He was the principal author of the Declaration of Independence, articulating the philosophical foundations for American liberty and self-governance. As the third U.S. President, he orchestrated the Louisiana Purchase, significantly expanding the nation's territory and shaping its westward expansion, while also championing agrarian ideals."
+        },
+        {
+          "id": "zone_alexander_hamilton",
+          "label": "Alexander Hamilton",
+          "points": [
+            [
+              20.2,
+              58.8
+            ],
+            [
+              18.4,
+              57.9
+            ],
+            [
+              14.7,
+              58.6
+            ],
+            [
+              11.6,
+              62.5
+            ],
+            [
+              10.5,
+              71.1
+            ],
+            [
+              13.0,
+              75.8
+            ],
+            [
+              11.0,
+              80.8
+            ],
+            [
+              4.8,
+              86.3
+            ],
+            [
+              4.8,
+              92.5
+            ],
+            [
+              29.2,
+              92.2
+            ],
+            [
+              27.4,
+              86.5
+            ],
+            [
+              23.5,
+              82.8
+            ],
+            [
+              23.0,
+              79.7
+            ],
+            [
+              21.5,
+              77.5
+            ],
+            [
+              22.6,
+              72.7
+            ],
+            [
+              24.2,
+              69.4
+            ],
+            [
+              22.6,
+              62.3
+            ]
+          ],
+          "x": 17.8,
+          "y": 74.6,
+          "radius": 22.1,
+          "shape": "polygon",
+          "center": {
+            "x": 17.8,
+            "y": 74.6
+          },
+          "description": "As the first Secretary of the Treasury, he was the architect of the nation's financial system, establishing the First National Bank and advocating for a strong federal government. His economic policies laid the groundwork for American capitalism and his contributions to the Federalist Papers were pivotal in advocating for the ratification of the Constitution."
+        },
+        {
+          "id": "zone_john_adams",
+          "label": "John Adams",
+          "points": [
+            [
+              47.9,
+              57.1
+            ],
+            [
+              45.8,
+              59.8
+            ],
+            [
+              43.6,
+              67.4
+            ],
+            [
+              46.5,
+              75.1
+            ],
+            [
+              45.2,
+              77.3
+            ],
+            [
+              44.6,
+              81.1
+            ],
+            [
+              41.0,
+              85.2
+            ],
+            [
+              39.3,
+              92.1
+            ],
+            [
+              62.3,
+              92.4
+            ],
+            [
+              62.4,
+              83.0
+            ],
+            [
+              57.0,
+              77.8
+            ],
+            [
+              55.1,
+              71.3
+            ],
+            [
+              57.3,
+              68.3
+            ],
+            [
+              55.8,
+              61.0
+            ],
+            [
+              52.5,
+              56.8
+            ]
+          ],
+          "x": 50.4,
+          "y": 73.7,
+          "radius": 22.2,
+          "shape": "polygon",
+          "center": {
+            "x": 50.4,
+            "y": 73.7
+          },
+          "description": "A fervent advocate for independence, he served as a key diplomat in Europe during the Revolution, securing vital loans and treaties. As the second U.S. President, he navigated early partisan conflicts and maintained peace, while also laying the groundwork for American naval power and establishing the principle of judicial review through his appointments."
+        },
+        {
+          "id": "zone_james_madison",
+          "label": "James Madison",
+          "points": [
+            [
+              79.8,
+              58.0
+            ],
+            [
+              77.2,
+              62.7
+            ],
+            [
+              75.8,
+              68.4
+            ],
+            [
+              79.0,
+              76.2
+            ],
+            [
+              77.9,
+              78.0
+            ],
+            [
+              77.4,
+              81.7
+            ],
+            [
+              74.1,
+              85.2
+            ],
+            [
+              71.7,
+              92.1
+            ],
+            [
+              95.1,
+              92.4
+            ],
+            [
+              95.1,
+              84.1
+            ],
+            [
+              89.7,
+              79.2
+            ],
+            [
+              88.0,
+              75.0
+            ],
+            [
+              87.6,
+              72.0
+            ],
+            [
+              89.9,
+              69.4
+            ],
+            [
+              88.1,
+              61.3
+            ],
+            [
+              86.4,
+              58.7
+            ],
+            [
+              84.0,
+              57.1
+            ]
+          ],
+          "x": 83.3,
+          "y": 73.6,
+          "radius": 22.2,
+          "shape": "polygon",
+          "center": {
+            "x": 83.3,
+            "y": 73.6
+          },
+          "description": "Often hailed as the 'Father of the Constitution,' he was the primary author of the Virginia Plan and played a pivotal role in drafting and ratifying the U.S. Constitution. His extensive contributions to the Federalist Papers elucidated the principles of the new government, and he later served as the fourth U.S. President, leading the nation through the War of 1812."
+        }
+      ],
+      "imageUrl": "/api/assets/demo/b0bab089-c783-4a67-9ebc-9b8f235a9c7b/diagram_scene_1.png",
+      "assetUrl": "/api/assets/demo/b0bab089-c783-4a67-9ebc-9b8f235a9c7b/diagram_scene_1.png"
+    },
+    "labels": [
+      {
+        "id": "label_s1_0",
+        "text": "George Washington",
+        "correctZoneId": "zone_george_washington"
+      },
+      {
+        "id": "label_s1_1",
+        "text": "Benjamin Franklin",
+        "correctZoneId": "zone_benjamin_franklin"
+      },
+      {
+        "id": "label_s1_2",
+        "text": "Thomas Jefferson",
+        "correctZoneId": "zone_thomas_jefferson"
+      },
+      {
+        "id": "label_s1_3",
+        "text": "Alexander Hamilton",
+        "correctZoneId": "zone_alexander_hamilton"
+      },
+      {
+        "id": "label_s1_4",
+        "text": "John Adams",
+        "correctZoneId": "zone_john_adams"
+      },
+      {
+        "id": "label_s1_5",
+        "text": "James Madison",
+        "correctZoneId": "zone_james_madison"
+      }
+    ],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "On the diagram, drag and drop each specific contribution to the correct Founding Father's zone. Pay close attention to their unique achievements and primary roles."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 170,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! You've correctly identified and placed this Founding Father.",
+          "on_incorrect": "Not quite. Consider this figure's primary area of influence or key role during the founding era. Try again!",
+          "on_completion": "Fantastic! You've successfully identified all the prominent Founding Fathers. Now, let's explore their specific contributions.",
+          "misconceptions": [
+            {
+              "trigger_label": "misconception_agreement_issue",
+              "message": "The Founding Fathers often had significant disagreements on critical issues such as federal power, economic policy, and slavery, which led to intense debates and political factions.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misconception_positive_only_view",
+              "message": "Many actions and beliefs of the Founding Fathers, particularly concerning slavery, indigenous peoples, and suffrage, are viewed critically today and were subjects of debate even in their own time.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "description_matching",
+        "config": {
+          "instruction_text": "Now that you've identified their specific contributions, match each detailed description to the corresponding Founding Father on the diagram. Consider their overarching roles and long-term impact."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 15,
+          "max_score": 90,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "That's a perfect match! This description accurately captures the significant contributions of this Founding Father.",
+          "on_incorrect": "Hmm, that description doesn't quite fit. Reread the description and think about which figure's primary achievements and historical impact it best describes.",
+          "on_completion": "Outstanding work! You've accurately matched each Founding Father with their profound contributions to the birth of the United States.",
+          "misconceptions": [
+            {
+              "trigger_label": "misconception_agreement_issue",
+              "message": "It's important to remember that the Founding Fathers, despite their shared goal of independence, often held very different visions for the new nation, leading to distinct contributions and policy debates.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misconception_positive_only_view",
+              "message": "While celebrating their achievements, it's crucial to acknowledge the complexities and controversies surrounding the Founding Fathers' legacies, including their stances on issues like slavery and indigenous rights.",
+              "severity": "medium"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [
+      {
+        "from": "drag_drop",
+        "to": "description_matching",
+        "trigger": "all_zones_labeled",
+        "animation": "fade"
+      }
+    ],
+    "interactionMode": "drag_drop",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 10,
+      "max_score": 260
+    },
+    "totalMaxScore": 260,
+    "generation_complete": true,
+    "dragDropConfig": {
+      "leader_line_style": "none",
+      "tray_position": "bottom",
+      "placement_animation": "spring",
+      "show_distractors": false,
+      "leader_line_color": "",
+      "leader_line_animate": true,
+      "zone_idle_animation": "pulse",
+      "shuffle_labels": true,
+      "pin_marker_shape": "circle",
+      "zone_hover_effect": "highlight",
+      "label_style": "text",
+      "feedback_timing": "immediate",
+      "tray_layout": "horizontal",
+      "interaction_mode": "drag_drop",
+      "incorrect_animation": "shake",
+      "label_anchor_side": "auto",
+      "max_attempts": 3
+    },
+    "descriptionMatchingConfig": {
+      "descriptions": {
+        "zone_george_washington": "As Commander-in-Chief of the Continental Army, he led the nascent American forces to victory against Great Britain, securing the nation's independence. Later, as the first U.S. President, he established crucial precedents for the executive branch, guiding the young republic through its formative years and ensuring a peaceful transfer of power.",
+        "zone_benjamin_franklin": "A renowned polymath, inventor, and statesman, he served as a crucial diplomat to France, securing vital foreign aid and military support during the Revolutionary War. His wisdom and influence were instrumental in both signing the Declaration of Independence and helping to draft and sign the U.S. Constitution, embodying the spirit of American ingenuity and diplomacy.",
+        "zone_thomas_jefferson": "He was the principal author of the Declaration of Independence, articulating the philosophical foundations for American liberty and self-governance. As the third U.S. President, he orchestrated the Louisiana Purchase, significantly expanding the nation's territory and shaping its westward expansion, while also championing agrarian ideals.",
+        "zone_alexander_hamilton": "As the first Secretary of the Treasury, he was the architect of the nation's financial system, establishing the First National Bank and advocating for a strong federal government. His economic policies laid the groundwork for American capitalism and his contributions to the Federalist Papers were pivotal in advocating for the ratification of the Constitution.",
+        "zone_john_adams": "A fervent advocate for independence, he served as a key diplomat in Europe during the Revolution, securing vital loans and treaties. As the second U.S. President, he navigated early partisan conflicts and maintained peace, while also laying the groundwork for American naval power and establishing the principle of judicial review through his appointments.",
+        "zone_james_madison": "Often hailed as the 'Father of the Constitution,' he was the primary author of the Virginia Plan and played a pivotal role in drafting and ratifying the U.S. Constitution. His extensive contributions to the Federalist Papers elucidated the principles of the new government, and he later served as the fourth U.S. President, leading the nation through the War of 1812."
+      },
+      "mode": "click_zone",
+      "distractor_descriptions": [
+        "Pioneered the concept of universal public education across all states and established the first national university to foster civic virtue."
+      ],
+      "show_connecting_lines": true,
+      "defer_evaluation": false,
+      "description_panel_position": "right"
+    }
+  }
+}

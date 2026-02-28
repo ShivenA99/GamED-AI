@@ -1,0 +1,797 @@
+{
+  "id": "ling-undergrad-language-families-memory",
+  "title": "Match Languages to Their Families",
+  "question": "Create an interactive diagram game where undergraduate linguistics students match languages to their language families and key typological features: Indo-European (English, Hindi, Russian \u2014 inflectional morphology), Sino-Tibetan (Mandarin, Cantonese \u2014 tonal, isolating), Afro-Asiatic (Arabic, Hebrew \u2014 root-and-pattern morphology), Niger-Congo (Swahili, Yoruba \u2014 noun class systems), Japonic (Japanese \u2014 agglutinative, SOV order), and Austronesian (Tagalog, Hawaiian \u2014 focus system).",
+  "domain": "linguistics",
+  "educationLevel": "undergraduate",
+  "gameType": "interactive_diagram",
+  "mechanic": "memory_match",
+  "bloomsLevel": "Analyze",
+  "pipelineMetrics": {
+    "runId": "0437c330-2117-40a4-9c03-093c161dbe28",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 209.2,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T09:34:37.389364+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "Global Language Explorer: Families & Features",
+    "subject": "Linguistics",
+    "difficulty": "advanced",
+    "narrativeIntro": "Welcome, aspiring linguist! Your mission is to map the vast diversity of human languages. We'll explore major language families, identify their member languages, and uncover their defining typological features. Prepare to synthesize your knowledge and become a master of linguistic classification!",
+    "narrativeTheme": "Linguistic Cartographer",
+    "completionMessage": "Congratulations, Linguistic Cartographer! You've successfully navigated the complex world of language families and their unique typological features. Your understanding of historical connections and structural characteristics is truly advanced!",
+    "estimatedDurationMinutes": 12,
+    "diagram": {
+      "assetPrompt": "A conceptual world map with distinct, clearly delineated regions for the Indo-European, Sino-Tibetan, Afro-Asiatic, Niger-Congo, Japonic, and Austronesian language families. Each region is visually distinct, using a unique, muted color or subtle texture to differentiate it from others. The map should be simplified to highlight these linguistic zones rather than detailed political geography.",
+      "zones": [
+        {
+          "id": "zone_indo_european",
+          "label": "Indo-European",
+          "points": [
+            [
+              78.2,
+              66.9
+            ],
+            [
+              78.0,
+              68.9
+            ],
+            [
+              78.6,
+              72.8
+            ],
+            [
+              79.3,
+              72.9
+            ],
+            [
+              82.0,
+              71.5
+            ],
+            [
+              83.5,
+              71.5
+            ],
+            [
+              84.4,
+              73.0
+            ],
+            [
+              86.8,
+              75.1
+            ],
+            [
+              87.2,
+              77.1
+            ],
+            [
+              87.8,
+              76.7
+            ],
+            [
+              87.9,
+              75.8
+            ],
+            [
+              87.2,
+              75.1
+            ],
+            [
+              88.3,
+              74.1
+            ],
+            [
+              89.1,
+              71.3
+            ],
+            [
+              89.2,
+              68.5
+            ],
+            [
+              87.7,
+              65.3
+            ],
+            [
+              86.6,
+              61.6
+            ],
+            [
+              86.2,
+              61.6
+            ],
+            [
+              85.8,
+              64.6
+            ],
+            [
+              84.6,
+              63.5
+            ],
+            [
+              84.6,
+              62.3
+            ],
+            [
+              83.4,
+              62.2
+            ],
+            [
+              82.4,
+              63.3
+            ],
+            [
+              81.7,
+              63.2
+            ],
+            [
+              80.1,
+              65.7
+            ]
+          ],
+          "x": 84.4,
+          "y": 69.0,
+          "radius": 8.6,
+          "shape": "polygon",
+          "center": {
+            "x": 84.4,
+            "y": 69.0
+          }
+        },
+        {
+          "id": "zone_sino_tibetan",
+          "label": "Sino-Tibetan",
+          "points": [
+            [
+              82.4,
+              34.5
+            ],
+            [
+              80.9,
+              33.7
+            ],
+            [
+              79.8,
+              31.8
+            ],
+            [
+              78.6,
+              31.6
+            ],
+            [
+              77.4,
+              34.0
+            ],
+            [
+              78.3,
+              34.8
+            ],
+            [
+              76.8,
+              35.8
+            ],
+            [
+              76.1,
+              36.8
+            ],
+            [
+              74.7,
+              37.3
+            ],
+            [
+              72.7,
+              36.8
+            ],
+            [
+              69.8,
+              34.1
+            ],
+            [
+              68.5,
+              35.6
+            ],
+            [
+              68.2,
+              37.3
+            ],
+            [
+              67.1,
+              38.5
+            ],
+            [
+              67.1,
+              39.1
+            ],
+            [
+              68.3,
+              40.7
+            ],
+            [
+              68.8,
+              42.5
+            ],
+            [
+              70.9,
+              43.8
+            ],
+            [
+              73.1,
+              43.1
+            ],
+            [
+              73.7,
+              43.9
+            ],
+            [
+              73.6,
+              45.3
+            ],
+            [
+              74.3,
+              46.4
+            ],
+            [
+              75.9,
+              46.2
+            ],
+            [
+              77.4,
+              46.9
+            ],
+            [
+              79.2,
+              45.8
+            ],
+            [
+              80.2,
+              43.5
+            ],
+            [
+              78.8,
+              38.7
+            ],
+            [
+              81.8,
+              36.9
+            ]
+          ],
+          "x": 74.8,
+          "y": 39.1,
+          "radius": 8.9,
+          "shape": "polygon",
+          "center": {
+            "x": 74.8,
+            "y": 39.1
+          }
+        },
+        {
+          "id": "zone_afro_asiatic",
+          "label": "Afro-Asiatic",
+          "points": [
+            [
+              41.1,
+              51.4
+            ],
+            [
+              43.8,
+              55.3
+            ],
+            [
+              47.0,
+              54.4
+            ],
+            [
+              49.6,
+              56.1
+            ],
+            [
+              54.0,
+              54.5
+            ],
+            [
+              55.2,
+              55.3
+            ],
+            [
+              58.1,
+              55.3
+            ],
+            [
+              59.6,
+              53.8
+            ],
+            [
+              58.6,
+              53.6
+            ],
+            [
+              59.3,
+              53.2
+            ],
+            [
+              56.1,
+              44.2
+            ],
+            [
+              57.3,
+              45.6
+            ],
+            [
+              59.0,
+              50.8
+            ],
+            [
+              62.2,
+              48.8
+            ],
+            [
+              63.3,
+              46.6
+            ],
+            [
+              62.2,
+              45.3
+            ],
+            [
+              60.8,
+              45.1
+            ],
+            [
+              58.5,
+              39.8
+            ],
+            [
+              56.7,
+              40.0
+            ],
+            [
+              57.2,
+              41.1
+            ],
+            [
+              55.8,
+              42.5
+            ],
+            [
+              52.3,
+              41.7
+            ],
+            [
+              51.4,
+              42.7
+            ],
+            [
+              49.4,
+              41.4
+            ],
+            [
+              49.0,
+              39.7
+            ],
+            [
+              44.5,
+              40.4
+            ],
+            [
+              41.1,
+              47.0
+            ]
+          ],
+          "x": 54.2,
+          "y": 47.6,
+          "radius": 13.6,
+          "shape": "polygon",
+          "center": {
+            "x": 54.2,
+            "y": 47.6
+          }
+        },
+        {
+          "id": "zone_niger_congo",
+          "label": "Niger-Congo",
+          "points": [
+            [
+              60.6,
+              53.2
+            ],
+            [
+              59.3,
+              55.1
+            ],
+            [
+              58.4,
+              55.6
+            ],
+            [
+              55.2,
+              55.7
+            ],
+            [
+              53.8,
+              54.6
+            ],
+            [
+              51.8,
+              55.1
+            ],
+            [
+              50.8,
+              56.2
+            ],
+            [
+              49.1,
+              56.4
+            ],
+            [
+              49.0,
+              58.1
+            ],
+            [
+              50.1,
+              62.4
+            ],
+            [
+              49.6,
+              65.7
+            ],
+            [
+              51.7,
+              73.6
+            ],
+            [
+              54.5,
+              72.9
+            ],
+            [
+              56.4,
+              69.2
+            ],
+            [
+              56.6,
+              66.8
+            ],
+            [
+              58.1,
+              64.7
+            ],
+            [
+              57.8,
+              59.4
+            ],
+            [
+              60.2,
+              55.2
+            ]
+          ],
+          "x": 54.6,
+          "y": 60.6,
+          "radius": 13.3,
+          "shape": "polygon",
+          "center": {
+            "x": 54.6,
+            "y": 60.6
+          }
+        },
+        {
+          "id": "zone_japonic",
+          "label": "Japonic",
+          "points": [
+            [
+              81.5,
+              30.8
+            ],
+            [
+              85.5,
+              30.8
+            ],
+            [
+              85.5,
+              43.4
+            ],
+            [
+              81.5,
+              43.4
+            ]
+          ],
+          "x": 83.5,
+          "y": 37.1,
+          "width": 4.1,
+          "height": 12.6,
+          "shape": "rect"
+        },
+        {
+          "id": "zone_austronesian",
+          "label": "Austronesian",
+          "points": [
+            [
+              73.7,
+              49.1
+            ],
+            [
+              74.1,
+              53.7
+            ],
+            [
+              73.7,
+              54.4
+            ],
+            [
+              73.1,
+              54.3
+            ],
+            [
+              74.7,
+              58.0
+            ],
+            [
+              76.1,
+              59.8
+            ],
+            [
+              81.1,
+              61.5
+            ],
+            [
+              83.5,
+              59.8
+            ],
+            [
+              82.8,
+              59.1
+            ],
+            [
+              82.1,
+              59.6
+            ],
+            [
+              81.8,
+              58.8
+            ],
+            [
+              83.1,
+              58.6
+            ],
+            [
+              85.0,
+              59.3
+            ],
+            [
+              85.9,
+              60.8
+            ],
+            [
+              87.3,
+              60.3
+            ],
+            [
+              87.9,
+              61.2
+            ],
+            [
+              88.8,
+              61.2
+            ],
+            [
+              87.1,
+              58.4
+            ],
+            [
+              82.7,
+              56.6
+            ],
+            [
+              81.8,
+              54.6
+            ],
+            [
+              81.8,
+              51.6
+            ],
+            [
+              80.6,
+              49.8
+            ],
+            [
+              80.5,
+              48.4
+            ],
+            [
+              79.9,
+              49.7
+            ],
+            [
+              80.1,
+              51.5
+            ],
+            [
+              78.9,
+              54.1
+            ],
+            [
+              76.5,
+              56.1
+            ],
+            [
+              75.7,
+              55.6
+            ],
+            [
+              74.4,
+              52.4
+            ],
+            [
+              74.7,
+              51.5
+            ],
+            [
+              76.3,
+              52.0
+            ],
+            [
+              76.9,
+              51.3
+            ],
+            [
+              76.2,
+              48.4
+            ],
+            [
+              74.5,
+              48.4
+            ]
+          ],
+          "x": 79.8,
+          "y": 55.3,
+          "radius": 10.8,
+          "shape": "polygon",
+          "center": {
+            "x": 79.8,
+            "y": 55.3
+          }
+        }
+      ],
+      "imageUrl": "/api/assets/demo/0437c330-2117-40a4-9c03-093c161dbe28/diagram_scene_1.png",
+      "assetUrl": "/api/assets/demo/0437c330-2117-40a4-9c03-093c161dbe28/diagram_scene_1.png"
+    },
+    "labels": [
+      {
+        "id": "label_s1_0",
+        "text": "Indo-European",
+        "correctZoneId": "zone_indo_european"
+      },
+      {
+        "id": "label_s1_1",
+        "text": "Sino-Tibetan",
+        "correctZoneId": "zone_sino_tibetan"
+      },
+      {
+        "id": "label_s1_2",
+        "text": "Afro-Asiatic",
+        "correctZoneId": "zone_afro_asiatic"
+      },
+      {
+        "id": "label_s1_3",
+        "text": "Niger-Congo",
+        "correctZoneId": "zone_niger_congo"
+      },
+      {
+        "id": "label_s1_4",
+        "text": "Japonic",
+        "correctZoneId": "zone_japonic"
+      },
+      {
+        "id": "label_s1_5",
+        "text": "Austronesian",
+        "correctZoneId": "zone_austronesian"
+      }
+    ],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "As a Linguistic Cartographer, your first task is to accurately place each language onto the global map. Drag each language card to the region representing its primary language family."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 120,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! You've correctly placed this language family on the map.",
+          "on_incorrect": "Not quite. This language family belongs to a different region. Take another look at its historical distribution and try again.",
+          "on_completion": "Fantastic work! You've successfully mapped all the language families. This helps us understand their global distribution and historical connections.",
+          "misconceptions": [
+            {
+              "trigger_label": "repeated_typological_misclassification",
+              "message": "While language families often share characteristic features due to common ancestry, typological features can vary significantly even within a family due to language contact, drift, and independent innovation.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misplaced_based_on_current_geography",
+              "message": "Language families are defined by historical linguistic relationships (shared ancestry), not solely by current geographical distribution, although geography often correlates with historical spread.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "struggle_with_classification_nuance",
+              "message": "Many typological features exist on a continuum or represent tendencies rather than strict, absolute categories (e.g., languages can be more or less agglutinative, or have varying degrees of isolating features).",
+              "severity": "low"
+            }
+          ]
+        }
+      },
+      {
+        "type": "sorting_categories",
+        "config": {
+          "instruction_text": "As a Linguistic Cartographer, your task is to map typological features to their characteristic language families. Drag each linguistic trait into the family it primarily represents."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 80,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! That's a perfect match for the {category_label} family's typical features.",
+          "on_incorrect": "Not quite. The features of '{item_label}' are more characteristic of another language family. Remember to consider aspects like word order, morphology, and phonology.",
+          "on_completion": "Fantastic work! You've successfully sorted all the typological features to their characteristic language families. This shows a strong understanding of how linguistic features group languages.",
+          "misconceptions": [
+            {
+              "trigger_label": "misconception_identical_features",
+              "message": "It's common to think that all languages within a family are typologically identical, but that's not always true. While language families often share characteristic features due to common ancestry, typological features can vary significantly even within a family due to language contact, drift, and independent innovation. Keep looking for the *most characteristic* features.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misconception_geography_definition",
+              "message": "Remember, language families are defined by historical linguistic relationships (shared ancestry), not solely by current geographical distribution, although geography often correlates with historical spread. Focus on the linguistic features themselves, not just where they are spoken today.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misconception_binary_typology",
+              "message": "It's easy to think of typological features as strict, binary categories, but many exist on a continuum or represent tendencies rather than absolute rules. For example, languages can be more or less agglutinative. Consider the *predominant* characteristics when sorting.",
+              "severity": "medium"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [],
+    "interactionMode": "drag_drop",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 10,
+      "max_score": 200
+    },
+    "totalMaxScore": 200,
+    "generation_complete": true,
+    "dragDropConfig": {
+      "leader_line_style": "none",
+      "tray_position": "bottom",
+      "placement_animation": "spring",
+      "show_distractors": false,
+      "zone_idle_animation": "pulse",
+      "max_attempts": 3,
+      "pin_marker_shape": "circle",
+      "leader_line_animate": true,
+      "interaction_mode": "drag_drop",
+      "zone_hover_effect": "highlight",
+      "tray_layout": "horizontal",
+      "leader_line_color": "",
+      "label_anchor_side": "auto",
+      "label_style": "text",
+      "incorrect_animation": "shake",
+      "feedback_timing": "immediate",
+      "shuffle_labels": true
+    }
+  }
+}

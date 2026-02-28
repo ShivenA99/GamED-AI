@@ -1,0 +1,27 @@
+### Template Context: PARAMETER_PLAYGROUND
+
+The resulting visualization will be implemented as:
+- Interactive playground to adjust parameters and see results.
+- Parameters are controlled via sliders or inputs.
+- Visualization updates in real-time based on parameters.
+- For algorithm questions, includes step-by-step execution with visual array/graph representation.
+
+When generating story_context, visual_metaphor, visual_elements, question_flow, and animation_cues:
+- Focus on experimentation, parameter adjustment, and cause-effect relationships.
+- Visual elements should show how parameters affect outcomes.
+- Questions should involve predicting or understanding parameter effects.
+- Animation cues should show parameter changes and result updates.
+
+For algorithm visualization questions (binary search, sorting, etc.):
+- Extract the data structure (array, graph, etc.) from the question
+- Identify the algorithm type and key steps
+- Explain how the algorithm works step-by-step
+- Describe what each parameter controls (array values, target, etc.)
+- Use visual metaphors that help understand the algorithm (e.g., "searching through a rotated treasure map")
+
+Example for rotated sorted array:
+- Array: [6,7,8,1,2,3,4,5]
+- Target: 3
+- Algorithm: Binary search in rotated sorted array
+- Key steps: Find sorted half, check if target is in sorted half, search appropriate half
+- Visual metaphor: A rotated map where you need to find which section is properly oriented, then search that section

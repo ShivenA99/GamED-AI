@@ -1,0 +1,1423 @@
+{
+  "id": "cs-undergrad-bfs-algorithm-builder",
+  "title": "Build a BFS Graph Traversal Algorithm",
+  "question": "Create an algorithm game where students build a Breadth-First Search algorithm from scratch. Students must arrange steps: initialize queue with start node, mark as visited, dequeue node, explore neighbors, enqueue unvisited neighbors, and repeat.",
+  "domain": "cs",
+  "educationLevel": "undergraduate",
+  "gameType": "algorithm",
+  "mechanic": "algorithm_builder",
+  "bloomsLevel": "Apply",
+  "pipelineMetrics": {
+    "runId": "39dd217e-3d94-4a24-a6b0-2619d0dcc332",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 273.2,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T06:13:57.036506+00:00"
+  },
+  "blueprint": {
+    "templateType": "ALGORITHM_GAME",
+    "title": "BFS: The Ripple Effect",
+    "subject": "graph",
+    "difficulty": "intermediate",
+    "algorithmName": "Breadth-First Search (BFS)",
+    "algorithmCategory": "graph",
+    "narrativeIntro": "A new idea is spreading like wildfire through a network! As a data scientist, your job is to map its journey. Let's build and use the Breadth-First Search algorithm to trace the ripple effect from its source.",
+    "totalMaxScore": 1600,
+    "passThreshold": 0.6,
+    "learn_config": {
+      "auto_reveal_hint_tier_1_after_ms": 10000,
+      "hint_penalties": [
+        0,
+        0,
+        0
+      ],
+      "partial_credit_multiplier": 0.5,
+      "show_correct_answer_on_wrong": true,
+      "show_misconceptions_preemptively": true,
+      "scaffolding": {}
+    },
+    "test_config": {
+      "auto_reveal_hint_tier_1_after_ms": null,
+      "hint_penalties": [
+        0.1,
+        0.2,
+        0.3
+      ],
+      "partial_credit_multiplier": 0.0,
+      "show_correct_answer_on_wrong": false,
+      "show_misconceptions_preemptively": false,
+      "time_limit_seconds": null
+    },
+    "algorithmGameType": null,
+    "is_multi_scene": true,
+    "scenes": [
+      {
+        "scene_id": "scene_1",
+        "scene_number": 1,
+        "title": "Assembling the Tracker",
+        "game_type": "algorithm_builder",
+        "difficulty": "beginner",
+        "learning_goal": "Understand the fundamental step-by-step structure of the BFS algorithm by arranging its core components in the correct sequence.",
+        "max_score": 500,
+        "content": {
+          "algorithmName": "Breadth-First Search (BFS)",
+          "algorithmDescription": "A graph traversal algorithm that explores neighbor nodes at the present depth prior to moving to the next depth level, finding the shortest path in an unweighted graph.",
+          "problemDescription": "Assemble the 'Tracker' algorithm, a Python function that uses Breadth-First Search to find the shortest path from a start node to a target node in a network map.",
+          "language": "python",
+          "correct_order": [
+            {
+              "id": "block_1",
+              "code": "def bfs(graph, start, target):",
+              "indent_level": 0,
+              "is_distractor": false,
+              "distractor_explanation": "",
+              "group_id": ""
+            },
+            {
+              "id": "block_2",
+              "code": "queue = [(start, [start])]",
+              "indent_level": 1,
+              "is_distractor": false,
+              "distractor_explanation": "",
+              "group_id": "init"
+            },
+            {
+              "id": "block_3",
+              "code": "visited = {start}",
+              "indent_level": 1,
+              "is_distractor": false,
+              "distractor_explanation": "",
+              "group_id": "init"
+            },
+            {
+              "id": "block_4",
+              "code": "while queue:",
+              "indent_level": 1,
+              "is_distractor": false,
+              "distractor_explanation": "",
+              "group_id": ""
+            },
+            {
+              "id": "block_5",
+              "code": "node, path = queue.pop(0)",
+              "indent_level": 2,
+              "is_distractor": false,
+              "distractor_explanation": "",
+              "group_id": ""
+            },
+            {
+              "id": "block_6",
+              "code": "if node == target: return path",
+              "indent_level": 2,
+              "is_distractor": false,
+              "distractor_explanation": "",
+              "group_id": ""
+            },
+            {
+              "id": "block_7",
+              "code": "for neighbor in graph.get(node, []):",
+              "indent_level": 2,
+              "is_distractor": false,
+              "distractor_explanation": "",
+              "group_id": ""
+            },
+            {
+              "id": "block_8",
+              "code": "if neighbor not in visited:",
+              "indent_level": 3,
+              "is_distractor": false,
+              "distractor_explanation": "",
+              "group_id": ""
+            },
+            {
+              "id": "block_9",
+              "code": "visited.add(neighbor)",
+              "indent_level": 4,
+              "is_distractor": false,
+              "distractor_explanation": "",
+              "group_id": "process_neighbor"
+            },
+            {
+              "id": "block_10",
+              "code": "queue.append((neighbor, path + [neighbor]))",
+              "indent_level": 4,
+              "is_distractor": false,
+              "distractor_explanation": "",
+              "group_id": "process_neighbor"
+            }
+          ],
+          "distractors": [
+            {
+              "id": "distractor_1",
+              "code": "node, path = queue.pop()",
+              "indent_level": 2,
+              "is_distractor": true,
+              "distractor_explanation": "Using pop() without an index treats the list like a stack (LIFO), which would implement a Depth-First Search (DFS), not a BFS.",
+              "group_id": ""
+            },
+            {
+              "id": "distractor_2",
+              "code": "if neighbor in visited:",
+              "indent_level": 3,
+              "is_distractor": true,
+              "distractor_explanation": "This logic is reversed. We only want to process neighbors that have not been visited yet to avoid cycles and redundant work.",
+              "group_id": ""
+            },
+            {
+              "id": "distractor_3",
+              "code": "return None",
+              "indent_level": 2,
+              "is_distractor": true,
+              "distractor_explanation": "This would cause the function to exit after processing the first node, without exploring the graph. The 'not found' case should only be returned after the queue is empty.",
+              "group_id": ""
+            },
+            {
+              "id": "distractor_4",
+              "code": "visited.append(neighbor)",
+              "indent_level": 4,
+              "is_distractor": true,
+              "distractor_explanation": "The 'visited' collection is a set for fast lookups. Sets use the .add() method, not .append().",
+              "group_id": ""
+            }
+          ]
+        },
+        "asset_url": null
+      },
+      {
+        "scene_id": "scene_2",
+        "scene_number": 2,
+        "title": "Tracing the First Wave",
+        "game_type": "state_tracer",
+        "difficulty": "intermediate",
+        "learning_goal": "Apply the BFS algorithm to a small graph, predicting the state of the queue and the set of visited nodes at each step of the traversal.",
+        "max_score": 800,
+        "content": {
+          "algorithmName": "Breadth-First Search (BFS)",
+          "algorithmDescription": "BFS is a graph traversal algorithm that explores all neighbor nodes at the present depth before moving to nodes at the next depth level. It uses a queue to find the shortest path in an unweighted graph.",
+          "narrativeIntro": "You're a network analyst tracing a data packet from a server ('A') to a client ('F'). Use BFS to map the packet's journey, finding the shortest possible route through the network nodes.",
+          "code": "from collections import deque\n\ndef bfs(graph, start_node, target_node):\n  # The queue stores tuples of (node, path_to_node)\n  queue = deque([(start_node, [start_node])])\n  visited = {start_node}\n\n  while queue:\n    current_node, path = queue.popleft()\n\n    if current_node == target_node:\n      return path\n\n    for neighbor in graph.get(current_node, []):\n      if neighbor not in visited:\n        visited.add(neighbor)\n        new_path = path + [neighbor]\n        queue.append((neighbor, new_path))\n\n  return None",
+          "language": "python",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "codeLine": 5,
+              "description": "Initialize the queue with the start node 'A' and its path. Add 'A' to the visited set.",
+              "variables": {
+                "start_node": "'A'",
+                "target_node": "'F'",
+                "queue": "[('A', ['A'])]",
+                "visited": "{'A'}"
+              },
+              "changedVariables": [
+                "queue",
+                "visited"
+              ],
+              "dataStructure": {
+                "type": "graph",
+                "nodes": [
+                  {
+                    "id": "A",
+                    "label": "A",
+                    "x": 100,
+                    "y": 200,
+                    "state": "visited"
+                  },
+                  {
+                    "id": "B",
+                    "label": "B",
+                    "x": 250,
+                    "y": 100,
+                    "state": "unvisited"
+                  },
+                  {
+                    "id": "C",
+                    "label": "C",
+                    "x": 250,
+                    "y": 300,
+                    "state": "unvisited"
+                  },
+                  {
+                    "id": "D",
+                    "label": "D",
+                    "x": 400,
+                    "y": 50,
+                    "state": "unvisited"
+                  },
+                  {
+                    "id": "E",
+                    "label": "E",
+                    "x": 400,
+                    "y": 150,
+                    "state": "unvisited"
+                  },
+                  {
+                    "id": "F",
+                    "label": "F",
+                    "x": 400,
+                    "y": 250,
+                    "state": "unvisited"
+                  },
+                  {
+                    "id": "G",
+                    "label": "G",
+                    "x": 550,
+                    "y": 50,
+                    "state": "unvisited"
+                  }
+                ],
+                "edges": [
+                  {
+                    "from": "A",
+                    "to": "B",
+                    "state": "default"
+                  },
+                  {
+                    "from": "A",
+                    "to": "C",
+                    "state": "default"
+                  },
+                  {
+                    "from": "B",
+                    "to": "D",
+                    "state": "default"
+                  },
+                  {
+                    "from": "B",
+                    "to": "E",
+                    "state": "default"
+                  },
+                  {
+                    "from": "C",
+                    "to": "F",
+                    "state": "default"
+                  },
+                  {
+                    "from": "D",
+                    "to": "G",
+                    "state": "default"
+                  },
+                  {
+                    "from": "E",
+                    "to": "F",
+                    "state": "default"
+                  }
+                ]
+              },
+              "prediction": null,
+              "explanation": "BFS begins by setting up a queue and a visited set. The start node 'A' is added to both data structures to kick off the traversal.",
+              "hints": [
+                "This is the initialization step.",
+                "The algorithm needs a starting point.",
+                "The start node 'A' is placed in the queue and marked as visited."
+              ]
+            },
+            {
+              "stepNumber": 2,
+              "codeLine": 8,
+              "description": "The `while` loop begins as the queue is not empty. Dequeue the first element: node 'A' and its path.",
+              "variables": {
+                "queue": "[]",
+                "visited": "{'A'}",
+                "current_node": "'A'",
+                "path": "['A']"
+              },
+              "changedVariables": [
+                "queue",
+                "current_node",
+                "path"
+              ],
+              "dataStructure": {
+                "type": "graph",
+                "nodes": [
+                  {
+                    "id": "A",
+                    "label": "A",
+                    "x": 100,
+                    "y": 200,
+                    "state": "current"
+                  },
+                  {
+                    "id": "B",
+                    "label": "B",
+                    "x": 250,
+                    "y": 100,
+                    "state": "unvisited"
+                  },
+                  {
+                    "id": "C",
+                    "label": "C",
+                    "x": 250,
+                    "y": 300,
+                    "state": "unvisited"
+                  },
+                  {
+                    "id": "D",
+                    "label": "D",
+                    "x": 400,
+                    "y": 50,
+                    "state": "unvisited"
+                  },
+                  {
+                    "id": "E",
+                    "label": "E",
+                    "x": 400,
+                    "y": 150,
+                    "state": "unvisited"
+                  },
+                  {
+                    "id": "F",
+                    "label": "F",
+                    "x": 400,
+                    "y": 250,
+                    "state": "unvisited"
+                  },
+                  {
+                    "id": "G",
+                    "label": "G",
+                    "x": 550,
+                    "y": 50,
+                    "state": "unvisited"
+                  }
+                ],
+                "edges": [
+                  {
+                    "from": "A",
+                    "to": "B",
+                    "state": "default"
+                  },
+                  {
+                    "from": "A",
+                    "to": "C",
+                    "state": "default"
+                  },
+                  {
+                    "from": "B",
+                    "to": "D",
+                    "state": "default"
+                  },
+                  {
+                    "from": "B",
+                    "to": "E",
+                    "state": "default"
+                  },
+                  {
+                    "from": "C",
+                    "to": "F",
+                    "state": "default"
+                  },
+                  {
+                    "from": "D",
+                    "to": "G",
+                    "state": "default"
+                  },
+                  {
+                    "from": "E",
+                    "to": "F",
+                    "state": "default"
+                  }
+                ]
+              },
+              "prediction": {
+                "type": "value",
+                "prompt": "What is the value of `current_node`?",
+                "correctValue": "A",
+                "acceptableValues": [
+                  "A",
+                  "'A'"
+                ],
+                "placeholder": "Enter node letter"
+              },
+              "explanation": "The queue operates on a First-In, First-Out (FIFO) basis. Since ('A', ['A']) was the first and only item added, it's the first to be removed and processed.",
+              "hints": [
+                "The `popleft()` method removes an item from the front of the queue.",
+                "Look at the state of the queue in the previous step.",
+                "The first item in `[('A', ['A'])]` is the tuple containing node 'A'."
+              ]
+            },
+            {
+              "stepNumber": 3,
+              "codeLine": 17,
+              "description": "Node 'A' is not the target. Its unvisited neighbors, 'B' and 'C', are added to the visited set and enqueued.",
+              "variables": {
+                "queue": "[('B', ['A', 'B']), ('C', ['A', 'C'])]",
+                "visited": "{'A', 'B', 'C'}",
+                "current_node": "'A'",
+                "path": "['A']"
+              },
+              "changedVariables": [
+                "queue",
+                "visited"
+              ],
+              "dataStructure": {
+                "type": "graph",
+                "nodes": [
+                  {
+                    "id": "A",
+                    "label": "A",
+                    "x": 100,
+                    "y": 200,
+                    "state": "visited"
+                  },
+                  {
+                    "id": "B",
+                    "label": "B",
+                    "x": 250,
+                    "y": 100,
+                    "state": "in_queue"
+                  },
+                  {
+                    "id": "C",
+                    "label": "C",
+                    "x": 250,
+                    "y": 300,
+                    "state": "in_queue"
+                  },
+                  {
+                    "id": "D",
+                    "label": "D",
+                    "x": 400,
+                    "y": 50,
+                    "state": "unvisited"
+                  },
+                  {
+                    "id": "E",
+                    "label": "E",
+                    "x": 400,
+                    "y": 150,
+                    "state": "unvisited"
+                  },
+                  {
+                    "id": "F",
+                    "label": "F",
+                    "x": 400,
+                    "y": 250,
+                    "state": "unvisited"
+                  },
+                  {
+                    "id": "G",
+                    "label": "G",
+                    "x": 550,
+                    "y": 50,
+                    "state": "unvisited"
+                  }
+                ],
+                "edges": [
+                  {
+                    "from": "A",
+                    "to": "B",
+                    "state": "traversed"
+                  },
+                  {
+                    "from": "A",
+                    "to": "C",
+                    "state": "traversed"
+                  },
+                  {
+                    "from": "B",
+                    "to": "D",
+                    "state": "default"
+                  },
+                  {
+                    "from": "B",
+                    "to": "E",
+                    "state": "default"
+                  },
+                  {
+                    "from": "C",
+                    "to": "F",
+                    "state": "default"
+                  },
+                  {
+                    "from": "D",
+                    "to": "G",
+                    "state": "default"
+                  },
+                  {
+                    "from": "E",
+                    "to": "F",
+                    "state": "default"
+                  }
+                ]
+              },
+              "prediction": {
+                "type": "multi_select",
+                "prompt": "Which nodes are added to the queue in this step?",
+                "options": [
+                  {
+                    "id": "a",
+                    "label": "B"
+                  },
+                  {
+                    "id": "b",
+                    "label": "C"
+                  },
+                  {
+                    "id": "c",
+                    "label": "D"
+                  },
+                  {
+                    "id": "d",
+                    "label": "F"
+                  }
+                ],
+                "correctIds": [
+                  "a",
+                  "b"
+                ]
+              },
+              "explanation": "BFS explores level by level. After processing 'A', we find all its direct neighbors ('B' and 'C'), mark them as visited, and add them to the queue to be explored later.",
+              "hints": [
+                "The algorithm iterates through the neighbors of the `current_node`.",
+                "Find the neighbors of 'A' in the graph and check if they are in the `visited` set.",
+                "The neighbors of 'A' are 'B' and 'C'. Neither has been visited, so both are added."
+              ]
+            },
+            {
+              "stepNumber": 4,
+              "codeLine": 8,
+              "description": "The loop continues. Dequeue the next node from the front of the queue: 'B'.",
+              "variables": {
+                "queue": "[('C', ['A', 'C'])]",
+                "visited": "{'A', 'B', 'C'}",
+                "current_node": "'B'",
+                "path": "['A', 'B']"
+              },
+              "changedVariables": [
+                "queue",
+                "current_node",
+                "path"
+              ],
+              "dataStructure": {
+                "type": "graph",
+                "nodes": [
+                  {
+                    "id": "A",
+                    "label": "A",
+                    "x": 100,
+                    "y": 200,
+                    "state": "visited"
+                  },
+                  {
+                    "id": "B",
+                    "label": "B",
+                    "x": 250,
+                    "y": 100,
+                    "state": "current"
+                  },
+                  {
+                    "id": "C",
+                    "label": "C",
+                    "x": 250,
+                    "y": 300,
+                    "state": "in_queue"
+                  },
+                  {
+                    "id": "D",
+                    "label": "D",
+                    "x": 400,
+                    "y": 50,
+                    "state": "unvisited"
+                  },
+                  {
+                    "id": "E",
+                    "label": "E",
+                    "x": 400,
+                    "y": 150,
+                    "state": "unvisited"
+                  },
+                  {
+                    "id": "F",
+                    "label": "F",
+                    "x": 400,
+                    "y": 250,
+                    "state": "unvisited"
+                  },
+                  {
+                    "id": "G",
+                    "label": "G",
+                    "x": 550,
+                    "y": 50,
+                    "state": "unvisited"
+                  }
+                ],
+                "edges": [
+                  {
+                    "from": "A",
+                    "to": "B",
+                    "state": "traversed"
+                  },
+                  {
+                    "from": "A",
+                    "to": "C",
+                    "state": "traversed"
+                  },
+                  {
+                    "from": "B",
+                    "to": "D",
+                    "state": "default"
+                  },
+                  {
+                    "from": "B",
+                    "to": "E",
+                    "state": "default"
+                  },
+                  {
+                    "from": "C",
+                    "to": "F",
+                    "state": "default"
+                  },
+                  {
+                    "from": "D",
+                    "to": "G",
+                    "state": "default"
+                  },
+                  {
+                    "from": "E",
+                    "to": "F",
+                    "state": "default"
+                  }
+                ]
+              },
+              "prediction": null,
+              "explanation": "Following the FIFO principle, 'B' is processed next because it was enqueued before 'C'.",
+              "hints": [
+                "The queue is processed from left to right (front to back).",
+                "The queue was `[('B', ...), ('C', ...)]`.",
+                "The `popleft()` operation removes 'B'."
+              ]
+            },
+            {
+              "stepNumber": 5,
+              "codeLine": 17,
+              "description": "Node 'B' is not the target. Its unvisited neighbors, 'D' and 'E', are added to the visited set and enqueued.",
+              "variables": {
+                "queue": "[('C', ['A', 'C']), ('D', ['A', 'B', 'D']), ('E', ['A', 'B', 'E'])]",
+                "visited": "{'A', 'B', 'C', 'D', 'E'}",
+                "current_node": "'B'",
+                "path": "['A', 'B']"
+              },
+              "changedVariables": [
+                "queue",
+                "visited"
+              ],
+              "dataStructure": {
+                "type": "graph",
+                "nodes": [
+                  {
+                    "id": "A",
+                    "label": "A",
+                    "x": 100,
+                    "y": 200,
+                    "state": "visited"
+                  },
+                  {
+                    "id": "B",
+                    "label": "B",
+                    "x": 250,
+                    "y": 100,
+                    "state": "visited"
+                  },
+                  {
+                    "id": "C",
+                    "label": "C",
+                    "x": 250,
+                    "y": 300,
+                    "state": "in_queue"
+                  },
+                  {
+                    "id": "D",
+                    "label": "D",
+                    "x": 400,
+                    "y": 50,
+                    "state": "in_queue"
+                  },
+                  {
+                    "id": "E",
+                    "label": "E",
+                    "x": 400,
+                    "y": 150,
+                    "state": "in_queue"
+                  },
+                  {
+                    "id": "F",
+                    "label": "F",
+                    "x": 400,
+                    "y": 250,
+                    "state": "unvisited"
+                  },
+                  {
+                    "id": "G",
+                    "label": "G",
+                    "x": 550,
+                    "y": 50,
+                    "state": "unvisited"
+                  }
+                ],
+                "edges": [
+                  {
+                    "from": "A",
+                    "to": "B",
+                    "state": "traversed"
+                  },
+                  {
+                    "from": "A",
+                    "to": "C",
+                    "state": "traversed"
+                  },
+                  {
+                    "from": "B",
+                    "to": "D",
+                    "state": "traversed"
+                  },
+                  {
+                    "from": "B",
+                    "to": "E",
+                    "state": "traversed"
+                  },
+                  {
+                    "from": "C",
+                    "to": "F",
+                    "state": "default"
+                  },
+                  {
+                    "from": "D",
+                    "to": "G",
+                    "state": "default"
+                  },
+                  {
+                    "from": "E",
+                    "to": "F",
+                    "state": "default"
+                  }
+                ]
+              },
+              "prediction": {
+                "type": "multi_select",
+                "prompt": "Which nodes are now in the `visited` set?",
+                "options": [
+                  {
+                    "id": "a",
+                    "label": "A"
+                  },
+                  {
+                    "id": "b",
+                    "label": "B"
+                  },
+                  {
+                    "id": "c",
+                    "label": "C"
+                  },
+                  {
+                    "id": "d",
+                    "label": "D"
+                  },
+                  {
+                    "id": "e",
+                    "label": "E"
+                  },
+                  {
+                    "id": "f",
+                    "label": "F"
+                  }
+                ],
+                "correctIds": [
+                  "a",
+                  "b",
+                  "c",
+                  "d",
+                  "e"
+                ]
+              },
+              "explanation": "The neighbors of 'B' ('D' and 'E') are added to the back of the queue. The `visited` set is updated to prevent cycles and redundant processing.",
+              "hints": [
+                "The `visited` set includes all nodes that have ever been in the queue.",
+                "We are adding the unvisited neighbors of 'B' to the existing set.",
+                "The previous set was `{'A', 'B', 'C'}`. We add 'D' and 'E'."
+              ]
+            },
+            {
+              "stepNumber": 6,
+              "codeLine": 8,
+              "description": "The loop continues. Dequeue the next node from the front of the queue: 'C'.",
+              "variables": {
+                "queue": "[('D', ['A', 'B', 'D']), ('E', ['A', 'B', 'E'])]",
+                "visited": "{'A', 'B', 'C', 'D', 'E'}",
+                "current_node": "'C'",
+                "path": "['A', 'C']"
+              },
+              "changedVariables": [
+                "queue",
+                "current_node",
+                "path"
+              ],
+              "dataStructure": {
+                "type": "graph",
+                "nodes": [
+                  {
+                    "id": "A",
+                    "label": "A",
+                    "x": 100,
+                    "y": 200,
+                    "state": "visited"
+                  },
+                  {
+                    "id": "B",
+                    "label": "B",
+                    "x": 250,
+                    "y": 100,
+                    "state": "visited"
+                  },
+                  {
+                    "id": "C",
+                    "label": "C",
+                    "x": 250,
+                    "y": 300,
+                    "state": "current"
+                  },
+                  {
+                    "id": "D",
+                    "label": "D",
+                    "x": 400,
+                    "y": 50,
+                    "state": "in_queue"
+                  },
+                  {
+                    "id": "E",
+                    "label": "E",
+                    "x": 400,
+                    "y": 150,
+                    "state": "in_queue"
+                  },
+                  {
+                    "id": "F",
+                    "label": "F",
+                    "x": 400,
+                    "y": 250,
+                    "state": "unvisited"
+                  },
+                  {
+                    "id": "G",
+                    "label": "G",
+                    "x": 550,
+                    "y": 50,
+                    "state": "unvisited"
+                  }
+                ],
+                "edges": [
+                  {
+                    "from": "A",
+                    "to": "B",
+                    "state": "traversed"
+                  },
+                  {
+                    "from": "A",
+                    "to": "C",
+                    "state": "traversed"
+                  },
+                  {
+                    "from": "B",
+                    "to": "D",
+                    "state": "traversed"
+                  },
+                  {
+                    "from": "B",
+                    "to": "E",
+                    "state": "traversed"
+                  },
+                  {
+                    "from": "C",
+                    "to": "F",
+                    "state": "default"
+                  },
+                  {
+                    "from": "D",
+                    "to": "G",
+                    "state": "default"
+                  },
+                  {
+                    "from": "E",
+                    "to": "F",
+                    "state": "default"
+                  }
+                ]
+              },
+              "prediction": {
+                "type": "multiple_choice",
+                "prompt": "Which node is dequeued next?",
+                "options": [
+                  {
+                    "id": "a",
+                    "label": "C"
+                  },
+                  {
+                    "id": "b",
+                    "label": "D"
+                  },
+                  {
+                    "id": "c",
+                    "label": "E"
+                  }
+                ],
+                "correctId": "a"
+              },
+              "explanation": "'C' is now at the front of the queue `[('C', ...), ('D', ...), ('E', ...)]`, so it is the next node to be processed.",
+              "hints": [
+                "Remember the FIFO (First-In, First-Out) order.",
+                "Look at the state of the queue from the previous step.",
+                "The first element in the queue was the tuple containing node 'C'."
+              ]
+            },
+            {
+              "stepNumber": 7,
+              "codeLine": 17,
+              "description": "Node 'C' is not the target. Its unvisited neighbor, 'F', is added to the visited set and enqueued.",
+              "variables": {
+                "queue": "[('D', ['A', 'B', 'D']), ('E', ['A', 'B', 'E']), ('F', ['A', 'C', 'F'])]",
+                "visited": "{'A', 'B', 'C', 'D', 'E', 'F'}",
+                "current_node": "'C'",
+                "path": "['A', 'C']"
+              },
+              "changedVariables": [
+                "queue",
+                "visited"
+              ],
+              "dataStructure": {
+                "type": "graph",
+                "nodes": [
+                  {
+                    "id": "A",
+                    "label": "A",
+                    "x": 100,
+                    "y": 200,
+                    "state": "visited"
+                  },
+                  {
+                    "id": "B",
+                    "label": "B",
+                    "x": 250,
+                    "y": 100,
+                    "state": "visited"
+                  },
+                  {
+                    "id": "C",
+                    "label": "C",
+                    "x": 250,
+                    "y": 300,
+                    "state": "visited"
+                  },
+                  {
+                    "id": "D",
+                    "label": "D",
+                    "x": 400,
+                    "y": 50,
+                    "state": "in_queue"
+                  },
+                  {
+                    "id": "E",
+                    "label": "E",
+                    "x": 400,
+                    "y": 150,
+                    "state": "in_queue"
+                  },
+                  {
+                    "id": "F",
+                    "label": "F",
+                    "x": 400,
+                    "y": 250,
+                    "state": "in_queue"
+                  },
+                  {
+                    "id": "G",
+                    "label": "G",
+                    "x": 550,
+                    "y": 50,
+                    "state": "unvisited"
+                  }
+                ],
+                "edges": [
+                  {
+                    "from": "A",
+                    "to": "B",
+                    "state": "traversed"
+                  },
+                  {
+                    "from": "A",
+                    "to": "C",
+                    "state": "traversed"
+                  },
+                  {
+                    "from": "B",
+                    "to": "D",
+                    "state": "traversed"
+                  },
+                  {
+                    "from": "B",
+                    "to": "E",
+                    "state": "traversed"
+                  },
+                  {
+                    "from": "C",
+                    "to": "F",
+                    "state": "traversed"
+                  },
+                  {
+                    "from": "D",
+                    "to": "G",
+                    "state": "default"
+                  },
+                  {
+                    "from": "E",
+                    "to": "F",
+                    "state": "default"
+                  }
+                ]
+              },
+              "prediction": {
+                "type": "value",
+                "prompt": "What is the new path that gets added to the queue?",
+                "correctValue": "['A', 'C', 'F']",
+                "acceptableValues": [
+                  "['A', 'C', 'F']",
+                  "['A','C','F']",
+                  "[A, C, F]"
+                ],
+                "placeholder": "e.g., ['X', 'Y', 'Z']"
+              },
+              "explanation": "The path to the current node 'C' is `['A', 'C']`. We append its neighbor 'F' to create the new path `['A', 'C', 'F']`, which is then enqueued along with node 'F'.",
+              "hints": [
+                "A new path is formed by taking the current node's path and adding the neighbor.",
+                "The current `path` is `['A', 'C']` and the `neighbor` is 'F'.",
+                "The `new_path` is `path + [neighbor]`, which results in `['A', 'C', 'F']`."
+              ]
+            },
+            {
+              "stepNumber": 8,
+              "codeLine": 8,
+              "description": "The loop continues. Dequeue the next node from the front of the queue: 'D'.",
+              "variables": {
+                "queue": "[('E', ['A', 'B', 'E']), ('F', ['A', 'C', 'F'])]",
+                "visited": "{'A', 'B', 'C', 'D', 'E', 'F'}",
+                "current_node": "'D'",
+                "path": "['A', 'B', 'D']"
+              },
+              "changedVariables": [
+                "queue",
+                "current_node",
+                "path"
+              ],
+              "dataStructure": {
+                "type": "graph",
+                "nodes": [
+                  {
+                    "id": "A",
+                    "label": "A",
+                    "x": 100,
+                    "y": 200,
+                    "state": "visited"
+                  },
+                  {
+                    "id": "B",
+                    "label": "B",
+                    "x": 250,
+                    "y": 100,
+                    "state": "visited"
+                  },
+                  {
+                    "id": "C",
+                    "label": "C",
+                    "x": 250,
+                    "y": 300,
+                    "state": "visited"
+                  },
+                  {
+                    "id": "D",
+                    "label": "D",
+                    "x": 400,
+                    "y": 50,
+                    "state": "current"
+                  },
+                  {
+                    "id": "E",
+                    "label": "E",
+                    "x": 400,
+                    "y": 150,
+                    "state": "in_queue"
+                  },
+                  {
+                    "id": "F",
+                    "label": "F",
+                    "x": 400,
+                    "y": 250,
+                    "state": "in_queue"
+                  },
+                  {
+                    "id": "G",
+                    "label": "G",
+                    "x": 550,
+                    "y": 50,
+                    "state": "unvisited"
+                  }
+                ],
+                "edges": [
+                  {
+                    "from": "A",
+                    "to": "B",
+                    "state": "traversed"
+                  },
+                  {
+                    "from": "A",
+                    "to": "C",
+                    "state": "traversed"
+                  },
+                  {
+                    "from": "B",
+                    "to": "D",
+                    "state": "traversed"
+                  },
+                  {
+                    "from": "B",
+                    "to": "E",
+                    "state": "traversed"
+                  },
+                  {
+                    "from": "C",
+                    "to": "F",
+                    "state": "traversed"
+                  },
+                  {
+                    "from": "D",
+                    "to": "G",
+                    "state": "default"
+                  },
+                  {
+                    "from": "E",
+                    "to": "F",
+                    "state": "default"
+                  }
+                ]
+              },
+              "prediction": {
+                "type": "multiple_choice",
+                "prompt": "Which node is dequeued?",
+                "options": [
+                  {
+                    "id": "a",
+                    "label": "D"
+                  },
+                  {
+                    "id": "b",
+                    "label": "E"
+                  },
+                  {
+                    "id": "c",
+                    "label": "F"
+                  }
+                ],
+                "correctId": "a"
+              },
+              "explanation": "'D' is now at the front of the queue `[('D', ...), ('E', ...), ('F', ...)]`, so it is the next node to be processed. The algorithm will continue this process until it finds the target 'F'.",
+              "hints": [
+                "The queue is always processed from front to back.",
+                "Look at the state of the queue before this step.",
+                "The first element in the queue was the tuple containing node 'D'."
+              ]
+            }
+          ],
+          "scoringConfig": {
+            "basePoints": 100,
+            "streakThresholds": [
+              {
+                "min": 0,
+                "multiplier": 1
+              },
+              {
+                "min": 3,
+                "multiplier": 1.5
+              },
+              {
+                "min": 5,
+                "multiplier": 2
+              },
+              {
+                "min": 8,
+                "multiplier": 3
+              }
+            ],
+            "hintPenalties": [
+              0.1,
+              0.2,
+              0.3
+            ],
+            "perfectRunBonus": 0.2
+          }
+        },
+        "asset_url": null
+      },
+      {
+        "scene_id": "scene_3",
+        "scene_number": 3,
+        "title": "Predicting Performance",
+        "game_type": "complexity_analyzer",
+        "difficulty": "advanced",
+        "learning_goal": "Analyze the time and space complexity of BFS to understand how its performance scales with the size and density of the graph.",
+        "max_score": 300,
+        "content": {
+          "algorithmName": "Breadth-First Search (BFS)",
+          "algorithmDescription": "Breadth-First Search (BFS) is an algorithm for traversing or searching tree or graph data structures. It starts at the tree root (or some arbitrary node of a graph) and explores all of the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level. It typically uses a queue to manage the order of node visits, ensuring that nodes closer to the start node are visited first.",
+          "challenges": [
+            {
+              "challengeId": "challenge_1",
+              "type": "identify_from_code",
+              "title": "Analyze BFS Time Complexity (Adjacency List)",
+              "description": "Consider a graph represented by an adjacency list. Analyze the time complexity of the provided BFS implementation in terms of V (number of vertices) and E (number of edges) in the worst-case scenario.",
+              "code": "from collections import deque\n\ndef bfs_adj_list(graph, start_node):\n    visited = set()\n    queue = deque([start_node])\n    visited.add(start_node)\n\n    while queue:\n        current_node = queue.popleft()\n        # Process current_node (e.g., print it)\n\n        for neighbor in graph[current_node]:\n            if neighbor not in visited:\n                visited.add(neighbor)\n                queue.append(neighbor)",
+              "language": "python",
+              "growthData": null,
+              "codeSections": [],
+              "correctComplexity": "O(n)",
+              "options": [
+                "O(log n)",
+                "O(n)",
+                "O(n log n)",
+                "O(n^2)"
+              ],
+              "explanation": "Each vertex is enqueued and dequeued exactly once, contributing O(V) to the time. Each edge (u, v) is traversed twice (once from u to v, once from v to u if undirected) when iterating through neighbors, contributing O(E) to the time. Thus, the total time complexity is O(V + E). If 'n' represents V+E, then it's O(n).",
+              "points": 100,
+              "hints": [
+                "Consider how many times each vertex is processed.",
+                "Consider how many times each edge is examined.",
+                "The total work is proportional to the sum of vertices and edges."
+              ],
+              "complexityDimension": "time",
+              "caseVariant": "worst"
+            },
+            {
+              "challengeId": "challenge_2",
+              "type": "infer_from_growth",
+              "title": "Infer BFS Space Complexity from Growth Data",
+              "description": "The table below shows the maximum number of elements stored in the queue and visited set during a BFS traversal for graphs of increasing vertex count (N). Infer the space complexity of BFS based on this data.",
+              "code": null,
+              "language": "python",
+              "growthData": {
+                "inputSizes": [
+                  10,
+                  100,
+                  1000,
+                  10000
+                ],
+                "operationCounts": [
+                  10,
+                  100,
+                  1000,
+                  10000
+                ]
+              },
+              "codeSections": [],
+              "correctComplexity": "O(n)",
+              "options": [
+                "O(log n)",
+                "O(n)",
+                "O(n log n)",
+                "O(n^2)"
+              ],
+              "explanation": "The operation counts grow linearly with the input size (N). This indicates a linear relationship, meaning the space complexity is O(N). In BFS, the queue and visited set can store up to O(V) vertices in the worst case (e.g., a star graph where all neighbors of the center node are added to the queue).",
+              "points": 100,
+              "hints": [
+                "Observe the ratio between input size and operation count.",
+                "How does the memory usage scale as the number of vertices increases?",
+                "The growth is directly proportional to the input size."
+              ],
+              "complexityDimension": "space",
+              "caseVariant": "worst"
+            },
+            {
+              "challengeId": "challenge_3",
+              "type": "find_bottleneck",
+              "title": "Identify Bottleneck in Adjacency Matrix BFS",
+              "description": "Analyze the provided BFS implementation for a graph represented by an adjacency matrix. Identify the section that contributes most significantly to the overall time complexity in the worst case.",
+              "code": "from collections import deque\n\ndef bfs_adj_matrix(graph_matrix, start_node):\n    num_nodes = len(graph_matrix)\n    visited = [False] * num_nodes # sec_init_start\n    queue = deque() # sec_init_end\n\n    queue.append(start_node) # sec_initial_queue_start\n    visited[start_node] = True # sec_initial_queue_end\n\n    while queue:\n        current_node = queue.popleft()\n        # Process current_node\n\n        for neighbor in range(num_nodes): # sec_neighbor_scan_start\n            if graph_matrix[current_node][neighbor] == 1 and not visited[neighbor]:\n                visited[neighbor] = True\n                queue.append(neighbor) # sec_neighbor_scan_end",
+              "language": "python",
+              "growthData": null,
+              "codeSections": [
+                {
+                  "sectionId": "sec_init",
+                  "label": "Initialization of visited array and queue",
+                  "startLine": 5,
+                  "endLine": 6,
+                  "complexity": "O(n)",
+                  "isBottleneck": false
+                },
+                {
+                  "sectionId": "sec_initial_queue",
+                  "label": "Initial Queueing and Visited Mark",
+                  "startLine": 8,
+                  "endLine": 9,
+                  "complexity": "O(1)",
+                  "isBottleneck": false
+                },
+                {
+                  "sectionId": "sec_neighbor_scan",
+                  "label": "Neighbor Scan Loop (Adjacency Matrix)",
+                  "startLine": 16,
+                  "endLine": 19,
+                  "complexity": "O(n^2)",
+                  "isBottleneck": true
+                }
+              ],
+              "correctComplexity": "O(n^2)",
+              "options": [
+                "O(n)",
+                "O(n log n)",
+                "O(n^2)",
+                "O(n^3)"
+              ],
+              "explanation": "In an adjacency matrix representation, finding neighbors for a 'current_node' requires iterating through all 'num_nodes' columns (an O(V) operation). Since each vertex is dequeued once, and for each dequeued vertex, we perform an O(V) scan for neighbors, the total time complexity becomes O(V * V) = O(V^2). The 'for neighbor in range(num_nodes)' loop (sec_neighbor_scan) is the bottleneck.",
+              "points": 150,
+              "hints": [
+                "Focus on the loops and how many times they iterate.",
+                "How does iterating through neighbors differ between an adjacency list and an adjacency matrix?",
+                "The nested iteration over all possible neighbors for each visited node leads to quadratic complexity."
+              ],
+              "complexityDimension": "time",
+              "caseVariant": "worst"
+            }
+          ],
+          "complexity_dimension": "both",
+          "case_variants": "worst_only"
+        },
+        "asset_url": null
+      }
+    ],
+    "scene_transitions": [
+      {
+        "from_scene": "scene_1",
+        "to_scene": "scene_2",
+        "trigger": "completion"
+      },
+      {
+        "from_scene": "scene_2",
+        "to_scene": "scene_3",
+        "trigger": "completion"
+      }
+    ],
+    "scene_assets": {
+      "scene_2": {
+        "scene_id": "scene_2",
+        "status": "skipped",
+        "image_url": "",
+        "asset_type": "algorithm_illustration"
+      },
+      "scene_3": {
+        "scene_id": "scene_3",
+        "status": "skipped",
+        "image_url": "",
+        "asset_type": "growth_chart"
+      }
+    },
+    "is_degraded": false,
+    "generation_complete": true
+  }
+}

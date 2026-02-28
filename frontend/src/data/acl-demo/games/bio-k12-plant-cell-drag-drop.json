@@ -1,0 +1,921 @@
+{
+  "id": "bio-k12-plant-cell-drag-drop",
+  "title": "Label the Parts of a Plant Cell",
+  "question": "Create an interactive diagram game where students label the parts of a plant cell including the cell wall, cell membrane, nucleus, chloroplast, mitochondria, vacuole, and endoplasmic reticulum.",
+  "domain": "biology",
+  "educationLevel": "k12",
+  "gameType": "interactive_diagram",
+  "mechanic": "drag_drop",
+  "bloomsLevel": "Remember",
+  "pipelineMetrics": {
+    "runId": "176755f2-d210-484b-abf2-43a44c487098",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 124.5,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T03:22:12.498751+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "Plant Cell Architect: Build & Function",
+    "subject": "Biology",
+    "difficulty": "advanced",
+    "narrativeIntro": "Welcome, aspiring botanical biologist! Your mission is to meticulously identify and understand the intricate structures within a plant cell. Each organelle plays a vital role in sustaining plant life. Let's begin by accurately labeling the cell's components, then delve into their essential functions.",
+    "narrativeTheme": "Botanical Biologist",
+    "completionMessage": "Outstanding work, Botanical Biologist! You've successfully identified and understood the complex machinery of the plant cell. Your expertise will be crucial in advancing our understanding of plant life!",
+    "estimatedDurationMinutes": 12,
+    "diagram": {
+      "assetPrompt": "A highly detailed, cross-sectional diagram of a typical plant cell, rendered in a clean educational illustration style. The diagram must clearly delineate and visually distinguish all specified organelles: Cell Wall, Cell Membrane, Nucleus, Chloroplast, Mitochondrion, Vacuole, and Endoplasmic Reticulum. Each of these structures must have a clearly defined, interactive zone for label placement and subsequent description matching. The diagram should be free of any pre-existing labels or text.",
+      "zones": [
+        {
+          "id": "zone_cell_wall",
+          "label": "Cell Wall",
+          "points": [
+            [
+              59.5,
+              1.4
+            ],
+            [
+              51.4,
+              4.3
+            ],
+            [
+              47.7,
+              11.8
+            ],
+            [
+              30.7,
+              21.9
+            ],
+            [
+              33.0,
+              26.5
+            ],
+            [
+              33.9,
+              44.6
+            ],
+            [
+              29.1,
+              50.7
+            ],
+            [
+              26.3,
+              58.8
+            ],
+            [
+              29.7,
+              79.4
+            ],
+            [
+              27.9,
+              86.2
+            ],
+            [
+              35.2,
+              84.3
+            ],
+            [
+              47.5,
+              89.8
+            ],
+            [
+              52.0,
+              97.3
+            ],
+            [
+              66.0,
+              89.0
+            ],
+            [
+              78.2,
+              76.9
+            ],
+            [
+              76.4,
+              71.3
+            ],
+            [
+              79.1,
+              63.4
+            ],
+            [
+              79.6,
+              48.4
+            ],
+            [
+              77.4,
+              46.6
+            ],
+            [
+              79.4,
+              46.8
+            ],
+            [
+              79.2,
+              38.8
+            ],
+            [
+              84.0,
+              35.9
+            ],
+            [
+              77.6,
+              30.4
+            ]
+          ],
+          "x": 55.7,
+          "y": 52.4,
+          "radius": 51.1,
+          "shape": "polygon",
+          "center": {
+            "x": 55.7,
+            "y": 52.4
+          },
+          "description": "Provides structural support and protection to the plant cell, maintaining its shape and preventing excessive water uptake.",
+          "hierarchyLevel": 1,
+          "childZoneIds": [
+            "zone_cell_membrane"
+          ]
+        },
+        {
+          "id": "zone_cell_membrane",
+          "label": "Cell Membrane",
+          "points": [
+            [
+              62.4,
+              22.0
+            ],
+            [
+              57.1,
+              14.9
+            ],
+            [
+              51.9,
+              11.5
+            ],
+            [
+              45.8,
+              14.1
+            ],
+            [
+              38.9,
+              19.6
+            ],
+            [
+              35.1,
+              24.0
+            ],
+            [
+              33.8,
+              28.2
+            ],
+            [
+              33.8,
+              46.1
+            ],
+            [
+              38.4,
+              41.9
+            ],
+            [
+              41.6,
+              43.9
+            ],
+            [
+              43.8,
+              33.6
+            ],
+            [
+              46.4,
+              28.0
+            ],
+            [
+              48.8,
+              28.2
+            ],
+            [
+              51.6,
+              34.3
+            ],
+            [
+              58.7,
+              27.4
+            ],
+            [
+              60.9,
+              27.7
+            ],
+            [
+              62.8,
+              26.3
+            ],
+            [
+              60.6,
+              22.7
+            ]
+          ],
+          "x": 48.5,
+          "y": 27.5,
+          "radius": 23.7,
+          "shape": "polygon",
+          "center": {
+            "x": 48.5,
+            "y": 27.5
+          },
+          "description": "Regulates the passage of substances into and out of the cell, acting as a selective barrier that controls cellular transport and maintains internal homeostasis.",
+          "hierarchyLevel": 2,
+          "parentZoneId": "zone_cell_wall",
+          "childZoneIds": [
+            "zone_nucleus",
+            "zone_chloroplast",
+            "zone_mitochondrion",
+            "zone_vacuole",
+            "zone_endoplasmic_reticulum"
+          ]
+        },
+        {
+          "id": "zone_nucleus",
+          "label": "Nucleus",
+          "points": [
+            [
+              57.6,
+              46.5
+            ],
+            [
+              55.4,
+              48.3
+            ],
+            [
+              53.2,
+              52.0
+            ],
+            [
+              53.2,
+              55.8
+            ],
+            [
+              54.6,
+              59.7
+            ],
+            [
+              55.0,
+              60.2
+            ],
+            [
+              56.5,
+              60.0
+            ],
+            [
+              56.9,
+              60.4
+            ],
+            [
+              57.3,
+              62.4
+            ],
+            [
+              59.3,
+              62.8
+            ],
+            [
+              60.6,
+              62.2
+            ],
+            [
+              62.7,
+              62.0
+            ],
+            [
+              63.7,
+              61.2
+            ],
+            [
+              64.4,
+              60.0
+            ],
+            [
+              66.0,
+              59.1
+            ],
+            [
+              67.0,
+              57.4
+            ],
+            [
+              66.8,
+              54.2
+            ],
+            [
+              66.2,
+              52.9
+            ],
+            [
+              65.9,
+              50.5
+            ],
+            [
+              64.1,
+              48.4
+            ],
+            [
+              63.7,
+              47.0
+            ],
+            [
+              63.6,
+              48.4
+            ],
+            [
+              63.2,
+              48.5
+            ],
+            [
+              62.2,
+              47.5
+            ],
+            [
+              60.5,
+              47.1
+            ],
+            [
+              59.4,
+              46.2
+            ]
+          ],
+          "x": 60.7,
+          "y": 54.6,
+          "radius": 8.7,
+          "shape": "polygon",
+          "center": {
+            "x": 60.7,
+            "y": 54.6
+          },
+          "description": "Contains the cell's genetic material (DNA) and controls cell growth, metabolism, and reproduction by directing protein synthesis and gene expression.",
+          "hierarchyLevel": 3,
+          "parentZoneId": "zone_cell_membrane"
+        },
+        {
+          "id": "zone_chloroplast",
+          "label": "Chloroplast",
+          "points": [
+            [
+              32.1,
+              42.1
+            ],
+            [
+              41.1,
+              42.1
+            ],
+            [
+              41.1,
+              50.6
+            ],
+            [
+              32.1,
+              50.6
+            ]
+          ],
+          "x": 36.6,
+          "y": 46.4,
+          "width": 9.0,
+          "height": 8.5,
+          "shape": "rect",
+          "description": "The primary site of photosynthesis, converting light energy into chemical energy in the form of glucose for the plant.",
+          "hierarchyLevel": 3,
+          "parentZoneId": "zone_cell_membrane"
+        },
+        {
+          "id": "zone_mitochondrion",
+          "label": "Mitochondrion",
+          "points": [
+            [
+              61.7,
+              58.9
+            ],
+            [
+              68.8,
+              58.9
+            ],
+            [
+              68.8,
+              66.1
+            ],
+            [
+              61.7,
+              66.1
+            ]
+          ],
+          "x": 65.2,
+          "y": 62.5,
+          "width": 7.1,
+          "height": 7.2,
+          "shape": "rect",
+          "description": "Responsible for cellular respiration, breaking down glucose to generate ATP, the main energy currency of the cell.",
+          "hierarchyLevel": 3,
+          "parentZoneId": "zone_cell_membrane"
+        },
+        {
+          "id": "zone_vacuole",
+          "label": "Vacuole",
+          "points": [
+            [
+              47.4,
+              27.8
+            ],
+            [
+              45.6,
+              29.3
+            ],
+            [
+              43.8,
+              34.1
+            ],
+            [
+              42.1,
+              40.9
+            ],
+            [
+              41.3,
+              47.6
+            ],
+            [
+              41.3,
+              51.2
+            ],
+            [
+              42.1,
+              53.6
+            ],
+            [
+              43.3,
+              55.3
+            ],
+            [
+              46.2,
+              56.6
+            ],
+            [
+              48.6,
+              56.4
+            ],
+            [
+              50.5,
+              55.3
+            ],
+            [
+              52.0,
+              52.8
+            ],
+            [
+              52.5,
+              48.8
+            ],
+            [
+              52.4,
+              44.3
+            ],
+            [
+              51.8,
+              42.6
+            ],
+            [
+              52.0,
+              39.8
+            ],
+            [
+              51.5,
+              37.3
+            ],
+            [
+              50.7,
+              36.3
+            ],
+            [
+              50.8,
+              33.6
+            ],
+            [
+              49.2,
+              28.9
+            ]
+          ],
+          "x": 47.8,
+          "y": 43.6,
+          "radius": 15.8,
+          "shape": "polygon",
+          "center": {
+            "x": 47.8,
+            "y": 43.6
+          },
+          "description": "A large, central sac that stores water, nutrients, and waste, and plays a crucial role in maintaining turgor pressure against the cell wall.",
+          "hierarchyLevel": 3,
+          "parentZoneId": "zone_cell_membrane"
+        },
+        {
+          "id": "zone_endoplasmic_reticulum",
+          "label": "Endoplasmic Reticulum",
+          "points": [
+            [
+              63.5,
+              26.6
+            ],
+            [
+              61.2,
+              27.8
+            ],
+            [
+              58.8,
+              27.5
+            ],
+            [
+              51.0,
+              35.2
+            ],
+            [
+              51.0,
+              36.6
+            ],
+            [
+              52.5,
+              35.9
+            ],
+            [
+              52.5,
+              37.0
+            ],
+            [
+              55.2,
+              36.2
+            ],
+            [
+              53.2,
+              38.2
+            ],
+            [
+              53.1,
+              39.0
+            ],
+            [
+              54.0,
+              39.4
+            ],
+            [
+              52.4,
+              41.4
+            ],
+            [
+              52.2,
+              43.2
+            ],
+            [
+              55.4,
+              41.0
+            ],
+            [
+              55.6,
+              43.1
+            ],
+            [
+              58.7,
+              42.5
+            ],
+            [
+              56.3,
+              44.4
+            ],
+            [
+              55.3,
+              43.5
+            ],
+            [
+              54.6,
+              44.1
+            ],
+            [
+              55.1,
+              45.3
+            ],
+            [
+              53.8,
+              45.6
+            ],
+            [
+              54.2,
+              46.3
+            ],
+            [
+              55.8,
+              44.9
+            ],
+            [
+              57.2,
+              45.1
+            ],
+            [
+              59.6,
+              43.8
+            ],
+            [
+              61.6,
+              44.9
+            ],
+            [
+              64.9,
+              44.6
+            ],
+            [
+              64.1,
+              42.5
+            ],
+            [
+              64.5,
+              40.7
+            ],
+            [
+              67.1,
+              38.3
+            ],
+            [
+              66.0,
+              36.6
+            ],
+            [
+              64.4,
+              37.7
+            ],
+            [
+              64.2,
+              36.9
+            ],
+            [
+              67.4,
+              35.2
+            ],
+            [
+              67.6,
+              34.4
+            ],
+            [
+              66.4,
+              32.8
+            ],
+            [
+              67.0,
+              31.2
+            ]
+          ],
+          "x": 58.6,
+          "y": 39.2,
+          "radius": 13.5,
+          "shape": "polygon",
+          "center": {
+            "x": 58.6,
+            "y": 39.2
+          },
+          "description": "A network of membranes involved in the synthesis, folding, modification, and transport of proteins and lipids.",
+          "hierarchyLevel": 3,
+          "parentZoneId": "zone_cell_membrane"
+        }
+      ],
+      "imageUrl": "/acl-demo/assets/bio-k12-plant-cell.png",
+      "assetUrl": "/acl-demo/assets/bio-k12-plant-cell.png"
+    },
+    "labels": [
+      {
+        "id": "label_s1_0",
+        "text": "Cell Wall",
+        "correctZoneId": "zone_cell_wall"
+      },
+      {
+        "id": "label_s1_1",
+        "text": "Cell Membrane",
+        "correctZoneId": "zone_cell_membrane"
+      },
+      {
+        "id": "label_s1_2",
+        "text": "Nucleus",
+        "correctZoneId": "zone_nucleus"
+      },
+      {
+        "id": "label_s1_3",
+        "text": "Chloroplast",
+        "correctZoneId": "zone_chloroplast"
+      },
+      {
+        "id": "label_s1_4",
+        "text": "Mitochondrion",
+        "correctZoneId": "zone_mitochondrion"
+      },
+      {
+        "id": "label_s1_5",
+        "text": "Vacuole",
+        "correctZoneId": "zone_vacuole"
+      },
+      {
+        "id": "label_s1_6",
+        "text": "Endoplasmic Reticulum",
+        "correctZoneId": "zone_endoplasmic_reticulum"
+      }
+    ],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "Welcome, aspiring botanist! Your first task is to accurately identify the key parts of this plant cell. Drag each label to its corresponding location on the diagram."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 70,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! You've correctly identified the {label_name}.",
+          "on_incorrect": "Not quite. The {label_name} has a different location. Consider its primary role in the cell.",
+          "on_completion": "Fantastic work! You've successfully labeled all the key plant cell organelles. Now, let's explore their functions!",
+          "misconceptions": [
+            {
+              "trigger_label": "incorrect_placement_Cell Membrane",
+              "message": "Remember, plant cells have both a rigid cell wall (outside) for structural support and protection, and a flexible cell membrane (inside the cell wall) that regulates the passage of substances.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "incorrect_placement_Chloroplast",
+              "message": "Chloroplasts are primarily found in the photosynthetic parts of a plant (e.g., leaves, green stems), not in root cells or other non-photosynthetic tissues. Where would it be in a leaf cell?",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "incorrect_placement_Vacuole",
+              "message": "The large central vacuole in plant cells plays crucial roles in maintaining turgor pressure, storing water, nutrients, and waste, and even breaking down waste products. It's more than just a storage sac!",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "description_matching",
+        "config": {
+          "instruction_text": "Excellent work identifying the plant cell's structures! Now, deepen your understanding by matching each labeled organelle to its correct functional description."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 15,
+          "max_score": 105,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "That's right! You've accurately matched the description for the {organelle_name}.",
+          "on_incorrect": "Hmm, that description doesn't quite fit the {organelle_name}. Re-read the function and try to connect it to the organelle's role.",
+          "on_completion": "Outstanding! You've successfully matched all the organelles with their correct functions. You truly understand the plant cell blueprint!",
+          "misconceptions": [
+            {
+              "trigger_label": "incorrect_match_Cell Membrane",
+              "message": "It's important to distinguish: Plant cells have both a rigid cell wall (outside) for structural support and protection, and a flexible cell membrane (inside the cell wall) that regulates the passage of substances.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "incorrect_match_Chloroplast",
+              "message": "While chloroplasts are vital, remember they are primarily found in the photosynthetic parts of a plant (e.g., leaves, green stems), not in root cells or other non-photosynthetic tissues. Does the description reflect this?",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "incorrect_match_Vacuole",
+              "message": "The large central vacuole in plant cells plays crucial roles in maintaining turgor pressure, storing water, nutrients, and waste, and even breaking down waste products. It's much more than just a storage sac!",
+              "severity": "medium"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [
+      {
+        "from": "drag_drop",
+        "to": "description_matching",
+        "trigger": "all_zones_labeled",
+        "animation": "fade"
+      }
+    ],
+    "interactionMode": "drag_drop",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 10,
+      "max_score": 175
+    },
+    "totalMaxScore": 175,
+    "generation_complete": true,
+    "dragDropConfig": {
+      "leader_line_style": "none",
+      "tray_position": "bottom",
+      "placement_animation": "spring",
+      "show_distractors": false,
+      "pin_marker_shape": "circle",
+      "incorrect_animation": "shake",
+      "max_attempts": 3,
+      "leader_line_color": "",
+      "zone_hover_effect": "highlight",
+      "tray_layout": "horizontal",
+      "interaction_mode": "drag_drop",
+      "label_style": "text",
+      "feedback_timing": "immediate",
+      "zone_idle_animation": "pulse",
+      "shuffle_labels": true,
+      "label_anchor_side": "auto",
+      "leader_line_animate": true
+    },
+    "descriptionMatchingConfig": {
+      "descriptions": {
+        "zone_cell_wall": "Provides structural support and protection to the plant cell, maintaining its shape and preventing excessive water uptake.",
+        "zone_cell_membrane": "Regulates the passage of substances into and out of the cell, acting as a selective barrier that controls cellular transport and maintains internal homeostasis.",
+        "zone_nucleus": "Contains the cell's genetic material (DNA) and controls cell growth, metabolism, and reproduction by directing protein synthesis and gene expression.",
+        "zone_chloroplast": "The primary site of photosynthesis, converting light energy into chemical energy in the form of glucose for the plant.",
+        "zone_mitochondrion": "Responsible for cellular respiration, breaking down glucose to generate ATP, the main energy currency of the cell.",
+        "zone_vacuole": "A large, central sac that stores water, nutrients, and waste, and plays a crucial role in maintaining turgor pressure against the cell wall.",
+        "zone_endoplasmic_reticulum": "A network of membranes involved in the synthesis, folding, modification, and transport of proteins and lipids."
+      },
+      "mode": "click_zone",
+      "distractor_descriptions": [],
+      "show_connecting_lines": true,
+      "defer_evaluation": false,
+      "description_panel_position": "right"
+    },
+    "zoneGroups": [
+      {
+        "id": "group_zone_cell_wall",
+        "parentZoneId": "zone_cell_wall",
+        "childZoneIds": [
+          "zone_cell_membrane"
+        ],
+        "revealTrigger": "complete_parent",
+        "label": "Cell Wall"
+      },
+      {
+        "id": "group_zone_cell_membrane",
+        "parentZoneId": "zone_cell_membrane",
+        "childZoneIds": [
+          "zone_nucleus",
+          "zone_chloroplast",
+          "zone_mitochondrion",
+          "zone_vacuole",
+          "zone_endoplasmic_reticulum"
+        ],
+        "revealTrigger": "complete_parent",
+        "label": "Cell Membrane"
+      }
+    ],
+    "temporalConstraints": [
+      {
+        "constraint_type": "after",
+        "zone_a": "zone_cell_membrane",
+        "zone_b": "zone_cell_wall",
+        "description": "Zone zone_cell_membrane visible after zone_cell_wall is labeled"
+      },
+      {
+        "constraint_type": "after",
+        "zone_a": "zone_nucleus",
+        "zone_b": "zone_cell_membrane",
+        "description": "Zone zone_nucleus visible after zone_cell_membrane is labeled"
+      },
+      {
+        "constraint_type": "after",
+        "zone_a": "zone_chloroplast",
+        "zone_b": "zone_cell_membrane",
+        "description": "Zone zone_chloroplast visible after zone_cell_membrane is labeled"
+      },
+      {
+        "constraint_type": "after",
+        "zone_a": "zone_mitochondrion",
+        "zone_b": "zone_cell_membrane",
+        "description": "Zone zone_mitochondrion visible after zone_cell_membrane is labeled"
+      },
+      {
+        "constraint_type": "after",
+        "zone_a": "zone_vacuole",
+        "zone_b": "zone_cell_membrane",
+        "description": "Zone zone_vacuole visible after zone_cell_membrane is labeled"
+      },
+      {
+        "constraint_type": "after",
+        "zone_a": "zone_endoplasmic_reticulum",
+        "zone_b": "zone_cell_membrane",
+        "description": "Zone zone_endoplasmic_reticulum visible after zone_cell_membrane is labeled"
+      }
+    ],
+    "revealOrder": [
+      "zone_cell_wall",
+      "zone_cell_membrane",
+      "zone_vacuole",
+      "zone_nucleus",
+      "zone_chloroplast",
+      "zone_mitochondrion",
+      "zone_endoplasmic_reticulum"
+    ]
+  }
+}

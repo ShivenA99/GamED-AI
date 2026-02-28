@@ -1,0 +1,36 @@
+export interface VectorSandboxBlueprint {
+  templateType: "VECTOR_SANDBOX";
+  title: string;
+  narrativeIntro: string;
+  vectors: Array<{
+    id: string;
+    label: string;
+    initialX: number; // 0–1
+    initialY: number; // 0–1
+    magnitude: number;
+    angle: number; // degrees
+    color?: string;
+  }>;
+  operations: Array<{
+    id: string;
+    type: "add" | "subtract" | "scale" | "dot_product" | "cross_product";
+    label: string;
+  }>;
+  tasks: Array<{
+    id: string;
+    type: "vector_operation" | "vector_analysis";
+    questionText: string;
+    targetResult?: {
+      magnitude?: number;
+      angle?: number;
+      components?: { x: number; y: number };
+    };
+    requiredToProceed: boolean;
+  }>;
+  animationCues: {
+    vectorMove: string;
+    operationApply: string;
+    resultDisplay: string;
+  };
+}
+

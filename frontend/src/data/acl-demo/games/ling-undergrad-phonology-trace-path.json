@@ -1,0 +1,229 @@
+{
+  "id": "ling-undergrad-phonology-trace-path",
+  "title": "Trace Phonological Rule Application",
+  "question": "Create an interactive diagram game where students trace the application of phonological rules in a derivation: underlying form through vowel harmony, consonant assimilation, and syllabification rules to surface form.",
+  "domain": "linguistics",
+  "educationLevel": "undergraduate",
+  "gameType": "interactive_diagram",
+  "mechanic": "trace_path",
+  "bloomsLevel": "Apply",
+  "pipelineMetrics": {
+    "runId": "461abd97-dbb7-4ea7-8a81-83d9d4a3f3e2",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 201.2,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T06:02:53.343057+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "Phonology Path: Derivation Decipher",
+    "subject": "Linguistics",
+    "difficulty": "advanced",
+    "narrativeIntro": "Welcome, linguistic detective! A mysterious word has appeared, and its surface form hides a complex journey. Your mission is to uncover the phonological rules that transformed its underlying structure into its spoken reality. Trace the path, identify the rules, and reveal the secrets of sound derivation!",
+    "narrativeTheme": "Linguistic Detective",
+    "completionMessage": "Excellent work, detective! You've successfully deciphered the phonological derivation, demonstrating a deep understanding of how rules sequentially transform sounds. The mystery is solved!",
+    "estimatedDurationMinutes": 12,
+    "diagram": {
+      "assetPrompt": "",
+      "zones": []
+    },
+    "labels": [],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "sequencing",
+        "config": {
+          "instruction_text": "Before we tackle a specific word, let's establish the fundamental steps of any phonological derivation. Arrange these general stages in their correct order to reveal the derivation blueprint."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 40,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! '{item_content}' is correctly placed in the sequence of phonological derivation.",
+          "on_incorrect": "Not quite right for '{item_content}'. Consider what step typically precedes or follows this in the overall derivation process.",
+          "on_completion": "Fantastic! You've successfully ordered the general sequence of phonological derivation. This foundational understanding is key to grasping how sounds transform in language.",
+          "misconceptions": [
+            {
+              "trigger_label": "rules_random_order",
+              "message": "It seems there might be a misunderstanding about rule application. Remember, phonological rules apply in a specific, often language-dependent, sequential order, forming a derivation where the output of one rule serves as the input for the next.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "single_rule_transformation",
+              "message": "It's important to remember that multiple phonological rules often apply iteratively and interactively to produce the final surface form from the underlying representation, with each rule making a specific change.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "syllabification_simple",
+              "message": "Syllabification is actually a complex phonological process governed by language-specific rules that interact with other phonological phenomena, often differing from orthographic divisions. Its placement in the derivation is crucial.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "trace_path",
+        "config": {
+          "instruction_text": "As a Linguistic Detective, your first task is to trace the complete phonological derivation path from the Underlying Form to the Surface Form. Follow the transformation step-by-step."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 15,
+          "max_score": 60,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! You've correctly identified a step in the derivation.",
+          "on_incorrect": "Not quite. Remember, phonological rules apply in a specific sequence. Which rule applies next to transform the current form?",
+          "on_completion": "Fantastic! You've successfully traced the entire phonological derivation path from the underlying to the surface form.",
+          "misconceptions": [
+            {
+              "trigger_label": "wrong_order_path",
+              "message": "Phonological rules apply in a specific, often language-dependent, sequential order, forming a derivation where the output of one rule serves as the input for the next.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "skipped_intermediate_form",
+              "message": "Multiple phonological rules often apply iteratively and interactively to produce the final surface form from the underlying representation, with each rule making a specific change.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "Now that you've traced the derivation, identify and place each phonological rule (Vowel Harmony, Consonant Assimilation, Syllabification Rule) at its precise point of application within the sequence."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 20,
+          "max_score": 60,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "That's right! You've correctly identified the application of this phonological rule.",
+          "on_incorrect": "Hold on. Re-evaluate which specific phonological rule is responsible for the transformation at this stage. Consider the changes in the forms.",
+          "on_completion": "Outstanding! You've accurately labeled all the phonological rule applications in this derivation.",
+          "misconceptions": [
+            {
+              "trigger_label": "misplaced_rule_order",
+              "message": "Phonological rules apply in a specific, often language-dependent, sequential order, forming a derivation where the output of one rule serves as the input for the next.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "description_matching",
+        "config": {
+          "instruction_text": "Finally, match the description of the phonological change to the intermediate or surface form that results from its application. This will confirm your understanding of each rule's effect."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 20,
+          "max_score": 60,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Perfect match! That description accurately captures the state of the word at this intermediate form.",
+          "on_incorrect": "Not quite. Carefully read the description again and compare it to the specific changes that occur at each stage of the derivation. Which form does it best describe?",
+          "on_completion": "Brilliant! You've successfully matched all the descriptions to their corresponding intermediate and surface forms.",
+          "misconceptions": [
+            {
+              "trigger_label": "misunderstood_intermediate_role",
+              "message": "Multiple phonological rules often apply iteratively and interactively to produce the final surface form from the underlying representation, with each rule making a specific change.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misidentified_syllabification_description",
+              "message": "Syllabification is a complex phonological process governed by language-specific rules that interact with other phonological phenomena, often differing from orthographic divisions.",
+              "severity": "medium"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [
+      {
+        "from": "trace_path",
+        "to": "drag_drop",
+        "trigger": "path_complete",
+        "animation": "fade"
+      },
+      {
+        "from": "drag_drop",
+        "to": "description_matching",
+        "trigger": "all_zones_labeled",
+        "animation": "fade"
+      }
+    ],
+    "interactionMode": "sequencing",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 10,
+      "max_score": 220
+    },
+    "totalMaxScore": 220,
+    "generation_complete": true,
+    "sequenceConfig": {
+      "items": [
+        {
+          "id": "item_1",
+          "content": "Underlying Form",
+          "explanation": "This is the starting point. The underlying form is the abstract, mental representation of a word before any phonological rules have been applied.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        },
+        {
+          "id": "item_2",
+          "content": "Application of Phonological Rules",
+          "explanation": "Next, phonological rules are applied sequentially. These rules systematically modify sounds based on their context.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        },
+        {
+          "id": "item_3",
+          "content": "Intermediate Forms",
+          "explanation": "As each rule is applied, the word may pass through one or more intermediate stages. These are theoretical forms that exist between the start and end of the derivation.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        },
+        {
+          "id": "item_4",
+          "content": "Surface Form",
+          "explanation": "This is the final result. The surface form is how the word is actually pronounced after all relevant phonological rules have taken effect.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        }
+      ],
+      "correct_order": [
+        "item_1",
+        "item_2",
+        "item_3",
+        "item_4"
+      ],
+      "sequence_type": "ordered",
+      "layout_mode": "flowchart",
+      "interaction_pattern": "drag_reorder",
+      "card_type": "text_only",
+      "connector_style": "arrow",
+      "show_position_numbers": false,
+      "allow_partial_credit": true
+    }
+  }
+}

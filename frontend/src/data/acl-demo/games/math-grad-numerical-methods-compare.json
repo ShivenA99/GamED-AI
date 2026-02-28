@@ -1,0 +1,452 @@
+{
+  "id": "math-grad-numerical-methods-compare",
+  "title": "Compare Numerical Analysis Methods",
+  "question": "Create an interactive diagram game where graduate students compare numerical methods for solving differential equations: Euler's method (first-order, simple but inaccurate), Runge-Kutta 4th order (high accuracy, four function evaluations), Adams-Bashforth multistep (efficient for smooth problems), and implicit methods (stable for stiff equations), across categories including accuracy order, stability region, computational cost per step, and appropriate problem types.",
+  "domain": "mathematics",
+  "educationLevel": "graduate",
+  "gameType": "interactive_diagram",
+  "mechanic": "compare_contrast",
+  "bloomsLevel": "Analyze",
+  "pipelineMetrics": {
+    "runId": "09f20f9f-3786-4d64-8146-ab9ea6d59b3e",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 235.8,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T09:23:01.049073+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "Numerical Navigator: ODE Methods",
+    "subject": "Numerical Analysis",
+    "difficulty": "advanced",
+    "narrativeIntro": "Welcome, numerical analyst! Your mission is to master the art of selecting the optimal numerical method for solving ordinary differential equations. The right choice can save countless computational hours and ensure accurate, stable solutions. Prepare to evaluate, categorize, and apply your knowledge to real-world challenges.",
+    "narrativeTheme": "Advanced Algorithm Selection",
+    "completionMessage": "Congratulations, expert Numerical Navigator! You've successfully charted the complex landscape of ODE numerical methods, demonstrating a profound understanding of their strengths, weaknesses, and optimal applications. Your skills are now finely tuned for advanced computational challenges.",
+    "estimatedDurationMinutes": 12,
+    "diagram": {
+      "assetPrompt": "A sophisticated, clean educational diagram illustrating four distinct, clearly delineated sections, each representing a numerical method for solving Ordinary Differential Equations (ODEs). Each section should have ample space for a method name label at the top and a larger, dedicated area below for associated property descriptions. The overall aesthetic should be modern, technical, and visually balanced, suitable for advanced algorithm comparison.",
+      "zones": [
+        {
+          "id": "zone_euler's_method_area",
+          "label": "Euler's Method Area",
+          "points": [
+            [
+              22.9,
+              16.9
+            ],
+            [
+              22.9,
+              23.0
+            ],
+            [
+              22.6,
+              31.2
+            ],
+            [
+              22.7,
+              48.0
+            ],
+            [
+              24.6,
+              48.3
+            ],
+            [
+              48.1,
+              48.0
+            ],
+            [
+              48.1,
+              16.8
+            ],
+            [
+              23.2,
+              16.7
+            ]
+          ],
+          "x": 29.4,
+          "y": 31.1,
+          "radius": 25.2,
+          "shape": "polygon",
+          "center": {
+            "x": 29.4,
+            "y": 31.1
+          },
+          "description": "This method is characterized by its first-order accuracy and computational simplicity, making it a foundational concept, though its limited stability region often necessitates very small step sizes for practical use on many problems."
+        },
+        {
+          "id": "zone_runge_kutta_4th_order_method_area",
+          "label": "Runge-Kutta 4th Order Method Area",
+          "points": [
+            [
+              76.5,
+              16.8
+            ],
+            [
+              74.2,
+              16.6
+            ],
+            [
+              70.9,
+              16.8
+            ],
+            [
+              51.3,
+              16.8
+            ],
+            [
+              51.3,
+              47.9
+            ],
+            [
+              51.4,
+              48.1
+            ],
+            [
+              53.8,
+              48.3
+            ],
+            [
+              76.5,
+              48.1
+            ],
+            [
+              76.7,
+              45.0
+            ]
+          ],
+          "x": 64.7,
+          "y": 33.8,
+          "radius": 21.6,
+          "shape": "polygon",
+          "center": {
+            "x": 64.7,
+            "y": 33.8
+          },
+          "description": "Known for its fourth-order accuracy and robust performance, this method offers a good balance of precision and stability for many non-stiff problems, despite requiring four function evaluations per step, leading to a higher computational cost per step than first-order methods."
+        },
+        {
+          "id": "zone_adams_bashforth_method_area",
+          "label": "Adams-Bashforth Method Area",
+          "points": [
+            [
+              22.8,
+              52.9
+            ],
+            [
+              22.6,
+              66.0
+            ],
+            [
+              22.6,
+              82.2
+            ],
+            [
+              22.8,
+              83.9
+            ],
+            [
+              47.7,
+              84.0
+            ],
+            [
+              48.1,
+              83.8
+            ],
+            [
+              48.1,
+              62.4
+            ],
+            [
+              48.0,
+              56.6
+            ],
+            [
+              48.1,
+              53.2
+            ],
+            [
+              48.0,
+              52.8
+            ],
+            [
+              30.2,
+              52.9
+            ],
+            [
+              23.4,
+              52.7
+            ]
+          ],
+          "x": 36.0,
+          "y": 65.3,
+          "radius": 22.8,
+          "shape": "polygon",
+          "center": {
+            "x": 36.0,
+            "y": 65.3
+          },
+          "description": "As an explicit multistep method, it achieves higher orders of accuracy efficiently by reusing past solution points, making it suitable for smooth problems where computational cost per step is a concern, but it requires special initialization and can have specific stability limitations."
+        },
+        {
+          "id": "zone_implicit_methods_area",
+          "label": "Implicit Methods Area",
+          "points": [
+            [
+              51.3,
+              52.9
+            ],
+            [
+              51.3,
+              83.4
+            ],
+            [
+              51.4,
+              83.8
+            ],
+            [
+              76.5,
+              83.8
+            ],
+            [
+              76.7,
+              82.9
+            ],
+            [
+              76.6,
+              53.6
+            ],
+            [
+              76.4,
+              52.7
+            ],
+            [
+              53.1,
+              52.5
+            ],
+            [
+              51.4,
+              52.7
+            ]
+          ],
+          "x": 62.7,
+          "y": 66.5,
+          "radius": 22.1,
+          "shape": "polygon",
+          "center": {
+            "x": 62.7,
+            "y": 66.5
+          },
+          "description": "These methods are primarily chosen for their exceptional stability properties, particularly for stiff differential equations, often allowing much larger step sizes than explicit methods. However, each step involves solving a potentially complex algebraic equation, increasing the computational cost per step."
+        }
+      ],
+      "imageUrl": "/api/assets/demo/09f20f9f-3786-4d64-8146-ab9ea6d59b3e/diagram_scene_1.png",
+      "assetUrl": "/api/assets/demo/09f20f9f-3786-4d64-8146-ab9ea6d59b3e/diagram_scene_1.png"
+    },
+    "labels": [
+      {
+        "id": "label_s1_0",
+        "text": "Euler's Method Area",
+        "correctZoneId": "zone_euler's_method_area"
+      },
+      {
+        "id": "label_s1_1",
+        "text": "Runge-Kutta 4th Order Method Area",
+        "correctZoneId": "zone_runge_kutta_4th_order_method_area"
+      },
+      {
+        "id": "label_s1_2",
+        "text": "Adams-Bashforth Method Area",
+        "correctZoneId": "zone_adams_bashforth_method_area"
+      },
+      {
+        "id": "label_s1_3",
+        "text": "Implicit Methods Area",
+        "correctZoneId": "zone_implicit_methods_area"
+      }
+    ],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "First, drag each numerical method's name to its correct designated area on the diagram to identify its section."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 40,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! That's the correct placement for this method.",
+          "on_incorrect": "Not quite. Re-evaluate the key characteristics of this method, such as its order of accuracy, stability, or computational approach, to find its correct place.",
+          "on_completion": "Fantastic! You've successfully identified and placed all the numerical methods. Now, let's delve deeper into their specific properties.",
+          "misconceptions": [
+            {
+              "trigger_label": "higher_order_misplaced",
+              "message": "While higher-order methods offer better accuracy for a given step size, they often have higher computational cost per step and may have smaller stability regions, making them less suitable for certain problems (e.g., stiff equations).",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "explicit_implicit_speed_confusion",
+              "message": "Explicit methods are faster *per step* because they don't require solving a system of equations. However, for stiff problems, implicit methods allow much larger stable step sizes, often leading to a significantly lower *total* computational time to reach a desired end point.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "stability_narrow_view",
+              "message": "For stiff problems, stability is not just about preventing error growth but ensuring that the numerical solution remains bounded and converges to the true solution even when the step size is large relative to the fastest decaying components of the solution.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "description_matching",
+        "config": {
+          "instruction_text": "Now that you've identified each method, match the following descriptions of their accuracy, stability, and computational cost to the correct method area on the diagram."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 15,
+          "max_score": 60,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Spot on! That description perfectly matches the method.",
+          "on_incorrect": "Take another look. Consider the unique characteristics of each method \u2013 its order, stability, and how it handles different types of differential equations \u2013 to find the best fit.",
+          "on_completion": "Outstanding! You've accurately matched all the descriptions to their respective numerical methods. You have a strong grasp of their core properties.",
+          "misconceptions": [
+            {
+              "trigger_label": "accuracy_cost_tradeoff_misunderstanding",
+              "message": "While higher-order methods offer better accuracy for a given step size, they often have higher computational cost per step and may have smaller stability regions, making them less suitable for certain problems (e.g., stiff equations).",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "explicit_implicit_efficiency_misconception",
+              "message": "Explicit methods are faster *per step* because they don't require solving a system of equations. However, for stiff problems, implicit methods allow much larger stable step sizes, often leading to a significantly lower *total* computational time to reach a desired end point.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "stability_definition_misinterpretation",
+              "message": "For stiff problems, stability is not just about preventing error growth but ensuring that the numerical solution remains bounded and converges to the true solution even when the step size is large relative to the fastest decaying components of the solution.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "sorting_categories",
+        "config": {
+          "instruction_text": "Drag each numerical method into the category that best describes the type of differential equation it is most suitable for."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 40,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! That method is indeed well-suited for this type of differential equation.",
+          "on_incorrect": "Not quite. Consider the stability properties and computational efficiency required for that type of DE. This method might be better suited for the other category.",
+          "on_completion": "Fantastic work! You've successfully categorized the numerical methods based on their suitability. This understanding is crucial for selecting the right tool for the job.",
+          "misconceptions": []
+        }
+      },
+      {
+        "type": "branching_scenario",
+        "config": {
+          "instruction_text": "Now that you've categorized the methods, let's tackle some common misconceptions. Read the scenario and choose the best explanation to correct the misunderstanding."
+        },
+        "scoring": {
+          "strategy": "weighted",
+          "points_per_correct": 20,
+          "max_score": 40,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "That's a keen observation! Your reasoning effectively addresses the misconception and provides a nuanced understanding.",
+          "on_incorrect": "Hold on, let's re-evaluate. While that might seem plausible, it overlooks a key aspect of numerical method behavior. Consider the trade-offs involved.",
+          "on_completion": "You've skillfully navigated these common pitfalls! By understanding these nuances, you're building a robust foundation for applying numerical methods effectively.",
+          "misconceptions": [
+            {
+              "trigger_label": "misconception_higher_order_always_better",
+              "message": "While higher-order methods offer better accuracy for a given step size, they often have higher computational cost per step and may have smaller stability regions, making them less suitable for certain problems (e.g., stiff equations).",
+              "severity": "high"
+            },
+            {
+              "trigger_label": "misconception_explicit_always_faster",
+              "message": "Explicit methods are faster *per step* because they don't require solving a system of equations. However, for stiff problems, implicit methods allow much larger stable step sizes, often leading to a significantly lower *total* computational time to reach a desired end point.",
+              "severity": "high"
+            },
+            {
+              "trigger_label": "misconception_stability_only_error_growth",
+              "message": "For stiff problems, stability is not just about preventing error growth but ensuring that the numerical solution remains bounded and converges to the true solution even when the step size is large relative to the fastest decaying components of the solution.",
+              "severity": "high"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [
+      {
+        "from": "drag_drop",
+        "to": "description_matching",
+        "trigger": "all_zones_labeled",
+        "animation": "fade"
+      },
+      {
+        "from": "sorting_categories",
+        "to": "branching_scenario",
+        "trigger": "sorting_complete",
+        "animation": "fade"
+      }
+    ],
+    "interactionMode": "drag_drop",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 10,
+      "max_score": 180
+    },
+    "totalMaxScore": 180,
+    "generation_complete": true,
+    "dragDropConfig": {
+      "leader_line_style": "none",
+      "tray_position": "bottom",
+      "placement_animation": "spring",
+      "show_distractors": false,
+      "zone_idle_animation": "pulse",
+      "max_attempts": 3,
+      "pin_marker_shape": "circle",
+      "leader_line_animate": true,
+      "interaction_mode": "drag_drop",
+      "zone_hover_effect": "highlight",
+      "tray_layout": "horizontal",
+      "leader_line_color": "",
+      "label_anchor_side": "auto",
+      "label_style": "text",
+      "incorrect_animation": "shake",
+      "feedback_timing": "deferred",
+      "shuffle_labels": true
+    },
+    "descriptionMatchingConfig": {
+      "descriptions": {
+        "zone_euler's_method_area": "This method is characterized by its first-order accuracy and computational simplicity, making it a foundational concept, though its limited stability region often necessitates very small step sizes for practical use on many problems.",
+        "zone_runge_kutta_4th_order_method_area": "Known for its fourth-order accuracy and robust performance, this method offers a good balance of precision and stability for many non-stiff problems, despite requiring four function evaluations per step, leading to a higher computational cost per step than first-order methods.",
+        "zone_adams_bashforth_method_area": "As an explicit multistep method, it achieves higher orders of accuracy efficiently by reusing past solution points, making it suitable for smooth problems where computational cost per step is a concern, but it requires special initialization and can have specific stability limitations.",
+        "zone_implicit_methods_area": "These methods are primarily chosen for their exceptional stability properties, particularly for stiff differential equations, often allowing much larger step sizes than explicit methods. However, each step involves solving a potentially complex algebraic equation, increasing the computational cost per step."
+      },
+      "mode": "click_zone",
+      "distractor_descriptions": [],
+      "show_connecting_lines": true,
+      "defer_evaluation": false,
+      "description_panel_position": "right"
+    }
+  }
+}

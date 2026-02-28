@@ -1,0 +1,32 @@
+export interface StateTracerCodeBlueprint {
+  templateType: "STATE_TRACER_CODE";
+  title: string;
+  narrativeIntro: string;
+  code: string;
+  initialInput?: any;
+  steps: Array<{
+    index: number; // Line number or step index
+    description: string;
+    expectedVariables: Record<string, any>;
+    expectedDataStructures?: Array<{
+      name: string;
+      summary: string;
+    }>;
+  }>;
+  tasks: Array<{
+    id: string;
+    type: "variable_value" | "step_analysis" | "execution_flow";
+    questionText: string;
+    stepIndex?: number;
+    variableName?: string;
+    correctAnswer: string;
+    requiredToProceed: boolean;
+  }>;
+  animationCues: {
+    lineHighlight: string;
+    variableUpdate: string;
+    stepComplete: string;
+    executionComplete?: string;
+  };
+}
+

@@ -1,0 +1,25 @@
+{
+  "templateType": "MICRO_SCENARIO_BRANCHING",
+  "description": "Interactive branching scenarios with decision points.",
+  "domains": ["storytelling", "decision_making", "scenarios", "interactive_fiction", "simulations"],
+  "blueprintSchema": {
+    "requiredFields": [
+      "templateType",
+      "title",
+      "narrativeIntro",
+      "scenarios",
+      "branches",
+      "tasks"
+    ]
+  },
+  "htmlContract": {
+    "requiredIds": ["gameRoot", "scenarioDisplay", "choicesPanel", "submitBtn", "feedbackArea"],
+    "requiredClasses": ["scenario-text", "choice-button", "choice-selected", "branch-path"],
+    "interactionNotes": [
+      "Scenarios present decision points.",
+      "Choices lead to different branches.",
+      "Path taken is tracked and evaluated."
+    ]
+  }
+}
+

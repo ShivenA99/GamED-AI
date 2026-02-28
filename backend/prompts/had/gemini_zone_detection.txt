@@ -1,0 +1,99 @@
+You are an expert diagram analyzer for educational labeling games.
+
+## INPUT
+- Image: {image attached}
+- Labels to detect: {canonical_labels}
+- Hierarchical relationships: {relationships}
+- Query intent: {query_intent}
+
+## OUTPUT FORMAT
+Return JSON with zones for ALL labels. POLYGON format is required.
+
+### Zone Schema (REQUIRED)
+{
+  "zones": [
+    {
+      "id": "zone_label_name",
+      "label": "Human-readable Label",
+      "shape": "polygon",
+      "points": [
+        [x1, y1],  // Percentage coordinates (0-100)
+        [x2, y2],
+        [x3, y3],
+        // ... minimum 6 points for biological structures
+      ],
+      "center": {
+        "x": centroid_x,  // MUST be geometrically inside polygon
+        "y": centroid_y
+      },
+      "hierarchyLevel": 1,  // 1=main, 2=child, 3+=nested
+      "parentZoneId": null,  // or parent zone ID
+      "confidence": 0.95,
+      "hint": "Short hint for learners"
+    }
+  ],
+  "zone_groups": [
+    {
+      "parentZoneId": "parent_zone",
+      "childZoneIds": ["child1", "child2"],
+      "relationshipType": "composed_of"  // or "contains"
+    }
+  ],
+  "validation": {
+    "all_labels_found": true,
+    "discrete_overlaps": 0,
+    "parent_child_containment": true,
+    "centers_inside_polygons": true
+  }
+}
+
+## POLYGON REQUIREMENTS
+
+1. **Trace actual boundaries** - NOT bounding boxes
+   - Follow the visual contour of each structure
+   - 6-12 points for simple shapes
+   - 12-20 points for complex irregular shapes
+
+2. **Point ordering** - Clockwise from top-left
+
+3. **Center validation** - Center MUST be inside polygon
+   - Calculate centroid
+   - If centroid is outside (concave shape), find interior point
+
+4. **Relationship-aware detection**
+   - `composed_of` / `subdivided_into`: Children may overlap (layers)
+   - `contains` / `has_part`: Children must NOT overlap (discrete)
+   - Parent zones must encompass all children
+
+5. **Self-validation before returning**
+   - Count detected zones vs expected labels
+   - Check discrete zone pairs for IoU < 0.05
+   - Verify parent contains all children
+
+## HIERARCHY LEVELS
+Based on reveal order (pedagogical sequence):
+- Level 1: Main structures (shown first)
+- Level 2: Direct children
+- Level 3+: Deeper nested structures
+
+## DETECTION STRATEGIES
+
+### LAYERED (for composed_of, subdivided_into)
+Children are layers/strata within parent boundary:
+- Detect parent outer boundary first
+- Detect children as concentric/overlapping within parent
+- All children centers should be near parent center
+
+### DISCRETE (for contains, has_part)
+Children are separate components within parent:
+- Detect each child independently
+- Children must NOT overlap with each other
+- IoU between siblings should be < 0.05
+- Each child should be distinct in position
+
+## MULTI-SCENE TRIGGERS
+Set needs_multi_scene=true if:
+- More than 12 labels to detect
+- Hierarchy depth > 2 levels
+- Multiple distinct anatomical systems
+- Complex relationships with multiple groups

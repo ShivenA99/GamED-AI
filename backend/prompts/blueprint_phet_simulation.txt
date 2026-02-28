@@ -1,0 +1,361 @@
+# PhET Simulation Blueprint Generation Guide
+
+You are generating a PHET_SIMULATION blueprint for an interactive physics/chemistry/math assessment.
+
+## Template Purpose
+
+PHET_SIMULATION embeds a PhET Interactive Simulation (from University of Colorado Boulder)
+and wraps it with assessment tasks, checkpoints, and scoring. Students interact with
+the simulation while the system tracks their progress toward learning objectives.
+
+## Assessment Types (Choose One Primary)
+
+### EXPLORATION
+Best for: Introduction to concepts, open-ended discovery
+Structure:
+- Multiple guided prompts
+- Checkpoints for trying different values
+- Reward breadth of exploration
+Example: "Explore how different angles affect projectile range"
+
+### PARAMETER_DISCOVERY
+Best for: Finding relationships, Bloom's Apply/Analyze
+Structure:
+- Specific parameters to vary
+- Checkpoints for discovering relationships
+- Questions about what was observed
+Example: "Discover what affects pendulum period"
+
+### TARGET_ACHIEVEMENT
+Best for: Goal-oriented challenges, Bloom's Apply
+Structure:
+- Clear targets to hit
+- Checkpoints for achieving outcomes
+- Multiple attempts allowed
+Example: "Make the projectile land at exactly 50 meters"
+
+### PREDICTION_VERIFICATION
+Best for: Scientific method, Bloom's Analyze/Evaluate
+Structure:
+- Prediction question first
+- Exploration to test
+- Verification checkpoint
+Example: "Predict which angle gives max range, then test it"
+
+### OPTIMIZATION
+Best for: Problem solving, Bloom's Analyze
+Structure:
+- Optimization goal
+- Checkpoints for improving
+- Final checkpoint for optimal value
+Example: "Find the angle that maximizes range"
+
+### MEASUREMENT
+Best for: Data collection, Bloom's Apply
+Structure:
+- Specific measurements to take
+- Recording requirements
+- Data analysis
+Example: "Measure period for 5 different pendulum lengths"
+
+### COMPARATIVE_ANALYSIS
+Best for: Understanding differences, Bloom's Analyze
+Structure:
+- Multiple configurations to try
+- Comparison checkpoints
+- Synthesis question
+Example: "Compare series vs parallel circuit brightness"
+
+### CONSTRUCTION
+Best for: Building understanding, Bloom's Create
+Structure:
+- Assembly steps
+- Checkpoints for each component
+- Final working system
+Example: "Build a circuit with battery, switch, and bulb"
+
+## Available Simulations
+
+- projectile-motion: Kinematics, trajectory, vectors, gravity
+- circuit-construction-kit-dc: Circuits, voltage, current, resistance
+- states-of-matter: Phases, temperature, molecular motion
+- graphing-quadratics: Parabola, vertex, roots, coefficients
+- pendulum-lab: Period, frequency, simple harmonic motion
+- friction: Static/kinetic friction, forces
+- energy-skate-park: Kinetic/potential energy, conservation
+- waves: Amplitude, frequency, wavelength
+- build-an-atom: Atomic structure, isotopes, ions
+- molecule-polarity: Electronegativity, polarity, dipoles
+- area-builder: Area, perimeter, geometry
+
+## Schema Structure
+
+```json
+{
+  "templateType": "PHET_SIMULATION",
+  "title": "Short descriptive title",
+  "narrativeIntro": "1-3 sentence engaging introduction",
+
+  "simulation": {
+    "simulationId": "exact-phet-id",
+    "version": "latest",
+    "screen": "screen-name-or-null",
+    "parameters": [...],
+    "interactions": [...],
+    "outcomes": [...],
+    "initialState": {
+      "cannonAngle": 45
+    }
+  },
+
+  "assessmentType": "parameter_discovery",
+
+  "tasks": [
+    {
+      "id": "task-1",
+      "type": "exploration",
+      "title": "Task Title",
+      "instructions": "Detailed instructions for what to do",
+      "learningObjective": "Specific learning goal",
+      "bloomsLevel": "apply",
+
+      "checkpoints": [
+        {
+          "id": "cp-1",
+          "description": "Human-readable description",
+          "conditions": [
+            {
+              "type": "property_range",
+              "propertyId": "cannonAngle",
+              "minValue": 43,
+              "maxValue": 47
+            }
+          ],
+          "conditionLogic": "all",
+          "points": 10,
+          "hint": "Helpful hint text",
+          "feedback": "Success message"
+        }
+      ],
+
+      "hints": ["Progressive hint 1", "Progressive hint 2"],
+      "prediction": null,
+      "quiz": null,
+      "requiredToProceed": true
+    }
+  ],
+
+  "scoring": {
+    "maxScore": 100,
+    "explorationBonus": 10,
+    "hintPenalty": 2
+  },
+
+  "learningObjectives": [
+    "Understand X",
+    "Apply Y",
+    "Analyze Z"
+  ],
+  "targetBloomsLevel": "apply",
+  "estimatedMinutes": 15,
+  "difficulty": "medium"
+}
+```
+
+## Checkpoint Condition Types
+
+### PROPERTY_EQUALS
+```json
+{
+  "type": "property_equals",
+  "propertyId": "cannonAngle",
+  "value": 45,
+  "tolerance": 2
+}
+```
+
+### PROPERTY_RANGE
+```json
+{
+  "type": "property_range",
+  "propertyId": "launchSpeed",
+  "minValue": 15,
+  "maxValue": 20
+}
+```
+
+### PROPERTY_CHANGED
+```json
+{
+  "type": "property_changed",
+  "propertyId": "cannonAngle"
+}
+```
+
+### INTERACTION_OCCURRED
+```json
+{
+  "type": "interaction_occurred",
+  "interactionId": "launch"
+}
+```
+
+### OUTCOME_ACHIEVED
+```json
+{
+  "type": "outcome_achieved",
+  "outcomeId": "range",
+  "operator": "gt",
+  "value": 40
+}
+```
+
+### TIME_SPENT
+```json
+{
+  "type": "time_spent",
+  "minSeconds": 60
+}
+```
+
+### EXPLORATION_BREADTH
+```json
+{
+  "type": "exploration_breadth",
+  "parameterIds": ["cannonAngle"],
+  "minUniqueValues": 3
+}
+```
+
+## Example Blueprint: Projectile Motion - Parameter Discovery
+
+```json
+{
+  "templateType": "PHET_SIMULATION",
+  "title": "Discovering the Optimal Launch Angle",
+  "narrativeIntro": "You're a medieval engineer designing a catapult. Your mission: find the angle that launches projectiles the farthest!",
+
+  "simulation": {
+    "simulationId": "projectile-motion",
+    "screen": "intro",
+    "initialState": {
+      "cannonAngle": 30,
+      "launchSpeed": 18
+    }
+  },
+
+  "assessmentType": "parameter_discovery",
+
+  "tasks": [
+    {
+      "id": "task-explore",
+      "type": "exploration",
+      "title": "Explore Different Angles",
+      "instructions": "Fire projectiles at angles of 30°, 45°, and 60°. Observe how far each one travels.",
+      "learningObjective": "Observe how launch angle affects projectile range",
+      "bloomsLevel": "understand",
+      "checkpoints": [
+        {
+          "id": "cp-angle-30",
+          "description": "Fire at 30°",
+          "conditions": [
+            {"type": "property_range", "propertyId": "cannonAngle", "minValue": 28, "maxValue": 32},
+            {"type": "interaction_occurred", "interactionId": "launch"}
+          ],
+          "conditionLogic": "all",
+          "points": 10
+        },
+        {
+          "id": "cp-angle-45",
+          "description": "Fire at 45°",
+          "conditions": [
+            {"type": "property_range", "propertyId": "cannonAngle", "minValue": 43, "maxValue": 47},
+            {"type": "interaction_occurred", "interactionId": "launch"}
+          ],
+          "points": 10
+        },
+        {
+          "id": "cp-angle-60",
+          "description": "Fire at 60°",
+          "conditions": [
+            {"type": "property_range", "propertyId": "cannonAngle", "minValue": 58, "maxValue": 62},
+            {"type": "interaction_occurred", "interactionId": "launch"}
+          ],
+          "points": 10
+        }
+      ],
+      "hints": ["The angle slider is on the left", "Try clicking Fire after each angle change"],
+      "requiredToProceed": true
+    },
+    {
+      "id": "task-discover",
+      "type": "optimization",
+      "title": "Find the Optimal Angle",
+      "instructions": "Based on your observations, find the angle that makes the projectile travel the farthest.",
+      "learningObjective": "Discover that 45° maximizes range",
+      "bloomsLevel": "apply",
+      "checkpoints": [
+        {
+          "id": "cp-optimal",
+          "description": "Set angle to optimal value (45°)",
+          "conditions": [
+            {"type": "property_range", "propertyId": "cannonAngle", "minValue": 44, "maxValue": 46}
+          ],
+          "points": 15,
+          "hint": "The optimal angle is between 40° and 50°"
+        },
+        {
+          "id": "cp-max-range",
+          "description": "Achieve maximum range",
+          "conditions": [
+            {"type": "outcome_achieved", "outcomeId": "range", "operator": "gte", "value": 32}
+          ],
+          "points": 15
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Why does 45° give the maximum range?",
+          "options": [
+            "It balances horizontal speed and time in air",
+            "It has the most gravity",
+            "It makes the projectile heavier"
+          ],
+          "correct": "It balances horizontal speed and time in air",
+          "points": 10
+        }
+      ]
+    }
+  ],
+
+  "scoring": {
+    "maxScore": 70,
+    "explorationBonus": 5,
+    "hintPenalty": 2
+  },
+
+  "learningObjectives": [
+    "Understand how launch angle affects projectile range",
+    "Discover the optimal angle for maximum range",
+    "Explain why 45° maximizes range"
+  ],
+  "targetBloomsLevel": "apply",
+  "estimatedMinutes": 12,
+  "difficulty": "medium"
+}
+```
+
+## Critical Rules
+
+1. **Use exact simulation IDs** from the catalog
+2. **Use valid propertyId/interactionId/outcomeId** from simulation metadata
+3. **Checkpoint IDs must be unique** across all tasks
+4. **Total checkpoint points ≤ maxScore**
+5. **Include at least 2 checkpoints per task**
+6. **Provide helpful hints** for each task
+7. **Include quiz questions** for Bloom's levels ≥ Apply
+8. **Set appropriate difficulty** based on checkpoint conditions
+
+## Output
+
+Respond with ONLY valid JSON matching the PhetSimulationBlueprint schema. No explanations.

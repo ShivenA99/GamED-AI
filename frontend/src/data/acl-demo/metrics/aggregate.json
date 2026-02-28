@@ -1,0 +1,13 @@
+{
+  "totalGames": 0,
+  "totalTokens": 0,
+  "totalCost": 0,
+  "avgTokensPerGame": 0,
+  "avgCostPerGame": 0,
+  "avgLatencySeconds": 0,
+  "avgValidationPassRate": 0,
+  "byDomain": {},
+  "byLevel": {},
+  "byMechanic": {},
+  "_note": "This file will be populated by the export_acl_games.py script after pipeline generation"
+}

@@ -1,0 +1,137 @@
+### Template Context: PARAMETER_PLAYGROUND
+
+**CRITICAL: QUESTION-ANSWER FORMAT IS MANDATORY**
+
+The resulting visualization will be implemented as:
+- **Questions must be displayed FIRST, before any algorithm visualization**
+- Learners MUST answer the question before seeing the full algorithm animation
+- Initial visualization shows only the data structure (stones, gems, etc.) in static state
+- After answer submission, the algorithm animation plays to reveal the result
+- Interactive playground to adjust parameters and see results (after answering)
+- Parameters are controlled via sliders or inputs
+- For algorithm questions, includes step-by-step execution with visual array/graph representation
+
+When generating story_context, visual_metaphor, visual_elements, question_flow, and animation_cues:
+- **MANDATORY: Create at least one question in question_flow that must be answered before proceeding**
+- Questions should test understanding of the algorithm's logic or predict the outcome
+- Questions must have clear multiple-choice options with one correct answer
+- The correct answer should match the actual algorithm result
+- Visual elements should show the data structure initially, then animate after answer submission
+- Animation cues should show algorithm execution step-by-step after the learner submits their answer
+- Focus on experimentation, parameter adjustment, and cause-effect relationships
+
+For algorithm visualization questions (binary search, sorting, graph traversal, cycle detection, two pointers, sliding window, dynamic programming, etc.):
+- Extract the data structure (array, graph, tree, matrix, etc.) from the question
+- Identify the algorithm type and key steps
+- Explain how the algorithm works step-by-step
+- Describe what each parameter controls (array values, target, window size, etc.)
+- Use visual metaphors that help understand the algorithm (e.g., "searching through a rotated treasure map", "energy pulses tracing paths", "gems unlocking a chest")
+
+Algorithm-specific guidelines:
+
+**Binary Search / Rotated Array Search:**
+- Visual metaphor: Searching through organized shelves, treasure maps, or sorted collections
+- Parameters: Array values, target value, search boundaries
+- Key steps: Compare with midpoint, eliminate half, narrow search space
+- Questions: "Which path finds the target in fewest steps?", "What is the next comparison?"
+
+**Cycle Detection (Floyd's Algorithm):**
+- Visual metaphor: Energy pulses, echoes, resonance stones, following paths that loop
+- Parameters: Array values (treated as pointers/indices)
+- Key steps: Two pointers (slow/fast), detect meeting point, find cycle entrance
+- **Questions MUST be created like:**
+  - "The resonance stones are arranged with frequencies [3,1,3,4,2]. Which frequency appears twice, creating the endless echo loop?"
+  - Options: ["1", "2", "3", "4"]
+  - Correct answer: "3" (the actual duplicate)
+  - **The question must be answered BEFORE the pulse animation plays**
+
+**Two Pointers / Sliding Window:**
+- Visual metaphor: Two explorers moving through a sequence, expanding/contracting windows
+- Parameters: Array values, window size, target sum
+- Key steps: Move pointers, maintain window constraints, track optimal solution
+- Questions: "What is the optimal window size?", "Which pair satisfies the condition?"
+
+**Sorting Algorithms:**
+- Visual metaphor: Organizing items, arranging elements, building structures
+- Parameters: Array values, sorting order
+- Key steps: Compare elements, swap positions, build sorted sections
+- Questions: "What is the next swap?", "Which element moves next?"
+
+**Graph Traversal (BFS/DFS):**
+- Visual metaphor: Exploring a network, following paths, discovering territories
+- Parameters: Graph nodes, edges, start node
+- Key steps: Visit nodes, explore neighbors, track visited nodes
+- Questions: "What is the traversal order?", "Which path is shortest?"
+
+**Tree Traversal (Inorder, Preorder, Postorder) - CRITICAL FOR TRAVERSAL QUESTIONS:**
+- Visual metaphor: Exploring a tree structure, following paths through nodes, discovering the order of visitation
+- Parameters: Tree nodes with values, left/right children relationships
+- Key steps: Visit nodes in specific order (inorder: left-root-right, preorder: root-left-right, postorder: left-right-root)
+- **CRITICAL ANIMATION REQUIREMENTS FOR TRAVERSAL QUESTIONS:**
+  - When the question asks "Which traversal is best suited?" or similar traversal comparison questions:
+  - **Each answer option MUST trigger a different traversal animation:**
+    - Option A (e.g., "Inorder"): Shows inorder traversal animation (left-root-right)
+    - Option B (e.g., "Preorder"): Shows preorder traversal animation (root-left-right) - **FASTEST SPEED** (since it's typically the correct/logical answer)
+    - Option C (e.g., "Postorder"): Shows postorder traversal animation (left-right-root)
+    - Option D (e.g., "Level Order"): Shows level-order/BFS traversal animation
+  - **Animation Speed Differentiation:**
+    - The CORRECT answer option should have the FASTEST animation speed (e.g., 300ms per node)
+    - Incorrect options should have progressively SLOWER speeds (e.g., 600ms, 900ms, 1200ms per node)
+    - This visual feedback helps learners understand which traversal is most efficient/logical for the problem
+  - **Visual Flow:**
+    1. Display question prominently at top (e.g., "Which traversal is best suited for this problem?")
+    2. Show tree structure in static state (all nodes visible but not highlighted)
+    3. Display answer options as buttons (A. Inorder, B. Preorder, C. Postorder, D. Level Order)
+    4. When learner selects an option, IMMEDIATELY start the corresponding traversal animation:
+       - Highlight nodes as they are visited in the selected traversal order
+       - Use a glowing/pulsing effect on the current node
+       - Show a path/trail connecting visited nodes
+       - Different colors for different traversal types (optional)
+    5. After animation completes, show feedback (correct/incorrect)
+    6. If incorrect, allow learner to try again with a different option
+  - **Animation Cues:**
+    - "Nodes glow and pulse as they are visited in [traversal type] order"
+    - "A golden trail follows the traversal path, connecting nodes in sequence"
+    - "The current node pulses with a bright glow, then fades as the next node activates"
+    - "Visited nodes remain highlighted with a subtle glow to show the path taken"
+- **Questions MUST be created like:**
+  - "Given the root of a binary tree [3,9,20,null,null,15,7], which traversal is best suited for finding the maximum depth?"
+  - Options: ["A. Inorder", "B. Preorder", "C. Postorder", "D. Level Order"]
+  - Correct answer: "B. Preorder" (or the actual correct answer)
+  - **Each option triggers its corresponding traversal animation with different speeds**
+- **Story Context Examples:**
+  - "In a mystical forest, each tree node is a glowing crystal. A magical explorer must choose the best path to traverse the tree and find the deepest crystal."
+  - "Ancient temples are connected in a tree structure. A treasure hunter must choose the traversal method that reveals the temple's maximum depth most efficiently."
+
+**Dynamic Programming:**
+- Visual metaphor: Building solutions layer by layer, filling a table, accumulating results
+- Parameters: Input values, subproblem states
+- Key steps: Identify subproblems, build solution table, combine results
+- Questions: "What is the value at this state?", "Which previous state contributes?"
+
+**General Algorithm Visualization:**
+- Extract concrete example from the question (e.g., nums = [3,1,3,4,2], target = 9)
+- Identify the core algorithm pattern
+- Create visual metaphor that maps algorithm steps to observable actions
+- **Design questions that test understanding of algorithm logic, not just memorization**
+- **Questions MUST include:**
+  - Clear question text with the specific input values from the problem
+  - Multiple choice options (typically 4 options)
+  - Correct answer that matches the actual algorithm result
+  - Feedback for correct/incorrect answers
+  - **required_to_proceed: true** - learners cannot see animation without answering
+- **Visual flow:**
+  1. Display question prominently at top
+  2. Show data structure in static/initial state (stones, gems, etc. visible but not animated)
+  3. Display answer options as buttons
+  4. Require answer selection and submission
+  5. Show feedback (correct/incorrect)
+  6. **THEN** play algorithm animation to reveal the result
+- Use step-by-step animation to show how the algorithm processes data AFTER answer submission
+
+Visual elements should include:
+- Data structure representation (arrays as rows/circles, graphs as networks, trees as hierarchies)
+- Algorithm state indicators (pointers, current positions, visited markers)
+- Step-by-step progression (highlighting active elements, showing comparisons, displaying decisions)
+- Result visualization (final state, optimal solution, path taken)
+

@@ -1,0 +1,33 @@
+export interface SpotTheMistakeBlueprint {
+  templateType: "SPOT_THE_MISTAKE";
+  title: string;
+  narrativeIntro: string;
+  content: {
+    type: "code" | "text" | "diagram";
+    text?: string;
+    code?: string;
+    assetPrompt?: string;
+    assetUrl?: string;
+  };
+  mistakes: Array<{
+    id: string;
+    lineNumber?: number;
+    startChar?: number;
+    endChar?: number;
+    regionId?: string; // For diagram mistakes
+    description: string;
+    correction: string;
+  }>;
+  tasks: Array<{
+    id: string;
+    type: "mistake_identification";
+    questionText: string;
+    requiredToProceed: boolean;
+  }>;
+  animationCues: {
+    mistakeHighlight: string;
+    mistakeFound: string;
+    allMistakesFound?: string;
+  };
+}
+

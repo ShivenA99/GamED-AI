@@ -1,0 +1,64 @@
+# GamED.AI Configuration File
+# This file contains runtime configuration for model selection and topology choices
+
+# Model Source Configuration
+model_sources:
+  open_source:
+    description: "Use open source models (Local Ollama, Groq)"
+    presets:
+      - "local_only"
+      - "groq_free"
+    default_preset: "local_only"
+
+  closed_source:
+    description: "Use closed source models (OpenAI, Anthropic)"
+    presets:
+      - "cost_optimized"
+      - "balanced"
+      - "quality_optimized"
+      - "anthropic_only"
+      - "openai_only"
+    default_preset: "balanced"
+
+# Topology Configuration
+topologies:
+  T0:
+    name: "Sequential Baseline"
+    description: "Linear execution without verification loops"
+    recommended: false
+
+  T1:
+    name: "Sequential Validated"
+    description: "Sequential with validators and retry logic"
+    recommended: true
+
+  T2:
+    name: "Actor-Critic"
+    description: "Separate generator and evaluator agents with feedback loop"
+    recommended: false
+
+  T4:
+    name: "Self-Refine"
+    description: "Same model iteratively critiques and improves its output"
+    recommended: false
+
+  T5:
+    name: "Multi-Agent Debate"
+    description: "Multiple proposers debate, judge selects best"
+    recommended: false
+
+  T7:
+    name: "Reflection with Memory"
+    description: "Learns from past attempts using memory bank"
+    recommended: false
+
+# Default Configuration
+defaults:
+  model_source: "closed_source"
+  topology: "T1"
+  agent_config_preset: "balanced"
+
+# Runtime Settings
+runtime:
+  allow_dynamic_config: true
+  context_aware_config: true

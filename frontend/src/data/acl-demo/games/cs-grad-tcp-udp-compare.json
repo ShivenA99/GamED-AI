@@ -1,0 +1,235 @@
+{
+  "id": "cs-grad-tcp-udp-compare",
+  "title": "Compare TCP vs UDP Protocols",
+  "question": "Create an interactive diagram game where graduate students compare TCP and UDP protocols across categories: connection type, reliability, ordering, speed, overhead, header size, use cases, and flow control mechanisms.",
+  "domain": "cs",
+  "educationLevel": "graduate",
+  "gameType": "interactive_diagram",
+  "mechanic": "compare_contrast",
+  "bloomsLevel": "Analyze",
+  "pipelineMetrics": {
+    "runId": "220d4c66-5372-4037-8502-3d27939d8a94",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 200.5,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T06:17:17.619757+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "Protocol Pathway: TCP vs. UDP Deep Dive",
+    "subject": "Computer Networking",
+    "difficulty": "advanced",
+    "narrativeIntro": "Welcome, aspiring Network Architect! Your mission is to master the fundamental differences between TCP and UDP, two cornerstone transport protocols. Your ability to choose the right protocol for the right task is crucial for designing efficient and reliable network systems. Let's begin by dissecting their core characteristics.",
+    "narrativeTheme": "Network Architect's Challenge",
+    "completionMessage": "Congratulations, Network Architect! You've successfully navigated the complexities of TCP and UDP, demonstrating a profound understanding of their comparative features and application contexts. Your expertise will be invaluable in designing robust network solutions.",
+    "estimatedDurationMinutes": 12,
+    "diagram": {
+      "assetPrompt": "An abstract, clean, and modern diagram featuring two prominent, clearly delineated rectangular containers. The left container is prominently labeled 'TCP Protocol' and the right container is labeled 'UDP Protocol'. Both containers are empty, ready to receive elements, and are visually distinct but harmoniously integrated into a single network-themed background, perhaps with subtle data flow lines or network nodes in the background, but not distracting from the main containers. The overall aesthetic should be digital and schematic.",
+      "zones": [
+        {
+          "id": "zone_tcp_protocol",
+          "label": "TCP Protocol",
+          "points": [
+            [
+              19.1,
+              19.0
+            ],
+            [
+              17.8,
+              21.6
+            ],
+            [
+              18.2,
+              87.4
+            ],
+            [
+              20.3,
+              88.9
+            ],
+            [
+              45.6,
+              88.4
+            ],
+            [
+              46.7,
+              85.6
+            ],
+            [
+              46.4,
+              20.1
+            ],
+            [
+              42.9,
+              18.5
+            ]
+          ],
+          "x": 32.1,
+          "y": 53.7,
+          "radius": 37.2,
+          "shape": "polygon",
+          "center": {
+            "x": 32.1,
+            "y": 53.7
+          },
+          "description": "Ideal for applications requiring guaranteed data delivery, ordered sequencing, and error checking, such as secure file transfers, web browsing (HTTP/HTTPS), and email (SMTP/IMAP)."
+        },
+        {
+          "id": "zone_udp_protocol",
+          "label": "UDP Protocol",
+          "points": [
+            [
+              52.5,
+              19.1
+            ],
+            [
+              51.4,
+              24.3
+            ],
+            [
+              51.9,
+              87.4
+            ],
+            [
+              53.9,
+              88.9
+            ],
+            [
+              80.0,
+              88.4
+            ],
+            [
+              81.1,
+              79.6
+            ],
+            [
+              80.7,
+              20.0
+            ],
+            [
+              79.0,
+              18.6
+            ]
+          ],
+          "x": 66.3,
+          "y": 53.3,
+          "radius": 37.7,
+          "shape": "polygon",
+          "center": {
+            "x": 66.3,
+            "y": 53.3
+          },
+          "description": "Preferred for real-time streaming applications like video conferencing, online gaming, and DNS queries, where speed and low latency are prioritized over guaranteed delivery and minor packet loss is acceptable."
+        }
+      ],
+      "imageUrl": "/api/assets/demo/220d4c66-5372-4037-8502-3d27939d8a94/diagram_scene_1.png",
+      "assetUrl": "/api/assets/demo/220d4c66-5372-4037-8502-3d27939d8a94/diagram_scene_1.png"
+    },
+    "labels": [
+      {
+        "id": "label_s1_0",
+        "text": "TCP Protocol",
+        "correctZoneId": "zone_tcp_protocol"
+      },
+      {
+        "id": "label_s1_1",
+        "text": "UDP Protocol",
+        "correctZoneId": "zone_udp_protocol"
+      }
+    ],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "As a network architect, your first task is to classify each protocol characteristic. Drag and drop each feature to its correct protocol container: TCP or UDP."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 5,
+          "max_score": 80,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Correct!",
+          "on_incorrect": "Try again.",
+          "on_completion": "Well done!",
+          "misconceptions": []
+        }
+      },
+      {
+        "type": "description_matching",
+        "config": {
+          "instruction_text": "Now that you've categorized the core characteristics, deepen your understanding by matching each functional description to its primary protocol (TCP or UDP) to highlight their real-world impact and use cases."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 40,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Correct!",
+          "on_incorrect": "Try again.",
+          "on_completion": "Well done!",
+          "misconceptions": []
+        }
+      }
+    ],
+    "modeTransitions": [
+      {
+        "from": "drag_drop",
+        "to": "description_matching",
+        "trigger": "all_zones_labeled",
+        "animation": "fade"
+      }
+    ],
+    "interactionMode": "drag_drop",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 5,
+      "max_score": 120
+    },
+    "totalMaxScore": 120,
+    "generation_complete": true,
+    "dragDropConfig": {
+      "leader_line_style": "none",
+      "tray_position": "bottom",
+      "placement_animation": "spring",
+      "show_distractors": false,
+      "label_style": "text",
+      "tray_layout": "horizontal",
+      "feedback_timing": "immediate",
+      "interaction_mode": "drag_drop",
+      "leader_line_color": "",
+      "zone_hover_effect": "highlight",
+      "leader_line_animate": true,
+      "shuffle_labels": true,
+      "max_attempts": 3,
+      "incorrect_animation": "shake",
+      "zone_idle_animation": "pulse",
+      "label_anchor_side": "auto",
+      "pin_marker_shape": "circle"
+    },
+    "descriptionMatchingConfig": {
+      "descriptions": {
+        "zone_tcp_protocol": "Ideal for applications requiring guaranteed data delivery, ordered sequencing, and error checking, such as secure file transfers, web browsing (HTTP/HTTPS), and email (SMTP/IMAP).",
+        "zone_udp_protocol": "Preferred for real-time streaming applications like video conferencing, online gaming, and DNS queries, where speed and low latency are prioritized over guaranteed delivery and minor packet loss is acceptable."
+      },
+      "mode": "click_zone",
+      "distractor_descriptions": [
+        "Manages network congestion and controls data flow to prevent overwhelming the receiver, ensuring stable and efficient communication even over busy networks.",
+        "Offers a lightweight, connectionless communication method with minimal overhead, making it suitable for quick, one-off data transmissions without the need for session establishment."
+      ],
+      "show_connecting_lines": true,
+      "defer_evaluation": false,
+      "description_panel_position": "right"
+    }
+  }
+}

@@ -1,0 +1,261 @@
+## SEQUENCE_BUILDER Blueprint Generation
+
+You are an expert educational game blueprint designer. Generate a complete, valid SEQUENCE_BUILDER blueprint that teaches concepts through drag-and-drop ordering.
+
+### Template Purpose
+The SEQUENCE_BUILDER creates drag-and-drop interfaces where learners arrange steps, events, or items in a specific order. This template is ideal for:
+- Algorithm step ordering (e.g., binary search, sorting algorithms)
+- Historical event chronology
+- Process sequences (e.g., scientific method, cell division)
+- Cause-effect chains
+- Recipe or procedure ordering
+- Mathematical proof steps
+
+### Cognitive Alignment by Bloom's Level
+- **Remember Level**: Recall order of memorized sequence (use familiar examples)
+- **Understand Level**: Explain why order matters (include explanatory feedback)
+- **Apply Level**: Apply ordering rules to new scenarios (novel content)
+- **Analyze Level**: Identify relationships between steps (include distractors)
+
+### Required Schema (ALL FIELDS MUST BE PRESENT)
+
+```typescript
+{{
+    "templateType": "SEQUENCE_BUILDER",  // MUST be exactly this
+    "title": string,                      // Engaging, descriptive title
+    "narrativeIntro": string,             // 2-4 sentences setting the scene
+    "steps": Array<{{
+        "id": string,          // Descriptive ID like "step_find_middle"
+        "text": string,        // The step content (clear, concise)
+        "orderIndex": number,  // Correct position (1-indexed, sequential)
+        "description": string  // Optional explanation for feedback
+    }}>,
+    "distractors": Array<{{   // Optional but RECOMMENDED for challenge
+        "id": string,         // Descriptive ID
+        "text": string,       // Plausible but incorrect step
+        "description": string // Why this is wrong (for feedback)
+    }}>,
+    "tasks": Array<{{
+        "id": string,
+        "type": "sequence_order",
+        "questionText": string,
+        "requiredToProceed": boolean
+    }}>,
+    "animationCues": {{
+        "stepDrag": string,           // Visual cue when dragging
+        "correctPlacement": string,   // Feedback for correct position
+        "incorrectPlacement": string, // Feedback for wrong position
+        "sequenceComplete": string    // Celebration when done
+    }},
+    "hints": Array<{{         // Optional hints
+        "stepId": string,
+        "hintText": string
+    }}>,
+    "feedbackMessages": {{    // Optional custom feedback
+        "perfect": string,    // All correct on first try
+        "good": string,       // Minor mistakes
+        "retry": string       // Needs more practice
+    }}
+}}
+```
+
+### EXAMPLE 1: Binary Search Algorithm (Computer Science)
+
+```json
+{{
+    "templateType": "SEQUENCE_BUILDER",
+    "title": "The Binary Search Detective",
+    "narrativeIntro": "Detective Algorithm needs to find a suspect in a sorted lineup. Help her use the binary search method to efficiently locate the target. Each step must be in the correct order for the algorithm to work!",
+    "steps": [
+        {{
+            "id": "step_check_bounds",
+            "text": "Check if low <= high (bounds are valid)",
+            "orderIndex": 1,
+            "description": "First, verify the search range is valid before proceeding"
+        }},
+        {{
+            "id": "step_find_middle",
+            "text": "Calculate middle index: mid = (low + high) / 2",
+            "orderIndex": 2,
+            "description": "Find the middle point of the current search range"
+        }},
+        {{
+            "id": "step_compare_target",
+            "text": "Compare target with arr[mid]",
+            "orderIndex": 3,
+            "description": "Check if the middle element matches what we're looking for"
+        }},
+        {{
+            "id": "step_check_equal",
+            "text": "If arr[mid] equals target, return mid",
+            "orderIndex": 4,
+            "description": "Found it! Return the index of the target"
+        }},
+        {{
+            "id": "step_check_greater",
+            "text": "If target > arr[mid], set low = mid + 1",
+            "orderIndex": 5,
+            "description": "Target is in the right half, adjust search range"
+        }},
+        {{
+            "id": "step_check_lesser",
+            "text": "If target < arr[mid], set high = mid - 1",
+            "orderIndex": 6,
+            "description": "Target is in the left half, adjust search range"
+        }},
+        {{
+            "id": "step_repeat",
+            "text": "Repeat until found or low > high",
+            "orderIndex": 7,
+            "description": "Continue the process until target is found or range is exhausted"
+        }}
+    ],
+    "distractors": [
+        {{
+            "id": "distractor_linear",
+            "text": "Check each element from start to end",
+            "description": "This is linear search, not binary search! Binary search divides the range."
+        }},
+        {{
+            "id": "distractor_random",
+            "text": "Pick a random index to check",
+            "description": "Random selection doesn't leverage the sorted order of the array."
+        }}
+    ],
+    "tasks": [
+        {{
+            "id": "task_order_steps",
+            "type": "sequence_order",
+            "questionText": "Arrange the binary search steps in the correct order to help Detective Algorithm find her target efficiently.",
+            "requiredToProceed": true
+        }}
+    ],
+    "animationCues": {{
+        "stepDrag": "Step card lifts with subtle shadow, cursor changes to grabbing",
+        "correctPlacement": "Green glow pulse, checkmark appears, satisfying click sound",
+        "incorrectPlacement": "Red shake animation, card bounces back to original position",
+        "sequenceComplete": "All cards connect with golden thread, confetti burst, 'Case Solved!' banner"
+    }},
+    "hints": [
+        {{
+            "stepId": "step_check_bounds",
+            "hintText": "What should you always check before starting any search?"
+        }},
+        {{
+            "stepId": "step_find_middle",
+            "hintText": "Binary search is named for dividing the range in two. What's the first calculation?"
+        }}
+    ],
+    "feedbackMessages": {{
+        "perfect": "Outstanding! You've mastered the binary search algorithm. This O(log n) approach is much faster than checking every element!",
+        "good": "Great work! You understand the core concept. Remember: always check bounds first, then repeatedly halve the search range.",
+        "retry": "Keep practicing! The key insight is that each comparison eliminates half the remaining elements."
+    }}
+}}
+```
+
+### EXAMPLE 2: American Revolution Timeline (History)
+
+```json
+{{
+    "templateType": "SEQUENCE_BUILDER",
+    "title": "The Road to Revolution",
+    "narrativeIntro": "You've discovered a time-scrambled journal from the American Revolution. The pages are out of order! Arrange these pivotal events to restore the timeline and understand how the revolution unfolded.",
+    "steps": [
+        {{
+            "id": "event_stamp_act",
+            "text": "Stamp Act imposed (1765)",
+            "orderIndex": 1,
+            "description": "Britain's first direct tax on colonies sparked early resistance"
+        }},
+        {{
+            "id": "event_boston_massacre",
+            "text": "Boston Massacre (1770)",
+            "orderIndex": 2,
+            "description": "Tensions escalated when British soldiers fired on colonists"
+        }},
+        {{
+            "id": "event_tea_party",
+            "text": "Boston Tea Party (1773)",
+            "orderIndex": 3,
+            "description": "Colonists protested taxation by dumping tea into Boston Harbor"
+        }},
+        {{
+            "id": "event_first_congress",
+            "text": "First Continental Congress (1774)",
+            "orderIndex": 4,
+            "description": "Colonial leaders met to coordinate response to British policies"
+        }},
+        {{
+            "id": "event_lexington",
+            "text": "Battles of Lexington and Concord (1775)",
+            "orderIndex": 5,
+            "description": "The 'shot heard round the world' began armed conflict"
+        }},
+        {{
+            "id": "event_declaration",
+            "text": "Declaration of Independence (1776)",
+            "orderIndex": 6,
+            "description": "Colonies formally declared separation from Britain"
+        }},
+        {{
+            "id": "event_yorktown",
+            "text": "Battle of Yorktown (1781)",
+            "orderIndex": 7,
+            "description": "Final major battle; British surrender ended the war"
+        }}
+    ],
+    "distractors": [
+        {{
+            "id": "distractor_constitution",
+            "text": "Constitution signed (1787)",
+            "description": "The Constitution came after the Revolution, during the founding of the new nation."
+        }}
+    ],
+    "tasks": [
+        {{
+            "id": "task_timeline",
+            "type": "sequence_order",
+            "questionText": "Arrange these events of the American Revolution in chronological order, from earliest to latest.",
+            "requiredToProceed": true
+        }}
+    ],
+    "animationCues": {{
+        "stepDrag": "Parchment card lifts with quill pen cursor, aged paper texture",
+        "correctPlacement": "Wax seal stamps onto timeline, 'tick' sound of grandfather clock",
+        "incorrectPlacement": "Card flutters and drifts back, sound of pages rustling",
+        "sequenceComplete": "Timeline illuminates like a lit fuse, fireworks burst spelling '1776'"
+    }}
+}}
+```
+
+### COMMON MISTAKES TO AVOID
+
+1. **Generic IDs**: Don't use "step_1", "step_2". Use descriptive IDs like "step_find_middle", "event_boston_massacre"
+
+2. **Non-sequential orderIndex**: Must start at 1 and increment by 1 with no gaps
+
+3. **Missing descriptions**: Every step should have a description for meaningful feedback
+
+4. **Too few/many steps**: Aim for 5-8 steps. Fewer is too easy, more is overwhelming
+
+5. **No distractors for higher Bloom's**: For analyze-level questions, include 1-2 plausible wrong steps
+
+6. **Vague animation cues**: Be specific about visual and audio feedback
+
+7. **Missing narrative context**: The narrativeIntro should create engagement and context
+
+### GENERATION CHECKLIST
+
+Before returning your blueprint, verify:
+- [ ] templateType is exactly "SEQUENCE_BUILDER"
+- [ ] title is engaging and descriptive
+- [ ] narrativeIntro sets context (2-4 sentences)
+- [ ] All steps have unique, descriptive IDs
+- [ ] orderIndex values are 1, 2, 3... with no gaps
+- [ ] Each step has text AND description
+- [ ] At least one task with type "sequence_order"
+- [ ] All 4 animationCues are present and descriptive
+- [ ] Content matches the pedagogical context (Bloom's level, subject)
+
+Respond with ONLY the valid JSON blueprint, no explanation.

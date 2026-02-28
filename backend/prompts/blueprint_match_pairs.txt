@@ -1,0 +1,427 @@
+## MATCH_PAIRS Blueprint Generation
+
+You are an expert educational game blueprint designer. Generate a complete, valid MATCH_PAIRS blueprint that teaches concepts through matching related items.
+
+### Template Purpose
+The MATCH_PAIRS creates memory-style or connection-drawing games where learners match related items from two groups. This template is ideal for:
+- Vocabulary matching (e.g., terms and definitions)
+- Translation pairs (e.g., English to Spanish)
+- Concept-example matching (e.g., law to application)
+- Symbol recognition (e.g., chemical formulas to names)
+- Historical connections (e.g., inventors to inventions)
+- Cause-effect relationships (e.g., action to consequence)
+
+### Cognitive Alignment by Bloom's Level
+- **Remember Level**: Recall memorized associations (familiar pairs)
+- **Understand Level**: Explain why pairs connect (relationship-based matching)
+- **Apply Level**: Match in new contexts (unfamiliar examples)
+- **Analyze Level**: Identify patterns across multiple pairs (category inference)
+
+### Required Schema (ALL FIELDS MUST BE PRESENT)
+
+```typescript
+{{
+    "templateType": "MATCH_PAIRS",  // MUST be exactly this
+    "title": string,                 // Engaging, descriptive title
+    "narrativeIntro": string,        // 2-4 sentences setting the scene
+    "pairs": Array<{{
+        "id": string,              // Descriptive ID like "pair_photosynthesis"
+        "leftItem": {{
+            "id": string,          // e.g., "left_photo"
+            "text": string,        // Display text for left side
+            "category"?: string    // Optional grouping
+        }},
+        "rightItem": {{
+            "id": string,          // e.g., "right_photo_def"
+            "text": string,        // Display text for right side
+            "category"?: string
+        }},
+        "explanation"?: string     // Why these match (for feedback)
+    }}>,
+    "matchMode": "click" | "drag" | "draw_line",  // Interaction style
+    "displayMode"?: "two_columns" | "scattered" | "memory_cards",
+    "tasks": Array<{{
+        "id": string,
+        "type": "match_pairs" | "find_pattern" | "odd_one_out",
+        "questionText": string,
+        "requiredToProceed": boolean
+    }}>,
+    "animationCues": {{
+        "itemSelect": string,      // When first item selected
+        "matchSuccess": string,    // When correct match made
+        "matchFailure": string,    // When wrong match made
+        "allMatched"?: string      // Celebration when complete
+    }},
+    "hints": Array<{{
+        "pairId": string,
+        "hintText": string
+    }}>,
+    "feedbackMessages": {{
+        "perfect": string,
+        "good": string,
+        "retry": string
+    }},
+    "scoring"?: {{
+        "pointsPerMatch": number,
+        "penaltyPerMiss": number,
+        "bonusForStreak": number,  // Bonus for consecutive correct
+        "timeBonus"?: boolean      // Extra points for speed
+    }}
+}}
+```
+
+### EXAMPLE 1: Programming Concepts (Computer Science)
+
+```json
+{{
+    "templateType": "MATCH_PAIRS",
+    "title": "Code Connections: Match the Concepts",
+    "narrativeIntro": "The Programming Dictionary has been hit by a bug! Terms have been separated from their definitions. As a Code Librarian, match each programming concept to its correct definition to restore order to the library!",
+    "pairs": [
+        {{
+            "id": "pair_variable",
+            "leftItem": {{
+                "id": "left_variable",
+                "text": "Variable",
+                "category": "fundamentals"
+            }},
+            "rightItem": {{
+                "id": "right_variable_def",
+                "text": "A named container that stores data values",
+                "category": "definition"
+            }},
+            "explanation": "Variables hold data that can change during program execution."
+        }},
+        {{
+            "id": "pair_function",
+            "leftItem": {{
+                "id": "left_function",
+                "text": "Function",
+                "category": "fundamentals"
+            }},
+            "rightItem": {{
+                "id": "right_function_def",
+                "text": "A reusable block of code that performs a specific task",
+                "category": "definition"
+            }},
+            "explanation": "Functions help organize code and avoid repetition."
+        }},
+        {{
+            "id": "pair_loop",
+            "leftItem": {{
+                "id": "left_loop",
+                "text": "Loop",
+                "category": "control_flow"
+            }},
+            "rightItem": {{
+                "id": "right_loop_def",
+                "text": "A construct that repeats code until a condition is met",
+                "category": "definition"
+            }},
+            "explanation": "Loops automate repetitive tasks like iterating through lists."
+        }},
+        {{
+            "id": "pair_array",
+            "leftItem": {{
+                "id": "left_array",
+                "text": "Array",
+                "category": "data_structures"
+            }},
+            "rightItem": {{
+                "id": "right_array_def",
+                "text": "An ordered collection of items accessed by index",
+                "category": "definition"
+            }},
+            "explanation": "Arrays store multiple values in a single variable."
+        }},
+        {{
+            "id": "pair_conditional",
+            "leftItem": {{
+                "id": "left_conditional",
+                "text": "Conditional (if/else)",
+                "category": "control_flow"
+            }},
+            "rightItem": {{
+                "id": "right_conditional_def",
+                "text": "Code that executes only when a condition is true",
+                "category": "definition"
+            }},
+            "explanation": "Conditionals enable programs to make decisions."
+        }},
+        {{
+            "id": "pair_class",
+            "leftItem": {{
+                "id": "left_class",
+                "text": "Class",
+                "category": "oop"
+            }},
+            "rightItem": {{
+                "id": "right_class_def",
+                "text": "A blueprint for creating objects with properties and methods",
+                "category": "definition"
+            }},
+            "explanation": "Classes are the foundation of object-oriented programming."
+        }},
+        {{
+            "id": "pair_recursion",
+            "leftItem": {{
+                "id": "left_recursion",
+                "text": "Recursion",
+                "category": "advanced"
+            }},
+            "rightItem": {{
+                "id": "right_recursion_def",
+                "text": "A function that calls itself to solve smaller subproblems",
+                "category": "definition"
+            }},
+            "explanation": "Recursion is useful for problems with self-similar structure."
+        }},
+        {{
+            "id": "pair_api",
+            "leftItem": {{
+                "id": "left_api",
+                "text": "API",
+                "category": "integration"
+            }},
+            "rightItem": {{
+                "id": "right_api_def",
+                "text": "An interface that allows programs to communicate with each other",
+                "category": "definition"
+            }},
+            "explanation": "APIs enable software components to interact without knowing internal details."
+        }}
+    ],
+    "matchMode": "draw_line",
+    "displayMode": "two_columns",
+    "tasks": [
+        {{
+            "id": "task_match_all",
+            "type": "match_pairs",
+            "questionText": "Draw lines to connect each programming term to its definition. Think about what each concept does in a program!",
+            "requiredToProceed": true
+        }},
+        {{
+            "id": "task_find_pattern",
+            "type": "find_pattern",
+            "questionText": "Can you identify which terms are related to 'control flow' (deciding what code runs)?",
+            "requiredToProceed": false
+        }}
+    ],
+    "animationCues": {{
+        "itemSelect": "Term card glows with code syntax highlight, cursor becomes connect icon",
+        "matchSuccess": "Line solidifies with electric pulse animation, both cards turn green",
+        "matchFailure": "Line fizzles with error spark, cards shake with 'compile error' effect",
+        "allMatched": "All connection lines pulse simultaneously, 'Code Compiled Successfully!' banner with confetti"
+    }},
+    "hints": [
+        {{
+            "pairId": "pair_recursion",
+            "hintText": "Think about Russian nesting dolls - something that contains smaller versions of itself."
+        }},
+        {{
+            "pairId": "pair_api",
+            "hintText": "Think of a waiter in a restaurant - they communicate your order to the kitchen without you going there yourself."
+        }}
+    ],
+    "feedbackMessages": {{
+        "perfect": "Excellent! You've mastered programming terminology. These concepts form the building blocks of all software!",
+        "good": "Great progress! Most matches are correct. Review the trickier terms like recursion and API.",
+        "retry": "Keep practicing! Tip: Think about what each concept DOES. Variables store, functions do, loops repeat, conditionals decide."
+    }},
+    "scoring": {{
+        "pointsPerMatch": 10,
+        "penaltyPerMiss": -5,
+        "bonusForStreak": 5,
+        "timeBonus": true
+    }}
+}}
+```
+
+### EXAMPLE 2: Chemical Elements and Symbols (Chemistry)
+
+```json
+{{
+    "templateType": "MATCH_PAIRS",
+    "title": "Element Symbol Match",
+    "narrativeIntro": "The Periodic Table exhibit has been scrambled! Element symbols have been separated from their names. As a Chemistry Curator, match each symbol to its element name. Some might surprise you - not all symbols match their English names!",
+    "pairs": [
+        {{
+            "id": "pair_oxygen",
+            "leftItem": {{
+                "id": "left_o",
+                "text": "O",
+                "category": "nonmetal"
+            }},
+            "rightItem": {{
+                "id": "right_oxygen",
+                "text": "Oxygen",
+                "category": "element"
+            }},
+            "explanation": "Oxygen's symbol 'O' comes from its Latin name 'Oxygenium'."
+        }},
+        {{
+            "id": "pair_gold",
+            "leftItem": {{
+                "id": "left_au",
+                "text": "Au",
+                "category": "metal"
+            }},
+            "rightItem": {{
+                "id": "right_gold",
+                "text": "Gold",
+                "category": "element"
+            }},
+            "explanation": "Gold's symbol 'Au' comes from its Latin name 'Aurum', meaning 'shining dawn'."
+        }},
+        {{
+            "id": "pair_sodium",
+            "leftItem": {{
+                "id": "left_na",
+                "text": "Na",
+                "category": "alkali_metal"
+            }},
+            "rightItem": {{
+                "id": "right_sodium",
+                "text": "Sodium",
+                "category": "element"
+            }},
+            "explanation": "Sodium's symbol 'Na' comes from its Latin name 'Natrium'."
+        }},
+        {{
+            "id": "pair_iron",
+            "leftItem": {{
+                "id": "left_fe",
+                "text": "Fe",
+                "category": "transition_metal"
+            }},
+            "rightItem": {{
+                "id": "right_iron",
+                "text": "Iron",
+                "category": "element"
+            }},
+            "explanation": "Iron's symbol 'Fe' comes from its Latin name 'Ferrum'."
+        }},
+        {{
+            "id": "pair_potassium",
+            "leftItem": {{
+                "id": "left_k",
+                "text": "K",
+                "category": "alkali_metal"
+            }},
+            "rightItem": {{
+                "id": "right_potassium",
+                "text": "Potassium",
+                "category": "element"
+            }},
+            "explanation": "Potassium's symbol 'K' comes from its Latin name 'Kalium'."
+        }},
+        {{
+            "id": "pair_silver",
+            "leftItem": {{
+                "id": "left_ag",
+                "text": "Ag",
+                "category": "transition_metal"
+            }},
+            "rightItem": {{
+                "id": "right_silver",
+                "text": "Silver",
+                "category": "element"
+            }},
+            "explanation": "Silver's symbol 'Ag' comes from its Latin name 'Argentum'."
+        }},
+        {{
+            "id": "pair_lead",
+            "leftItem": {{
+                "id": "left_pb",
+                "text": "Pb",
+                "category": "post_transition_metal"
+            }},
+            "rightItem": {{
+                "id": "right_lead",
+                "text": "Lead",
+                "category": "element"
+            }},
+            "explanation": "Lead's symbol 'Pb' comes from its Latin name 'Plumbum' (hence 'plumbing')."
+        }},
+        {{
+            "id": "pair_mercury",
+            "leftItem": {{
+                "id": "left_hg",
+                "text": "Hg",
+                "category": "transition_metal"
+            }},
+            "rightItem": {{
+                "id": "right_mercury",
+                "text": "Mercury",
+                "category": "element"
+            }},
+            "explanation": "Mercury's symbol 'Hg' comes from 'Hydrargyrum' (Greek for 'liquid silver')."
+        }}
+    ],
+    "matchMode": "click",
+    "displayMode": "two_columns",
+    "tasks": [
+        {{
+            "id": "task_match_elements",
+            "type": "match_pairs",
+            "questionText": "Click on a symbol, then click its element name to match. Watch out - many symbols don't start with the same letter as the English name!",
+            "requiredToProceed": true
+        }}
+    ],
+    "animationCues": {{
+        "itemSelect": "Element card glows with atomic orbital animation",
+        "matchSuccess": "Atoms connect with electron bond animation, cards merge and glow",
+        "matchFailure": "Cards repel like same-charge particles, electron cloud shudders",
+        "allMatched": "Periodic table materializes, all matched elements light up in their positions"
+    }},
+    "hints": [
+        {{
+            "pairId": "pair_gold",
+            "hintText": "This precious metal's symbol comes from Latin. Think of the word 'aureate' meaning golden."
+        }},
+        {{
+            "pairId": "pair_potassium",
+            "hintText": "This element's symbol 'K' comes from 'Kalium', the word for potash in German."
+        }}
+    ],
+    "feedbackMessages": {{
+        "perfect": "Outstanding! You know your element symbols, including the tricky ones from Latin. Many symbols come from ancient names!",
+        "good": "Great work! Most matches are correct. The trickiest symbols are those from Latin: Au, Na, Fe, K, Ag, Pb, Hg.",
+        "retry": "Keep practicing! Tip: Some elements use their Latin names for symbols. Au=Aurum (Gold), Fe=Ferrum (Iron), Na=Natrium (Sodium)."
+    }}
+}}
+```
+
+### COMMON MISTAKES TO AVOID
+
+1. **Unbalanced pairs**: Each leftItem must have exactly one rightItem match
+
+2. **Missing explanations**: Each pair should explain WHY they match for feedback
+
+3. **Obvious matches**: Include some challenging pairs, not just first-letter matches
+
+4. **No categories**: Categories help organize and provide additional learning
+
+5. **Too few pairs**: Aim for 6-10 pairs for meaningful practice
+
+6. **Inconsistent difficulty**: Mix easy and challenging pairs
+
+7. **Missing matchMode**: Always specify click, drag, or draw_line
+
+8. **No hints for hard pairs**: Tricky pairs especially need hints
+
+### GENERATION CHECKLIST
+
+Before returning your blueprint, verify:
+- [ ] templateType is exactly "MATCH_PAIRS"
+- [ ] title is engaging and descriptive
+- [ ] narrativeIntro sets context (2-4 sentences)
+- [ ] 6-10 pairs with unique IDs
+- [ ] Each pair has leftItem, rightItem, and explanation
+- [ ] matchMode is specified (click, drag, or draw_line)
+- [ ] At least one task with type "match_pairs"
+- [ ] All 4 animationCues are present and descriptive
+- [ ] Hints provided for challenging pairs
+- [ ] Content matches the pedagogical context (subject, difficulty)
+
+Respond with ONLY the valid JSON blueprint, no explanation.

@@ -1,0 +1,13 @@
+### Template Context: GEOMETRY_BUILDER
+
+The resulting visualization will be implemented as:
+- Construct geometric shapes and solve geometry problems.
+- Canvas allows drawing geometric shapes.
+- Shape properties are validated on submission.
+
+When generating story_context, visual_metaphor, visual_elements, question_flow, and animation_cues:
+- Focus on geometric construction, spatial reasoning, and shape properties.
+- Visual elements should represent geometric shapes, tools, and construction lines.
+- Questions should involve constructing shapes or understanding geometric properties.
+- Animation cues should show shape construction, tool usage, and property validation.
+

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stack vs Queue Arena</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #FFFEF9;
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #00A67E;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .game-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .data-structure {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border: 3px solid #ddd;
+        }
+
+        .stack-section {
+            border-color: #ff6b6b;
+        }
+
+        .queue-section {
+            border-color: #4ecdc4;
+        }
+
+        .ds-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .ds-title {
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+
+        .stack-section .ds-title {
+            color: #ff6b6b;
+        }
+
+        .queue-section .ds-title {
+            color: #4ecdc4;
+        }
+
+        .ds-label {
+            background: #fff;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .stack-section .ds-label {
+            color: #ff6b6b;
+            border: 2px solid #ff6b6b;
+        }
+
+        .queue-section .ds-label {
+            color: #4ecdc4;
+            border: 2px solid #4ecdc4;
+        }
+
+        .visualization {
+            min-height: 300px;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+            border: 2px dashed #ddd;
+            position: relative;
+        }
+
+        .stack-viz {
+            flex-direction: column-reverse;
+            align-items: center;
+        }
+
+        .queue-viz {
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .block {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            font-weight: bold;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .block:hover {
+            transform: scale(1.05);
+        }
+
+        .stack-block {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+        }
+
+        .queue-block {
+            background: linear-gradient(135deg, #4ecdc4, #44a3a0);
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            flex: 1;
+            min-width: 100px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .add-btn {
+            background: linear-gradient(135deg, #00A67E, #008F6B);
+        }
+
+        .remove-btn {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+        }
+
+        .clear-btn {
+            background: linear-gradient(135deg, #fa709a, #fee140);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .input-area {
+            margin-top: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border: 3px solid #00A67E;
+        }
+
+        .challenge {
+            margin-bottom: 20px;
+        }
+
+        .challenge h3 {
+            color: #00A67E;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .operations {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+        }
+
+        .answer-input {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #00A67E, #008F6B);
+            padding: 12px 30px;
+        }
+
+        .feedback {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: none;
+        }
+
+        .feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+            display: block;
+        }
+
+        .feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #f5c6cb;
+            display: block;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #00A67E;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .block {
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideOut {
+            from {
+                opacity: 1;
+                transform: scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧩 Stack vs Queue Arena</h1>
+        <p class="subtitle">Master LIFO and FIFO data structures through interactive visualization</p>
+
+        <div class="info-box">
+            <strong>📚 Learning Goal:</strong> Understand the difference between Stack (LIFO - Last In First Out) and Queue (FIFO - First In First Out) operations.
+        </div>
+
+        <div class="game-area">
+            <div class="data-structure stack-section">
+                <div class="ds-header">
+                    <div class="ds-title">Stack</div>
+                    <div class="ds-label">LIFO</div>
+                </div>
+                <div class="visualization stack-viz" id="stackViz"></div>
+                <div class="controls">
+                    <button class="add-btn" onclick="stackPush()">Push Block</button>
+                    <button class="remove-btn" onclick="stackPop()">Pop Block</button>
+                    <button class="clear-btn" onclick="clearStack()">Clear</button>
+                </div>
+            </div>
+
+            <div class="data-structure queue-section">
+                <div class="ds-header">
+                    <div class="ds-title">Queue</div>
+                    <div class="ds-label">FIFO</div>
+                </div>
+                <div class="visualization queue-viz" id="queueViz"></div>
+                <div class="controls">
+                    <button class="add-btn" onclick="queueEnqueue()">Enqueue Block</button>
+                    <button class="remove-btn" onclick="queueDequeue()">Dequeue Block</button>
+                    <button class="clear-btn" onclick="clearQueue()">Clear</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="input-area">
+            <div class="challenge">
+                <h3>🎯 Challenge: Predict the Output!</h3>
+                <div class="operations" id="operations"></div>
+                <p style="margin-bottom: 15px;"><strong>Question:</strong> What is the final output sequence for both data structures?</p>
+                <div class="answer-input">
+                    <label><strong>Stack Output:</strong></label>
+                    <input type="text" id="stackAnswer" placeholder="e.g., C,B,A">
+                    <label style="margin-left: 15px;"><strong>Queue Output:</strong></label>
+                    <input type="text" id="queueAnswer" placeholder="e.g., A,B,C">
+                    <button class="submit-btn" onclick="checkAnswer()">Submit Answer</button>
+                </div>
+            </div>
+            <div class="feedback" id="feedback"></div>
+            <button class="submit-btn" onclick="generateNewChallenge()" style="margin-top: 15px; width: 100%;">🎲 Generate New Challenge</button>
+        </div>
+    </div>
+
+    <script>
+        const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+        let stackData = [];
+        let queueData = [];
+        let currentLetterIndex = 0;
+        let challengeOperations = [];
+        let expectedStackOutput = [];
+        let expectedQueueOutput = [];
+
+        function getNextLetter() {
+            if (currentLetterIndex >= letters.length) {
+                currentLetterIndex = 0;
+            }
+            return letters[currentLetterIndex++];
+        }
+
+        function renderStack() {
+            const viz = document.getElementById('stackViz');
+            viz.innerHTML = '';
+            stackData.forEach(letter => {
+                const block = document.createElement('div');
+                block.className = 'block stack-block';
+                block.textContent = letter;
+                viz.appendChild(block);
+            });
+        }
+
+        function renderQueue() {
+            const viz = document.getElementById('queueViz');
+            viz.innerHTML = '';
+            queueData.forEach(letter => {
+                const block = document.createElement('div');
+                block.className = 'block queue-block';
+                block.textContent = letter;
+                viz.appendChild(block);
+            });
+        }
+
+        function stackPush() {
+            const letter = getNextLetter();
+            stackData.push(letter);
+            renderStack();
+        }
+
+        function stackPop() {
+            if (stackData.length > 0) {
+                stackData.pop();
+                renderStack();
+            }
+        }
+
+        function clearStack() {
+            stackData = [];
+            renderStack();
+        }
+
+        function queueEnqueue() {
+            const letter = getNextLetter();
+            queueData.push(letter);
+            renderQueue();
+        }
+
+        function queueDequeue() {
+            if (queueData.length > 0) {
+                queueData.shift();
+                renderQueue();
+            }
+        }
+
+        function clearQueue() {
+            queueData = [];
+            renderQueue();
+        }
+
+        function generateNewChallenge() {
+            currentLetterIndex = 0;
+            const numOperations = 6 + Math.floor(Math.random() * 3);
+            challengeOperations = [];
+            
+            let tempStack = [];
+            let tempQueue = [];
+            expectedStackOutput = [];
+            expectedQueueOutput = [];
+
+            for (let i = 0; i < numOperations; i++) {
+                const operation = Math.random() > 0.3 ? 'add' : 'remove';
+                
+                if (operation === 'add') {
+                    const letter = getNextLetter();
+                    tempStack.push(letter);
+                    tempQueue.push(letter);
+                    challengeOperations.push(`Add ${letter}`);
+                } else if (tempStack.length > 0) {
+                    challengeOperations.push('Remove');
+                    expectedStackOutput.push(tempStack.pop());
+                    expectedQueueOutput.push(tempQueue.shift());
+                }
+            }
+
+            // After all operations, remove remaining items
+            const remainingStack = [...tempStack];
+            const remainingQueue = [...tempQueue];
+            
+            while (remainingStack.length > 0) {
+                expectedStackOutput.push(remainingStack.pop());
+            }
+            
+            while (remainingQueue.length > 0) {
+                expectedQueueOutput.push(remainingQueue.shift());
+            }
+
+            const opsDiv = document.getElementById('operations');
+            opsDiv.innerHTML = '<strong>Operations sequence:</strong><br>' + 
+                challengeOperations.map((op, idx) => `${idx + 1}. ${op}`).join('<br>') +
+                '<br><br><strong>Task:</strong> After these operations, remove all remaining items. What order do they come out?';
+
+            document.getElementById('stackAnswer').value = '';
+            document.getElementById('queueAnswer').value = '';
+            document.getElementById('feedback').className = 'feedback';
+            document.getElementById('feedback').style.display = 'none';
+
+            clearStack();
+            clearQueue();
+        }
+
+        function checkAnswer() {
+            const stackAnswer = document.getElementById('stackAnswer').value.trim().toUpperCase().replace(/\s/g, '').replace(/,/g, '');
+            const queueAnswer = document.getElementById('queueAnswer').value.trim().toUpperCase().replace(/\s/g, '').replace(/,/g, '');
+
+            const expectedStack = expectedStackOutput.join('');
+            const expectedQueue = expectedQueueOutput.join('');
+
+            const feedback = document.getElementById('feedback');
+
+            if (stackAnswer === expectedStack && queueAnswer === expectedQueue) {
+                feedback.className = 'feedback correct';
+                feedback.style.display = 'block';
+                feedback.innerHTML = '✅ <strong>Correct!</strong> You understand LIFO and FIFO perfectly!<br><br>' +
+                    `<strong>Stack (LIFO):</strong> ${expectedStackOutput.join(', ')}<br>` +
+                    `<strong>Queue (FIFO):</strong> ${expectedQueueOutput.join(', ')}`;
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.style.display = 'block';
+                let explanation = '❌ <strong>Not quite right.</strong> Let\'s review:<br><br>';
+                
+                if (stackAnswer !== expectedStack) {
+                    explanation += `<strong>Stack (LIFO):</strong> Your answer: ${stackAnswer || 'empty'}, Correct: ${expectedStackOutput.join(', ')}<br>`;
+                    explanation += 'Remember: Stack is Last In First Out - the last item added is the first one removed!<br><br>';
+                }
+                
+                if (queueAnswer !== expectedQueue) {
+                    explanation += `<strong>Queue (FIFO):</strong> Your answer: ${queueAnswer || 'empty'}, Correct: ${expectedQueueOutput.join(', ')}<br>`;
+                    explanation += 'Remember: Queue is First In First Out - the first item added is the first one removed!';
+                }
+                
+                feedback.innerHTML = explanation;
+            }
+        }
+
+        generateNewChallenge();
+    </script>
+</body>
+</html>
+

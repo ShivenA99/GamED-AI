@@ -1,0 +1,249 @@
+{
+  "id": "ling-grad-language-acquisition-branching",
+  "title": "Navigate Language Acquisition Stages",
+  "question": "Create an interactive diagram game where graduate students navigate a language acquisition decision tree: given a child's age, language exposure, and linguistic behaviors, predict the developmental stage (cooing, babbling, one-word holophrastic, two-word telegraphic, multi-word, complex sentences), identify potential delays or disorders, and recommend appropriate interventions based on milestones.",
+  "domain": "linguistics",
+  "educationLevel": "graduate",
+  "gameType": "interactive_diagram",
+  "mechanic": "branching_scenario",
+  "bloomsLevel": "Evaluate",
+  "pipelineMetrics": {
+    "runId": "87381851-156c-4c88-9ceb-fcbda7ff0535",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 298.6,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T09:42:44.030402+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "The Language Architect: Developmental Detective",
+    "subject": "Developmental Psychology",
+    "difficulty": "advanced",
+    "narrativeIntro": "Welcome, aspiring Developmental Detective! A child's language journey is a complex path. Your mission is to analyze cases, predict developmental stages, identify challenges, and recommend the best support. Let's begin by reviewing the foundational concepts.",
+    "narrativeTheme": "Developmental Detective",
+    "completionMessage": "Case closed! Your expertise has guided these children towards brighter linguistic futures. You've mastered the art of language acquisition diagnosis and intervention.",
+    "estimatedDurationMinutes": 15,
+    "diagram": {
+      "assetPrompt": "",
+      "zones": []
+    },
+    "labels": [],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "memory_match",
+        "config": {
+          "instruction_text": "To begin your detective work, match each key term related to child language development with its correct definition. Click to flip cards and find the pairs!"
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 70,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "That's a match! You've correctly identified a key concept.",
+          "on_incorrect": "Not quite right. Keep exploring the cards to find the matching pair!",
+          "on_completion": "Fantastic work! You've successfully matched all the foundational language concepts.",
+          "misconceptions": [
+            {
+              "trigger_label": "repeated_incorrect_age_sequence",
+              "message": "Remember, while there is a typical sequence and age range for milestones, individual variation in timing is normal and influenced by many factors; a range of development is expected.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "repeated_incorrect_delay_severity",
+              "message": "It's important to know that language delays can stem from various factors, including environmental, hearing issues, or specific language impairment, not all of which are severe or permanent, and many respond well to intervention.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "repeated_incorrect_intervention_timing",
+              "message": "While early intervention is often most effective, interventions can be beneficial at various stages of childhood, adapting to the child's current developmental needs.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "sorting_categories",
+        "config": {
+          "instruction_text": "As a Developmental Detective, carefully read each linguistic behavior described on the clue cards and drag it to the correct language acquisition stage column. Pay close attention to the specific characteristics of each behavior."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 120,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! That linguistic behavior correctly belongs in the {category_label} stage.",
+          "on_incorrect": "Not quite. Consider the typical age range and the *type* of sounds or communication involved. Does this behavior fit the characteristics of the {incorrect_category_label} stage, or would it be more appropriate for another developmental stage?",
+          "on_completion": "Fantastic work! You've successfully classified all the linguistic behaviors into their correct developmental stages, demonstrating a strong understanding of early language acquisition.",
+          "misconceptions": [
+            {
+              "trigger_label": "rigid_progression_error",
+              "message": "While there is a typical sequence and age range for milestones, individual variation in timing is normal and influenced by many factors; a range of development is expected. Don't worry if some behaviors seem to bridge stages or appear slightly earlier/later than average.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "over_concern_delay",
+              "message": "It's important to remember that delays can stem from various factors, including environmental, hearing issues, or specific language impairment. Not all delays are severe or permanent, and many respond well to intervention.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "limited_intervention_belief",
+              "message": "While early intervention is often most effective, interventions can be beneficial at various stages of childhood, adapting to the child's current developmental needs. It's never 'too late' to support language development.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "branching_scenario",
+        "config": {
+          "instruction_text": "Review the child's profile and select the most appropriate diagnostic step or developmental stage based on the presented data. Each choice will lead you further down the diagnostic pathway."
+        },
+        "scoring": {
+          "strategy": "weighted",
+          "points_per_correct": 25,
+          "max_score": 100,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! Your assessment aligns with typical developmental milestones for this age, demonstrating a strong understanding of early vocalization patterns.",
+          "on_incorrect": "Let's re-evaluate. Consider the child's age and the specific vocalizations described. Is this within the expected range, or does it suggest a deviation? Reviewing the typical progression of pre-linguistic skills might be helpful.",
+          "on_completion": "You've completed the diagnostic pathway for this case. Your decisions helped navigate through the child's developmental data, applying critical thinking to identify potential language delays or disorders.",
+          "misconceptions": [
+            {
+              "trigger_label": "misconception_fixed_rate",
+              "message": "Remember, while there is a typical sequence and age range for milestones, individual variation in timing is normal and influenced by many factors; a range of development is expected. Not every deviation is immediately a red flag.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misconception_always_severe",
+              "message": "It's important to note that delays can stem from various factors, including environmental, hearing issues, or specific language impairment. Not all are severe or permanent, and many respond well to intervention.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misconception_early_intervention_only",
+              "message": "While early intervention is often most effective, interventions can be beneficial at various stages of childhood, adapting to the child's current developmental needs. It's never 'too late' to consider support.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "branching_scenario",
+        "config": {
+          "instruction_text": "Based on the child's profile and diagnosis, select the most appropriate evidence-based intervention strategy to support their language development."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 30,
+          "max_score": 90,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Correct!",
+          "on_incorrect": "Try again.",
+          "on_completion": "Well done!",
+          "misconceptions": []
+        }
+      }
+    ],
+    "modeTransitions": [],
+    "interactionMode": "memory_match",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 10,
+      "max_score": 380
+    },
+    "totalMaxScore": 380,
+    "generation_complete": true,
+    "memoryMatchConfig": {
+      "pairs": [
+        {
+          "id": "p1",
+          "front": "Cooing Stage",
+          "back": "Infants produce vowel-like sounds, often expressing comfort or pleasure, typically between 2-4 months.",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "",
+          "category": ""
+        },
+        {
+          "id": "p2",
+          "front": "Holophrastic Stage",
+          "back": "Children use single words to convey complex meanings, often accompanied by gestures, typically around 12-18 months.",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "",
+          "category": ""
+        },
+        {
+          "id": "p3",
+          "front": "Telegraphic Stage",
+          "back": "Children combine two words into simple sentences, omitting non-essential words, typically around 18-24 months.",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "",
+          "category": ""
+        },
+        {
+          "id": "p4",
+          "front": "Receptive Language",
+          "back": "The ability to understand spoken or written language, including following instructions and comprehending vocabulary.",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "",
+          "category": ""
+        },
+        {
+          "id": "p5",
+          "front": "Expressive Language",
+          "back": "The ability to communicate thoughts, ideas, and feelings through speech, writing, or gestures.",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "",
+          "category": ""
+        },
+        {
+          "id": "p6",
+          "front": "Language Delay",
+          "back": "When a child's language development is behind that of their peers, but they are still following the typical sequence of development.",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "",
+          "category": ""
+        },
+        {
+          "id": "p7",
+          "front": "Early Intervention",
+          "back": "Therapeutic services provided to young children (birth to age 3) with developmental delays or disabilities to improve outcomes.",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "",
+          "category": ""
+        }
+      ],
+      "game_variant": "classic",
+      "gridSize": [
+        4,
+        4
+      ],
+      "match_type": "term_to_definition",
+      "card_back_style": "question_mark",
+      "matched_card_behavior": "fade",
+      "show_explanation_on_match": true,
+      "flip_duration_ms": 400,
+      "show_attempts_counter": true
+    }
+  }
+}

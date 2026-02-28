@@ -1,0 +1,13 @@
+### Template Context: DESIGN_CONSTRAINT_BUILDER
+
+The resulting visualization will be implemented as:
+- Design solutions while respecting constraints and requirements.
+- Constraints are displayed as requirements.
+- Design elements are placed on canvas with constraint validation.
+
+When generating story_context, visual_metaphor, visual_elements, question_flow, and animation_cues:
+- Emphasize problem-solving, constraints, and design optimization.
+- Visual elements should represent constraints and design space.
+- Questions should involve designing solutions or understanding constraints.
+- Animation cues should show constraint violations, design placement, and validation.
+

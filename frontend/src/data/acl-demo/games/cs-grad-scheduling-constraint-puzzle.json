@@ -1,0 +1,1010 @@
+{
+  "id": "cs-grad-scheduling-constraint-puzzle",
+  "title": "Solve Scheduling Constraints with Backtracking",
+  "question": "Create an algorithm game where graduate students solve a job scheduling constraint satisfaction problem using backtracking. Given jobs with deadlines, processing times, and resource requirements, students must find a valid schedule satisfying all constraints.",
+  "domain": "cs",
+  "educationLevel": "graduate",
+  "gameType": "algorithm",
+  "mechanic": "constraint_puzzle",
+  "bloomsLevel": "Create",
+  "pipelineMetrics": {
+    "runId": "cc2094ad-9f7c-4d90-a414-9c992e22dd90",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 284.6,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T06:26:32.875496+00:00"
+  },
+  "blueprint": {
+    "templateType": "ALGORITHM_GAME",
+    "title": "Deadline Dash: Mission Scheduler",
+    "subject": "backtracking",
+    "difficulty": "intermediate",
+    "algorithmName": "Job Scheduling",
+    "algorithmCategory": "backtracking",
+    "narrativeIntro": "The Ares V launch is in T-minus 24 hours! As the lead mission planner, you must schedule all critical system checks. One wrong move could scrub the entire mission.",
+    "totalMaxScore": 1800,
+    "passThreshold": 0.6,
+    "learn_config": {
+      "auto_reveal_hint_tier_1_after_ms": 10000,
+      "hint_penalties": [
+        0,
+        0,
+        0
+      ],
+      "partial_credit_multiplier": 0.5,
+      "show_correct_answer_on_wrong": true,
+      "show_misconceptions_preemptively": true,
+      "scaffolding": {}
+    },
+    "test_config": {
+      "auto_reveal_hint_tier_1_after_ms": null,
+      "hint_penalties": [
+        0.1,
+        0.2,
+        0.3
+      ],
+      "partial_credit_multiplier": 0.0,
+      "show_correct_answer_on_wrong": false,
+      "show_misconceptions_preemptively": false,
+      "time_limit_seconds": null
+    },
+    "algorithmGameType": null,
+    "is_multi_scene": true,
+    "scenes": [
+      {
+        "scene_id": "scene_1",
+        "scene_number": 1,
+        "title": "Manual Override",
+        "game_type": "constraint_puzzle",
+        "difficulty": "beginner",
+        "learning_goal": "Understand the core constraints of a job scheduling problem: processing times, deadlines, and resource conflicts.",
+        "max_score": 400,
+        "content": {
+          "title": "Manual Override",
+          "narrative": "The main computer on Space Station Epsilon is failing! You must manually schedule a sequence of critical repair tasks. Each task has a duration, a strict deadline, and a priority level. Maximize the total priority of tasks completed on time to stabilize the station.",
+          "rules": [
+            "Schedule tasks by dragging them into the sequence timeline, which starts at time 0.",
+            "The system can only run one task at a time; each task starts after the previous one finishes.",
+            "A task must be *completed* before its deadline to earn its priority points. If it's late, you get 0 points for it.",
+            "You do not have to schedule all tasks."
+          ],
+          "objective": "Maximize the total priority score by creating the optimal task schedule.",
+          "boardConfig": {
+            "boardType": "sequence_building",
+            "items": [
+              {
+                "id": "task_a",
+                "label": "Life Support Check",
+                "properties": {
+                  "duration": 2,
+                  "deadline": 4,
+                  "priority": 80
+                },
+                "icon": "\u2764\ufe0f"
+              },
+              {
+                "id": "task_b",
+                "label": "Shield Calibration",
+                "properties": {
+                  "duration": 5,
+                  "deadline": 10,
+                  "priority": 120
+                },
+                "icon": "\ud83d\udee1\ufe0f"
+              },
+              {
+                "id": "task_c",
+                "label": "Nav-Com Reset",
+                "properties": {
+                  "duration": 3,
+                  "deadline": 7,
+                  "priority": 60
+                },
+                "icon": "\ud83d\udce1"
+              },
+              {
+                "id": "task_d",
+                "label": "Engine Diagnostic",
+                "properties": {
+                  "duration": 1,
+                  "deadline": 9,
+                  "priority": 20
+                },
+                "icon": "\u2699\ufe0f"
+              },
+              {
+                "id": "task_e",
+                "label": "Cargo Bay Purge",
+                "properties": {
+                  "duration": 3,
+                  "deadline": 5,
+                  "priority": 70
+                },
+                "icon": "\ud83d\udca8"
+              },
+              {
+                "id": "task_f",
+                "label": "Comms Relay Test",
+                "properties": {
+                  "duration": 2,
+                  "deadline": 8,
+                  "priority": 50
+                },
+                "icon": "\ud83d\udcf6"
+              }
+            ],
+            "extra": {},
+            "showConstraintsVisually": true,
+            "allowUndo": true
+          },
+          "constraints": [],
+          "scoringConfig": {
+            "method": "sum_property",
+            "maxPoints": 400,
+            "property": "priority"
+          },
+          "optimalValue": 270,
+          "optimalSolutionDescription": "The optimal schedule is Life Support Check, then Cargo Bay Purge, then Shield Calibration. This completes three high-priority tasks just within their deadlines, maximizing the total priority.",
+          "algorithmName": "Job Scheduling",
+          "algorithmExplanation": "Job Scheduling algorithms solve this by exploring the decision space of which job to schedule next. Using backtracking, the algorithm tries adding each valid job (one that can meet its deadline) and recursively explores the consequences. It prunes branches that can't possibly lead to a better score than the best one found so far, efficiently finding the optimal schedule without trying every single permutation.",
+          "hints": [
+            "Some high-priority tasks have long durations. Scheduling them might prevent you from completing several smaller, quicker tasks.",
+            "Tasks with early deadlines are very restrictive. It's often a good idea to schedule them early in the sequence if you want to complete them at all.",
+            "The highest priority task, Shield Calibration, takes a long time. Try scheduling two specific shorter tasks before it to maximize your score."
+          ]
+        },
+        "asset_url": null
+      },
+      {
+        "scene_id": "scene_2",
+        "scene_number": 2,
+        "title": "The Recursive Scheduler",
+        "game_type": "state_tracer",
+        "difficulty": "intermediate",
+        "learning_goal": "Trace the state-space search of a backtracking algorithm, observing how it explores possibilities, prunes branches, and backtracks from dead ends.",
+        "max_score": 800,
+        "content": {
+          "algorithmName": "Job Scheduling",
+          "algorithmDescription": "A backtracking algorithm to find the maximum profit from a set of non-overlapping jobs, each with a start time, end time, and profit.",
+          "narrativeIntro": "You are the master scheduler for a high-tech factory. Your task is to select the most profitable set of jobs to run, but there's a catch: no two jobs can overlap! Let's trace a recursive algorithm that explores every possibility to find the optimal schedule.",
+          "code": "# Jobs are (start_time, end_time, profit)\n# Assumes jobs are sorted by start time.\ndef schedule(jobs, i):\n    # Base case: no more jobs to consider\n    if i >= len(jobs):\n        return 0\n\n    # Option 1: Include job i\n    # Find the next non-overlapping job\n    next_i = -1\n    for j in range(i + 1, len(jobs)):\n        if jobs[j][0] >= jobs[i][1]:\n            next_i = j\n            break\n    \n    profit_with = jobs[i][2]\n    if next_i != -1:\n        profit_with += schedule(jobs, next_i)\n\n    # Option 2: Exclude job i\n    profit_without = schedule(jobs, i + 1)\n\n    # Return the maximum profit\n    return max(profit_with, profit_without)\n\n# Jobs are (start, end, profit)\njobs = [(1, 3, 20), (2, 5, 25), (4, 6, 15)]\nmax_profit = schedule(jobs, 0)",
+          "language": "python",
+          "steps": [
+            {
+              "stepNumber": 1,
+              "codeLine": 28,
+              "description": "The process begins with an initial call to `schedule`, starting with the first job (index 0).",
+              "variables": {
+                "jobs": "[(1, 3, 20), (2, 5, 25), (4, 6, 15)]",
+                "i": "0"
+              },
+              "changedVariables": [
+                "i"
+              ],
+              "dataStructure": {
+                "type": "custom",
+                "nodes": [
+                  {
+                    "id": "s0",
+                    "label": "schedule(0)",
+                    "state": "active"
+                  }
+                ],
+                "edges": []
+              },
+              "prediction": null,
+              "explanation": "The algorithm is initialized by calling `schedule(jobs, 0)`, creating the root of our recursion tree. The goal is to find the maximum profit starting from this point.",
+              "hints": [
+                "This is the first step of the program.",
+                "The main function is being called to start the recursive process.",
+                "The line `max_profit = schedule(jobs, 0)` is executed."
+              ]
+            },
+            {
+              "stepNumber": 2,
+              "codeLine": 5,
+              "description": "Inside `schedule(0)`, the base case `i >= len(jobs)` (0 >= 3) is checked and found to be false.",
+              "variables": {
+                "jobs": "[(1, 3, 20), (2, 5, 25), (4, 6, 15)]",
+                "i": "0"
+              },
+              "changedVariables": [],
+              "dataStructure": {
+                "type": "custom",
+                "nodes": [
+                  {
+                    "id": "s0",
+                    "label": "schedule(0)",
+                    "state": "active"
+                  }
+                ],
+                "edges": []
+              },
+              "prediction": {
+                "type": "multiple_choice",
+                "prompt": "What are the two main choices the algorithm will now explore for job 0?",
+                "options": [
+                  {
+                    "id": "a",
+                    "label": "Include job 0 vs. Exclude job 0"
+                  },
+                  {
+                    "id": "b",
+                    "label": "Schedule job 0 vs. Schedule job 1"
+                  },
+                  {
+                    "id": "c",
+                    "label": "Check profit of job 0 vs. profit of job 1"
+                  }
+                ],
+                "correctId": "a"
+              },
+              "explanation": "This is a classic backtracking pattern. For each item (in this case, a job), the algorithm explores two branches: one where the item is included in the solution, and one where it is not. It will then recursively find the best outcome for each branch.",
+              "hints": [
+                "Think about the fundamental decision at each step of a recursive scheduling algorithm.",
+                "The algorithm must decide whether to perform the current job or to skip it and move to the next.",
+                "The two options are to take the profit from the current job and find the next compatible one, or to ignore the current job and see what profit can be made from the remaining jobs."
+              ]
+            },
+            {
+              "stepNumber": 3,
+              "codeLine": 12,
+              "description": "The algorithm explores including job 0. It searches for the next job that starts after job 0 ends (time 3). It finds job 2 (starts at 4).",
+              "variables": {
+                "jobs": "[(1, 3, 20), (2, 5, 25), (4, 6, 15)]",
+                "i": "0",
+                "j": "2"
+              },
+              "changedVariables": [
+                "j"
+              ],
+              "dataStructure": {
+                "type": "custom",
+                "nodes": [
+                  {
+                    "id": "s0",
+                    "label": "schedule(0)",
+                    "state": "exploring_with"
+                  }
+                ],
+                "edges": []
+              },
+              "prediction": {
+                "type": "value",
+                "prompt": "After the loop, what will be the index of the next compatible job stored in `next_i`?",
+                "correctValue": "2",
+                "acceptableValues": [
+                  "2"
+                ],
+                "placeholder": "Enter index"
+              },
+              "explanation": "The loop iterates from `i + 1`. It checks job 1 (start time 2), which is less than job 0's end time (3), so it's skipped. It then checks job 2 (start time 4), which is greater than or equal to 3. The loop finds this compatible job, sets `next_i` to 2, and breaks.",
+              "hints": [
+                "Job 0 is `(1, 3, 20)`. When does it end?",
+                "The code looks for the first job `j` where `jobs[j][0]` (start time) is `>= jobs[i][1]` (end time).",
+                "Job 0 ends at time 3. Job 1 starts at 2 (overlap). Job 2 starts at 4 (no overlap). So, `next_i` will be 2."
+              ]
+            },
+            {
+              "stepNumber": 4,
+              "codeLine": 18,
+              "description": "With `next_i = 2`, a recursive call `schedule(jobs, 2)` is made to find the max profit from the remaining compatible jobs.",
+              "variables": {
+                "jobs": "[(1, 3, 20), (2, 5, 25), (4, 6, 15)]",
+                "i": "0",
+                "next_i": "2",
+                "profit_with": "20"
+              },
+              "changedVariables": [
+                "profit_with"
+              ],
+              "dataStructure": {
+                "type": "custom",
+                "nodes": [
+                  {
+                    "id": "s0",
+                    "label": "schedule(0)",
+                    "state": "exploring_with"
+                  },
+                  {
+                    "id": "s2",
+                    "label": "schedule(2)",
+                    "state": "active"
+                  }
+                ],
+                "edges": [
+                  {
+                    "from": "s0",
+                    "to": "s2",
+                    "label": "with"
+                  }
+                ]
+              },
+              "prediction": null,
+              "explanation": "The algorithm dives deeper into the recursion tree. The current profit for this branch (`profit_with`) is initialized with job 0's profit (20), and the result of `schedule(2)` will be added to it.",
+              "hints": [
+                "The algorithm is following the 'include job 0' path.",
+                "A new function call is placed on the call stack.",
+                "The program jumps to the beginning of the `schedule` function, but this time with `i = 2`."
+              ]
+            },
+            {
+              "stepNumber": 5,
+              "codeLine": 21,
+              "description": "Inside `schedule(2)`, the algorithm explores excluding job 2, making a recursive call to `schedule(3)`.",
+              "variables": {
+                "jobs": "[(1, 3, 20), (2, 5, 25), (4, 6, 15)]",
+                "i": "2",
+                "profit_with": "15"
+              },
+              "changedVariables": [],
+              "dataStructure": {
+                "type": "custom",
+                "nodes": [
+                  {
+                    "id": "s0",
+                    "label": "schedule(0)",
+                    "state": "exploring_with"
+                  },
+                  {
+                    "id": "s2",
+                    "label": "schedule(2)",
+                    "state": "exploring_without"
+                  },
+                  {
+                    "id": "s3",
+                    "label": "schedule(3)",
+                    "state": "active"
+                  }
+                ],
+                "edges": [
+                  {
+                    "from": "s0",
+                    "to": "s2",
+                    "label": "with"
+                  },
+                  {
+                    "from": "s2",
+                    "to": "s3",
+                    "label": "without"
+                  }
+                ]
+              },
+              "prediction": {
+                "type": "multiple_choice",
+                "prompt": "The call `schedule(3)` will immediately hit the base case. What value will it return?",
+                "options": [
+                  {
+                    "id": "a",
+                    "label": "0"
+                  },
+                  {
+                    "id": "b",
+                    "label": "15"
+                  },
+                  {
+                    "id": "c",
+                    "label": "null"
+                  }
+                ],
+                "correctId": "a"
+              },
+              "explanation": "The call is `schedule(3)`. The length of `jobs` is 3. The base case `if i >= len(jobs)` (3 >= 3) is now true. This signifies there are no more jobs to consider, so the profit from this point onward is 0.",
+              "hints": [
+                "What happens when the index `i` is no longer a valid index for the `jobs` list?",
+                "Look at the base case of the recursion on line 5.",
+                "Since `i` (3) is not less than `len(jobs)` (3), the function returns 0."
+              ]
+            },
+            {
+              "stepNumber": 6,
+              "codeLine": 24,
+              "description": "`schedule(2)` has its results: `profit_with` is 15 (from job 2 itself) and `profit_without` is 0 (from `schedule(3)`). It returns the maximum.",
+              "variables": {
+                "jobs": "[(1, 3, 20), (2, 5, 25), (4, 6, 15)]",
+                "i": "2",
+                "profit_with": "15",
+                "profit_without": "0"
+              },
+              "changedVariables": [
+                "profit_without"
+              ],
+              "dataStructure": {
+                "type": "custom",
+                "nodes": [
+                  {
+                    "id": "s0",
+                    "label": "schedule(0)",
+                    "state": "exploring_with"
+                  },
+                  {
+                    "id": "s2",
+                    "label": "schedule(2)",
+                    "state": "active"
+                  }
+                ],
+                "edges": [
+                  {
+                    "from": "s0",
+                    "to": "s2",
+                    "label": "with"
+                  }
+                ]
+              },
+              "prediction": {
+                "type": "value",
+                "prompt": "What value will `schedule(2)` return?",
+                "correctValue": "15",
+                "acceptableValues": [
+                  "15"
+                ],
+                "placeholder": "Enter value"
+              },
+              "explanation": "The function must decide the best outcome from its position. The choice is between including job 2 (profit 15) and excluding it (profit 0). The maximum, 15, is chosen and returned to the caller (`schedule(0)`).",
+              "hints": [
+                "The function returns the maximum of the two paths it explored.",
+                "Compare `profit_with` and `profit_without` within the `schedule(2)` frame.",
+                "The line is `return max(15, 0)`, which evaluates to 15."
+              ]
+            },
+            {
+              "stepNumber": 7,
+              "codeLine": 18,
+              "description": "Execution returns to `schedule(0)`. The value 15 is added to `profit_with`, making it 35. Now, the 'exclude job 0' branch is explored.",
+              "variables": {
+                "jobs": "[(1, 3, 20), (2, 5, 25), (4, 6, 15)]",
+                "i": "0",
+                "profit_with": "35"
+              },
+              "changedVariables": [
+                "profit_with"
+              ],
+              "dataStructure": {
+                "type": "custom",
+                "nodes": [
+                  {
+                    "id": "s0",
+                    "label": "schedule(0)",
+                    "state": "active"
+                  },
+                  {
+                    "id": "s2",
+                    "label": "schedule(2)\nreturns 15",
+                    "state": "returned"
+                  }
+                ],
+                "edges": [
+                  {
+                    "from": "s0",
+                    "to": "s2",
+                    "label": "with"
+                  }
+                ]
+              },
+              "prediction": {
+                "type": "value",
+                "prompt": "The algorithm will now call `schedule(i + 1)` to explore the 'exclude' path. What value will be passed for `i`?",
+                "correctValue": "1",
+                "acceptableValues": [
+                  "1"
+                ],
+                "placeholder": "Enter index"
+              },
+              "explanation": "Having fully calculated the profit from the 'include job 0' branch (which was 20 + 15 = 35), the algorithm backtracks. It now must calculate the profit for the 'exclude job 0' branch, which means finding the maximum profit starting from the next job, job 1.",
+              "hints": [
+                "The current frame is `schedule(0)`.",
+                "The line to be executed is `schedule(jobs, i + 1)`.",
+                "Since `i` is 0, `i + 1` is 1."
+              ]
+            },
+            {
+              "stepNumber": 8,
+              "codeLine": 21,
+              "description": "A new recursive call, `schedule(1)`, is made to calculate the maximum profit possible without including job 0.",
+              "variables": {
+                "jobs": "[(1, 3, 20), (2, 5, 25), (4, 6, 15)]",
+                "i": "0",
+                "profit_with": "35"
+              },
+              "changedVariables": [],
+              "dataStructure": {
+                "type": "custom",
+                "nodes": [
+                  {
+                    "id": "s0",
+                    "label": "schedule(0)",
+                    "state": "exploring_without"
+                  },
+                  {
+                    "id": "s1",
+                    "label": "schedule(1)",
+                    "state": "active"
+                  },
+                  {
+                    "id": "s2",
+                    "label": "schedule(2)\nreturns 15",
+                    "state": "returned"
+                  }
+                ],
+                "edges": [
+                  {
+                    "from": "s0",
+                    "to": "s2",
+                    "label": "with"
+                  },
+                  {
+                    "from": "s0",
+                    "to": "s1",
+                    "label": "without"
+                  }
+                ]
+              },
+              "prediction": {
+                "type": "multiple_choice",
+                "prompt": "What is the next major step in the algorithm?",
+                "options": [
+                  {
+                    "id": "a",
+                    "label": "Return 35 immediately."
+                  },
+                  {
+                    "id": "b",
+                    "label": "Fully evaluate the `schedule(1)` branch and get its return value."
+                  },
+                  {
+                    "id": "c",
+                    "label": "Compare job 1 and job 2."
+                  }
+                ],
+                "correctId": "b"
+              },
+              "explanation": "The algorithm must now completely resolve the `schedule(1)` branch. This will involve its own 'include job 1' and 'exclude job 1' sub-branches. Only after this entire branch returns a value can `schedule(0)` make its final decision.",
+              "hints": [
+                "The program has just entered a new recursive call.",
+                "It must execute the logic within `schedule(1)` before it can return to `schedule(0)`.",
+                "The algorithm will proceed to check the base case for `i=1`, then explore including job 1 vs. excluding job 1."
+              ]
+            }
+          ],
+          "scoringConfig": {
+            "basePoints": 100,
+            "streakThresholds": [
+              {
+                "min": 0,
+                "multiplier": 1
+              },
+              {
+                "min": 3,
+                "multiplier": 1.5
+              },
+              {
+                "min": 5,
+                "multiplier": 2
+              },
+              {
+                "min": 8,
+                "multiplier": 3
+              }
+            ],
+            "hintPenalties": [
+              0.1,
+              0.2,
+              0.3
+            ],
+            "perfectRunBonus": 0.2
+          }
+        },
+        "asset_url": null
+      },
+      {
+        "scene_id": "scene_3",
+        "scene_number": 3,
+        "title": "Houston, We Have a Logic Error",
+        "game_type": "bug_hunter",
+        "difficulty": "advanced",
+        "learning_goal": "Identify and correct common bugs in backtracking implementations, such as incorrect base cases, faulty constraint validation, and improper state restoration.",
+        "max_score": 600,
+        "content": {
+          "algorithmName": "Job Scheduling",
+          "algorithmDescription": "Given a set of jobs, each with a start time, end time, and profit, find the subset of non-overlapping jobs that yields the maximum total profit.",
+          "narrativeIntro": "You're a mission controller at NASA, scheduling critical maintenance tasks for the space station. A logic error in the scheduling software is causing chaos, assigning conflicting tasks and ignoring high-priority ones. Find and fix the bugs before the mission is compromised!",
+          "language": "python",
+          "rounds": [
+            {
+              "roundId": "round_1",
+              "title": "Off-by-One Orbit",
+              "buggyCode": "def job_scheduling(jobs):\n    jobs.sort(key=lambda x: x[0])\n    n = len(jobs)\n    memo = {}\n\n    def solve(index):\n        if index > n: # Base case off-by-one\n            return 0\n        \n        if index in memo:\n            return memo[index]\n\n        profit_without = solve(index + 1)\n\n        next_index = n\n        for j in range(index + 1, n):\n            if jobs[j][0] >= jobs[index][1]:\n                next_index = j\n                break\n        \n        profit_with = solve(next_index) # Missing profit addition\n\n        memo[index] = max(profit_with, profit_without)\n        return memo[index]\n\n    return solve(0)",
+              "correctCode": "def job_scheduling(jobs):\n    jobs.sort(key=lambda x: x[0])\n    n = len(jobs)\n    memo = {}\n\n    def solve(index):\n        if index >= n:\n            return 0\n        \n        if index in memo:\n            return memo[index]\n\n        profit_without = solve(index + 1)\n\n        next_index = n\n        for j in range(index + 1, n):\n            if jobs[j][0] >= jobs[index][1]:\n                next_index = j\n                break\n        \n        profit_with = jobs[index][2] + solve(next_index)\n\n        memo[index] = max(profit_with, profit_without)\n        return memo[index]\n\n    return solve(0)",
+              "bugs": [
+                {
+                  "bugId": "bug_1",
+                  "bugLines": [
+                    7
+                  ],
+                  "buggyLinesText": [
+                    "if index > n:"
+                  ],
+                  "correctLinesText": [
+                    "if index >= n:"
+                  ],
+                  "bugType": "off_by_one",
+                  "difficulty": 1,
+                  "explanation": "The base case `if index > n:` fails to handle the situation where `index` is exactly `n`. When `solve(n)` is called, it should immediately return 0. Instead, it proceeds and tries to access `jobs[n]`, causing an `IndexError`. The fix is to use `>=` to correctly handle the termination condition.",
+                  "bugTypeExplanation": "Off-by-one errors occur when a loop or conditional check uses a strict inequality (`<` or `>`) where a non-strict one (`<=` or `>=`) is needed, or vice-versa. This often leads to missing the first or last element of a sequence or causing an index out of bounds error.",
+                  "fixOptions": [
+                    {
+                      "id": "fix_1",
+                      "codeText": "if index >= n:",
+                      "isCorrect": true,
+                      "feedback": "Correct! This now properly handles the base case when all jobs have been considered."
+                    },
+                    {
+                      "id": "fix_2",
+                      "codeText": "if index == n:",
+                      "isCorrect": false,
+                      "feedback": "This is close, but it doesn't handle cases where `index` might become greater than `n` (e.g., if `next_index` is already `n` and we call `solve(n+1)`). Using `>=` is safer."
+                    },
+                    {
+                      "id": "fix_3",
+                      "codeText": "if index >= n - 1:",
+                      "isCorrect": false,
+                      "feedback": "This would cause the recursion to stop one step too early, ignoring the last job in the list."
+                    }
+                  ],
+                  "hints": [
+                    "Check the base case of the recursion.",
+                    "How does the recursion stop?",
+                    "Look at the condition in the `if` statement on line 7."
+                  ]
+                },
+                {
+                  "bugId": "bug_2",
+                  "bugLines": [
+                    21
+                  ],
+                  "buggyLinesText": [
+                    "profit_with = solve(next_index)"
+                  ],
+                  "correctLinesText": [
+                    "profit_with = jobs[index][2] + solve(next_index)"
+                  ],
+                  "bugType": "logic_error",
+                  "difficulty": 1,
+                  "explanation": "When calculating the profit for the path that *includes* the current job, the code makes the recursive call but forgets to add the profit of the current job (`jobs[index][2]`). This means the 'include' path never accumulates any profit, leading to incorrect results.",
+                  "bugTypeExplanation": "A logic error is a flaw in the program's design or algorithm. The code is syntactically correct and runs without crashing, but it produces an incorrect output because the steps to solve the problem are wrong.",
+                  "fixOptions": [
+                    {
+                      "id": "fix_1",
+                      "codeText": "profit_with = jobs[index][2] + solve(next_index)",
+                      "isCorrect": true,
+                      "feedback": "Correct! You must add the current job's profit when choosing to include it."
+                    },
+                    {
+                      "id": "fix_2",
+                      "codeText": "profit_with = jobs[index][2]",
+                      "isCorrect": false,
+                      "feedback": "This adds the current job's profit but forgets to add the profit from subsequent compatible jobs."
+                    },
+                    {
+                      "id": "fix_3",
+                      "codeText": "profit_with = profit_without + jobs[index][2]",
+                      "isCorrect": false,
+                      "feedback": "This incorrectly mixes the 'include' and 'skip' paths. The two choices should be calculated independently."
+                    }
+                  ],
+                  "hints": [
+                    "Review the core logic of the choice.",
+                    "What does it mean to 'include' the current job?",
+                    "How is the profit for the 'include' path calculated on line 21?"
+                  ]
+                }
+              ],
+              "testCases": [
+                {
+                  "id": "test_1",
+                  "inputDescription": "jobs = [[1, 3, 50], [3, 5, 40]]",
+                  "expectedOutput": "90",
+                  "buggyOutput": "40",
+                  "exposedBugs": [
+                    "bug_2"
+                  ]
+                },
+                {
+                  "id": "test_2",
+                  "inputDescription": "jobs = []",
+                  "expectedOutput": "0",
+                  "buggyOutput": "IndexError: list index out of range",
+                  "exposedBugs": [
+                    "bug_1"
+                  ]
+                }
+              ],
+              "redHerrings": [
+                {
+                  "lineNumber": 15,
+                  "feedback": "Initializing `next_index` to `n` is correct. If the loop doesn't find a compatible job, `solve(n)` will be called, which correctly returns 0 as the profit for the rest of the schedule."
+                }
+              ]
+            },
+            {
+              "roundId": "round_2",
+              "title": "Faulty Thrusters",
+              "buggyCode": "def job_scheduling(jobs):\n    jobs.sort(key=lambda x: x[0])\n    n = len(jobs)\n    memo = {}\n\n    def solve(index):\n        if index >= n:\n            return 0\n        \n        if index in memo:\n            return memo[index]\n\n        next_index = n\n        for j in range(index + 1, n):\n            if jobs[j][0] > jobs[index][1]: # Bug 1: Wrong operator\n                next_index = j\n                break\n        \n        profit_with = jobs[index][2] + solve(next_index)\n        \n        profit_without = solve(next_index) # Bug 2: Wrong recursive call\n\n        memo[index] = max(profit_with, profit_without)\n        return memo[index]\n\n    return solve(0)",
+              "correctCode": "def job_scheduling(jobs):\n    jobs.sort(key=lambda x: x[0])\n    n = len(jobs)\n    memo = {}\n\n    def solve(index):\n        if index >= n:\n            return 0\n        \n        if index in memo:\n            return memo[index]\n\n        profit_without = solve(index + 1)\n\n        next_index = n\n        for j in range(index + 1, n):\n            if jobs[j][0] >= jobs[index][1]:\n                next_index = j\n                break\n        \n        profit_with = jobs[index][2] + solve(next_index)\n\n        memo[index] = max(profit_with, profit_without)\n        return memo[index]\n\n    return solve(0)",
+              "bugs": [
+                {
+                  "bugId": "bug_1",
+                  "bugLines": [
+                    15
+                  ],
+                  "buggyLinesText": [
+                    "if jobs[j][0] > jobs[index][1]:"
+                  ],
+                  "correctLinesText": [
+                    "if jobs[j][0] >= jobs[index][1]:"
+                  ],
+                  "bugType": "wrong_operator",
+                  "difficulty": 2,
+                  "explanation": "The condition `> jobs[index][1]` incorrectly checks for compatibility. A job is compatible if its start time is greater than OR EQUAL TO the end time of the previous job. By using `>` instead of `>=`, the code excludes valid jobs that start exactly when the current one finishes.",
+                  "bugTypeExplanation": "A wrong operator bug occurs when the code uses an incorrect mathematical or logical operator (e.g., `>` instead of `>=`, `==` instead of `!=`, or `and` instead of `or`). This leads to faulty conditional logic and incorrect program flow.",
+                  "fixOptions": [
+                    {
+                      "id": "fix_1",
+                      "codeText": "if jobs[j][0] >= jobs[index][1]:",
+                      "isCorrect": true,
+                      "feedback": "Correct! This properly includes jobs that can start immediately after the current one ends."
+                    },
+                    {
+                      "id": "fix_2",
+                      "codeText": "if jobs[j][0] == jobs[index][1]:",
+                      "isCorrect": false,
+                      "feedback": "This is too restrictive; it only allows jobs that start exactly when the current one ends, excluding all others."
+                    },
+                    {
+                      "id": "fix_3",
+                      "codeText": "if jobs[j][1] > jobs[index][1]:",
+                      "isCorrect": false,
+                      "feedback": "This compares the end times of two jobs, which is not the correct logic for checking non-overlapping schedules."
+                    }
+                  ],
+                  "hints": [
+                    "Think about the definition of 'non-overlapping'.",
+                    "What if one task starts at the exact moment another one ends?",
+                    "The compatibility check on line 15 is too strict."
+                  ]
+                },
+                {
+                  "bugId": "bug_2",
+                  "bugLines": [
+                    21
+                  ],
+                  "buggyLinesText": [
+                    "profit_without = solve(next_index)"
+                  ],
+                  "correctLinesText": [
+                    "profit_without = solve(index + 1)"
+                  ],
+                  "bugType": "logic_error",
+                  "difficulty": 2,
+                  "explanation": "The 'skip' option in a backtracking algorithm should consider the very next element, which is `index + 1`. This code incorrectly calls `solve(next_index)`, which is the index of the next *compatible* job. This means the algorithm never explores the possibility of skipping the current job to take an intermediate, incompatible one that might lead to a better overall profit.",
+                  "bugTypeExplanation": "A logic error is a flaw in the program's design or algorithm. The code is syntactically correct and runs without crashing, but it produces an incorrect output because the steps to solve the problem are wrong.",
+                  "fixOptions": [
+                    {
+                      "id": "fix_1",
+                      "codeText": "profit_without = solve(index + 1)",
+                      "isCorrect": true,
+                      "feedback": "Correct! The 'skip' case must always explore the next job in the sequence."
+                    },
+                    {
+                      "id": "fix_2",
+                      "codeText": "profit_without = solve(index)",
+                      "isCorrect": false,
+                      "feedback": "This would cause an infinite recursive loop by calling the same function with the same argument."
+                    },
+                    {
+                      "id": "fix_3",
+                      "codeText": "profit_without = memo[index + 1]",
+                      "isCorrect": false,
+                      "feedback": "This attempts to access a memoized value that has not been computed yet, and it bypasses the recursive call entirely."
+                    }
+                  ],
+                  "hints": [
+                    "What are the two fundamental choices at each step?",
+                    "The 'include' choice jumps to the next compatible job. What should the 'skip' choice do?",
+                    "The recursive call for the 'skip' case on line 21 is incorrect."
+                  ]
+                }
+              ],
+              "testCases": [
+                {
+                  "id": "test_1",
+                  "inputDescription": "jobs = [[1, 3, 50], [3, 5, 40]]",
+                  "expectedOutput": "90",
+                  "buggyOutput": "50",
+                  "exposedBugs": [
+                    "bug_1"
+                  ]
+                },
+                {
+                  "id": "test_2",
+                  "inputDescription": "jobs = [[1, 5, 10], [2, 3, 40], [6, 7, 100]]",
+                  "expectedOutput": "140",
+                  "buggyOutput": "110",
+                  "exposedBugs": [
+                    "bug_2"
+                  ]
+                }
+              ],
+              "redHerrings": [
+                {
+                  "lineNumber": 14,
+                  "feedback": "This loop correctly starts from `index + 1`. Since the jobs are sorted by start time, we only need to look at subsequent jobs to find the next compatible one."
+                }
+              ]
+            },
+            {
+              "roundId": "round_3",
+              "title": "Black Hole in Memory",
+              "buggyCode": "def job_scheduling(jobs):\n    # Bug 1: Missing the sort operation\n    n = len(jobs)\n    memo = {}\n\n    def solve(index):\n        if index >= n:\n            return 0\n        \n        if index in memo:\n            return memo[index]\n\n        profit_without = solve(index + 1)\n\n        next_index = n\n        for j in range(index + 1, n):\n            if jobs[j][0] >= jobs[index][1]:\n                next_index = j\n                break\n        \n        profit_with = jobs[index][2] + solve(next_index)\n\n        # Bug 2: Incorrectly updating memoization\n        memo[index] = profit_with\n        return memo[index]\n\n    return solve(0)",
+              "correctCode": "def job_scheduling(jobs):\n    jobs.sort(key=lambda x: x[0])\n    n = len(jobs)\n    memo = {}\n\n    def solve(index):\n        if index >= n:\n            return 0\n        \n        if index in memo:\n            return memo[index]\n\n        profit_without = solve(index + 1)\n\n        next_index = n\n        for j in range(index + 1, n):\n            if jobs[j][0] >= jobs[index][1]:\n                next_index = j\n                break\n        \n        profit_with = jobs[index][2] + solve(next_index)\n\n        memo[index] = max(profit_with, profit_without)\n        return memo[index]\n\n    return solve(0)",
+              "bugs": [
+                {
+                  "bugId": "bug_1",
+                  "bugLines": [
+                    2
+                  ],
+                  "buggyLinesText": [
+                    "# Bug 1: Missing the sort operation"
+                  ],
+                  "correctLinesText": [
+                    "    jobs.sort(key=lambda x: x[0])"
+                  ],
+                  "bugType": "missing_initialization",
+                  "difficulty": 3,
+                  "explanation": "The algorithm's logic for finding the `next_index` relies on a critical assumption: that the jobs are sorted by their start times. By only searching forward from `index + 1`, it assumes no earlier-starting job can appear later in the list. Without sorting the input `jobs` array first, this assumption is false, and the algorithm will fail to find the correct maximum profit.",
+                  "bugTypeExplanation": "A missing initialization bug occurs when a necessary setup step is omitted. This could be failing to sort data, not setting a variable to a default value, or forgetting to initialize a data structure, leading to incorrect behavior later in the program.",
+                  "fixOptions": [
+                    {
+                      "id": "fix_1",
+                      "codeText": "jobs.sort(key=lambda x: x[0])",
+                      "isCorrect": true,
+                      "feedback": "Correct! Sorting by start time is a crucial first step for this algorithm's logic to work."
+                    },
+                    {
+                      "id": "fix_2",
+                      "codeText": "jobs.sort(key=lambda x: x[2], reverse=True)",
+                      "isCorrect": false,
+                      "feedback": "This implements a greedy approach (sorting by profit), which does not guarantee the optimal solution for the job scheduling problem."
+                    },
+                    {
+                      "id": "fix_3",
+                      "codeText": "jobs.sort(key=lambda x: x[1])",
+                      "isCorrect": false,
+                      "feedback": "Sorting by end time is a valid strategy for some scheduling algorithms, but this specific recursive structure requires sorting by start time."
+                    }
+                  ],
+                  "hints": [
+                    "Does this algorithm have any prerequisites for the input data?",
+                    "How does the code find the next compatible job?",
+                    "The code assumes the `jobs` list is in a specific order, but never enforces it."
+                  ]
+                },
+                {
+                  "bugId": "bug_2",
+                  "bugLines": [
+                    24,
+                    25
+                  ],
+                  "buggyLinesText": [
+                    "memo[index] = profit_with",
+                    "return memo[index]"
+                  ],
+                  "correctLinesText": [
+                    "memo[index] = max(profit_with, profit_without)",
+                    "return memo[index]"
+                  ],
+                  "bugType": "logic_error",
+                  "difficulty": 3,
+                  "explanation": "The purpose of memoization is to store the optimal result for a subproblem. This code calculates both `profit_with` and `profit_without` but then incorrectly stores only `profit_with` in the memo table. It fails to compare the two options to find the maximum. As a result, it always assumes the 'include' path is better, even when the 'skip' path yields a higher profit.",
+                  "bugTypeExplanation": "A logic error is a flaw in the program's design or algorithm. The code is syntactically correct and runs without crashing, but it produces an incorrect output because the steps to solve the problem are wrong.",
+                  "fixOptions": [
+                    {
+                      "id": "fix_1",
+                      "codeText": "memo[index] = max(profit_with, profit_without)",
+                      "isCorrect": true,
+                      "feedback": "Correct! The memoized value must be the maximum of the two choices."
+                    },
+                    {
+                      "id": "fix_2",
+                      "codeText": "return max(profit_with, profit_without)",
+                      "isCorrect": false,
+                      "feedback": "This returns the correct value for the current call, but it fails to store it in the memoization table, leading to re-computation and incorrect results in other recursive branches."
+                    },
+                    {
+                      "id": "fix_3",
+                      "codeText": "memo[index] = profit_without",
+                      "isCorrect": false,
+                      "feedback": "This has the opposite problem: it always assumes the 'skip' path is better, which is also incorrect."
+                    }
+                  ],
+                  "hints": [
+                    "What value should be stored in the memoization table?",
+                    "The code calculates two possible profit values. Which one should it save for later?",
+                    "Line 24 makes a decision without considering all the information."
+                  ]
+                }
+              ],
+              "testCases": [
+                {
+                  "id": "test_1",
+                  "inputDescription": "jobs = [[3, 5, 40], [1, 3, 50]]",
+                  "expectedOutput": "90",
+                  "buggyOutput": "40",
+                  "exposedBugs": [
+                    "bug_1",
+                    "bug_2"
+                  ]
+                },
+                {
+                  "id": "test_2",
+                  "inputDescription": "jobs = [[1, 5, 10], [2, 6, 100]]",
+                  "expectedOutput": "100",
+                  "buggyOutput": "10",
+                  "exposedBugs": [
+                    "bug_2"
+                  ]
+                }
+              ],
+              "redHerrings": [
+                {
+                  "lineNumber": 10,
+                  "feedback": "Checking `if index in memo` is the correct way to see if a result for this subproblem has already been computed. The bug isn't in how the memo is read, but in how it's written."
+                }
+              ]
+            }
+          ],
+          "config": {
+            "revealSequentially": true,
+            "showTestOutput": true,
+            "showRunButton": true,
+            "fixMode": "multiple_choice",
+            "maxWrongLineClicks": 3,
+            "roundMode": true
+          }
+        },
+        "asset_url": null
+      }
+    ],
+    "scene_transitions": [
+      {
+        "from_scene": "scene_1",
+        "to_scene": "scene_2",
+        "trigger": "completion"
+      },
+      {
+        "from_scene": "scene_2",
+        "to_scene": "scene_3",
+        "trigger": "completion"
+      }
+    ],
+    "scene_assets": {
+      "scene_1": {
+        "scene_id": "scene_1",
+        "status": "skipped",
+        "image_url": "",
+        "asset_type": "board_illustration"
+      },
+      "scene_2": {
+        "scene_id": "scene_2",
+        "status": "skipped",
+        "image_url": "",
+        "asset_type": "flowchart"
+      }
+    },
+    "is_degraded": false,
+    "generation_complete": true
+  }
+}

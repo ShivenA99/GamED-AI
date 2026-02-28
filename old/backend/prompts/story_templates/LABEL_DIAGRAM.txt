@@ -1,0 +1,14 @@
+### Template Context: LABEL_DIAGRAM
+
+The resulting visualization will be implemented as:
+- A single main image or diagram.
+- Multiple labeled regions or parts that the learner must identify.
+- Draggable labels and/or clickable regions.
+- Optional free-response explanation about the overall system.
+
+When generating story_context, visual_metaphor, visual_elements, question_flow, and animation_cues:
+- Ensure there is a clear central object/system suitable for a static diagram.
+- Visual elements should map to distinct regions or parts of that object.
+- Questions should involve identifying or labeling parts, then explaining the whole.
+- Animation cues should be simple: subtle glows, shakes, or highlight effects on regions.
+

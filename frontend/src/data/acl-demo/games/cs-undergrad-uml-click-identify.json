@@ -1,0 +1,465 @@
+{
+  "id": "cs-undergrad-uml-click-identify",
+  "title": "Identify UML Class Diagram Components",
+  "question": "Create an interactive diagram game where students identify components in a UML class diagram: classes, attributes, methods, associations, inheritance arrows, composition diamonds, and multiplicity notations.",
+  "domain": "cs",
+  "educationLevel": "undergraduate",
+  "gameType": "interactive_diagram",
+  "mechanic": "click_to_identify",
+  "bloomsLevel": "Apply",
+  "pipelineMetrics": {
+    "runId": "a24a0613-24dd-4d66-b4c3-450a49a2c952",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 153.3,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T06:04:05.879063+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "UML Blueprint Decoder",
+    "subject": "Software Engineering",
+    "difficulty": "advanced",
+    "narrativeIntro": "Welcome, aspiring software architect! Your task is to meticulously analyze a complex UML class diagram, identifying its core components. Precision is key to building robust software systems. Let's begin by dissecting this blueprint.",
+    "narrativeTheme": "Software Architecture Design",
+    "completionMessage": "Excellent work, architect! You've successfully identified and understood the fundamental building blocks of a UML class diagram, a crucial skill for any software designer.",
+    "estimatedDurationMinutes": 12,
+    "diagram": {
+      "assetPrompt": "A detailed UML class diagram featuring multiple interconnected classes. Each class should clearly display attributes and methods. Various types of relationships must be present, including a clear inheritance relationship (generalization), a composition relationship (strong aggregation), and at least one association with explicit multiplicity notations (e.g., 1..*, 0..1). The diagram should be complex enough to offer distinct, identifiable zones for each specified component type.",
+      "zones": [
+        {
+          "id": "zone_class",
+          "label": "Class",
+          "points": [
+            [
+              66.6,
+              69.0
+            ],
+            [
+              66.4,
+              83.0
+            ],
+            [
+              66.8,
+              83.9
+            ],
+            [
+              84.9,
+              84.1
+            ],
+            [
+              85.9,
+              83.4
+            ],
+            [
+              86.1,
+              69.6
+            ],
+            [
+              85.6,
+              68.5
+            ],
+            [
+              67.5,
+              68.4
+            ]
+          ],
+          "x": 76.2,
+          "y": 76.2,
+          "radius": 12.2,
+          "shape": "polygon",
+          "center": {
+            "x": 76.2,
+            "y": 76.2
+          },
+          "description": "Represents a blueprint for objects, defining their common structure (attributes) and behavior (methods). It encapsulates data and operations that instances of the class will possess.",
+          "hierarchyLevel": 1,
+          "childZoneIds": [
+            "zone_attribute",
+            "zone_method"
+          ]
+        },
+        {
+          "id": "zone_attribute",
+          "label": "Attribute",
+          "points": [
+            [
+              68.9,
+              78.0
+            ],
+            [
+              78.1,
+              78.0
+            ],
+            [
+              78.1,
+              79.0
+            ],
+            [
+              68.9,
+              79.0
+            ]
+          ],
+          "x": 73.5,
+          "y": 78.5,
+          "width": 9.2,
+          "height": 1.1,
+          "shape": "rect",
+          "description": "A named property or characteristic of a class, representing a piece of data that instances of the class will hold. It defines the state of an object.",
+          "hierarchyLevel": 2,
+          "parentZoneId": "zone_class"
+        },
+        {
+          "id": "zone_method",
+          "label": "Method",
+          "points": [
+            [
+              68.9,
+              80.9
+            ],
+            [
+              76.9,
+              80.9
+            ],
+            [
+              76.9,
+              82.1
+            ],
+            [
+              68.9,
+              82.1
+            ]
+          ],
+          "x": 72.9,
+          "y": 81.5,
+          "width": 8.0,
+          "height": 1.2,
+          "shape": "rect",
+          "description": "A named operation or function that a class can perform, defining the behavior or actions that instances of the class can execute.",
+          "hierarchyLevel": 2,
+          "parentZoneId": "zone_class"
+        },
+        {
+          "id": "zone_association",
+          "label": "Association",
+          "points": [
+            [
+              75.7,
+              55.1
+            ],
+            [
+              76.5,
+              55.1
+            ],
+            [
+              76.5,
+              65.3
+            ],
+            [
+              75.7,
+              65.3
+            ]
+          ],
+          "x": 76.1,
+          "y": 60.2,
+          "width": 0.8,
+          "height": 10.2,
+          "shape": "rect",
+          "description": "Indicates a structural relationship between two classes, showing that instances of one class are connected to instances of another and can interact.",
+          "hierarchyLevel": 1
+        },
+        {
+          "id": "zone_inheritance_arrow",
+          "label": "Inheritance Arrow",
+          "points": [
+            [
+              75.0,
+              65.2
+            ],
+            [
+              77.5,
+              65.2
+            ],
+            [
+              77.5,
+              68.3
+            ],
+            [
+              75.0,
+              68.3
+            ]
+          ],
+          "x": 76.2,
+          "y": 66.8,
+          "width": 2.5,
+          "height": 3.1,
+          "shape": "rect",
+          "description": "Represents a generalization-specialization relationship where one class (subclass) inherits attributes and methods from another class (superclass), signifying an 'is-a' relationship.",
+          "hierarchyLevel": 1
+        },
+        {
+          "id": "zone_composition_diamond",
+          "label": "Composition Diamond",
+          "points": [
+            [
+              71.5,
+              29.0
+            ],
+            [
+              75.1,
+              29.0
+            ],
+            [
+              75.1,
+              33.0
+            ],
+            [
+              71.5,
+              33.0
+            ]
+          ],
+          "x": 73.3,
+          "y": 31.0,
+          "width": 3.6,
+          "height": 4.0,
+          "shape": "rect",
+          "description": "Denotes a strong 'part-of' relationship where the component class cannot exist independently of the composite class, implying exclusive ownership and lifecycle dependency.",
+          "hierarchyLevel": 1
+        },
+        {
+          "id": "zone_multiplicity_notation",
+          "label": "Multiplicity Notation",
+          "points": [
+            [
+              75.0,
+              58.6
+            ],
+            [
+              77.0,
+              58.6
+            ],
+            [
+              77.0,
+              61.4
+            ],
+            [
+              75.0,
+              61.4
+            ]
+          ],
+          "x": 76.0,
+          "y": 60.0,
+          "width": 2.1,
+          "height": 2.7,
+          "shape": "rect",
+          "description": "Specifies the number of instances of one class that can be associated with instances of another class in a relationship, defining the cardinality.",
+          "hierarchyLevel": 1
+        }
+      ],
+      "imageUrl": "/api/assets/demo/a24a0613-24dd-4d66-b4c3-450a49a2c952/diagram_scene_1.png",
+      "assetUrl": "/api/assets/demo/a24a0613-24dd-4d66-b4c3-450a49a2c952/diagram_scene_1.png"
+    },
+    "labels": [
+      {
+        "id": "label_s1_0",
+        "text": "Class",
+        "correctZoneId": "zone_class"
+      },
+      {
+        "id": "label_s1_1",
+        "text": "Attribute",
+        "correctZoneId": "zone_attribute"
+      },
+      {
+        "id": "label_s1_2",
+        "text": "Method",
+        "correctZoneId": "zone_method"
+      },
+      {
+        "id": "label_s1_3",
+        "text": "Association",
+        "correctZoneId": "zone_association"
+      },
+      {
+        "id": "label_s1_4",
+        "text": "Inheritance Arrow",
+        "correctZoneId": "zone_inheritance_arrow"
+      },
+      {
+        "id": "label_s1_5",
+        "text": "Composition Diamond",
+        "correctZoneId": "zone_composition_diamond"
+      },
+      {
+        "id": "label_s1_6",
+        "text": "Multiplicity Notation",
+        "correctZoneId": "zone_multiplicity_notation"
+      }
+    ],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "First, carefully examine the UML class diagram. Drag and drop each label onto the corresponding highlighted component to identify it correctly."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 70,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! That label is correctly placed.",
+          "on_incorrect": "Not quite. Take another look at the diagram and consider the function of that component. Which label best describes it?",
+          "on_completion": "Fantastic job! You've successfully identified all the key components of the UML class diagram.",
+          "misconceptions": [
+            {
+              "trigger_label": "Attribute_Method_Confusion",
+              "message": "Remember, attributes represent the data or state of an object, while methods represent the behaviors or actions an object can perform.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "Relationship_Type_Confusion",
+              "message": "UML uses different line styles, arrowheads, and adornments (like diamonds for aggregation/composition) to denote distinct semantic relationships such as association, inheritance, aggregation, and composition. Pay close attention to these visual cues!",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "Inheritance_Purpose_Misconception",
+              "message": "While inheritance facilitates code reuse, its primary purpose in design is to model 'is-a' relationships, representing specialization and generalization between classes.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "description_matching",
+        "config": {
+          "instruction_text": "Now that you've labeled the components, match each description to its correct UML element on the diagram. This will confirm your understanding of their functional roles."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 70,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Spot on! That description perfectly matches the component.",
+          "on_incorrect": "Not quite. Re-read the description and think about which UML component it best defines. What specific role does that component play?",
+          "on_completion": "Outstanding work! You've accurately matched all the descriptions to their respective UML class diagram components.",
+          "misconceptions": [
+            {
+              "trigger_label": "Attribute_Method_Description_Mismatch",
+              "message": "Attributes represent the data or state of an object, while methods represent the behaviors or actions an object can perform. Ensure your description matches the correct concept.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "Relationship_Description_Mismatch",
+              "message": "Different UML relationship types (association, inheritance, aggregation, composition) have distinct meanings and visual representations. Make sure the description aligns with the specific relationship's semantics.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "Inheritance_Description_Purpose_Mismatch",
+              "message": "Inheritance models 'is-a' relationships, showing specialization. While it enables code reuse, its core design purpose is structural generalization. Does your description reflect this?",
+              "severity": "medium"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [
+      {
+        "from": "drag_drop",
+        "to": "description_matching",
+        "trigger": "all_zones_labeled",
+        "animation": "fade"
+      }
+    ],
+    "interactionMode": "drag_drop",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 10,
+      "max_score": 140
+    },
+    "totalMaxScore": 140,
+    "generation_complete": true,
+    "dragDropConfig": {
+      "leader_line_style": "none",
+      "tray_position": "bottom",
+      "placement_animation": "spring",
+      "show_distractors": false,
+      "label_style": "text",
+      "tray_layout": "horizontal",
+      "feedback_timing": "deferred",
+      "interaction_mode": "drag_drop",
+      "leader_line_color": "",
+      "zone_hover_effect": "highlight",
+      "leader_line_animate": true,
+      "shuffle_labels": true,
+      "max_attempts": 3,
+      "incorrect_animation": "shake",
+      "zone_idle_animation": "pulse",
+      "label_anchor_side": "auto",
+      "pin_marker_shape": "circle"
+    },
+    "descriptionMatchingConfig": {
+      "descriptions": {
+        "zone_class": "Represents a blueprint for objects, defining their common structure (attributes) and behavior (methods). It encapsulates data and operations that instances of the class will possess.",
+        "zone_attribute": "A named property or characteristic of a class, representing a piece of data that instances of the class will hold. It defines the state of an object.",
+        "zone_method": "A named operation or function that a class can perform, defining the behavior or actions that instances of the class can execute.",
+        "zone_association": "Indicates a structural relationship between two classes, showing that instances of one class are connected to instances of another and can interact.",
+        "zone_inheritance_arrow": "Represents a generalization-specialization relationship where one class (subclass) inherits attributes and methods from another class (superclass), signifying an 'is-a' relationship.",
+        "zone_composition_diamond": "Denotes a strong 'part-of' relationship where the component class cannot exist independently of the composite class, implying exclusive ownership and lifecycle dependency.",
+        "zone_multiplicity_notation": "Specifies the number of instances of one class that can be associated with instances of another class in a relationship, defining the cardinality."
+      },
+      "mode": "click_zone",
+      "distractor_descriptions": [
+        "Represents an abstract concept that cannot be instantiated directly, serving as a template for other classes."
+      ],
+      "show_connecting_lines": true,
+      "defer_evaluation": false,
+      "description_panel_position": "right"
+    },
+    "zoneGroups": [
+      {
+        "id": "group_zone_class",
+        "parentZoneId": "zone_class",
+        "childZoneIds": [
+          "zone_attribute",
+          "zone_method"
+        ],
+        "revealTrigger": "complete_parent",
+        "label": "Class"
+      }
+    ],
+    "temporalConstraints": [
+      {
+        "constraint_type": "after",
+        "zone_a": "zone_attribute",
+        "zone_b": "zone_class",
+        "description": "Zone zone_attribute visible after zone_class is labeled"
+      },
+      {
+        "constraint_type": "after",
+        "zone_a": "zone_method",
+        "zone_b": "zone_class",
+        "description": "Zone zone_method visible after zone_class is labeled"
+      }
+    ],
+    "revealOrder": [
+      "zone_class",
+      "zone_attribute",
+      "zone_method",
+      "zone_association",
+      "zone_multiplicity_notation",
+      "zone_inheritance_arrow",
+      "zone_composition_diamond"
+    ]
+  }
+}

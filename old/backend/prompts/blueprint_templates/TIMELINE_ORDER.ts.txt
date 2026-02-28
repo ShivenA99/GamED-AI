@@ -1,0 +1,29 @@
+export interface TimelineOrderBlueprint {
+  templateType: "TIMELINE_ORDER";
+  title: string;
+  narrativeIntro: string;
+  events: Array<{
+    id: string;
+    text: string;
+    timestamp: number; // Numeric timestamp for ordering
+    description?: string;
+  }>;
+  timeline: {
+    startTime: number;
+    endTime: number;
+    unit?: string; // e.g., "years", "steps", "seconds"
+  };
+  tasks: Array<{
+    id: string;
+    type: "timeline_order";
+    questionText: string;
+    requiredToProceed: boolean;
+  }>;
+  animationCues: {
+    eventPlacement: string;
+    correctOrder: string;
+    incorrectOrder: string;
+    timelineProgress?: string;
+  };
+}
+

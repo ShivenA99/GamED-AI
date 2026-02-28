@@ -1,0 +1,347 @@
+## TIMELINE_ORDER Blueprint Generation
+
+You are an expert educational game blueprint designer. Generate a complete, valid TIMELINE_ORDER blueprint that teaches concepts through chronological event ordering.
+
+### Template Purpose
+The TIMELINE_ORDER creates interactive timelines where learners place events at correct positions along a temporal axis. This template is ideal for:
+- Historical event sequencing (e.g., wars, revolutions, inventions)
+- Scientific discovery chronology (e.g., atomic models, medical breakthroughs)
+- Literary periods and movements (e.g., Renaissance, Romanticism)
+- Technological evolution (e.g., computer history, transportation)
+- Biological processes with stages (e.g., evolution, embryo development)
+- Career/biographical timelines (e.g., scientist contributions)
+
+### Cognitive Alignment by Bloom's Level
+- **Remember Level**: Recall dates/order of memorized events (familiar events)
+- **Understand Level**: Explain why order matters (cause-effect relationships)
+- **Apply Level**: Place unfamiliar events using contextual clues
+- **Analyze Level**: Identify patterns and relationships between events
+
+### Required Schema (ALL FIELDS MUST BE PRESENT)
+
+```typescript
+{{
+    "templateType": "TIMELINE_ORDER",  // MUST be exactly this
+    "title": string,                    // Engaging, descriptive title
+    "narrativeIntro": string,           // 2-4 sentences setting the scene
+    "events": Array<{{
+        "id": string,            // Descriptive ID like "event_moon_landing"
+        "text": string,          // Event description
+        "timestamp": number,     // Numeric position on timeline
+        "description"?: string,  // Context/explanation for feedback
+        "displayDate"?: string   // Human-readable date (e.g., "July 20, 1969")
+    }}>,
+    "timeline": {{
+        "startTime": number,     // Timeline start value
+        "endTime": number,       // Timeline end value
+        "unit": string,          // e.g., "year", "century", "million years ago"
+        "markers"?: Array<{{     // Optional reference points
+            "position": number,
+            "label": string
+        }}>,
+        "orientation"?: "horizontal" | "vertical"  // Default horizontal
+    }},
+    "distractorEvents"?: Array<{{  // Optional wrong events for challenge
+        "id": string,
+        "text": string,
+        "explanation": string      // Why this doesn't belong
+    }}>,
+    "tasks": Array<{{
+        "id": string,
+        "type": "timeline_order" | "date_estimation" | "era_identification",
+        "questionText": string,
+        "requiredToProceed": boolean
+    }}>,
+    "animationCues": {{
+        "eventDrag": string,         // Visual cue when dragging
+        "eventPlacement": string,    // Feedback when dropping
+        "correctOrder": string,      // When event is in right position
+        "incorrectOrder": string,    // When event is wrong
+        "timelineComplete"?: string  // Celebration when done
+    }},
+    "hints": Array<{{
+        "eventId": string,
+        "hintText": string
+    }}>,
+    "feedbackMessages": {{
+        "perfect": string,
+        "good": string,
+        "retry": string
+    }}
+}}
+```
+
+### EXAMPLE 1: Space Exploration History (Science/History)
+
+```json
+{{
+    "templateType": "TIMELINE_ORDER",
+    "title": "The Space Race: A Cosmic Journey",
+    "narrativeIntro": "Mission Control needs your help! Our historical database has been scrambled by a solar flare. Restore the timeline of humanity's greatest space achievements by placing each event in its correct chronological position. The future of space education depends on you!",
+    "events": [
+        {{
+            "id": "event_sputnik",
+            "text": "Sputnik 1 launched - First artificial satellite",
+            "timestamp": 1957,
+            "description": "The Soviet Union shocked the world by launching the first satellite, igniting the Space Race.",
+            "displayDate": "October 4, 1957"
+        }},
+        {{
+            "id": "event_gagarin",
+            "text": "Yuri Gagarin becomes first human in space",
+            "timestamp": 1961,
+            "description": "Soviet cosmonaut Gagarin orbited Earth once in Vostok 1, lasting 108 minutes.",
+            "displayDate": "April 12, 1961"
+        }},
+        {{
+            "id": "event_moon_landing",
+            "text": "Apollo 11 Moon landing - 'One small step for man'",
+            "timestamp": 1969,
+            "description": "Neil Armstrong and Buzz Aldrin became the first humans to walk on the Moon.",
+            "displayDate": "July 20, 1969"
+        }},
+        {{
+            "id": "event_skylab",
+            "text": "Skylab - First American space station",
+            "timestamp": 1973,
+            "description": "America's first space station hosted three crewed missions over six years.",
+            "displayDate": "May 14, 1973"
+        }},
+        {{
+            "id": "event_shuttle",
+            "text": "Space Shuttle Columbia - First reusable spacecraft",
+            "timestamp": 1981,
+            "description": "Columbia launched the era of reusable spacecraft, completing 28 missions.",
+            "displayDate": "April 12, 1981"
+        }},
+        {{
+            "id": "event_hubble",
+            "text": "Hubble Space Telescope launched",
+            "timestamp": 1990,
+            "description": "Hubble has revolutionized astronomy with stunning images of distant galaxies.",
+            "displayDate": "April 24, 1990"
+        }},
+        {{
+            "id": "event_iss",
+            "text": "International Space Station construction begins",
+            "timestamp": 1998,
+            "description": "The ISS became the largest international scientific cooperation in history.",
+            "displayDate": "November 20, 1998"
+        }},
+        {{
+            "id": "event_spacex",
+            "text": "SpaceX Falcon 9 first successful landing",
+            "timestamp": 2015,
+            "description": "First successful vertical landing of an orbital rocket booster, revolutionizing spaceflight economics.",
+            "displayDate": "December 21, 2015"
+        }}
+    ],
+    "timeline": {{
+        "startTime": 1955,
+        "endTime": 2020,
+        "unit": "year",
+        "markers": [
+            {{"position": 1960, "label": "1960"}},
+            {{"position": 1970, "label": "1970"}},
+            {{"position": 1980, "label": "1980"}},
+            {{"position": 1990, "label": "1990"}},
+            {{"position": 2000, "label": "2000"}},
+            {{"position": 2010, "label": "2010"}}
+        ],
+        "orientation": "horizontal"
+    }},
+    "distractorEvents": [
+        {{
+            "id": "distractor_mars_colony",
+            "text": "First Mars colony established",
+            "explanation": "As of 2024, no Mars colony exists. This is a future goal, not a historical event!"
+        }}
+    ],
+    "tasks": [
+        {{
+            "id": "task_order_events",
+            "type": "timeline_order",
+            "questionText": "Drag each space milestone to its correct position on the timeline. Think about the progression from first satellite to reusable rockets!",
+            "requiredToProceed": true
+        }},
+        {{
+            "id": "task_identify_patterns",
+            "type": "era_identification",
+            "questionText": "Notice any patterns in when major breakthroughs occurred?",
+            "requiredToProceed": false
+        }}
+    ],
+    "animationCues": {{
+        "eventDrag": "Event card lifts with rocket thruster glow, star trail follows cursor",
+        "eventPlacement": "Card docks on timeline with satisfying click, timeline pulses at that point",
+        "correctOrder": "Green comet streak, 'Mission Success!' radio chatter sound",
+        "incorrectOrder": "Red warning light flash, 'Course correction needed' alert",
+        "timelineComplete": "Full timeline illuminates like launch sequence, animated rocket launches from end, confetti stars explode"
+    }},
+    "hints": [
+        {{
+            "eventId": "event_sputnik",
+            "hintText": "This event started the Space Race. It had to come before anyone could go to space."
+        }},
+        {{
+            "eventId": "event_shuttle",
+            "hintText": "The Space Shuttle program came after the Moon landings but before the International Space Station."
+        }},
+        {{
+            "eventId": "event_spacex",
+            "hintText": "Reusable rockets are a very recent achievement. Think smartphones-era recent."
+        }}
+    ],
+    "feedbackMessages": {{
+        "perfect": "Outstanding, Flight Director! You've perfectly reconstructed the history of space exploration. From Sputnik to SpaceX, humanity's reach keeps extending!",
+        "good": "Great work! You've got most milestones in order. Remember: Satellites came first, then humans in orbit, then Moon landing, then stations, then reusability.",
+        "retry": "Keep trying! Hint: The Space Race started in the late 1950s, Moon landing was 1969, and reusable rockets are very recent."
+    }}
+}}
+```
+
+### EXAMPLE 2: Evolution of Computing (Technology)
+
+```json
+{{
+    "templateType": "TIMELINE_ORDER",
+    "title": "Digital Time Machine: Computing Through the Ages",
+    "narrativeIntro": "The Museum of Computing needs your expertise! A time vortex has scattered our exhibit's artifacts across different eras. Place each computing milestone back in its correct time period to restore the Digital Timeline!",
+    "events": [
+        {{
+            "id": "event_eniac",
+            "text": "ENIAC - First general-purpose electronic computer",
+            "timestamp": 1945,
+            "description": "Weighing 30 tons and filling a room, ENIAC could perform 5,000 additions per second.",
+            "displayDate": "1945"
+        }},
+        {{
+            "id": "event_transistor",
+            "text": "Transistor invented at Bell Labs",
+            "timestamp": 1947,
+            "description": "Transistors replaced vacuum tubes, making smaller and more reliable computers possible.",
+            "displayDate": "December 1947"
+        }},
+        {{
+            "id": "event_integrated_circuit",
+            "text": "Integrated circuit (microchip) invented",
+            "timestamp": 1958,
+            "description": "Jack Kilby's invention put multiple transistors on a single chip, revolutionizing electronics.",
+            "displayDate": "1958"
+        }},
+        {{
+            "id": "event_arpanet",
+            "text": "ARPANET - Precursor to the Internet",
+            "timestamp": 1969,
+            "description": "The first message was sent between UCLA and Stanford, beginning the networked era.",
+            "displayDate": "October 29, 1969"
+        }},
+        {{
+            "id": "event_apple_ii",
+            "text": "Apple II - Personal computer revolution begins",
+            "timestamp": 1977,
+            "description": "One of the first successful mass-produced personal computers for home use.",
+            "displayDate": "June 1977"
+        }},
+        {{
+            "id": "event_ibm_pc",
+            "text": "IBM PC launched",
+            "timestamp": 1981,
+            "description": "Set the standard for 'PC compatible' computers that dominate the market today.",
+            "displayDate": "August 12, 1981"
+        }},
+        {{
+            "id": "event_www",
+            "text": "World Wide Web invented by Tim Berners-Lee",
+            "timestamp": 1989,
+            "description": "Created at CERN, the web made the Internet accessible to everyone.",
+            "displayDate": "March 1989"
+        }},
+        {{
+            "id": "event_iphone",
+            "text": "iPhone launched - Smartphone era begins",
+            "timestamp": 2007,
+            "description": "Revolutionized mobile computing with its touchscreen interface and app ecosystem.",
+            "displayDate": "June 29, 2007"
+        }}
+    ],
+    "timeline": {{
+        "startTime": 1940,
+        "endTime": 2010,
+        "unit": "year",
+        "markers": [
+            {{"position": 1950, "label": "1950"}},
+            {{"position": 1960, "label": "1960"}},
+            {{"position": 1970, "label": "1970"}},
+            {{"position": 1980, "label": "1980"}},
+            {{"position": 1990, "label": "1990"}},
+            {{"position": 2000, "label": "2000"}}
+        ],
+        "orientation": "horizontal"
+    }},
+    "tasks": [
+        {{
+            "id": "task_timeline",
+            "type": "timeline_order",
+            "questionText": "Arrange these computing milestones in chronological order. Think about the evolution: big machines → small chips → personal computers → networks → mobile!",
+            "requiredToProceed": true
+        }}
+    ],
+    "animationCues": {{
+        "eventDrag": "Event card pixelates at edges, cursor shows loading spinner",
+        "eventPlacement": "Digital 'snap' connection, circuit board lines connect to timeline",
+        "correctOrder": "Green LED blink sequence, 'Access Granted' sound",
+        "incorrectOrder": "Red error glow, 'Syntax Error' retro computer beep",
+        "timelineComplete": "Timeline transforms into circuit board, binary code rains down, 'System Restored!' boot sequence"
+    }},
+    "hints": [
+        {{
+            "eventId": "event_eniac",
+            "hintText": "This computer was built during World War II era and was massive - it filled an entire room!"
+        }},
+        {{
+            "eventId": "event_arpanet",
+            "hintText": "The Internet's ancestor was created the same year as the Moon landing."
+        }}
+    ],
+    "feedbackMessages": {{
+        "perfect": "Excellent! You've mastered computing history. Notice how each invention enabled the next: tubes → transistors → chips → PCs → networks → smartphones!",
+        "good": "Great work! You understand the major eras. Remember: miniaturization (making things smaller) drove most of these advances.",
+        "retry": "Keep trying! Think about size: room-filling computers came first, then they got smaller, then personal, then mobile."
+    }}
+}}
+```
+
+### COMMON MISTAKES TO AVOID
+
+1. **Invalid timestamp values**: Timestamps must fall between timeline.startTime and timeline.endTime
+
+2. **Missing timeline unit**: Always specify what the numbers mean (year, century, etc.)
+
+3. **No displayDate**: Include human-readable dates for clarity
+
+4. **Overlapping events**: If events are close, ensure they're distinguishable
+
+5. **Too narrow timeline**: Leave room at both ends for comfortable placement
+
+6. **Missing descriptions**: Each event should have context for feedback
+
+7. **No timeline markers**: Markers help learners orient themselves
+
+8. **Inconsistent timestamp format**: Use the same scale (all years, all decades, etc.)
+
+### GENERATION CHECKLIST
+
+Before returning your blueprint, verify:
+- [ ] templateType is exactly "TIMELINE_ORDER"
+- [ ] title is engaging and descriptive
+- [ ] narrativeIntro sets context (2-4 sentences)
+- [ ] All events have timestamp within timeline range
+- [ ] timeline has startTime, endTime, and unit
+- [ ] Each event has displayDate for human readability
+- [ ] Events have descriptions explaining significance
+- [ ] At least one task with type "timeline_order"
+- [ ] All 4+ animationCues are present and descriptive
+- [ ] Content matches the pedagogical context (subject, era)
+
+Respond with ONLY the valid JSON blueprint, no explanation.

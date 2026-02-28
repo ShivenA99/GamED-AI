@@ -1,0 +1,256 @@
+{
+  "id": "hist-grad-cold-war-sequencing",
+  "title": "Order Key Events of the Cold War",
+  "question": "Create an interactive diagram game where graduate students arrange key Cold War events in chronological order and identify escalation patterns: Truman Doctrine (1947), Berlin Blockade (1948), Korean War (1950), Hungarian Revolution (1956), Cuban Missile Crisis (1962), Vietnam War escalation (1965), Detente and SALT I (1972), Soviet invasion of Afghanistan (1979), Fall of the Berlin Wall (1989), and dissolution of the USSR (1991).",
+  "domain": "history",
+  "educationLevel": "graduate",
+  "gameType": "interactive_diagram",
+  "mechanic": "sequencing",
+  "bloomsLevel": "Analyze",
+  "pipelineMetrics": {
+    "runId": "2a59a340-28fe-444d-9eed-6cbda63cc3d7",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 175.8,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T09:07:47.819600+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "Cold War Chronicle: Escalation & Detente",
+    "subject": "History",
+    "difficulty": "advanced",
+    "narrativeIntro": "Welcome, historian! The Cold War was a complex dance of power, ideology, and proxy conflicts. Your mission is to master its chronology, discern its patterns of escalation and de-escalation, and understand the profound impact of its pivotal moments. Prepare to analyze the events that shaped half a century of global history.",
+    "narrativeTheme": "Geopolitical Strategist",
+    "completionMessage": "Excellent work, Strategist! You've successfully navigated the intricate timeline and dynamics of the Cold War, demonstrating a deep understanding of its key events, patterns, and global significance.",
+    "estimatedDurationMinutes": 15,
+    "diagram": {
+      "assetPrompt": "",
+      "zones": []
+    },
+    "labels": [],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "sequencing",
+        "config": {
+          "instruction_text": "As a geopolitical strategist, your first mission is to establish the foundational timeline of the Cold War. Drag and drop these critical events into their correct chronological sequence, from earliest to latest."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 100,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! This event is in the correct chronological position.",
+          "on_incorrect": "Not quite right. Consider what happened just before or after this event in the Cold War. Keep trying!",
+          "on_completion": "Fantastic! You've successfully arranged the key Cold War events in chronological order. This shows a strong understanding of the era's progression.",
+          "misconceptions": [
+            {
+              "trigger_label": "misconception_direct_conflict",
+              "message": "Remember, the Cold War was primarily a geopolitical struggle characterized by proxy wars, ideological competition, an arms race, and diplomatic maneuvering, with direct military confrontation between the superpowers largely avoided.",
+              "severity": "high"
+            },
+            {
+              "trigger_label": "misconception_linear_escalation",
+              "message": "It's important to note that the Cold War featured periods of intense escalation (e.g., Cuban Missile Crisis) interspersed with periods of relative calm, negotiation, and even detente (e.g., SALT I).",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misconception_isolated_conflicts",
+              "message": "Actually, these conflicts were deeply intertwined with the broader Cold War struggle, serving as proxy battlegrounds for superpower ideologies and influence, and significantly impacting global dynamics.",
+              "severity": "high"
+            }
+          ]
+        }
+      },
+      {
+        "type": "sorting_categories",
+        "config": {
+          "instruction_text": "As a Geopolitical Strategist, analyze each Cold War event and drag it into the category that best describes its primary impact on global tensions: Escalation, De-escalation, or Proxy Conflict."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 100,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "That's correct! This event clearly fits into the '{category_label}' pattern of the Cold War.",
+          "on_incorrect": "Not quite. Re-evaluate the primary impact of this event on superpower relations. Did it increase tensions, reduce them, or serve as a proxy for conflict?",
+          "on_completion": "Excellent work! You've successfully categorized these key Cold War events, highlighting the complex interplay of escalation, de-escalation, and proxy conflicts.",
+          "misconceptions": [
+            {
+              "trigger_label": "misplaced_deescalation_as_escalation",
+              "message": "Remember, while the Cold War was a tense geopolitical struggle, direct military confrontation between the US and USSR was largely avoided. Instead, it was characterized by proxy wars, ideological competition, and an arms race, with periods of de-escalation being crucial.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "low_score_on_deescalation_items",
+              "message": "The Cold War wasn't a straight line of increasing tension. It featured significant periods of intense escalation, but these were often interspersed with times of relative calm, negotiation, and even detente, like the SALT treaties. Look for events that aimed to reduce hostility.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misplaced_proxy_conflict_items",
+              "message": "Conflicts like the Korean and Vietnam Wars were deeply intertwined with the broader Cold War. They served as critical proxy battlegrounds where superpowers supported opposing sides, extending their ideological struggle and influence globally, often leading to escalation.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "memory_match",
+        "config": {
+          "instruction_text": "As a geopolitical strategist, your final task is to match each Cold War event with its accurate description, evaluating its significance and impact within the broader conflict narrative. Uncover the connections!"
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 100,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! You've correctly matched a key event to its significance in the Cold War.",
+          "on_incorrect": "Not quite, those don't match. Keep exploring the cards to find the connections!",
+          "on_completion": "Fantastic work! You've successfully connected all the Cold War events and their impacts, demonstrating a strong understanding of their significance.",
+          "misconceptions": [
+            {
+              "trigger_label": "misconception_direct_conflict",
+              "message": "Remember, the Cold War was primarily a geopolitical struggle characterized by proxy wars, ideological competition, an arms race, and diplomatic maneuvering, with direct military confrontation between the superpowers largely avoided.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misconception_linear_escalation",
+              "message": "It's important to recognize that the Cold War featured periods of intense escalation (e.g., Cuban Missile Crisis) interspersed with periods of relative calm, negotiation, and even detente (e.g., SALT I).",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misconception_isolated_conflicts",
+              "message": "Actually, conflicts like the Korean War and Vietnam War were deeply intertwined with the broader Cold War struggle, serving as proxy battlegrounds for superpower ideologies and influence, and significantly impacting global dynamics.",
+              "severity": "medium"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [],
+    "interactionMode": "sequencing",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 10,
+      "max_score": 300
+    },
+    "totalMaxScore": 300,
+    "generation_complete": true,
+    "sequenceConfig": {
+      "items": [
+        {
+          "id": "s1",
+          "content": "Truman Doctrine (1947)",
+          "explanation": "This early Cold War policy established the U.S. strategy of containment, setting the stage for future conflicts by pledging to support nations resisting communism.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        },
+        {
+          "id": "s2",
+          "content": "Berlin Blockade (1948)",
+          "explanation": "Occurring shortly after the Truman Doctrine, this was one of the first major international crises of the Cold War, directly pitting the Soviet Union against the Western Allies in Germany.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        },
+        {
+          "id": "s3",
+          "content": "Korean War (1950)",
+          "explanation": "The Cold War turned hot in this proxy war, where the U.S. and its allies fought against communist North Korea, backed by China and the Soviet Union.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        },
+        {
+          "id": "s4",
+          "content": "Hungarian Revolution (1956)",
+          "explanation": "This event demonstrated the Soviet Union's resolve to maintain control over its Eastern Bloc satellite states, crushing the nationwide revolt against the communist government.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        },
+        {
+          "id": "s5",
+          "content": "Cuban Missile Crisis (1962)",
+          "explanation": "This tense 13-day confrontation is considered the closest the Cold War came to escalating into a full-scale nuclear war, marking a peak in superpower tension.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        },
+        {
+          "id": "s6",
+          "content": "Vietnam War escalation (1965)",
+          "explanation": "Following the Cuban Missile Crisis, the U.S. significantly increased its military involvement in Vietnam, deepening its commitment to another major proxy war against communism.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        },
+        {
+          "id": "s7",
+          "content": "Detente and SALT I (1972)",
+          "explanation": "After years of high tension, this period marked a general easing of relations. The Strategic Arms Limitation Treaty (SALT I) was a major step in controlling the nuclear arms race.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        },
+        {
+          "id": "s8",
+          "content": "Soviet invasion of Afghanistan (1979)",
+          "explanation": "This action effectively ended the period of detente, as the U.S. responded with boycotts and aid to the Afghan mujahideen, reigniting Cold War hostilities.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        },
+        {
+          "id": "s9",
+          "content": "Fall of the Berlin Wall (1989)",
+          "explanation": "A pivotal event symbolizing the collapse of Soviet influence in Eastern Europe and the beginning of the end of the Cold War.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        },
+        {
+          "id": "s10",
+          "content": "Dissolution of the USSR (1991)",
+          "explanation": "The official end of the Soviet Union marked the definitive conclusion of the Cold War, leaving the United States as the world's sole superpower.",
+          "icon": "",
+          "image_url": "",
+          "image_description": ""
+        }
+      ],
+      "correct_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7",
+        "s8",
+        "s9",
+        "s10"
+      ],
+      "sequence_type": "ordered",
+      "layout_mode": "vertical_list",
+      "interaction_pattern": "drag_reorder",
+      "card_type": "text_only",
+      "connector_style": "arrow",
+      "show_position_numbers": false,
+      "allow_partial_credit": true
+    }
+  }
+}

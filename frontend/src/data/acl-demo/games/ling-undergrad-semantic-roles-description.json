@@ -1,0 +1,237 @@
+{
+  "id": "ling-undergrad-semantic-roles-description",
+  "title": "Match Semantic Roles to Definitions",
+  "question": "Create an interactive diagram game where undergraduate students match semantic roles to their definitions and identify them in example sentences: Agent (doer of action), Patient (entity affected), Experiencer (entity experiencing sensation), Instrument (tool used), Theme (entity moved or described), Goal (destination), Source (origin), and Beneficiary (entity benefiting from action).",
+  "domain": "linguistics",
+  "educationLevel": "undergraduate",
+  "gameType": "interactive_diagram",
+  "mechanic": "description_matching",
+  "bloomsLevel": "Apply",
+  "pipelineMetrics": {
+    "runId": "0679460a-150e-4944-b9b4-1a11f3770d61",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 188.0,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T09:37:45.414689+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "Semantic Role Sleuth",
+    "subject": "Linguistics",
+    "difficulty": "advanced",
+    "narrativeIntro": "Welcome, Detective! Your mission is to unravel the hidden relationships within sentences. Every participant plays a role, and it's up to you to identify them. Let's start by reviewing the core roles.",
+    "narrativeTheme": "Linguistic Detective Agency",
+    "completionMessage": "Case Closed! You've successfully identified and differentiated the semantic roles, proving your expertise as a top linguistic detective!",
+    "estimatedDurationMinutes": 12,
+    "diagram": {
+      "assetPrompt": "",
+      "zones": []
+    },
+    "labels": [],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "memory_match",
+        "config": {
+          "instruction_text": "Flip cards to match each semantic role with its correct definition. Precision is key in linguistic investigations, so ensure each pairing is exact!"
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 80,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent! You've matched a pair.",
+          "on_incorrect": "Not quite right. Keep trying, you'll get it!",
+          "on_completion": "Fantastic! You've successfully matched all the semantic roles and their definitions!",
+          "misconceptions": [
+            {
+              "trigger_label": "incorrect_match_pattern_grammatical_role",
+              "message": "It's important to remember that semantic roles describe the *meaning* relationship (who did what to whom), while grammatical roles describe the *syntactic* position (Subject, Object). An Agent is often the Subject, but not always (e.g., in passive voice).",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "incorrect_match_pattern_word_role",
+              "message": "Semantic roles apply to noun phrases or entities involved in the event described by the verb, not necessarily every single word. Some words (like articles or prepositions) don't carry a semantic role themselves but help define the entity that does.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "incorrect_match_pattern_theme_patient",
+              "message": "While Patient is affected and Theme is moved/described, there can be overlap or subtle distinctions depending on the verb. Context and verb semantics are crucial for accurate identification. Don't worry if it takes some thought!",
+              "severity": "low"
+            }
+          ]
+        }
+      },
+      {
+        "type": "click_to_identify",
+        "config": {
+          "instruction_text": "Welcome, Detective! A complex sentence has arrived at the agency. Click on the phrase that represents the [Semantic Role] in the sentence: 'The student sent a letter to her parents from the library using a pen.'"
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 15,
+          "max_score": 45,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Excellent, Detective! You've correctly identified that phrase.",
+          "on_incorrect": "Not quite. Remember, semantic roles describe the *meaning* relationship. Re-read the prompt and consider what role that phrase plays in the action.",
+          "on_completion": "Fantastic! You've successfully identified all the key phrases. Now, let's label them!",
+          "misconceptions": [
+            {
+              "trigger_label": "clicked_grammatical_subject_not_agent",
+              "message": "Semantic roles describe the *meaning* relationship (who did what to whom), while grammatical roles describe the *syntactic* position (Subject, Object). An Agent is often the Subject, but not always (e.g., in passive voice).",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "clicked_non_entity_word",
+              "message": "Semantic roles apply to noun phrases or entities involved in the event described by the verb, not necessarily every single word. Some words (like articles or prepositions) don't carry a semantic role themselves but help define the entity that does.",
+              "severity": "low"
+            }
+          ]
+        }
+      },
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "Excellent work identifying those initial roles! Now that you've got a feel for the sentence, drag and drop the correct semantic role label onto each highlighted phrase in the sentence. Make sure every role finds its proper place!"
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 15,
+          "max_score": 75,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "That's a perfect match! You've correctly assigned that semantic role.",
+          "on_incorrect": "Not quite. This label doesn't quite fit here. Re-evaluate the relationship between the phrase and the role. What is its function in the sentence?",
+          "on_completion": "Outstanding work! You've accurately labeled all the semantic roles. You're becoming a semantic role expert!",
+          "misconceptions": [
+            {
+              "trigger_label": "mislabel_grammatical_role_confusion",
+              "message": "Semantic roles describe the *meaning* relationship (who did what to whom), while grammatical roles describe the *syntactic* position (Subject, Object). An Agent is often the Subject, but not always (e.g., in passive voice).",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "mislabel_similar_roles_theme_patient",
+              "message": "While Patient is affected and Theme is moved/described, there can be overlap or subtle distinctions depending on the verb. Context and verb semantics are crucial for accurate identification. Consider the specific action of the verb here.",
+              "severity": "high"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [
+      {
+        "from": "click_to_identify",
+        "to": "drag_drop",
+        "trigger": "identification_complete",
+        "animation": "fade"
+      }
+    ],
+    "interactionMode": "memory_match",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 10,
+      "max_score": 200
+    },
+    "totalMaxScore": 200,
+    "generation_complete": true,
+    "memoryMatchConfig": {
+      "pairs": [
+        {
+          "id": "p1",
+          "front": "Agent",
+          "back": "The animate, volitional initiator of an action.",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "The Agent is the one who performs the action, typically with intent.",
+          "category": "Semantic Role"
+        },
+        {
+          "id": "p2",
+          "front": "Patient",
+          "back": "The entity undergoing the action or state, often directly affected.",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "The Patient is the recipient of the action, experiencing its effect.",
+          "category": "Semantic Role"
+        },
+        {
+          "id": "p3",
+          "front": "Experiencer",
+          "back": "The animate entity perceiving or feeling a psychological state or sensation.",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "The Experiencer is the one who has a feeling, perception, or mental state.",
+          "category": "Semantic Role"
+        },
+        {
+          "id": "p4",
+          "front": "Instrument",
+          "back": "The inanimate entity used by an Agent to perform an action.",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "The Instrument is the tool or means by which an action is carried out.",
+          "category": "Semantic Role"
+        },
+        {
+          "id": "p5",
+          "front": "Theme",
+          "back": "The entity that is moved, located, or whose location is described, without initiating the action.",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "The Theme is the entity that undergoes motion or is in a particular location, but doesn't act.",
+          "category": "Semantic Role"
+        },
+        {
+          "id": "p6",
+          "front": "Goal",
+          "back": "The entity toward which an action is directed or where something ends up.",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "The Goal indicates the destination or endpoint of an action or movement.",
+          "category": "Semantic Role"
+        },
+        {
+          "id": "p7",
+          "front": "Source",
+          "back": "The entity from which something originates or moves away.",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "The Source indicates the starting point or origin of an action or movement.",
+          "category": "Semantic Role"
+        },
+        {
+          "id": "p8",
+          "front": "Beneficiary",
+          "back": "The entity for whose benefit or detriment an action is performed.",
+          "frontType": "text",
+          "backType": "text",
+          "explanation": "The Beneficiary is the one who gains or loses from the action.",
+          "category": "Semantic Role"
+        }
+      ],
+      "game_variant": "classic",
+      "gridSize": [
+        4,
+        4
+      ],
+      "match_type": "term_to_definition",
+      "card_back_style": "question_mark",
+      "matched_card_behavior": "fade",
+      "show_explanation_on_match": true,
+      "flip_duration_ms": 400,
+      "show_attempts_counter": true
+    }
+  }
+}

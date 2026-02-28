@@ -1,0 +1,728 @@
+{
+  "id": "hist-grad-historiographic-description",
+  "title": "Match Historiographic Methods",
+  "question": "Create an interactive diagram game where graduate students match historiographic methodologies (Marxist, Annales School, Postcolonial, Microhistory, Quantitative/Cliometric, Gender History) to their descriptions, key practitioners, and characteristic questions.",
+  "domain": "history",
+  "educationLevel": "graduate",
+  "gameType": "interactive_diagram",
+  "mechanic": "description_matching",
+  "bloomsLevel": "Evaluate",
+  "pipelineMetrics": {
+    "runId": "7e4c9cd4-66d5-4212-9597-622978eca088",
+    "totalTokens": 0,
+    "totalCost": 0,
+    "latencySeconds": 144.3,
+    "validationPassRate": 1.0,
+    "modelUsed": "gemini-2.5-pro",
+    "agentCount": 0,
+    "timestamp": "2026-02-27T05:28:22.421527+00:00"
+  },
+  "blueprint": {
+    "templateType": "INTERACTIVE_DIAGRAM",
+    "title": "The Historian's Compass: Navigating Methodologies",
+    "subject": "History",
+    "difficulty": "advanced",
+    "narrativeIntro": "Welcome, aspiring historian! The field of history is vast, shaped by diverse theoretical frameworks and analytical approaches. To truly master historical inquiry, you must understand the unique lenses through which historians interpret the past. Your mission is to navigate the complex landscape of historiographic methodologies, matching each school of thought to its core principles, influential figures, and characteristic research questions. Sharpen your intellectual compass and begin your exploration!",
+    "narrativeTheme": "Academic Exploration",
+    "completionMessage": "Congratulations! You have successfully navigated the intricate world of historiographic methodologies. Your ability to differentiate between these approaches, identify their key practitioners, and recognize their characteristic questions demonstrates a sophisticated understanding of historical inquiry. You are now better equipped to design and conduct your own rigorous historical research.",
+    "estimatedDurationMinutes": 12,
+    "diagram": {
+      "assetPrompt": "An abstract, stylized landscape diagram representing the 'spectrum' or 'terrain' of historiographic methodologies. It features six clearly delineated, distinct, and visually unique zones, each subtly shaped to suggest its conceptual identity (e.g., one zone might have 'layers' for class analysis, another 'interconnected paths' for long-term structures). Each zone is clearly labeled with its methodology name. The overall aesthetic is clean, modern, and suitable for an educational context, with ample space within and around each zone for dropping text cards.",
+      "zones": [
+        {
+          "id": "zone_marxist_historiography",
+          "label": "Marxist Historiography",
+          "points": [
+            [
+              28.6,
+              9.7
+            ],
+            [
+              24.2,
+              8.7
+            ],
+            [
+              18.2,
+              11.5
+            ],
+            [
+              13.0,
+              12.5
+            ],
+            [
+              11.1,
+              14.2
+            ],
+            [
+              10.1,
+              19.8
+            ],
+            [
+              10.8,
+              28.0
+            ],
+            [
+              12.6,
+              34.7
+            ],
+            [
+              15.1,
+              38.3
+            ],
+            [
+              18.8,
+              39.8
+            ],
+            [
+              22.1,
+              39.4
+            ],
+            [
+              25.9,
+              36.9
+            ],
+            [
+              28.8,
+              33.1
+            ],
+            [
+              30.0,
+              29.6
+            ],
+            [
+              29.7,
+              21.5
+            ],
+            [
+              30.6,
+              13.8
+            ],
+            [
+              30.0,
+              11.5
+            ]
+          ],
+          "x": 21.2,
+          "y": 23.7,
+          "radius": 16.3,
+          "shape": "polygon",
+          "center": {
+            "x": 21.2,
+            "y": 23.7
+          },
+          "description": "Analyzes historical change and societal development through the lens of class struggle, economic structures, and modes of production, revealing how material conditions and power dynamics shape human societies."
+        },
+        {
+          "id": "zone_annales_school",
+          "label": "Annales School",
+          "points": [
+            [
+              62.5,
+              15.0
+            ],
+            [
+              60.1,
+              11.9
+            ],
+            [
+              55.1,
+              11.0
+            ],
+            [
+              51.2,
+              11.6
+            ],
+            [
+              49.8,
+              15.6
+            ],
+            [
+              48.4,
+              16.9
+            ],
+            [
+              44.9,
+              14.9
+            ],
+            [
+              43.6,
+              14.9
+            ],
+            [
+              42.1,
+              16.7
+            ],
+            [
+              39.9,
+              22.8
+            ],
+            [
+              39.1,
+              26.5
+            ],
+            [
+              39.3,
+              28.9
+            ],
+            [
+              40.1,
+              30.3
+            ],
+            [
+              42.9,
+              31.5
+            ],
+            [
+              49.5,
+              31.9
+            ],
+            [
+              53.7,
+              33.4
+            ],
+            [
+              55.7,
+              33.1
+            ],
+            [
+              58.3,
+              30.4
+            ],
+            [
+              61.5,
+              24.4
+            ],
+            [
+              62.6,
+              20.7
+            ]
+          ],
+          "x": 50.0,
+          "y": 22.1,
+          "radius": 14.4,
+          "shape": "polygon",
+          "center": {
+            "x": 50.0,
+            "y": 22.1
+          },
+          "description": "Investigates long-term historical structures (la longue dur\u00e9e), geographical influences, and collective mentalities, integrating social sciences to understand broad social, economic, and cultural patterns of everyday life."
+        },
+        {
+          "id": "zone_postcolonial_historiography",
+          "label": "Postcolonial Historiography",
+          "points": [
+            [
+              62.2,
+              39.1
+            ],
+            [
+              59.5,
+              40.4
+            ],
+            [
+              57.3,
+              43.2
+            ],
+            [
+              56.2,
+              47.0
+            ],
+            [
+              56.2,
+              50.0
+            ],
+            [
+              57.1,
+              53.6
+            ],
+            [
+              59.0,
+              56.5
+            ],
+            [
+              61.7,
+              58.1
+            ],
+            [
+              64.0,
+              58.2
+            ],
+            [
+              66.3,
+              57.2
+            ],
+            [
+              68.8,
+              54.4
+            ],
+            [
+              69.8,
+              51.6
+            ],
+            [
+              70.2,
+              47.7
+            ],
+            [
+              69.3,
+              44.0
+            ],
+            [
+              67.4,
+              41.0
+            ],
+            [
+              65.0,
+              39.4
+            ]
+          ],
+          "x": 63.1,
+          "y": 48.8,
+          "radius": 9.7,
+          "shape": "polygon",
+          "center": {
+            "x": 63.1,
+            "y": 48.8
+          },
+          "description": "Critiques and deconstructs historical narratives that are Eurocentric or perpetuate colonial power structures, aiming to recover the voices and experiences of colonized peoples and analyze the lasting impacts of colonialism."
+        },
+        {
+          "id": "zone_microhistory",
+          "label": "Microhistory",
+          "points": [
+            [
+              38.3,
+              38.8
+            ],
+            [
+              35.9,
+              39.9
+            ],
+            [
+              34.2,
+              41.8
+            ],
+            [
+              32.8,
+              45.0
+            ],
+            [
+              32.3,
+              49.8
+            ],
+            [
+              33.8,
+              54.4
+            ],
+            [
+              35.9,
+              56.9
+            ],
+            [
+              38.5,
+              58.1
+            ],
+            [
+              40.7,
+              58.1
+            ],
+            [
+              43.8,
+              56.4
+            ],
+            [
+              45.4,
+              54.3
+            ],
+            [
+              46.7,
+              49.9
+            ],
+            [
+              46.7,
+              47.7
+            ],
+            [
+              45.6,
+              43.3
+            ],
+            [
+              43.5,
+              40.0
+            ],
+            [
+              40.7,
+              38.7
+            ]
+          ],
+          "x": 39.7,
+          "y": 48.3,
+          "radius": 9.9,
+          "shape": "polygon",
+          "center": {
+            "x": 39.7,
+            "y": 48.3
+          },
+          "description": "Examines small-scale events, individuals, or communities in meticulous detail to illuminate broader historical processes, cultural norms, or societal structures, often challenging grand narratives through intensive case studies."
+        },
+        {
+          "id": "zone_quantitative/cliometric_historiography",
+          "label": "Quantitative/Cliometric Historiography",
+          "points": [
+            [
+              40.0,
+              66.0
+            ],
+            [
+              39.0,
+              70.0
+            ],
+            [
+              38.9,
+              76.2
+            ],
+            [
+              40.4,
+              84.5
+            ],
+            [
+              42.9,
+              89.0
+            ],
+            [
+              46.3,
+              90.6
+            ],
+            [
+              49.5,
+              89.9
+            ],
+            [
+              55.5,
+              86.1
+            ],
+            [
+              59.3,
+              81.8
+            ],
+            [
+              61.1,
+              76.2
+            ],
+            [
+              60.6,
+              67.7
+            ],
+            [
+              59.2,
+              65.6
+            ],
+            [
+              56.8,
+              64.7
+            ],
+            [
+              49.9,
+              65.4
+            ],
+            [
+              43.0,
+              63.9
+            ]
+          ],
+          "x": 49.5,
+          "y": 75.8,
+          "radius": 15.1,
+          "shape": "polygon",
+          "center": {
+            "x": 49.5,
+            "y": 75.8
+          },
+          "description": "Applies statistical methods, economic theory, and quantitative data analysis to historical questions, aiming to identify patterns, test hypotheses, and provide empirical evidence for historical arguments using large datasets."
+        },
+        {
+          "id": "zone_gender_history",
+          "label": "Gender History",
+          "points": [
+            [
+              73.1,
+              58.4
+            ],
+            [
+              72.0,
+              61.2
+            ],
+            [
+              71.3,
+              70.1
+            ],
+            [
+              71.3,
+              76.3
+            ],
+            [
+              72.6,
+              80.8
+            ],
+            [
+              76.2,
+              85.4
+            ],
+            [
+              80.5,
+              88.7
+            ],
+            [
+              84.5,
+              89.1
+            ],
+            [
+              86.5,
+              88.3
+            ],
+            [
+              88.4,
+              85.8
+            ],
+            [
+              89.0,
+              82.9
+            ],
+            [
+              87.7,
+              71.8
+            ],
+            [
+              87.9,
+              64.6
+            ],
+            [
+              87.0,
+              61.0
+            ],
+            [
+              84.8,
+              58.4
+            ],
+            [
+              82.9,
+              57.8
+            ],
+            [
+              74.2,
+              57.9
+            ]
+          ],
+          "x": 80.6,
+          "y": 72.9,
+          "radius": 16.7,
+          "shape": "polygon",
+          "center": {
+            "x": 80.6,
+            "y": 72.9
+          },
+          "description": "Explores how gender roles, identities, and power relations have shaped historical experiences and societal structures, aiming to uncover the historical construction of gender and integrate diverse experiences into the historical narrative."
+        }
+      ],
+      "imageUrl": "/api/assets/demo/7e4c9cd4-66d5-4212-9597-622978eca088/diagram_scene_1.png",
+      "assetUrl": "/api/assets/demo/7e4c9cd4-66d5-4212-9597-622978eca088/diagram_scene_1.png"
+    },
+    "labels": [
+      {
+        "id": "label_s1_0",
+        "text": "Marxist Historiography",
+        "correctZoneId": "zone_marxist_historiography"
+      },
+      {
+        "id": "label_s1_1",
+        "text": "Annales School",
+        "correctZoneId": "zone_annales_school"
+      },
+      {
+        "id": "label_s1_2",
+        "text": "Postcolonial Historiography",
+        "correctZoneId": "zone_postcolonial_historiography"
+      },
+      {
+        "id": "label_s1_3",
+        "text": "Microhistory",
+        "correctZoneId": "zone_microhistory"
+      },
+      {
+        "id": "label_s1_4",
+        "text": "Quantitative/Cliometric Historiography",
+        "correctZoneId": "zone_quantitative/cliometric_historiography"
+      },
+      {
+        "id": "label_s1_5",
+        "text": "Gender History",
+        "correctZoneId": "zone_gender_history"
+      }
+    ],
+    "distractorLabels": [],
+    "mechanics": [
+      {
+        "type": "description_matching",
+        "config": {
+          "instruction_text": "The diagram before you represents the diverse landscape of historiographic thought. Your first task is to match each methodology's detailed description to its designated area. Pay close attention to the core tenets and analytical focus of each school."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 60,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Precisely! That description accurately captures the essence of this historiographic methodology.",
+          "on_incorrect": "Not quite. Re-evaluate the core analytical approach and primary focus of the methodology. Which description truly aligns with its defining characteristics?",
+          "on_completion": "Excellent work! You've successfully matched all descriptions, demonstrating a strong understanding of these diverse historiographic approaches.",
+          "misconceptions": [
+            {
+              "trigger_label": "misconception_rigid_categories",
+              "message": "It's important to remember that methodologies often overlap, influence each other, and can be combined or adapted by historians in their research, rather than being strictly compartmentalized.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misconception_single_historian",
+              "message": "Methodologies evolve, and practitioners within a school may have diverse interpretations, focus areas, or even internal debates, making simple categorization insufficient.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misconception_different_topics",
+              "message": "Methodologies are distinct theoretical frameworks and analytical approaches that dictate *how* history is studied (e.g., sources, questions, interpretations), not just *what* is studied.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "Now that you've matched the descriptions, drag and drop the key figures to their associated historiographic methodologies on the diagram. This reinforces the human element and historical context of these intellectual movements."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 60,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Correct! This element (practitioner/question) is a key characteristic of that methodology.",
+          "on_incorrect": "Hmm, that doesn't quite fit. Consider the fundamental questions or typical figures associated with this particular school of thought.",
+          "on_completion": "Outstanding! You've accurately identified key practitioners and characteristic questions for each methodology.",
+          "misconceptions": [
+            {
+              "trigger_label": "misconception_rigid_categories",
+              "message": "It's important to remember that methodologies often overlap, influence each other, and can be combined or adapted by historians in their research, rather than being strictly compartmentalized.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misconception_single_historian",
+              "message": "Methodologies evolve, and practitioners within a school may have diverse interpretations, focus areas, or even internal debates, making simple categorization insufficient.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misconception_different_topics",
+              "message": "Methodologies are distinct theoretical frameworks and analytical approaches that dictate *how* history is studied (e.g., sources, questions, interpretations), not just *what* is studied.",
+              "severity": "medium"
+            }
+          ]
+        }
+      },
+      {
+        "type": "drag_drop",
+        "config": {
+          "instruction_text": "Excellent! To deepen your understanding, drag and drop the characteristic research questions to the methodologies that would typically pose them. This tests your application of each school's analytical approach."
+        },
+        "scoring": {
+          "strategy": "per_correct",
+          "points_per_correct": 10,
+          "max_score": 60,
+          "partial_credit": true
+        },
+        "feedback": {
+          "on_correct": "Spot on! This element (practitioner/question) is strongly linked to that historiographic approach.",
+          "on_incorrect": "Take another look. Which methodology's core tenets or typical applications align best with this item?",
+          "on_completion": "Fantastic! You've demonstrated a strong grasp of the nuances of these historiographic methods by correctly placing all elements.",
+          "misconceptions": [
+            {
+              "trigger_label": "misconception_rigid_categories",
+              "message": "It's important to remember that methodologies often overlap, influence each other, and can be combined or adapted by historians in their research, rather than being strictly compartmentalized.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misconception_single_historian",
+              "message": "Methodologies evolve, and practitioners within a school may have diverse interpretations, focus areas, or even internal debates, making simple categorization insufficient.",
+              "severity": "medium"
+            },
+            {
+              "trigger_label": "misconception_different_topics",
+              "message": "Methodologies are distinct theoretical frameworks and analytical approaches that dictate *how* history is studied (e.g., sources, questions, interpretations), not just *what* is studied.",
+              "severity": "medium"
+            }
+          ]
+        }
+      }
+    ],
+    "modeTransitions": [
+      {
+        "from": "description_matching",
+        "to": "drag_drop",
+        "trigger": "description_complete",
+        "animation": "fade"
+      },
+      {
+        "from": "drag_drop",
+        "to": "drag_drop",
+        "trigger": "all_zones_labeled",
+        "animation": "fade"
+      }
+    ],
+    "interactionMode": "description_matching",
+    "animationCues": {
+      "correctPlacement": "pulse-green",
+      "incorrectPlacement": "shake-red"
+    },
+    "scoringStrategy": {
+      "type": "per_zone",
+      "base_points_per_zone": 10,
+      "max_score": 180
+    },
+    "totalMaxScore": 180,
+    "generation_complete": true,
+    "dragDropConfig": {
+      "leader_line_style": "none",
+      "tray_position": "bottom",
+      "placement_animation": "spring",
+      "show_distractors": false,
+      "leader_line_color": "",
+      "leader_line_animate": true,
+      "zone_idle_animation": "pulse",
+      "shuffle_labels": true,
+      "pin_marker_shape": "circle",
+      "zone_hover_effect": "highlight",
+      "label_style": "text",
+      "feedback_timing": "immediate",
+      "tray_layout": "horizontal",
+      "interaction_mode": "drag_drop",
+      "incorrect_animation": "shake",
+      "label_anchor_side": "auto",
+      "max_attempts": 3
+    },
+    "descriptionMatchingConfig": {
+      "descriptions": {
+        "zone_marxist_historiography": "Analyzes historical change and societal development through the lens of class struggle, economic structures, and modes of production, revealing how material conditions and power dynamics shape human societies.",
+        "zone_annales_school": "Investigates long-term historical structures (la longue dur\u00e9e), geographical influences, and collective mentalities, integrating social sciences to understand broad social, economic, and cultural patterns of everyday life.",
+        "zone_postcolonial_historiography": "Critiques and deconstructs historical narratives that are Eurocentric or perpetuate colonial power structures, aiming to recover the voices and experiences of colonized peoples and analyze the lasting impacts of colonialism.",
+        "zone_microhistory": "Examines small-scale events, individuals, or communities in meticulous detail to illuminate broader historical processes, cultural norms, or societal structures, often challenging grand narratives through intensive case studies.",
+        "zone_quantitative/cliometric_historiography": "Applies statistical methods, economic theory, and quantitative data analysis to historical questions, aiming to identify patterns, test hypotheses, and provide empirical evidence for historical arguments using large datasets.",
+        "zone_gender_history": "Explores how gender roles, identities, and power relations have shaped historical experiences and societal structures, aiming to uncover the historical construction of gender and integrate diverse experiences into the historical narrative."
+      },
+      "mode": "click_zone",
+      "distractor_descriptions": [],
+      "show_connecting_lines": true,
+      "defer_evaluation": false,
+      "description_panel_position": "right"
+    }
+  }
+}

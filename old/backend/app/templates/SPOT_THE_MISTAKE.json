@@ -1,0 +1,25 @@
+{
+  "templateType": "SPOT_THE_MISTAKE",
+  "description": "Identify and highlight errors in code, text, or diagrams.",
+  "domains": ["programming", "debugging", "proofreading", "quality_assurance", "error_detection"],
+  "blueprintSchema": {
+    "requiredFields": [
+      "templateType",
+      "title",
+      "narrativeIntro",
+      "content",
+      "mistakes",
+      "tasks"
+    ]
+  },
+  "htmlContract": {
+    "requiredIds": ["gameRoot", "contentArea", "highlightsPanel", "submitBtn", "feedbackArea"],
+    "requiredClasses": ["content-line", "mistake-highlight", "mistake-correct", "mistake-incorrect"],
+    "interactionNotes": [
+      "Content is clickable to highlight mistakes.",
+      "Highlights indicate selected mistakes.",
+      "Feedback shows which mistakes were found."
+    ]
+  }
+}
+
