@@ -160,4 +160,4 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for full pipeline diagrams, the
 
 MIT License — see [LICENSE](LICENSE) for details.
 
-Copyright 2026 Shiven Agarwal, Ashish Sarkar
+Copyright 2026 Shiven Agarwal
